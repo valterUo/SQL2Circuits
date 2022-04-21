@@ -1,5 +1,7 @@
 # Generated from C:\Users\valte\Desktop\quantum-computing-for-database-query-languages\SQLiteParser.g4 by ANTLR 4.9.3
 from antlr4 import *
+from discopy import Ty, Box, Id, Swap
+
 if __name__ is not None and "." in __name__:
     from .SQLiteParser import SQLiteParser
 else:
@@ -7,13 +9,57 @@ else:
 
 # This class defines a complete listener for a parse tree produced by SQLiteParser.
 class SQLiteParserListener(ParseTreeListener):
-
+    
+    def __init__(self, parser):
+        self.string_diagram = ""
+        self.parser = parser
+        
+    def get_string_diagram(self):
+        return self.string_diagram
+    
     # Enter a parse tree produced by SQLiteParser#parse.
     def enterParse(self, ctx:SQLiteParser.ParseContext):
         pass
 
     # Exit a parse tree produced by SQLiteParser#parse.
     def exitParse(self, ctx:SQLiteParser.ParseContext):
+        pass
+    
+    # Enter a parse tree produced by SQLiteParser#select_core.
+    def enterSelect_core(self, ctx:SQLiteParser.Select_coreContext):
+        print(ctx.getChild(0))
+        print(ctx.getChild(2))
+        print(ctx.getChild(4))
+        for i in range(ctx.getChildCount()):
+            print(type(ctx.getChild(i)))
+            try:
+                print(ctx.getChild(i).toStringTree(recog=self.parser))
+            except:
+                print(ctx.getChild(i))
+        pass
+    
+    
+    # Enter a parse tree produced by SQLiteParser#table_or_subquery.
+    def enterTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
+        print(ctx.toStringTree(recog=self.parser))
+        pass
+
+    # Exit a parse tree produced by SQLiteParser#table_or_subquery.
+    def exitTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
+        pass
+
+
+    # Enter a parse tree produced by SQLiteParser#result_column.
+    def enterResult_column(self, ctx:SQLiteParser.Result_columnContext):
+        print(ctx.toStringTree(recog=self.parser))
+        pass
+
+    # Exit a parse tree produced by SQLiteParser#result_column.
+    def exitResult_column(self, ctx:SQLiteParser.Result_columnContext):
+        pass
+    
+    
+    def get_SQL_diagram(self):
         pass
 
 
@@ -385,11 +431,6 @@ class SQLiteParserListener(ParseTreeListener):
     def exitJoin_clause(self, ctx:SQLiteParser.Join_clauseContext):
         pass
 
-
-    # Enter a parse tree produced by SQLiteParser#select_core.
-    def enterSelect_core(self, ctx:SQLiteParser.Select_coreContext):
-        pass
-
     # Exit a parse tree produced by SQLiteParser#select_core.
     def exitSelect_core(self, ctx:SQLiteParser.Select_coreContext):
         pass
@@ -419,24 +460,6 @@ class SQLiteParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SQLiteParser#compound_select_stmt.
     def exitCompound_select_stmt(self, ctx:SQLiteParser.Compound_select_stmtContext):
-        pass
-
-
-    # Enter a parse tree produced by SQLiteParser#table_or_subquery.
-    def enterTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
-        pass
-
-    # Exit a parse tree produced by SQLiteParser#table_or_subquery.
-    def exitTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
-        pass
-
-
-    # Enter a parse tree produced by SQLiteParser#result_column.
-    def enterResult_column(self, ctx:SQLiteParser.Result_columnContext):
-        pass
-
-    # Exit a parse tree produced by SQLiteParser#result_column.
-    def exitResult_column(self, ctx:SQLiteParser.Result_columnContext):
         pass
 
 

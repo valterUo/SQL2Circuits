@@ -1,8 +1,1 @@
-CREATE TABLE f(
-   id INT PRIMARY KEY     NOT NULL,
-   i           TEXT    NOT NULL,
-   j            INT     NOT NULL,
-   k        CHAR(50),
-   m         REAL
-);
-
+SELECT rick, morty FROM reality_1, reality_2 WHERE rick = 1000 AND morty = 10
