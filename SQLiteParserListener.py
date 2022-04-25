@@ -46,6 +46,9 @@ class SQLiteParserListener(ParseTreeListener):
     def get_SQL_diagrams(self):
         return { 'select_core_diagram': [self.select_core_diagram], 'select_main_box': [self.select_main_box], 'result_column_diagrams': self.result_column_diagrams, 'from_main_box': [self.from_main_box], 'table_or_subquery_diagrams': self.table_or_subquery_diagrams, 'where_main_box': [self.where_main_box], 'filtering_diagrams': [self.current_filtering_diagram] }
     
+    def get_final_diagram(self):
+        return self.final_diagram
+    
     # Enter a parse tree produced by SQLiteParser#parse.
     def enterParse(self, ctx:SQLiteParser.ParseContext):
         pass
@@ -59,8 +62,8 @@ class SQLiteParserListener(ParseTreeListener):
             res_col_diagrams = res_col_diagrams @ diagram
         for diagram in self.table_or_subquery_diagrams:
             table_subquery_diagrams = table_subquery_diagrams @ diagram
-        self.final_diagram = self.select_core_diagram \
-        >> self.select_main_box @ self.from_main_box @ self.where_main_box #\
+        self.final_diagram = res_col_diagrams @ table_subquery_diagrams @ Word('WHERE', Ty('keyword')) @ self.current_filtering_diagram #self.select_core_diagram \
+        #>> self.select_main_box @ self.from_main_box @ self.where_main_box #\
         #>> res_col_diagrams @ table_subquery_diagrams @ Word('WHERE', Ty('keyword')) @ self.current_filtering_diagram
         
     
@@ -74,18 +77,19 @@ class SQLiteParserListener(ParseTreeListener):
         for i in range(ctx.getChildCount()):
             if isinstance(ctx.getChild(i), TerminalNodeImpl):
                 value = str(ctx.getChild(i))
-                if current_element:
-                    match current_element:
-                        case "select":
-                            current_domain = Ty('select_clause')
-                            self.select_main_box = Box('select_main', dom = current_domain, cod = codomain)
-                            select_core_codomain = select_core_codomain @ current_domain
-                        case "from":
-                            current_domain = Ty('from_clause')
-                            self.from_main_box = Box('from_main', dom = current_domain, cod = codomain)
-                            select_core_codomain = select_core_codomain @ current_domain
-                current_element = value.lower()
-                codomain = Ty('keyword')
+                if len(value) > 1:
+                    if current_element:
+                        match current_element:
+                            case "select":
+                                current_domain = Ty('select_clause')
+                                self.select_main_box = Box('select_main', dom = current_domain, cod = codomain)
+                                select_core_codomain = select_core_codomain @ current_domain
+                            case "from":
+                                current_domain = Ty('from_clause')
+                                self.from_main_box = Box('from_main', dom = current_domain, cod = codomain)
+                                select_core_codomain = select_core_codomain @ current_domain
+                    current_element = value.lower()
+                    codomain = Ty('keyword')
             else:
                 if current_element != "where":
                     wire = Ty('identifier')
