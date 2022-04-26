@@ -56,15 +56,15 @@ class SQLiteParserListener(ParseTreeListener):
     # Exit a parse tree produced by SQLiteParser#parse.
     def exitParse(self, ctx:SQLiteParser.ParseContext):
         # Post-process the produced diagrams together
-        res_col_diagrams = Word('SELECT', Ty('keyword'))
-        table_subquery_diagrams = Word('FROM', Ty('keyword'))
+        res_col_diagrams = Box('SELECT', Ty('keyword'), Ty()) #Word('SELECT', Ty('keyword'))
+        table_subquery_diagrams = Box('FROM', Ty('keyword'), Ty()) #Word('FROM', Ty('keyword'))
         for diagram in self.result_column_diagrams:
             res_col_diagrams = res_col_diagrams @ diagram
         for diagram in self.table_or_subquery_diagrams:
             table_subquery_diagrams = table_subquery_diagrams @ diagram
-        self.final_diagram = res_col_diagrams @ table_subquery_diagrams @ Word('WHERE', Ty('keyword')) @ self.current_filtering_diagram #self.select_core_diagram \
-        #>> self.select_main_box @ self.from_main_box @ self.where_main_box #\
-        #>> res_col_diagrams @ table_subquery_diagrams @ Word('WHERE', Ty('keyword')) @ self.current_filtering_diagram
+        self.final_diagram =  self.select_core_diagram \
+        >> self.select_main_box @ self.from_main_box @ self.where_main_box \
+        >> res_col_diagrams @ table_subquery_diagrams @ Box('WHERE', Ty('keyword'), Ty()) @ self.current_filtering_diagram
         
     
     
