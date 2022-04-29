@@ -1,1 +1,1 @@
-SELECT rick, morty FROM reality_1, reality_2 WHERE rick = 1000 AND morty = 10
+SELECT rick, morty FROM reality_1, reality_2 WHERE True

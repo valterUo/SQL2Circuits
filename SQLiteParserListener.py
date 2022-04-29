@@ -2,6 +2,7 @@
 from antlr4 import *
 from discopy import Ty, Box, Word
 from antlr4.tree.Tree import TerminalNodeImpl
+from tree import Tree
 
 if __name__ is not None and "." in __name__:
     from .SQLiteParser import SQLiteParser
@@ -18,6 +19,27 @@ class SQLiteParserListener(ParseTreeListener):
         # These corresponds to the basic SQL language elements
         # Actually SQLite grammar does not include this kind of 
         # typing so we have built it here ourselves
+        
+        self.basic_types = { 'keyword': Ty('keyword'), 
+                            'column_name': Ty('column-name'), 
+                            'column_alias': Ty('column-alias'), 
+                            'table_name': Ty('table-name'), 
+                            'table_alias': Ty('table-alias'), 
+                            'unary_operator': Ty('unary-operator'), 
+                            'binary_operator': Ty('binary-operator'), 
+                            'function_name': Ty('function-name') }
+        
+        self.advanced_types = { 'query': Ty('query'), 
+                               'statement': Ty('statement'), 
+                               'expr': Ty('expr'), 
+                               'result_column': Ty('result-column'), 
+                               'table_or_subquery': Ty('table'), 
+                               'select-clause': Ty('select-clause'), 
+                               'from-clause': Ty('from-clause'), 
+                               'where-clause': Ty('where-clause') }
+        
+        # Tree structure {'node' :: Box, 'children' :: [Tree]} :: Tree
+        self.diagram = {'node': Box('parse', Ty('query'), cod = Ty('statement_list')), 'children': []}
         
         root = Ty('query')
         self.statement = Ty('statement')
@@ -36,18 +58,20 @@ class SQLiteParserListener(ParseTreeListener):
         self.current_table_or_subquery_diagram = None
         
         self.current_filtering_diagram = None
-        
         self.select_main_box = None
         self.from_main_box = None
         self.where_main_box = None
-        
         self.final_diagram = None
         
+        self.tree = Tree('parse', Ty('query'), 1)
+
+            
+    # For debugging purposes 
     def get_SQL_diagrams(self):
-        return { 'select_core_diagram': [self.select_core_diagram], 'select_main_box': [self.select_main_box], 'result_column_diagrams': self.result_column_diagrams, 'from_main_box': [self.from_main_box], 'table_or_subquery_diagrams': self.table_or_subquery_diagrams, 'where_main_box': [self.where_main_box], 'filtering_diagrams': [self.current_filtering_diagram] }
+        return Ty() #{ 'select_core_diagram': [self.select_core_diagram], 'select_main_box': [self.select_main_box], 'result_column_diagrams': self.result_column_diagrams, 'from_main_box': [self.from_main_box], 'table_or_subquery_diagrams': self.table_or_subquery_diagrams, 'where_main_box': [self.where_main_box], 'filtering_diagrams': [self.current_filtering_diagram] }
     
     def get_final_diagram(self):
-        return self.final_diagram
+        return self.tree.get_diagram()
     
     # Enter a parse tree produced by SQLiteParser#parse.
     def enterParse(self, ctx:SQLiteParser.ParseContext):
@@ -55,54 +79,55 @@ class SQLiteParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SQLiteParser#parse.
     def exitParse(self, ctx:SQLiteParser.ParseContext):
+        pass
         # Post-process the produced diagrams together
-        res_col_diagrams = Box('SELECT', Ty('keyword'), Ty()) #Word('SELECT', Ty('keyword'))
-        table_subquery_diagrams = Box('FROM', Ty('keyword'), Ty()) #Word('FROM', Ty('keyword'))
-        for diagram in self.result_column_diagrams:
-            res_col_diagrams = res_col_diagrams @ diagram
-        for diagram in self.table_or_subquery_diagrams:
-            table_subquery_diagrams = table_subquery_diagrams @ diagram
-        self.final_diagram =  self.select_core_diagram \
-        >> self.select_main_box @ self.from_main_box @ self.where_main_box \
-        >> res_col_diagrams @ table_subquery_diagrams @ Box('WHERE', Ty('keyword'), Ty()) @ self.current_filtering_diagram
+        
+        #res_col_diagrams = Box('SELECT', Ty('keyword'), Ty())
+        #table_subquery_diagrams = Box('FROM', Ty('keyword'), Ty())
+        
+        #for diagram in self.result_column_diagrams:
+        #    res_col_diagrams = res_col_diagrams @ diagram
+            
+        #for diagram in self.table_or_subquery_diagrams:
+        #    table_subquery_diagrams = table_subquery_diagrams @ diagram
+            
+        #self.final_diagram =  self.select_core_diagram \
+        #>> self.select_main_box @ self.from_main_box @ self.where_main_box \
+        #>> res_col_diagrams @ table_subquery_diagrams @ Box('WHERE', Ty('keyword'), Ty()) @ self.current_filtering_diagram
         
     
     
     # Enter a parse tree produced by SQLiteParser#select_core.
     def enterSelect_core(self, ctx:SQLiteParser.Select_coreContext):
-        codomain = Ty()
-        select_core_codomain = Ty()
-        current_element = None
+        select_clause_children_count = 0
+        from_clause_children_count = 0
+        where_clause_children_count = 1 # This is always 1 based on the railroad diagrams
         
+        # Count the children for each node at this part of the abstract syntax tree
+        current_count = 0
         for i in range(ctx.getChildCount()):
-            if isinstance(ctx.getChild(i), TerminalNodeImpl):
-                value = str(ctx.getChild(i))
-                if len(value) > 1:
-                    if current_element:
-                        match current_element:
-                            case "select":
-                                current_domain = Ty('select_clause')
-                                self.select_main_box = Box('select_main', dom = current_domain, cod = codomain)
-                                select_core_codomain = select_core_codomain @ current_domain
-                            case "from":
-                                current_domain = Ty('from_clause')
-                                self.from_main_box = Box('from_main', dom = current_domain, cod = codomain)
-                                select_core_codomain = select_core_codomain @ current_domain
-                    current_element = value.lower()
-                    codomain = Ty('keyword')
-            else:
-                if current_element != "where":
-                    wire = Ty('identifier')
-                    codomain = codomain @ wire
-                else:
-                    wire = Ty('expression')
-                    codomain = codomain @ wire
-        if current_element == "where":
-            current_domain = Ty('where_clause')
-            self.where_main_box = Box('where_main', dom = current_domain, cod = codomain)
-            select_core_codomain = select_core_codomain @ current_domain
-        select_core_box = Box('select_core', dom = self.statement, cod = select_core_codomain)
-        self.select_core_diagram = self.select_core_diagram >> select_core_box
+            value = str(ctx.getChild(i)).lower()
+            if value == "from":
+                select_clause_children_count = current_count
+                current_count = 0
+            elif value == "where":
+                from_clause_children_count = current_count
+            if not isinstance(ctx.getChild(i), TerminalNodeImpl):
+                current_count += 1
+        
+        # SELECT, FROM, WHERE keyword leaves
+        select_keyword_node = Tree('SELECT', Ty('keyword'), 0)
+        from_keyword_node = Tree('FROM', Ty('keyword'), 0)
+        where_keyword_node = Tree('WHERE', Ty('keyword'), 0)
+        
+        # select_clause, from_clause and where_clauses which are partially initialized
+        select_clause = Tree('select_clause', Ty('select_clause'), select_clause_children_count, [select_keyword_node])
+        from_clause = Tree('from_clause', Ty('from_clause'), from_clause_children_count, [from_keyword_node])
+        where_clause = Tree('where_clause', Ty('where_clause'), where_clause_children_count, [where_keyword_node])
+        
+        select_core_tree = Tree('select_core', Ty('statement'), 3, [select_clause, from_clause, where_clause])
+        
+        self.tree.append_to_tree(select_core_tree)
     
     # Exit a parse tree produced by SQLiteParser#select_core.
     def exitSelect_core(self, ctx:SQLiteParser.Select_coreContext):
@@ -111,21 +136,60 @@ class SQLiteParserListener(ParseTreeListener):
     
     # Enter a parse tree produced by SQLiteParser#expr.
     def enterExpr(self, ctx:SQLiteParser.ExprContext):
-        box = None
-        if ctx.getChildCount() > 1:
-            box = Box('expr', dom = self.expression, cod = Ty(str(ctx.toStringTree(recog = self.parser))))
-        else:
-            box = Box('expr', dom = self.expression, cod = self.expression)
-        
-        if self.current_result_column_diagram:
-            self.current_result_column_diagram = self.current_result_column_diagram >> box
-        elif self.current_table_or_subquery_diagram:
-             self.current_table_or_subquery_diagram = self.current_table_or_subquery_diagram >> box
-        else:
-            if self.current_filtering_diagram:
-                pass
-            else:
-                self.current_filtering_diagram = box
+        if ctx.literal_value():
+            print("literal-value")
+            value = ctx.getText()
+            subtree = Tree(value, Ty('literal-value'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 1, [subtree])
+            self.tree.append_to_tree(expr_tree)
+        if ctx.column_name():
+            #print("column_name")
+            pass
+        if ctx.table_name():
+            #print("table_name")
+            pass
+        if ctx.unary_operator():
+            #print("unary_operator")
+            pass
+        if ctx.expr():
+            #print("expr")
+            print(ctx.getChildCount())
+        if ctx.function_name():
+            #print("function_name")
+            pass
+            
+        #expr_domain = []
+        #for i in range(ctx.getChildCount()):
+        #    value = str(ctx.getChild(i))
+        #    if value in [",", ".", "AS", "as"]:
+        #        continue
+        #    if value in self.basic_types.keys():
+        #        expr_domain.append(self.basic_types[value])
+        #    if value in self.advanced_types.keys():
+        #        expr_domain.append(self.advanced_types[value])
+        #    else:
+        #        print(value)
+        #        expr_domain.append(Ty('keyword'))
+        #codomain = Ty()
+        #for elem in expr_domain:
+        #    codomain = codomain @ elem
+        #expr_box = Box('expression', Ty('expr'), codomain)
+        #box = None
+        #if ctx.getChildCount() > 1:
+        #    value = str(ctx.toStringTree(recog = self.parser))
+        #    box = Box('expr', dom = self.expression, cod = self.expression) >> Box(value, dom = self.expression, cod = Ty())
+        #else:
+        #    box = Box('expr', dom = self.expression, cod = self.expression)
+        #
+        #if self.current_result_column_diagram:
+        #    self.current_result_column_diagram = self.current_result_column_diagram >> box
+        #elif self.current_table_or_subquery_diagram:
+        #     self.current_table_or_subquery_diagram = self.current_table_or_subquery_diagram >> box
+        #else:
+        #    if self.current_filtering_diagram:
+        #        pass
+        #    else:
+        #        self.current_filtering_diagram = box
 
     # Exit a parse tree produced by SQLiteParser#expr.
     def exitExpr(self, ctx:SQLiteParser.ExprContext):
@@ -134,8 +198,9 @@ class SQLiteParserListener(ParseTreeListener):
     
     # Enter a parse tree produced by SQLiteParser#column_name.
     def enterColumn_name(self, ctx:SQLiteParser.Column_nameContext):
-        if self.current_result_column_diagram:
-            self.current_result_column_diagram = self.current_result_column_diagram >> Box('column_name', dom = self.expression, cod = self.identifier)
+        pass
+        #if self.current_result_column_diagram:
+        #    self.current_result_column_diagram = self.current_result_column_diagram >> Box('column_name', dom = self.expression, cod = self.identifier)
 
     # Exit a parse tree produced by SQLiteParser#column_name.
     def exitColumn_name(self, ctx:SQLiteParser.Column_nameContext):
@@ -144,10 +209,14 @@ class SQLiteParserListener(ParseTreeListener):
     
     # Enter a parse tree produced by SQLiteParser#any_name.
     def enterAny_name(self, ctx:SQLiteParser.Any_nameContext):
-        if self.current_result_column_diagram:
-            self.current_result_column_diagram = self.current_result_column_diagram >> Box('any_name', dom = self.identifier, cod = Ty(str(ctx.getChild(0))))
-        elif self.current_table_or_subquery_diagram:
-            self.current_table_or_subquery_diagram = self.current_table_or_subquery_diagram >> Box('any_name', dom = self.identifier, cod = Ty(str(ctx.getChild(0))))
+        pass
+        
+        #value = str(ctx.getChild(0))
+        #box = Box('any_name', dom = self.identifier, cod = self.identifier) >> Box(value, dom = self.identifier, cod = Ty())            
+        #if self.current_result_column_diagram:
+        #    self.current_result_column_diagram = self.current_result_column_diagram >> box
+        #elif self.current_table_or_subquery_diagram:
+        #    self.current_table_or_subquery_diagram = self.current_table_or_subquery_diagram >> box
             
     # Exit a parse tree produced by SQLiteParser#any_name.
     def exitAny_name(self, ctx:SQLiteParser.Any_nameContext):
@@ -156,17 +225,20 @@ class SQLiteParserListener(ParseTreeListener):
     
     # Enter a parse tree produced by SQLiteParser#table_or_subquery.
     def enterTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
-        self.current_table_or_subquery_diagram = Box('table_or_subquery', dom = self.identifier, cod = self.identifier)
+        #self.current_table_or_subquery_diagram = Box('table_or_subquery', dom = self.identifier, cod = self.identifier)
+        pass
 
     # Exit a parse tree produced by SQLiteParser#table_or_subquery.
     def exitTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
-        self.table_or_subquery_diagrams.append(self.current_table_or_subquery_diagram)
-        self.current_table_or_subquery_diagram = None
-        
+        #self.table_or_subquery_diagrams.append(self.current_table_or_subquery_diagram)
+        #self.current_table_or_subquery_diagram = None
+        pass
+    
     
     # Enter a parse tree produced by SQLiteParser#table_name.
     def enterTable_name(self, ctx:SQLiteParser.Table_nameContext):
-        self.current_table_or_subquery_diagram = self.current_table_or_subquery_diagram >> Box('table_name', dom = self.identifier, cod = self.identifier)
+        #self.current_table_or_subquery_diagram = self.current_table_or_subquery_diagram >> Box('table_name', dom = self.identifier, cod = self.identifier)
+        pass
 
     # Exit a parse tree produced by SQLiteParser#table_name.
     def exitTable_name(self, ctx:SQLiteParser.Table_nameContext):
@@ -175,17 +247,21 @@ class SQLiteParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by SQLiteParser#result_column.
     def enterResult_column(self, ctx:SQLiteParser.Result_columnContext):
-        self.current_result_column_diagram = Box('result_column', dom = self.identifier, cod = self.expression)
+        #self.current_result_column_diagram = Box('result_column', dom = self.identifier, cod = self.expression)
+        pass
 
     # Exit a parse tree produced by SQLiteParser#result_column.
     def exitResult_column(self, ctx:SQLiteParser.Result_columnContext):
-        self.result_column_diagrams.append(self.current_result_column_diagram)
-        self.current_result_column_diagram = None
+        #self.result_column_diagrams.append(self.current_result_column_diagram)
+        #self.current_result_column_diagram = None
+        pass
 
 
     # Enter a parse tree produced by SQLiteParser#sql_stmt_list.
     def enterSql_stmt_list(self, ctx:SQLiteParser.Sql_stmt_listContext):
-        self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt_list', dom = self.statement, cod = self.statement)
+        #self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt_list', dom = self.statement, cod = self.statement)
+        node = Tree('sql_stmt_list', Ty('list'), ctx.getChildCount())
+        self.tree.append_to_tree(node)
 
     # Exit a parse tree produced by SQLiteParser#sql_stmt_list.
     def exitSql_stmt_list(self, ctx:SQLiteParser.Sql_stmt_listContext):
@@ -194,7 +270,9 @@ class SQLiteParserListener(ParseTreeListener):
 
     # Enter a parse tree produced by SQLiteParser#sql_stmt.
     def enterSql_stmt(self, ctx:SQLiteParser.Sql_stmtContext):
-        self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt', dom = self.statement, cod = self.statement)
+        #self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt', dom = self.statement, cod = self.statement)
+        node = Tree('sql_stmt', Ty('statement'), ctx.getChildCount())
+        self.tree.append_to_tree(node)
 
     # Exit a parse tree produced by SQLiteParser#sql_stmt.
     def exitSql_stmt(self, ctx:SQLiteParser.Sql_stmtContext):
@@ -203,7 +281,9 @@ class SQLiteParserListener(ParseTreeListener):
     
     # Enter a parse tree produced by SQLiteParser#select_stmt.
     def enterSelect_stmt(self, ctx:SQLiteParser.Select_stmtContext):
-        self.select_core_diagram = self.select_core_diagram >> Box('select_stmt', dom = self.statement, cod = self.statement)
+        #self.select_core_diagram = self.select_core_diagram >> Box('select_stmt', dom = self.statement, cod = self.statement)
+        node = Tree('select_stmt', Ty('statement'), ctx.getChildCount())
+        self.tree.append_to_tree(node)
 
     # Exit a parse tree produced by SQLiteParser#select_stmt.
     def exitSelect_stmt(self, ctx:SQLiteParser.Select_stmtContext):

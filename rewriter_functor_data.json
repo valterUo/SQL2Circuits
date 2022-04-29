@@ -1,0 +1,28 @@
+{
+    "object_function": {
+        "query": "statement",
+        "statement": "statement",
+        "select_clause": "select_clause",
+        "from_clause": "from_clause",
+        "where_clause": "where_clause",
+        "identifier": "identifier",
+        "expression": "expression",
+        "keyword": "keyword"
+    },
+    "arrow_function": {
+        "parse": "",
+        "sql_stmt_list": "",
+        "sql_stmt": "",
+        "select_stmt": "",
+        "select_core": "",
+        "result_column": "",
+        "expr": "",
+        "column_name": "",
+        "any_name": "",
+        "table_or_subquery": "",
+        "table_name": "",
+        "select_main": "",
+        "from_main": "",
+        "where_main": ""
+    }
+}
