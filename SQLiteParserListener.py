@@ -14,35 +14,12 @@ class SQLiteParserListener(ParseTreeListener):
     
     def __init__(self, parser):
         self.parser = parser
-        
-        # Types of the initial abstract syntax tree
-        # These corresponds to the basic SQL language elements
-        # Actually SQLite grammar does not include this kind of 
-        # typing so we have built it here ourselves
-        
-        self.basic_types = { 'keyword': Ty('keyword'), 
-                            'column_name': Ty('column-name'), 
-                            'column_alias': Ty('column-alias'), 
-                            'table_name': Ty('table-name'), 
-                            'table_alias': Ty('table-alias'), 
-                            'unary_operator': Ty('unary-operator'), 
-                            'binary_operator': Ty('binary-operator'), 
-                            'function_name': Ty('function-name') }
-        
-        self.advanced_types = { 'query': Ty('query'), 
-                               'statement': Ty('statement'), 
-                               'expr': Ty('expr'), 
-                               'result_column': Ty('result-column'), 
-                               'table_or_subquery': Ty('table'), 
-                               'select-clause': Ty('select-clause'), 
-                               'from-clause': Ty('from-clause'), 
-                               'where-clause': Ty('where-clause') }
-        
         self.tree = Tree('parse', Ty('query'), 1)
 
     
     def get_final_diagram(self):
         return self.tree.get_diagram()
+    
     
     # ---------------- parse ----------------
     # Enter a parse tree produced by SQLiteParser#parse.
@@ -51,7 +28,43 @@ class SQLiteParserListener(ParseTreeListener):
 
     # Exit a parse tree produced by SQLiteParser#parse.
     def exitParse(self, ctx:SQLiteParser.ParseContext):
-        pass     
+        pass
+    
+    
+    # ---------------- sql_stmt_list ----------------
+    # Enter a parse tree produced by SQLiteParser#sql_stmt_list.
+    def enterSql_stmt_list(self, ctx:SQLiteParser.Sql_stmt_listContext):
+        #self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt_list', dom = self.statement, cod = self.statement)
+        node = Tree('sql_stmt_list', Ty('list'), ctx.getChildCount())
+        self.tree.append_to_tree(node)
+
+    # Exit a parse tree produced by SQLiteParser#sql_stmt_list.
+    def exitSql_stmt_list(self, ctx:SQLiteParser.Sql_stmt_listContext):
+        pass
+
+    
+    # ---------------- sql_stmt ----------------
+    # Enter a parse tree produced by SQLiteParser#sql_stmt.
+    def enterSql_stmt(self, ctx:SQLiteParser.Sql_stmtContext):
+        #self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt', dom = self.statement, cod = self.statement)
+        node = Tree('sql_stmt', Ty('statement'), ctx.getChildCount())
+        self.tree.append_to_tree(node)
+
+    # Exit a parse tree produced by SQLiteParser#sql_stmt.
+    def exitSql_stmt(self, ctx:SQLiteParser.Sql_stmtContext):
+        pass
+    
+    
+    # ---------------- select_stmt ----------------
+    # Enter a parse tree produced by SQLiteParser#select_stmt.
+    def enterSelect_stmt(self, ctx:SQLiteParser.Select_stmtContext):
+        node = Tree('select_stmt', Ty('statement'), ctx.getChildCount())
+        self.tree.append_to_tree(node)
+
+    # Exit a parse tree produced by SQLiteParser#select_stmt.
+    def exitSelect_stmt(self, ctx:SQLiteParser.Select_stmtContext):
+        pass
+    
     
     # ---------------- select_core ----------------
     # Enter a parse tree produced by SQLiteParser#select_core.
@@ -90,32 +103,59 @@ class SQLiteParserListener(ParseTreeListener):
     def exitSelect_core(self, ctx:SQLiteParser.Select_coreContext):
         pass
     
+    
     # ---------------- expr ----------------
     # Enter a parse tree produced by SQLiteParser#expr.
     def enterExpr(self, ctx:SQLiteParser.ExprContext):
+        expr_tree = None
         if ctx.literal_value():
             expr_tree = Tree('expr', Ty('expr'), 1)
-            self.tree.append_to_tree(expr_tree)
+        elif ctx.LIKE_():
+            node = Tree('LIKE', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.IN_():
+            node = Tree('IN', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.ASSIGN():
+            node = Tree('=', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.EQ():
+            node = Tree('==', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.GT_EQ():
+            node = Tree('≥', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.LT_EQ():
+            node = Tree('≤', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.GT():
+            node = Tree('>', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.LT():
+            node = Tree('<', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.AND_():
+            node = Tree('AND', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+        elif ctx.OR_():
+            node = Tree('OR', Ty('keyword'), 0)
+            expr_tree = Tree('expr', Ty('expr'), 3, [node])
         elif ctx.table_name() and ctx.column_name():
-            #print('table name, column name')
             expr_tree = Tree('expr', Ty('expr'), 2)
-            success = self.tree.append_to_tree(expr_tree)
         elif ctx.table_name() and not ctx.column_name():
             expr_tree = Tree('expr', Ty('expr'), 1)
-            self.tree.append_to_tree(expr_tree)
         elif ctx.unary_operator():
             expr_tree = Tree('expr', Ty('expr'), 2)
-            self.tree.append_to_tree(expr_tree)
         elif ctx.expr():
             count = 0
             for i in range(ctx.getChildCount()):
                 if not isinstance(ctx.getChild(i), TerminalNodeImpl):
                     count += 1   
             expr_tree = Tree('expr', Ty('expr'), count)
-            self.tree.append_to_tree(expr_tree)
         elif ctx.function_name():
             expr_tree = Tree('expr', Ty('expr'), 2)
-            success = self.tree.append_to_tree(expr_tree)
+        
+        self.tree.append_to_tree(expr_tree)
 
     # Exit a parse tree produced by SQLiteParser#expr.
     def exitExpr(self, ctx:SQLiteParser.ExprContext):
@@ -240,41 +280,6 @@ class SQLiteParserListener(ParseTreeListener):
     def exitUnary_operator(self, ctx:SQLiteParser.Unary_operatorContext):
         pass
 
-    
-    # ---------------- sql_stmt_list ----------------
-    # Enter a parse tree produced by SQLiteParser#sql_stmt_list.
-    def enterSql_stmt_list(self, ctx:SQLiteParser.Sql_stmt_listContext):
-        #self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt_list', dom = self.statement, cod = self.statement)
-        node = Tree('sql_stmt_list', Ty('list'), ctx.getChildCount())
-        self.tree.append_to_tree(node)
-
-    # Exit a parse tree produced by SQLiteParser#sql_stmt_list.
-    def exitSql_stmt_list(self, ctx:SQLiteParser.Sql_stmt_listContext):
-        pass
-
-    
-    # ---------------- sql_stmt ----------------
-    # Enter a parse tree produced by SQLiteParser#sql_stmt.
-    def enterSql_stmt(self, ctx:SQLiteParser.Sql_stmtContext):
-        #self.select_core_diagram = self.select_core_diagram >> Box('sql_stmt', dom = self.statement, cod = self.statement)
-        node = Tree('sql_stmt', Ty('statement'), ctx.getChildCount())
-        self.tree.append_to_tree(node)
-
-    # Exit a parse tree produced by SQLiteParser#sql_stmt.
-    def exitSql_stmt(self, ctx:SQLiteParser.Sql_stmtContext):
-        pass
-    
-    
-    # ---------------- select_stmt ----------------
-    # Enter a parse tree produced by SQLiteParser#select_stmt.
-    def enterSelect_stmt(self, ctx:SQLiteParser.Select_stmtContext):
-        node = Tree('select_stmt', Ty('statement'), ctx.getChildCount())
-        self.tree.append_to_tree(node)
-
-    # Exit a parse tree produced by SQLiteParser#select_stmt.
-    def exitSelect_stmt(self, ctx:SQLiteParser.Select_stmtContext):
-        pass
-    
     
     
     ## --------------------- Functions below this line are not part of the queries the work implement ---------------
