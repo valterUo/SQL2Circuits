@@ -13,7 +13,6 @@ class Tree():
         self.children_types = []
         
         for child in self.children:
-            print(child.get_type())
             self.children_types.append(child.get_type())
         
         if children_count == 0:
@@ -21,7 +20,7 @@ class Tree():
         else:
             self.full = False
             
-        if len(self.children) > 0:
+        if self.children_count == len(self.children):
             if all([child.is_full() for child in self.children]):
                 self.full = True
         
@@ -45,17 +44,17 @@ class Tree():
             for child in self.children:
                 if not child.is_full():
                     success = child.append_to_tree(tree)
+                    if success:
+                        break
             if not success:
-                if self.children_count != len(self.children):
+                if self.children_count > len(self.children):
                     self.children.append(tree)
                     self.children_types.append(tree.get_type())
                     return True
                 else:
-                    self.full = True
+                    if all([child.is_full() for child in self.children]):
+                        self.full = True
                     return False
-        
-        if all([child.is_full() for child in self.children]):
-            self.full = True
         
         return True
     
