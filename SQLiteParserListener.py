@@ -109,51 +109,51 @@ class SQLiteParserListener(ParseTreeListener):
     def enterExpr(self, ctx:SQLiteParser.ExprContext):
         expr_tree = None
         if ctx.literal_value():
-            expr_tree = Tree('expr', Ty('expr'), 1)
+            expr_tree = Tree('literal-expr', Ty('expr'), 1)
         elif ctx.LIKE_():
-            node = Tree('LIKE', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('LIKE', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.IN_():
-            node = Tree('IN', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('IN', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.ASSIGN():
-            node = Tree('=', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('=', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.EQ():
-            node = Tree('==', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('==', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.GT_EQ():
-            node = Tree('≥', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('≥', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.LT_EQ():
-            node = Tree('≤', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('≤', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.GT():
-            node = Tree('>', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('>', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.LT():
-            node = Tree('<', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('<', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.AND_():
-            node = Tree('AND', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('AND', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.OR_():
-            node = Tree('OR', Ty('keyword'), 0)
-            expr_tree = Tree('expr', Ty('expr'), 3, [node])
+            node = Tree('OR', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.table_name() and ctx.column_name():
-            expr_tree = Tree('expr', Ty('expr'), 2)
+            expr_tree = Tree('column-expr', Ty('expr'), 2)
         elif ctx.table_name() and not ctx.column_name():
-            expr_tree = Tree('expr', Ty('expr'), 1)
+            expr_tree = Tree('table-expr', Ty('expr'), 1)
         elif ctx.unary_operator():
-            expr_tree = Tree('expr', Ty('expr'), 2)
+            expr_tree = Tree('unary-expr', Ty('expr'), 2)
+        elif ctx.function_name():
+            expr_tree = Tree('fun-expr', Ty('expr'), 2)
         elif ctx.expr():
             count = 0
             for i in range(ctx.getChildCount()):
                 if not isinstance(ctx.getChild(i), TerminalNodeImpl):
                     count += 1   
             expr_tree = Tree('expr', Ty('expr'), count)
-        elif ctx.function_name():
-            expr_tree = Tree('expr', Ty('expr'), 2)
         
         self.tree.append_to_tree(expr_tree)
 
