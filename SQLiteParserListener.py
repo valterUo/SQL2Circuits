@@ -142,6 +142,8 @@ class SQLiteParserListener(ParseTreeListener):
             expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.table_name() and ctx.column_name():
             expr_tree = Tree('column-expr', Ty('expr'), 2)
+        elif not ctx.table_name() and ctx.column_name():
+            expr_tree = Tree('column-expr', Ty('expr'), 1)
         elif ctx.table_name() and not ctx.column_name():
             expr_tree = Tree('table-expr', Ty('expr'), 1)
         elif ctx.unary_operator():
