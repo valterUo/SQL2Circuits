@@ -86,16 +86,16 @@ class SQLiteParserListener(ParseTreeListener):
                 current_count += 1
         
         # SELECT, FROM, WHERE keyword leaves
-        select_keyword_node = Tree('SELECT', Ty('keyword'), 0)
-        from_keyword_node = Tree('FROM', Ty('keyword'), 0)
-        where_keyword_node = Tree('WHERE', Ty('keyword'), 0)
+        select_keyword_node = Tree('SELECT', Ty('select_keyword'), 0)
+        from_keyword_node = Tree('FROM', Ty('from_keyword'), 0)
+        where_keyword_node = Tree('WHERE', Ty('where_keyword'), 0)
         
         # select_clause, from_clause and where_clauses which are partially initialized
-        select_clause = Tree('select_clause', Ty('select_clause'), select_clause_children_count, [select_keyword_node])
-        from_clause = Tree('from_clause', Ty('from_clause'), from_clause_children_count, [from_keyword_node])
-        where_clause = Tree('where_clause', Ty('where_clause'), where_clause_children_count, [where_keyword_node])
+        select_clause = Tree('select-clause', Ty('select_clause'), select_clause_children_count, [select_keyword_node])
+        from_clause = Tree('from-clause', Ty('from_clause'), from_clause_children_count, [from_keyword_node])
+        where_clause = Tree('where-clause', Ty('where_clause'), where_clause_children_count, [where_keyword_node])
         
-        select_core_tree = Tree('select_core', Ty('statement'), 3, [select_clause, from_clause, where_clause])
+        select_core_tree = Tree('select-core', Ty('statement'), 3, [select_clause, from_clause, where_clause])
         
         self.tree.append_to_tree(select_core_tree)
     
@@ -141,15 +141,15 @@ class SQLiteParserListener(ParseTreeListener):
             node = Tree('OR', Ty('binary_operator'), 0)
             expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.table_name() and ctx.column_name():
-            expr_tree = Tree('column-expr', Ty('expr'), 2)
+            expr_tree = Tree('column-expr', Ty('column_expr'), 2)
         elif not ctx.table_name() and ctx.column_name():
-            expr_tree = Tree('column-expr', Ty('expr'), 1)
+            expr_tree = Tree('column-expr', Ty('column_expr'), 1)
         elif ctx.table_name() and not ctx.column_name():
-            expr_tree = Tree('table-expr', Ty('expr'), 1)
+            expr_tree = Tree('table-expr', Ty('table_expr'), 1)
         elif ctx.unary_operator():
             expr_tree = Tree('unary-expr', Ty('expr'), 2)
         elif ctx.function_name():
-            expr_tree = Tree('fun-expr', Ty('expr'), 2)
+            expr_tree = Tree('fun-expr', Ty('fun_expr'), 2)
         elif ctx.expr():
             count = 0
             for i in range(ctx.getChildCount()):
