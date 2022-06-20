@@ -1,3 +1,6 @@
 [submodule "join-order-benchmark"]
 	path = join-order-benchmark
 	url = https://github.com/gregrahn/join-order-benchmark.git
+[submodule "cinemagoer"]
+	path = cinemagoer
+	url = https://github.com/cinemagoer/cinemagoer.git
