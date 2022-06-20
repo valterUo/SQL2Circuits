@@ -4,3 +4,6 @@
 [submodule "quantum-computing-for-database-query-languages"]
 	path = quantum-computing-for-database-query-languages
 	url = https://github.com/valterUo/quantum-computing-for-database-query-languages.git
+[submodule "join-order-benchmark-queries"]
+	path = join-order-benchmark-queries
+	url = https://github.com/valterUo/join-order-benchmark.git
