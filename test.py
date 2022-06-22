@@ -7,7 +7,29 @@ from discopy import Ty, Box, Functor, Id, Cap, Cup, Diagram
 from lambeq import IQPAnsatz
 from functools import reduce
 
+from antlr4 import *
+from SQLiteLexer import SQLiteLexer
+from SQLiteParser import SQLiteParser
+from SQLiteParserListener import SQLiteParserListener
+import json
+import os
+import glob
+from pathlib import Path
+this_folder = os.path.abspath(os.getcwd())
+
 def main(argv):
+    
+    input_stream = FileStream(this_folder + "\\join-order-benchmark-queries\\1b.sql")
+    lexer = SQLiteLexer(input_stream)
+    stream = CommonTokenStream(lexer)
+    parser = SQLiteParser(stream)
+    tree = parser.parse()
+
+    print("Whole parse tree: ")
+    print(tree.toStringTree(recog=parser))
+    
+    
+    
     #input = "SELECT column1, column2 FROM table1, table2;"
     #input = FileStream(argv[1])
     #lexer = SQLiteLexer(input)

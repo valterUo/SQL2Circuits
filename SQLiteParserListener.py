@@ -111,7 +111,17 @@ class SQLiteParserListener(ParseTreeListener):
         if ctx.literal_value():
             expr_tree = Tree('literal-expr', Ty('expr'), 1)
         elif ctx.LIKE_():
-            node = Tree('LIKE', Ty('binary_operator'), 0)
+            if ctx.NOT_():
+                node = Tree('NOT LIKE', Ty('binary_operator'), 0)
+            else:
+                node = Tree('LIKE', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
+        elif ctx.NOT_():
+            node = Tree('NOT', Ty('unary_operator'), 0)
+            expr_tree = Tree('unary-expr', Ty('expr'), 2)
+        elif ctx.BETWEEN_():
+            print(ctx.AND_())
+            node = Tree('BETWEEN', Ty('binary_operator'), 0)
             expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.IN_():
             node = Tree('IN', Ty('binary_operator'), 0)
