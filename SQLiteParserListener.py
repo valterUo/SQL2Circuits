@@ -151,7 +151,7 @@ class SQLiteParserListener(ParseTreeListener):
             node = Tree('OR', Ty('binary_operator'), 0)
             expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.table_name() and ctx.column_name():
-            expr_tree = Tree('column-expr', Ty('column_expr'), 2)
+            expr_tree = Tree('table-column-expr', Ty('table_column_expr'), 2)
         elif not ctx.table_name() and ctx.column_name():
             expr_tree = Tree('column-expr', Ty('column_expr'), 1)
         elif ctx.table_name() and not ctx.column_name():
@@ -195,18 +195,23 @@ class SQLiteParserListener(ParseTreeListener):
     def exitLiteral_value(self, ctx:SQLiteParser.Literal_valueContext):
         pass
 
+    
     # ---------------- table_or_subquery ----------------
     # Enter a parse tree produced by SQLiteParser#table_or_subquery.
     def enterTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
         child_count = 1
+        node = None
         if ctx.table_alias():
             child_count = 2
-        node = Tree('table', Ty('table'), child_count)
+            node = Tree('table-with-alias', Ty('table_with_alias'), child_count)
+        else:
+            node = Tree('table', Ty('table'), child_count)
         self.tree.append_to_tree(node)
 
     # Exit a parse tree produced by SQLiteParser#table_or_subquery.
     def exitTable_or_subquery(self, ctx:SQLiteParser.Table_or_subqueryContext):
         pass
+    
     
     # ---------------- table_name ----------------
     # Enter a parse tree produced by SQLiteParser#table_name.
@@ -219,14 +224,18 @@ class SQLiteParserListener(ParseTreeListener):
     def exitTable_name(self, ctx:SQLiteParser.Table_nameContext):
         pass
 
+    
     # ---------------- result_column ----------------
     # Enter a parse tree produced by SQLiteParser#result_column.
     def enterResult_column(self, ctx:SQLiteParser.Result_columnContext):
         # Two cases, with or without column aliases. In any case, we ignore AS keyword and dots.
         child_count = 1
+        node = None
         if ctx.column_alias():
             child_count = 2
-        node = Tree('result-column', Ty('result_column'), child_count)
+            node = Tree('result-column-with-alias', Ty('result_column_with_alias'), child_count)
+        else:
+            node = Tree('result-column', Ty('result_column'), child_count)
         self.tree.append_to_tree(node)
 
     # Exit a parse tree produced by SQLiteParser#result_column.

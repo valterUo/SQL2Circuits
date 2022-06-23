@@ -7,10 +7,14 @@
         "from_clause": ["s.r", "s"],
         "where_clause": ["s.r", "s"],
         "result_column": ["n"],
+        "result_column_with_alias": ["n"],
         "column_expr": ["n"],
         "column_name": ["n"],
+        "column_alias": ["n.r", "n"],
         "table_name": ["n"],
+        "table_alias": ["n.r", "n"],
         "table": ["n"],
+        "table_with_alias": ["n"],
         "expr": ["e"],
         "literal_value": ["e"],
         "where_keyword": ["s.r", "s", "e.l"]
@@ -23,8 +27,10 @@
         "select-core": [{"box": "Cup", "type": "s"}, {"box": "Cup", "type": "s.r"}, {"box": "Cup", "type": "s"}, {"box": "Cup", "type": "s.r"}, {"box": "Id", "type": "s"}],
         "where-clause": [{"box": "Id", "type": "s.r"}, {"box": "Id", "type": "s"}, {"box": "Cup", "type": "e.l"}, {"box": "Cup", "type": "e"}],
         "result-column": [{"box": "Id", "type": "n"}],
+        "result-column-with-alias": [{"box": "Cup", "type": "n"}, {"box": "Cup", "type": "n.r"}, {"box": "Id", "type": "n"}],
         "column-expr": [{"box": "Id", "type": "n"}],
         "literal-expr": [{"box": "Id", "type": "e"}],
-        "table": [{"box": "Id", "type": "n"}]
+        "table": [{"box": "Id", "type": "n"}],
+        "table-with-alias": [{"box": "Cup", "type": "n"}, {"box": "Cup", "type": "n.r"}, {"box": "Id", "type": "n"}]
     }
 }
