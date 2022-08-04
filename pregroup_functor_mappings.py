@@ -45,9 +45,6 @@ def object_mapping(obj, num_of_result_columns, num_of_tables):
 
 def arrow_mapping(box, num_of_result_columns, num_of_tables):
     name = box.name
-    #print(name)
-    #print(box.dom)
-    #print(box.cod)
     result = Id(Ty())
     if name in functor_data["arrow_function"].keys():
         cup = False
@@ -91,6 +88,11 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
                     right = Ty(box["type"])
                     
                 result = result @ Cap(left, right)
+            elif box["box"] == "Cups":
+                left = Ty()
+                for t in box["cups"]:
+                    left = left @ Ty(t)
+                result = result @ Diagram.caps(left.l, left)
                 
     elif name == "select-clause":
         result = Id(Ty('s'))
@@ -123,7 +125,8 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
             result = Box(box.name, Ty('n').r @ Ty('n'), Ty())
         elif box.dom == Ty('table_alias'):
             result = Box(box.name, Ty('n').r @ Ty('n'), Ty())
+        elif box.dom == Ty('binary_operator'):
+            result = Box(box.name, Ty('e') @ Ty('e').l @ Ty('n').l, Ty())
         else:
             result = Box(name, Ty('n'), Ty())
-    #result.draw()
     return result

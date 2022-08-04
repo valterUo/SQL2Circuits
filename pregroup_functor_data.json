@@ -17,7 +17,8 @@
         "table_with_alias": ["n"],
         "expr": ["e"],
         "literal_value": ["e"],
-        "where_keyword": ["s.r", "s", "e.l"]
+        "where_keyword": ["s.r", "s", "e.l"],
+        "binary_operator": ["n.l", "e.l", "e"]
     },
     "arrow_function": {
         "parse": [{"box": "Id", "type": "s"}],
@@ -31,6 +32,7 @@
         "column-expr": [{"box": "Id", "type": "n"}],
         "literal-expr": [{"box": "Id", "type": "e"}],
         "table": [{"box": "Id", "type": "n"}],
-        "table-with-alias": [{"box": "Cup", "type": "n"}, {"box": "Cup", "type": "n.r"}, {"box": "Id", "type": "n"}]
+        "table-with-alias": [{"box": "Cup", "type": "n"}, {"box": "Cup", "type": "n.r"}, {"box": "Id", "type": "n"}],
+        "bin-expr": [{"box": "Id", "type": "e"}, {"box": "Cups", "cups": ["n", "e"]}]
     }
 }
