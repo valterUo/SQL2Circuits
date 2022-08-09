@@ -3,4 +3,4 @@ SELECT
     billingAddress
 FROM
     invoices
-WHERE billingAddress = '2nd Street'
+WHERE billingAddress = '2nd Street' AND invoiceId = 1

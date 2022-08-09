@@ -39,7 +39,7 @@ def object_mapping(obj, num_of_result_columns, num_of_tables):
         for i in range(num_of_tables):
             dom_ty = dom_ty @ Ty('n').l
     else:
-        cod_name = dom_name
+        cod_name = dom_ty_name
     return dom_ty
 
 
@@ -108,9 +108,9 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
         result = result @ Diagram.caps(left.l, left)
     elif type(box.cod) == Ty:
         if box.dom == Ty('literal_value'):
-            result = Box(name, Ty('e'), Ty())
+            result = Box(name, Ty('n'), Ty())
         elif box.dom == Ty('where_keyword'):
-            result = Box(name, Ty('s').r @ Ty('s') @ Ty('e').l, Ty())
+            result = Box(name, Ty('s').r @ Ty('s') @ Ty('n').l, Ty())
         elif box.dom == Ty('select_keyword'):
             dom_ty = Ty('s')
             for i in range(num_of_result_columns):
@@ -126,7 +126,9 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
         elif box.dom == Ty('table_alias'):
             result = Box(box.name, Ty('n').r @ Ty('n'), Ty())
         elif box.dom == Ty('binary_operator'):
-            result = Box(box.name, Ty('e') @ Ty('e').l @ Ty('n').l, Ty())
+            result = Box(box.name, Ty('n') @ Ty('n').l @ Ty('n').l, Ty())
+        elif box.dom == Ty('function_name'):
+            result = Box(box.name, Ty('n') @ Ty('n').l, Ty())
         else:
             result = Box(name, Ty('n'), Ty())
     return result
