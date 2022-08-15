@@ -179,8 +179,12 @@ class SQLiteParserListener(ParseTreeListener):
             count = 0
             for i in range(ctx.getChildCount()):
                 if not isinstance(ctx.getChild(i), TerminalNodeImpl):
-                    count += 1   
-            expr_tree = Tree('expr', Ty('expr'), count)
+                    count += 1
+            if count == 1:
+                expr_tree = Tree('expr', Ty('expr'), count)
+            else:
+                node = Tree('set-' + str(count), Ty('set_operator'), 0)
+                expr_tree = Tree('set', Ty('expr'), count + 1, [node])
         
         self.tree.append_to_tree(expr_tree)
 

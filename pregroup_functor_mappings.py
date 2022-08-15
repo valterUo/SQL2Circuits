@@ -106,6 +106,18 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
         for i in range(num_of_tables):
             left = left @ Ty('n')
         result = result @ Diagram.caps(left.l, left)
+    elif "set-" in name:
+        number_of_types = int(name.split("-")[1])
+        result_type = Ty('n')
+        for i in range(number_of_types):
+            result_type = result_type @ Ty('n').l
+        result = Box('set', result_type, Ty())
+    elif name == "set":
+        number_of_legs = len(box.cod) - 1
+        left = Ty()
+        for i in range(number_of_legs):
+            left = left @ Ty('n')
+        result = Id(Ty('n')) @ Diagram.caps(left.l, left)
     elif type(box.cod) == Ty:
         if box.dom == Ty('literal_value'):
             result = Box(name, Ty('n'), Ty())
