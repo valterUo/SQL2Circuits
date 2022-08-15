@@ -127,6 +127,8 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
             result = Box(box.name, Ty('n').r @ Ty('n'), Ty())
         elif box.dom == Ty('binary_operator'):
             result = Box(box.name, Ty('n') @ Ty('n').l @ Ty('n').l, Ty())
+        elif box.dom == Ty('unary_operator'):
+            result = Box(box.name, Ty('n') @ Ty('n').l, Ty())
         elif box.dom == Ty('function_name'):
             result = Box(box.name, Ty('n') @ Ty('n').l, Ty())
         else:

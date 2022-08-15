@@ -21,7 +21,8 @@
         "binary_operator": ["n.l", "n.l", "n"],
         "table_column_expr": ["n"],
         "function_name": ["n", "n.l"],
-        "fun_expr": ["n"]
+        "fun_expr": ["n"],
+        "unary_operator": ["n.l", "n"]
     },
     "arrow_function": {
         "parse": [{"box": "Id", "type": "s"}],
@@ -38,6 +39,8 @@
         "table-with-alias": [{"box": "Cup", "type": "n"}, {"box": "Cup", "type": "n.r"}, {"box": "Id", "type": "n"}],
         "bin-expr": [{"box": "Id", "type": "n"}, {"box": "Cups", "cups": ["n", "n"]}],
         "table-column-expr": [{"box": "Cup", "type": "n"}, {"box": "Cup", "type": "n.r"}, {"box": "Id", "type": "n"}],
-        "fun-expr": [{"box": "Id", "type": "n"}, {"box": "Cup", "type": "n.l"}, {"box": "Cup", "type": "n"}]
+        "fun-expr": [{"box": "Id", "type": "n"}, {"box": "Cup", "type": "n.l"}, {"box": "Cup", "type": "n"}],
+        "unary-expr": [{"box": "Id", "type": "n"}, {"box": "Cup", "type": "n.l"}, {"box": "Cup", "type": "n"}],
+        "expr": [{"box": "Id", "type": "n"}]
     }
 }

@@ -126,6 +126,21 @@ class SQLiteParserListener(ParseTreeListener):
         elif ctx.IN_():
             node = Tree('IN', Ty('binary_operator'), 0)
             expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
+        elif ctx.ISNULL_():
+            node = Tree('IS', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
+        elif ctx.NOTNULL_():
+            node = Tree('IS NOT', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
+        elif ctx.IS_():
+            node = Tree('IS', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
+        elif ctx.NOT_EQ1():
+            node = Tree('=!', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
+        elif ctx.NOT_EQ2():
+            node = Tree('<>', Ty('binary_operator'), 0)
+            expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
         elif ctx.ASSIGN():
             node = Tree('=', Ty('binary_operator'), 0)
             expr_tree = Tree('bin-expr', Ty('expr'), 3, [node])
