@@ -5,15 +5,18 @@ from SQLiteParserListener import SQLiteParserListener
 import json
 import os
 from pathlib import Path
-from discopy import Functor
+from discopy import Ty, Functor
 from discopy.utils import dumps, loads
 from lambeq import IQPAnsatz
 from pregroupFunctorMappings import count_boxes, object_mapping, arrow_mapping
 from cupRemoveFunctorMappings import cup_remove_arrow_mapping, cup_remove_arrow_mapping2
 
 this_folder = os.path.abspath(os.getcwd())
+
 cup_removal_functor = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow_mapping(f))
 cup_removal_functor2 = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow_mapping2(f))
+
+n, s = Ty('n'), Ty('s')
 ansatz = IQPAnsatz({n: 1, s: 2}, n_layers=1, n_single_qubit_params=3)
 
 
