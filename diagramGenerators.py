@@ -17,7 +17,7 @@ cup_removal_functor = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow_
 cup_removal_functor2 = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow_mapping2(f))
 
 n, s = Ty('n'), Ty('s')
-ansatz = IQPAnsatz({n: 1, s: 2}, n_layers=1, n_single_qubit_params=3)
+ansatz = IQPAnsatz({n: 1, s: 1}, n_layers=1, n_single_qubit_params=3)
 
 
 def create_CFG_diagrams(queries, output_folder_name):
