@@ -4,6 +4,7 @@ from SQLiteParser import SQLiteParser
 from SQLiteParserListener import SQLiteParserListener
 import json
 import os
+import pickle
 from pathlib import Path
 from discopy import Ty, Functor
 from discopy.utils import dumps, loads
@@ -110,14 +111,16 @@ def create_circuit_ansatz(pregroup_diagrams, circuit_folder):
         cupless_pregroup_diagram = loads(data)
         output_folder = this_folder + "\\" + circuit_folder + "\\" + base_name
         
-        try:
-            circuit_diagram = ansatz(cupless_pregroup_diagram)
-            width = circuit_diagram.width()
-            height = circuit_diagram.depth()
-            dim = 3*max(width, height)
-            circuit_diagram.draw(figsize=(dim, dim), path = output_folder + ".png")
-            
-            with open(output_folder + ".json", 'w') as outfile:
-                json.dump(json.loads(dumps(cupless_pregroup_diagram)), outfile)
-        except:
-            print("Query: ", base_name, " failed to transform into a circuit.") 
+        #try:
+        circuit_diagram = ansatz(cupless_pregroup_diagram)
+        width = circuit_diagram.width()
+        height = circuit_diagram.depth()
+        dim = 3*max(width, height)
+        circuit_diagram.draw(figsize=(dim, dim), path = output_folder + ".png")
+
+        with open(output_folder + ".json", 'w') as outfile:
+            json.dump(json.loads(dumps(cupless_pregroup_diagram)), outfile)
+        with open(output_folder + ".p", "wb") as outfile:
+            pickle.dump(circuit_diagram, outfile)
+        #except:
+        #    print("Query: ", base_name, " failed to transform into a circuit.") 
