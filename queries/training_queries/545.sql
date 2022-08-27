@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM complete_cast AS cc, movie_companies AS mc, movie_keyword AS mk WHERE mc.note LIKE '%(presents)%' AND mc.movie_id = mk.movie_id AND mk.movie_id = cc.movie_id;

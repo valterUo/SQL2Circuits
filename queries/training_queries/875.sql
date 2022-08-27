@@ -1,0 +1,1 @@
+SELECT MIN(t.title) AS movie_title FROM movie_keyword AS mk, title AS t, movie_info AS mi WHERE t.production_year < 2011 AND t.id = mi.movie_id AND t.id = mk.movie_id;

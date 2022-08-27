@@ -1,0 +1,1 @@
+SELECT MIN(mi.info) AS release_date FROM cast_info AS ci, person_info AS pi, movie_info AS mi WHERE ci.note ='(voice: English version)' AND ci.movie_id = mi.movie_id AND pi.person_id = ci.person_id;

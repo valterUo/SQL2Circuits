@@ -1,0 +1,1 @@
+SELECT MIN(n.name) AS actor_name FROM name AS n, person_info AS pi, info_type AS it WHERE pi.note ='Volker Boehm' AND n.id = pi.person_id AND it.id = pi.info_type_id;

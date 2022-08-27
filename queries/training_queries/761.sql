@@ -1,0 +1,1 @@
+SELECT MIN(mi.info) AS release_date FROM cast_info AS ci, info_type AS it, movie_info AS mi WHERE it.info ='rating' AND it.id = mi.info_type_id AND ci.movie_id = mi.movie_id;

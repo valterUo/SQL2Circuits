@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM company_name AS cn, movie_companies AS mc, title AS t WHERE cn.name LIKE '%Film%' AND cn.id = mc.company_id AND t.id = mc.movie_id;

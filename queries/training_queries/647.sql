@@ -1,0 +1,1 @@
+SELECT MIN(n.name) AS actor_name FROM aka_name AS an, name AS n, person_info AS pi WHERE n.name LIKE 'B%' AND n.id = an.person_id AND n.id = pi.person_id;

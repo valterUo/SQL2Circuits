@@ -1,0 +1,1 @@
+SELECT MIN(mi.info) AS release_date FROM complete_cast AS cc, info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND it.id = mi.info_type_id AND mi.movie_id = cc.movie_id;

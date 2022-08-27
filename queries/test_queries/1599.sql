@@ -1,0 +1,1 @@
+SELECT MIN(an.name) AS actress_pseudonym FROM aka_name AS an, cast_info AS ci, movie_info AS mi WHERE ci.note ='(voice: English version)' AND an.person_id = ci.person_id AND ci.movie_id = mi.movie_id;

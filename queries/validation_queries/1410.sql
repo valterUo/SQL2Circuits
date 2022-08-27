@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM complete_cast AS cc, company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.movie_id = cc.movie_id AND cn.id = mc.company_id;

@@ -1,0 +1,1 @@
+SELECT MIN(n.name) AS actor_name FROM role_type AS rt, cast_info AS ci, name AS n WHERE n.name LIKE 'B%' AND n.id = ci.person_id AND ci.role_id = rt.id;

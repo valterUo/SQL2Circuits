@@ -1,0 +1,1 @@
+SELECT MIN(t.title) AS movie_title FROM cast_info AS ci, title AS t, kind_type AS kt WHERE kt.kind ='movie' AND kt.id = t.kind_id AND t.id = ci.movie_id;

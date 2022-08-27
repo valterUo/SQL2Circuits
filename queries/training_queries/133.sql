@@ -1,0 +1,1 @@
+SELECT MIN(t.title) AS movie_title FROM complete_cast AS cc, comp_cast_type AS cct, title AS t WHERE t.production_year < 2011 AND t.id = cc.movie_id AND cct.id = cc.subject_id;
