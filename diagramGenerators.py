@@ -112,7 +112,7 @@ def create_circuit_ansatz(pregroup_diagrams, circuit_folder):
         output_folder = this_folder + "\\" + circuit_folder + "\\" + base_name
         
         #try:
-        circuit_diagram = ansatz(cupless_pregroup_diagram)
+        circuit_diagram = ansatz(cupless_pregroup_diagram.dagger())
         width = circuit_diagram.width()
         height = circuit_diagram.depth()
         dim = 3*max(width, height)
