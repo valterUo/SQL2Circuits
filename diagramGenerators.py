@@ -9,6 +9,7 @@ from pathlib import Path
 from discopy import Ty, Functor
 from discopy.utils import dumps, loads
 from lambeq import IQPAnsatz
+from flipped_IQPansatz import IQPAnsatzFlipped
 from pregroupFunctorMappings import count_boxes, object_mapping, arrow_mapping
 from cupRemoveFunctorMappings import cup_remove_arrow_mapping, cup_remove_arrow_mapping2
 
@@ -18,7 +19,8 @@ cup_removal_functor = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow_
 cup_removal_functor2 = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow_mapping2(f))
 
 n, s = Ty('n'), Ty('s')
-ansatz = IQPAnsatz({n: 1, s: 1}, n_layers=1, n_single_qubit_params=3)
+#ansatz = IQPAnsatz({n: 1, s: 1}, n_layers=1, n_single_qubit_params=3)
+ansatz = IQPAnsatzFlipped({n: 1, s: 1}, n_layers=1, n_single_qubit_params=3)
 
 
 def create_CFG_diagrams(queries, output_folder_name):
@@ -112,7 +114,7 @@ def create_circuit_ansatz(pregroup_diagrams, circuit_folder):
         output_folder = this_folder + "\\" + circuit_folder + "\\" + base_name
         
         #try:
-        circuit_diagram = ansatz(cupless_pregroup_diagram.dagger())
+        circuit_diagram = ansatz(cupless_pregroup_diagram)
         width = circuit_diagram.width()
         height = circuit_diagram.depth()
         dim = 3*max(width, height)
