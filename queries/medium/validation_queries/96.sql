@@ -1,0 +1,1 @@
+SELECT MIN(t.production_year) AS movie_year FROM movie_info AS mi, title AS t WHERE t.production_year > 2004 AND mi.info IN ('Sweden', 'USA', 'German') AND t.id = mi.movie_id;
