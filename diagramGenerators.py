@@ -20,7 +20,6 @@ cup_removal_functor2 = Functor(ob = lambda x: x, ar = lambda f: cup_remove_arrow
 
 n, s = Ty('n'), Ty('s')
 #ansatz = IQPAnsatz({n: 1, s: 1}, n_layers=1, n_single_qubit_params=3)
-ansatz = IQPAnsatzFlipped({n: 1, s: 1}, n_layers=1, n_single_qubit_params=3)
 
 
 def create_CFG_diagrams(queries, output_folder_name):
@@ -103,8 +102,8 @@ def remove_cups_and_simplify(pregroup_diagrams, cup_removed_pregroup_folder_name
             print("Query: ", base_name, " failed to remove cups.")           
                                       
     
-def create_circuit_ansatz(pregroup_diagrams, circuit_folder):
-    
+def create_circuit_ansatz(pregroup_diagrams, circuit_folder, classification):
+    ansatz = IQPAnsatzFlipped({n: 1, s: classification}, n_layers=1, n_single_qubit_params=3)
     for count, serialized_diagram in enumerate(pregroup_diagrams):
         print("Process: ", count, " out of ", len(pregroup_diagrams))
         base_name = Path(serialized_diagram).stem
