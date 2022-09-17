@@ -1,0 +1,91 @@
+Total number of circuits:  121
+Total number of variables:  76
+BATCH_SIZE = 64
+EPOCHS = 4000
+SEED = 0
+a = 1.0
+c = 0.2
+
+Epoch 1:     train/loss: 0.7871   valid/loss: 0.9425   train/acc: 0.5000   valid/acc: 0.6190
+Epoch 100:   train/loss: 0.7302   valid/loss: 0.6990   train/acc: 0.5500   valid/acc: 0.4762
+Epoch 200:   train/loss: 0.7080   valid/loss: 0.6302   train/acc: 0.5750   valid/acc: 0.7619
+Epoch 300:   train/loss: 0.6813   valid/loss: 0.5654   train/acc: 0.5625   valid/acc: 0.8571
+Epoch 400:   train/loss: 0.7007   valid/loss: 0.5911   train/acc: 0.6125   valid/acc: 0.7619
+Epoch 500:   train/loss: 0.6813   valid/loss: 0.7465   train/acc: 0.6000   valid/acc: 0.5238
+Epoch 600:   train/loss: 0.7114   valid/loss: 0.6303   train/acc: 0.5500   valid/acc: 0.6190
+Epoch 700:   train/loss: 0.7220   valid/loss: 0.5793   train/acc: 0.5250   valid/acc: 0.7143
+Epoch 800:   train/loss: 0.6419   valid/loss: 0.5212   train/acc: 0.7375   valid/acc: 0.8095
+Epoch 900:   train/loss: 0.7290   valid/loss: 0.5185   train/acc: 0.7125   valid/acc: 0.7619
+Epoch 1000:  train/loss: 0.6206   valid/loss: 0.4244   train/acc: 0.7250   valid/acc: 0.8095
+Epoch 1100:  train/loss: 0.6212   valid/loss: 0.4712   train/acc: 0.7125   valid/acc: 0.8571
+Epoch 1200:  train/loss: 0.6154   valid/loss: 0.4152   train/acc: 0.7000   valid/acc: 0.8571
+Epoch 1300:  train/loss: 0.5566   valid/loss: 0.4495   train/acc: 0.7625   valid/acc: 0.8571
+Epoch 1400:  train/loss: 0.6450   valid/loss: 0.3359   train/acc: 0.6625   valid/acc: 0.8571
+Epoch 1500:  train/loss: 0.7591   valid/loss: 0.4021   train/acc: 0.6125   valid/acc: 0.8571
+Epoch 1600:  train/loss: 0.6976   valid/loss: 0.3285   train/acc: 0.6625   valid/acc: 0.8571
+Epoch 1700:  train/loss: 0.7589   valid/loss: 0.3874   train/acc: 0.6250   valid/acc: 0.8571
+Epoch 1800:  train/loss: 0.6143   valid/loss: 0.4455   train/acc: 0.6250   valid/acc: 0.8095
+Epoch 1900:  train/loss: 0.5984   valid/loss: 0.3714   train/acc: 0.7000   valid/acc: 0.9524
+Epoch 2000:  train/loss: 0.6353   valid/loss: 0.4081   train/acc: 0.7625   valid/acc: 0.8571
+Epoch 2100:  train/loss: 0.7603   valid/loss: 0.4246   train/acc: 0.5875   valid/acc: 0.9048
+Epoch 2200:  train/loss: 0.5629   valid/loss: 0.3518   train/acc: 0.7875   valid/acc: 0.8571
+Epoch 2300:  train/loss: 0.6192   valid/loss: 0.3480   train/acc: 0.7750   valid/acc: 0.9048
+Epoch 2400:  train/loss: 0.5833   valid/loss: 0.3354   train/acc: 0.7375   valid/acc: 0.8571
+Epoch 2500:  train/loss: 0.5701   valid/loss: 0.3555   train/acc: 0.7875   valid/acc: 0.8571
+Epoch 2600:  train/loss: 0.6181   valid/loss: 0.2957   train/acc: 0.6625   valid/acc: 0.9048
+Epoch 2700:  train/loss: 0.4823   valid/loss: 0.3501   train/acc: 0.8250   valid/acc: 0.8095
+Epoch 2800:  train/loss: 0.5294   valid/loss: 0.3080   train/acc: 0.7875   valid/acc: 0.9524
+Epoch 2900:  train/loss: 0.6935   valid/loss: 0.3170   train/acc: 0.7000   valid/acc: 0.8571
+Epoch 3000:  train/loss: 0.5777   valid/loss: 0.3242   train/acc: 0.7000   valid/acc: 0.8095
+Epoch 3100:  train/loss: 0.5446   valid/loss: 0.4842   train/acc: 0.6875   valid/acc: 0.8095
+Epoch 3200:  train/loss: 0.5284   valid/loss: 0.3101   train/acc: 0.7875   valid/acc: 0.9048
+Epoch 3300:  train/loss: 0.6791   valid/loss: 0.2985   train/acc: 0.6250   valid/acc: 0.8571
+Epoch 3400:  train/loss: 0.5077   valid/loss: 0.3463   train/acc: 0.7500   valid/acc: 0.8571
+Epoch 3500:  train/loss: 0.5249   valid/loss: 0.3499   train/acc: 0.8125   valid/acc: 0.8571
+Epoch 3600:  train/loss: 0.5595   valid/loss: 0.2697   train/acc: 0.7625   valid/acc: 0.9524
+Epoch 3700:  train/loss: 0.6297   valid/loss: 0.3385   train/acc: 0.7125   valid/acc: 0.9048
+Epoch 3800:  train/loss: 0.5727   valid/loss: 0.3614   train/acc: 0.7625   valid/acc: 0.9048
+Epoch 3900:  train/loss: 0.4798   valid/loss: 0.3508   train/acc: 0.8750   valid/acc: 0.9048
+Epoch 4000:  train/loss: 0.5081   valid/loss: 0.3223   train/acc: 0.8000   valid/acc: 0.9048
+
+[0.9224609  0.07753915]
+[0.9753204  0.02467949]
+[0.9505173  0.04948277]
+[0.8913941 0.1086059]
+[0.9807698 0.0192302]
+[0.6761463  0.32385376]
+[0.73102146 0.2689785 ]
+[0.3242052 0.6757948]
+[0.34320885 0.6567912 ]
+[0.48536712 0.5146329 ]
+[0.19644469 0.8035553 ]
+[0.30828837 0.6917116 ]
+[0.30202562 0.6979744 ]
+[0.29753852 0.70246154]
+[0.06388855 0.9361114 ]
+[0.16677861 0.83322144]
+[0.16977032 0.8302297 ]
+[0.06517897 0.934821  ]
+[0.12075764 0.87924236]
+[0.0266101 0.9733899]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+Test accuracy: 0.85

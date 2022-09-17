@@ -1,0 +1,73 @@
+Total number of circuits:  121
+Total number of variables:  76
+BATCH_SIZE = 64
+EPOCHS = 2000
+SEED = 0
+a = 4.235
+c = 0.2
+
+Epoch 1:     train/loss: 0.7871   valid/loss: 0.8976   train/acc: 0.5000   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.9244   valid/loss: 1.2214   train/acc: 0.4500   valid/acc: 0.3333
+Epoch 200:   train/loss: 0.7692   valid/loss: 0.8322   train/acc: 0.4875   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.7826   valid/loss: 0.7021   train/acc: 0.4375   valid/acc: 0.4286
+Epoch 400:   train/loss: 0.7089   valid/loss: 0.6915   train/acc: 0.4750   valid/acc: 0.4286
+Epoch 500:   train/loss: 0.6771   valid/loss: 0.6939   train/acc: 0.5000   valid/acc: 0.4762
+Epoch 600:   train/loss: 0.7336   valid/loss: 0.6087   train/acc: 0.4750   valid/acc: 0.6190
+Epoch 700:   train/loss: 0.7373   valid/loss: 0.7057   train/acc: 0.3875   valid/acc: 0.2381
+Epoch 800:   train/loss: 0.7143   valid/loss: 0.7524   train/acc: 0.4375   valid/acc: 0.4762
+Epoch 900:   train/loss: 0.7549   valid/loss: 0.5585   train/acc: 0.4625   valid/acc: 0.7143
+Epoch 1000:  train/loss: 0.6893   valid/loss: 0.6406   train/acc: 0.5375   valid/acc: 0.6667
+Epoch 1100:  train/loss: 0.6753   valid/loss: 0.6644   train/acc: 0.6000   valid/acc: 0.6667
+Epoch 1200:  train/loss: 0.6672   valid/loss: 0.6492   train/acc: 0.6250   valid/acc: 0.7143
+Epoch 1300:  train/loss: 0.7328   valid/loss: 0.6918   train/acc: 0.5500   valid/acc: 0.5238
+Epoch 1400:  train/loss: 0.7400   valid/loss: 0.6816   train/acc: 0.5750   valid/acc: 0.6190
+Epoch 1500:  train/loss: 0.7217   valid/loss: 0.6806   train/acc: 0.5500   valid/acc: 0.6667
+Epoch 1600:  train/loss: 0.7042   valid/loss: 0.6976   train/acc: 0.5125   valid/acc: 0.4762
+Epoch 1700:  train/loss: 0.6924   valid/loss: 0.6857   train/acc: 0.5125   valid/acc: 0.5714
+Epoch 1800:  train/loss: 0.6842   valid/loss: 0.6805   train/acc: 0.6250   valid/acc: 0.4762
+Epoch 1900:  train/loss: 0.6797   valid/loss: 0.6565   train/acc: 0.6500   valid/acc: 0.7143
+Epoch 2000:  train/loss: 0.6764   valid/loss: 0.6815   train/acc: 0.5375   valid/acc: 0.6667
+
+Training completed!
+
+[0.5292906  0.47070935]
+[0.55302775 0.44697222]
+[0.5136701  0.48632985]
+[0.5264827 0.4735172]
+[0.5200142  0.47998574]
+[0.5174397  0.48256028]
+[0.5202448  0.47975516]
+[0.5251814 0.4748186]
+[0.6436759  0.35632414]
+[0.5440281  0.45597193]
+[0.44243318 0.55756676]
+[0.4911892  0.50881076]
+[0.5408836  0.45911637]
+[0.536934 0.463066]
+[0.4638092  0.53619075]
+[0.48405272 0.5159473 ]
+[0.4880233 0.5119768]
+[0.4677643 0.5322357]
+[0.49361157 0.5063885 ]
+[0.541282   0.45871794]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[1, 0]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+[0, 1]
+Test accuracy: 0.85
