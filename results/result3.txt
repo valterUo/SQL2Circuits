@@ -1,0 +1,111 @@
+Total number of circuits:  121
+Total number of variables:  77
+BATCH_SIZE = 64
+EPOCHS = 4000
+SEED = 0
+a = 1.0
+c = 0.2
+
+Epoch 1:     train/loss: 0.3555   valid/loss: 0.3394   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 100:   train/loss: 0.3481   valid/loss: 0.3359   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 200:   train/loss: 0.3564   valid/loss: 0.3412   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 300:   train/loss: 0.3426   valid/loss: 0.3451   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 400:   train/loss: 0.3419   valid/loss: 0.3483   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 500:   train/loss: 0.3512   valid/loss: 0.3460   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 600:   train/loss: 0.3445   valid/loss: 0.3476   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 700:   train/loss: 0.3335   valid/loss: 0.3284   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 800:   train/loss: 0.3904   valid/loss: 0.3327   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 900:   train/loss: 0.3351   valid/loss: 0.3327   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1000:  train/loss: 0.3435   valid/loss: 0.3321   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1100:  train/loss: 0.3378   valid/loss: 0.3292   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1200:  train/loss: 0.3382   valid/loss: 0.3296   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1300:  train/loss: 0.3418   valid/loss: 0.3280   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1400:  train/loss: 0.3311   valid/loss: 0.3262   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1500:  train/loss: 0.3355   valid/loss: 0.3248   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1600:  train/loss: 0.3384   valid/loss: 0.3222   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1700:  train/loss: 0.3295   valid/loss: 0.3215   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1800:  train/loss: 0.3370   valid/loss: 0.3186   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 1900:  train/loss: 0.3368   valid/loss: 0.3176   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2000:  train/loss: 0.3457   valid/loss: 0.3174   train/acc: 0.3797   valid/acc: 0.3750
+Epoch 2100:  train/loss: 0.3343   valid/loss: 0.3180   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2200:  train/loss: 0.3343   valid/loss: 0.3184   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2300:  train/loss: 0.3296   valid/loss: 0.3200   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2400:  train/loss: 0.3286   valid/loss: 0.3288   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2500:  train/loss: 0.3212   valid/loss: 0.3338   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2600:  train/loss: 0.3324   valid/loss: 0.3456   train/acc: 0.3750   valid/acc: 0.3690
+Epoch 2700:  train/loss: 0.3430   valid/loss: 0.3313   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 2800:  train/loss: 0.3391   valid/loss: 0.3576   train/acc: 0.3750   valid/acc: 0.3690
+Epoch 2900:  train/loss: 0.3151   valid/loss: 0.3412   train/acc: 0.3766   valid/acc: 0.3690
+Epoch 3000:  train/loss: 0.3336   valid/loss: 0.3243   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 3100:  train/loss: 0.3481   valid/loss: 0.3065   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 3200:  train/loss: 0.3282   valid/loss: 0.3073   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 3300:  train/loss: 0.3192   valid/loss: 0.3023   train/acc: 0.3750   valid/acc: 0.3750
+Epoch 3400:  train/loss: 0.3143   valid/loss: 0.2920   train/acc: 0.3766   valid/acc: 0.3810
+Epoch 3500:  train/loss: 0.3192   valid/loss: 0.2859   train/acc: 0.3750   valid/acc: 0.3810
+Epoch 3600:  train/loss: 0.3365   valid/loss: 0.2818   train/acc: 0.3750   valid/acc: 0.3810
+Epoch 3700:  train/loss: 0.3254   valid/loss: 0.2791   train/acc: 0.3797   valid/acc: 0.3810
+Epoch 3800:  train/loss: 0.3098   valid/loss: 0.2791   train/acc: 0.3719   valid/acc: 0.3810
+Epoch 3900:  train/loss: 0.3385   valid/loss: 0.2797   train/acc: 0.3750   valid/acc: 0.3810
+Epoch 4000:  train/loss: 0.3468   valid/loss: 0.2802   train/acc: 0.3750   valid/acc: 0.3810
+
+[[0.45109347 0.1442874 ]
+ [0.30656186 0.09805731]]
+[[0.45477885 0.16623151]
+ [0.27754205 0.10144767]]
+[[0.38463536 0.14059258]
+ [0.34768552 0.12708661]]
+[[0.2748138  0.3218888 ]
+ [0.18574023 0.21755712]]
+[[0.26595277 0.33076006]
+ [0.17974365 0.22354355]]
+[[0.26360524 0.33310756]
+ [0.17815709 0.2251301 ]]
+[[0.26366776 0.33304515]
+ [0.17819928 0.22508785]]
+[[0.4198142  0.17556661]
+ [0.2853046  0.1193146 ]]
+[[0.37471202 0.17765772]
+ [0.30365974 0.1439705 ]]
+[[0.4261185  0.12647292]
+ [0.3450092  0.10239945]]
+[[0.3191908  0.15133409]
+ [0.35918093 0.17029412]]
+[[0.36300448 0.10774054]
+ [0.40812322 0.12113184]]
+[[0.36936668 0.18322471]
+ [0.29905975 0.14834885]]
+[[0.34007844 0.21251291]
+ [0.27534646 0.1720622 ]]
+[[0.16569275 0.10354035]
+ [0.44973218 0.28103474]]
+[[0.2897082  0.18103684]
+ [0.32571676 0.20353825]]
+[[0.31465843 0.15608661]
+ [0.35376802 0.17548694]]
+[[0.17996255 0.0892706 ]
+ [0.48846394 0.24230298]]
+[[0.28663012 0.31055415]
+ [0.19333915 0.20947649]]
+[[0.14344564 0.15541853]
+ [0.33652368 0.36461222]]
+[1, 0, 0, 0]
+[1, 0, 0, 0]
+[1, 0, 0, 0]
+[1, 0, 0, 0]
+[1, 0, 0, 0]
+[0, 1, 0, 0]
+[0, 1, 0, 0]
+[0, 1, 0, 0]
+[0, 1, 0, 0]
+[0, 1, 0, 0]
+[0, 0, 1, 0]
+[0, 0, 1, 0]
+[0, 0, 1, 0]
+[0, 0, 1, 0]
+[0, 0, 1, 0]
+[0, 0, 0, 1]
+[0, 0, 0, 1]
+[0, 0, 0, 1]
+[0, 0, 0, 1]
+[0, 0, 0, 1]
+Test accuracy: 0.375
