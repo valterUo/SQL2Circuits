@@ -103,7 +103,7 @@ def remove_cups_and_simplify(pregroup_diagrams, cup_removed_pregroup_folder_name
                                       
     
 def create_circuit_ansatz(pregroup_diagrams, circuit_folder, classification):
-    ansatz = IQPAnsatzFlipped({n: 1, s: classification}, n_layers=1, n_single_qubit_params=3)
+    ansatz = IQPAnsatzFlipped({n: 1, s: classification}, n_layers=2, n_single_qubit_params=3)
     for count, serialized_diagram in enumerate(pregroup_diagrams):
         print("Process: ", count, " out of ", len(pregroup_diagrams))
         base_name = Path(serialized_diagram).stem
