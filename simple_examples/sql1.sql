@@ -1,2 +1,1 @@
-select rick, morty from reality_1, reality_2 where rick == morty
-
+SELECT title FROM  book WHERE price > 100;
