@@ -1,0 +1,115 @@
+workload = "medium"
+classification = 2
+layers = 1
+single_qubit_params = 3
+a = 0.005
+c = 0.01
+Test accuracy: 0.45
+
+Epoch: 100    train/loss: 24.269298553466797    valid/loss: 6.842599868774414    train/acc: 0.425    valid/acc: 0.3333
+Epoch: 200    train/loss: 22.788198471069336    valid/loss: 6.69189977645874    train/acc: 0.475    valid/acc: 0.4286
+Epoch: 300    train/loss: 22.784698486328125    valid/loss: 5.908299922943115    train/acc: 0.475    valid/acc: 0.5714
+Epoch: 400    train/loss: 21.940898895263672    valid/loss: 6.748199939727783    train/acc: 0.5    valid/acc: 0.4762
+Epoch: 500    train/loss: 21.683799743652344    valid/loss: 6.351199626922607    train/acc: 0.4875    valid/acc: 0.381
+Epoch: 600    train/loss: 21.7455997467041    valid/loss: 6.37339973449707    train/acc: 0.55    valid/acc: 0.5714
+Epoch: 700    train/loss: 21.115798950195312    valid/loss: 8.415599822998047    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 800    train/loss: 21.426799774169922    valid/loss: 6.400799751281738    train/acc: 0.525    valid/acc: 0.5238
+Epoch: 900    train/loss: 21.670700073242188    valid/loss: 6.694499969482422    train/acc: 0.5375    valid/acc: 0.5238
+Epoch: 1000    train/loss: 20.499099731445312    valid/loss: 6.367799758911133    train/acc: 0.55    valid/acc: 0.6667
+Epoch: 1100    train/loss: 20.344999313354492    valid/loss: 5.82859992980957    train/acc: 0.575    valid/acc: 0.7619
+Epoch: 1200    train/loss: 20.625598907470703    valid/loss: 6.535099983215332    train/acc: 0.5375    valid/acc: 0.619
+Epoch: 1300    train/loss: 21.152198791503906    valid/loss: 6.80079984664917    train/acc: 0.5375    valid/acc: 0.4286
+Epoch: 1400    train/loss: 20.07969856262207    valid/loss: 6.31719970703125    train/acc: 0.5125    valid/acc: 0.5714
+Epoch: 1500    train/loss: 19.792699813842773    valid/loss: 6.572299957275391    train/acc: 0.5375    valid/acc: 0.5714
+Epoch: 1600    train/loss: 19.809398651123047    valid/loss: 6.7276997566223145    train/acc: 0.5125    valid/acc: 0.5238
+Epoch: 1700    train/loss: 21.554399490356445    valid/loss: 5.8668999671936035    train/acc: 0.5625    valid/acc: 0.6667
+Epoch: 1800    train/loss: 20.566699981689453    valid/loss: 6.581099987030029    train/acc: 0.5375    valid/acc: 0.5714
+Epoch: 1900    train/loss: 19.854799270629883    valid/loss: 6.167599678039551    train/acc: 0.5375    valid/acc: 0.4762
+Epoch: 2000    train/loss: 20.7018985748291    valid/loss: 6.0894999504089355    train/acc: 0.5    valid/acc: 0.4762
+Epoch: 2100    train/loss: 19.43630027770996    valid/loss: 6.64139986038208    train/acc: 0.5375    valid/acc: 0.4286
+Epoch: 2200    train/loss: 18.898099899291992    valid/loss: 6.514199733734131    train/acc: 0.5375    valid/acc: 0.5238
+Epoch: 2300    train/loss: 19.479000091552734    valid/loss: 6.343599796295166    train/acc: 0.5375    valid/acc: 0.5238
+Epoch: 2400    train/loss: 19.00269889831543    valid/loss: 6.10099983215332    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 2500    train/loss: 19.40019989013672    valid/loss: 6.300699710845947    train/acc: 0.5375    valid/acc: 0.6667
+Epoch: 2600    train/loss: 19.26289939880371    valid/loss: 6.400399684906006    train/acc: 0.5    valid/acc: 0.6667
+Epoch: 2700    train/loss: 20.727399826049805    valid/loss: 6.467599868774414    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 2800    train/loss: 19.551799774169922    valid/loss: 7.181399822235107    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 2900    train/loss: 19.2106990814209    valid/loss: 7.0625    train/acc: 0.55    valid/acc: 0.5238
+Epoch: 3000    train/loss: 19.352399826049805    valid/loss: 7.0081000328063965    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 3100    train/loss: 19.237098693847656    valid/loss: 7.111099720001221    train/acc: 0.5375    valid/acc: 0.4762
+Epoch: 3200    train/loss: 19.060998916625977    valid/loss: 7.344499588012695    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 3300    train/loss: 19.26889991760254    valid/loss: 7.1691999435424805    train/acc: 0.5375    valid/acc: 0.4762
+Epoch: 3400    train/loss: 18.92020034790039    valid/loss: 7.149600028991699    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 3500    train/loss: 19.460498809814453    valid/loss: 7.212800025939941    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 3600    train/loss: 19.611099243164062    valid/loss: 8.196999549865723    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 3700    train/loss: 19.739599227905273    valid/loss: 8.104999542236328    train/acc: 0.5375    valid/acc: 0.5238
+Epoch: 3800    train/loss: 19.555999755859375    valid/loss: 7.457199573516846    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 3900    train/loss: 19.447500228881836    valid/loss: 7.412600040435791    train/acc: 0.5875    valid/acc: 0.4762
+Epoch: 4000    train/loss: 19.223499298095703    valid/loss: 7.951299667358398    train/acc: 0.5625    valid/acc: 0.5238
+Epoch: 4100    train/loss: 19.06439971923828    valid/loss: 7.348399639129639    train/acc: 0.5625    valid/acc: 0.5238
+Epoch: 4200    train/loss: 18.886798858642578    valid/loss: 7.899399757385254    train/acc: 0.575    valid/acc: 0.5238
+Epoch: 4300    train/loss: 19.21259880065918    valid/loss: 7.520099639892578    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 4400    train/loss: 18.798599243164062    valid/loss: 7.905599594116211    train/acc: 0.5875    valid/acc: 0.4762
+Epoch: 4500    train/loss: 18.60919952392578    valid/loss: 7.750199794769287    train/acc: 0.5625    valid/acc: 0.5238
+Epoch: 4600    train/loss: 18.666099548339844    valid/loss: 8.323399543762207    train/acc: 0.5875    valid/acc: 0.5238
+Epoch: 4700    train/loss: 18.75269889831543    valid/loss: 7.90310001373291    train/acc: 0.5875    valid/acc: 0.5238
+Epoch: 4800    train/loss: 19.040599822998047    valid/loss: 7.998899936676025    train/acc: 0.5375    valid/acc: 0.5238
+Epoch: 4900    train/loss: 19.031299591064453    valid/loss: 8.129300117492676    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 5000    train/loss: 18.8179988861084    valid/loss: 7.697299957275391    train/acc: 0.5625    valid/acc: 0.4762
+Epoch: 5100    train/loss: 18.878999710083008    valid/loss: 7.322999954223633    train/acc: 0.5625    valid/acc: 0.4762
+Epoch: 5200    train/loss: 18.816999435424805    valid/loss: 7.190099716186523    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 5300    train/loss: 18.740598678588867    valid/loss: 7.030999660491943    train/acc: 0.55    valid/acc: 0.4762
+Epoch: 5400    train/loss: 18.577999114990234    valid/loss: 7.158299922943115    train/acc: 0.55    valid/acc: 0.4762
+Epoch: 5500    train/loss: 18.792699813842773    valid/loss: 7.35290002822876    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 5600    train/loss: 18.79010009765625    valid/loss: 7.337399959564209    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 5700    train/loss: 18.72279930114746    valid/loss: 7.486999988555908    train/acc: 0.525    valid/acc: 0.4762
+Epoch: 5800    train/loss: 19.027700424194336    valid/loss: 7.325799942016602    train/acc: 0.5    valid/acc: 0.381
+Epoch: 5900    train/loss: 18.829898834228516    valid/loss: 7.246399879455566    train/acc: 0.55    valid/acc: 0.4762
+Epoch: 6000    train/loss: 18.76580047607422    valid/loss: 7.165899753570557    train/acc: 0.575    valid/acc: 0.5238
+Epoch: 6100    train/loss: 18.99959945678711    valid/loss: 7.442999839782715    train/acc: 0.5625    valid/acc: 0.5238
+Epoch: 6200    train/loss: 18.994400024414062    valid/loss: 7.687299728393555    train/acc: 0.5875    valid/acc: 0.4762
+Epoch: 6300    train/loss: 18.555999755859375    valid/loss: 7.175699710845947    train/acc: 0.5875    valid/acc: 0.4762
+Epoch: 6400    train/loss: 18.773300170898438    valid/loss: 7.246899604797363    train/acc: 0.5375    valid/acc: 0.5238
+Epoch: 6500    train/loss: 18.72869873046875    valid/loss: 7.067999839782715    train/acc: 0.55    valid/acc: 0.4762
+Epoch: 6600    train/loss: 18.511798858642578    valid/loss: 6.876299858093262    train/acc: 0.55    valid/acc: 0.4762
+Epoch: 6700    train/loss: 18.453100204467773    valid/loss: 6.751199722290039    train/acc: 0.5375    valid/acc: 0.4762
+Epoch: 6800    train/loss: 18.367599487304688    valid/loss: 6.689399719238281    train/acc: 0.5875    valid/acc: 0.5238
+Epoch: 6900    train/loss: 18.282499313354492    valid/loss: 6.535699844360352    train/acc: 0.6    valid/acc: 0.5238
+Epoch: 7000    train/loss: 18.092899322509766    valid/loss: 7.270299911499023    train/acc: 0.5875    valid/acc: 0.5238
+Epoch: 7100    train/loss: 18.143400192260742    valid/loss: 6.7600998878479    train/acc: 0.6    valid/acc: 0.5238
+Epoch: 7200    train/loss: 18.109800338745117    valid/loss: 7.052499771118164    train/acc: 0.6    valid/acc: 0.5238
+Epoch: 7300    train/loss: 17.99639892578125    valid/loss: 6.932199954986572    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 7400    train/loss: 18.2987003326416    valid/loss: 6.768899917602539    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 7500    train/loss: 18.336198806762695    valid/loss: 6.975399971008301    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 7600    train/loss: 18.10919952392578    valid/loss: 6.803799629211426    train/acc: 0.5875    valid/acc: 0.5714
+Epoch: 7700    train/loss: 18.08769989013672    valid/loss: 6.546099662780762    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 7800    train/loss: 18.06130027770996    valid/loss: 6.688799858093262    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 7900    train/loss: 18.082698822021484    valid/loss: 7.063799858093262    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 8000    train/loss: 17.970399856567383    valid/loss: 6.649499893188477    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 8100    train/loss: 18.072399139404297    valid/loss: 6.930500030517578    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 8200    train/loss: 18.153799057006836    valid/loss: 6.665299892425537    train/acc: 0.6    valid/acc: 0.5238
+Epoch: 8300    train/loss: 18.238800048828125    valid/loss: 6.553699970245361    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 8400    train/loss: 18.208799362182617    valid/loss: 6.443999767303467    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 8500    train/loss: 17.927000045776367    valid/loss: 6.5920000076293945    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 8600    train/loss: 18.037599563598633    valid/loss: 6.443199634552002    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 8700    train/loss: 18.040599822998047    valid/loss: 6.397199630737305    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 8800    train/loss: 18.136600494384766    valid/loss: 6.47629976272583    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 8900    train/loss: 18.283300399780273    valid/loss: 6.48390007019043    train/acc: 0.6125    valid/acc: 0.5714
+Epoch: 9000    train/loss: 18.72209930419922    valid/loss: 6.349699974060059    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 9100    train/loss: 18.35719871520996    valid/loss: 6.153199672698975    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 9200    train/loss: 17.959999084472656    valid/loss: 6.603699684143066    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 9300    train/loss: 18.026399612426758    valid/loss: 6.5980000495910645    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 9400    train/loss: 17.959400177001953    valid/loss: 6.5706000328063965    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 9500    train/loss: 17.981300354003906    valid/loss: 6.570199966430664    train/acc: 0.575    valid/acc: 0.5714
+Epoch: 9600    train/loss: 18.0231990814209    valid/loss: 6.377599716186523    train/acc: 0.6    valid/acc: 0.5714
+Epoch: 9700    train/loss: 18.05449867248535    valid/loss: 6.443399906158447    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 9800    train/loss: 17.907499313354492    valid/loss: 6.686999797821045    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 9900    train/loss: 18.049598693847656    valid/loss: 6.577699661254883    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 10000    train/loss: 18.192798614501953    valid/loss: 6.319900035858154    train/acc: 0.55    valid/acc: 0.5714
+     fun: DeviceArray(17.719955, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 20000
+     nit: 10000
+ success: True
+       x: DeviceArray([ 0.8845529 ,  0.16443536, -0.02796047, ...,  0.18321127,
+              0.3040246 ,  0.9696215 ], dtype=float32)
