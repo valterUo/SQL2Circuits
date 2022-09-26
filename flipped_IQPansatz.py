@@ -116,11 +116,12 @@ class IQPAnsatzFlipped(CircuitAnsatz):
     def _ar(self, box: Box) -> Circuit:
         label = self._summarise_box(box)
         dom, cod = self._ob(box.dom), self._ob(box.cod)
-
+        
         n_qubits = max(dom, cod)
         n_layers = self.n_layers
         n_1qubit_params = self.n_single_qubit_params
-
+        circuit = None
+        
         if n_qubits == 0:
             circuit = Id()
         elif n_qubits == 1:
@@ -130,11 +131,20 @@ class IQPAnsatzFlipped(CircuitAnsatz):
             for i, sym in enumerate(syms):
                 circuit >>= rots[i % 2](sym)
         else:
+            if n_qubits == 2:
+                syms = [Symbol(f'{label}_{i}') for i in range(2*n_1qubit_params)]
+                rots = [Rx, Rz]
+                circuit = Id(qubit) @ Id(qubit)
+                for i in range(0, len(syms) - 1, 2):
+                    circuit >>= rots[i % 2](syms[i]) @ rots[i % 2](syms[i + 1])
             n_params = n_layers * (n_qubits-1)
             syms = [Symbol(f'{label}_{i}') for i in range(n_params)]
             params: np.ndarray[Any, np.dtype[Any]] = np.array(syms).reshape(
                     (n_layers, n_qubits-1))
-            circuit = FlippedIQPansatz(n_qubits, params)
+            if n_qubits == 2:
+                circuit >>= FlippedIQPansatz(n_qubits, params)
+            else:
+                circuit = FlippedIQPansatz(n_qubits, params)
 
         if cod > dom:
             circuit <<= Id(dom) @ Ket(*[0]*(cod - dom))
