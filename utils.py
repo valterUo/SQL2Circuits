@@ -3,6 +3,7 @@ import pickle
 import math
 #import numpy as np
 from jax import numpy as np
+i = 0
 
 def read_diagrams(circuit_paths):
     circuits = {}
@@ -59,13 +60,17 @@ def multi_class_acc(y_hat, y):
 
 
 def multi_class_loss(y_hat, y):
+    global i
     total_loss = 0
     if len(y_hat) != len(y):
         return 0
     for pair in zip(y_hat, y):
         x = pair[1]
         y_pred = np.array(pair[0]).flatten()
+        if i % 100 == 0:
+            print(y_pred, x)
         if len(y_pred) != len(x):
             return 0
         total_loss += -np.sum(x * np.log(y_pred)) / len(x)
+    i+=1
     return total_loss
