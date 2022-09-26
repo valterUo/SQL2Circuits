@@ -102,8 +102,8 @@ def remove_cups_and_simplify(pregroup_diagrams, cup_removed_pregroup_folder_name
             print("Query: ", base_name, " failed to remove cups.")           
                                       
     
-def create_circuit_ansatz(pregroup_diagrams, circuit_folder, classification, layers, single_qubit_params):
-    ansatz = IQPAnsatzFlipped({n: 1, s: classification}, n_layers = layers, n_single_qubit_params = single_qubit_params)
+def create_circuit_ansatz(pregroup_diagrams, circuit_folder, classification, layers, single_qubit_params, n_wire_count):
+    ansatz = IQPAnsatzFlipped({n: n_wire_count, s: classification}, n_layers = layers, n_single_qubit_params = single_qubit_params)
     for count, serialized_diagram in enumerate(pregroup_diagrams):
         print("Process: ", count, " out of ", len(pregroup_diagrams))
         base_name = Path(serialized_diagram).stem
