@@ -1,0 +1,1 @@
+SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;

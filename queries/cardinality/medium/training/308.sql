@@ -1,0 +1,1 @@
+SELECT t.title AS movie_title FROM movie_info AS mi, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mi.movie_id;

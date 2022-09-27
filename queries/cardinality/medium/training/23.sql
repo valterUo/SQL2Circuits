@@ -1,0 +1,1 @@
+SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;
