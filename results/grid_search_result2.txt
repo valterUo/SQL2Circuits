@@ -1,0 +1,983 @@
+a_values = [0.001, 0.005, 0.01, 0.015, 0.02, 0.025, 0.03]
+c_values = [0.001, 0.005, 0.01, 0.015, 0.02, 0.025, 0.03]
+
+Epoch: 100    train/loss: 25.801799774169922    valid/loss: 7.491699695587158    train/acc: 0.375    valid/acc: 0.1429
+Epoch: 200    train/loss: 25.69059944152832    valid/loss: 7.5864996910095215    train/acc: 0.3875    valid/acc: 0.1905
+Epoch: 300    train/loss: 25.044898986816406    valid/loss: 7.173499584197998    train/acc: 0.45    valid/acc: 0.2857
+Epoch: 400    train/loss: 23.347299575805664    valid/loss: 7.030299663543701    train/acc: 0.525    valid/acc: 0.3333
+Epoch: 500    train/loss: 22.550899505615234    valid/loss: 7.432499885559082    train/acc: 0.5375    valid/acc: 0.4762
+Epoch: 600    train/loss: 23.381999969482422    valid/loss: 6.62339973449707    train/acc: 0.525    valid/acc: 0.619
+Epoch: 700    train/loss: 22.251298904418945    valid/loss: 8.128399848937988    train/acc: 0.525    valid/acc: 0.5238
+Epoch: 800    train/loss: 22.403398513793945    valid/loss: 6.704799652099609    train/acc: 0.525    valid/acc: 0.4286
+Epoch: 900    train/loss: 21.782400131225586    valid/loss: 7.7032999992370605    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 1000    train/loss: 21.81529998779297    valid/loss: 7.075899600982666    train/acc: 0.55    valid/acc: 0.4286
+a:  0.001
+c:  0.001
+     fun: DeviceArray(21.808615, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.5307626 , 0.2987425 , 0.0570448 , ..., 0.35930786,
+             0.38734558, 0.6175603 ], dtype=float32)
+Test accuracy: 0.25
+Epoch: 100    train/loss: 23.266599655151367    valid/loss: 7.516299724578857    train/acc: 0.3875    valid/acc: 0.2381
+Epoch: 200    train/loss: 23.22319984436035    valid/loss: 7.690199851989746    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 300    train/loss: 22.691499710083008    valid/loss: 8.073800086975098    train/acc: 0.4625    valid/acc: 0.2857
+Epoch: 400    train/loss: 22.97869873046875    valid/loss: 7.950999736785889    train/acc: 0.4375    valid/acc: 0.2857
+Epoch: 500    train/loss: 22.38249969482422    valid/loss: 8.119500160217285    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 600    train/loss: 22.533498764038086    valid/loss: 8.656700134277344    train/acc: 0.45    valid/acc: 0.2857
+Epoch: 700    train/loss: 22.02739906311035    valid/loss: 8.719200134277344    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 800    train/loss: 22.297800064086914    valid/loss: 8.679299354553223    train/acc: 0.475    valid/acc: 0.2381
+Epoch: 900    train/loss: 21.835800170898438    valid/loss: 8.685400009155273    train/acc: 0.5    valid/acc: 0.1905
+Epoch: 1000    train/loss: 22.08609962463379    valid/loss: 8.417099952697754    train/acc: 0.5    valid/acc: 0.1905
+a:  0.001
+c:  0.005
+     fun: DeviceArray(21.673136, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.64641505, 0.30014575, 0.01207818, ..., 0.2438337 ,
+             0.33210093, 0.49377927], dtype=float32)
+Test accuracy: 0.15
+Epoch: 100    train/loss: 23.880298614501953    valid/loss: 9.268899917602539    train/acc: 0.4125    valid/acc: 0.1905
+Epoch: 200    train/loss: 21.92099952697754    valid/loss: 7.543399810791016    train/acc: 0.4625    valid/acc: 0.2857
+Epoch: 300    train/loss: 21.17129898071289    valid/loss: 8.39169979095459    train/acc: 0.4875    valid/acc: 0.3333
+Epoch: 400    train/loss: 20.870399475097656    valid/loss: 8.25    train/acc: 0.5125    valid/acc: 0.3333
+Epoch: 500    train/loss: 20.5492000579834    valid/loss: 8.281599998474121    train/acc: 0.5375    valid/acc: 0.3333
+Epoch: 600    train/loss: 20.94369888305664    valid/loss: 8.089799880981445    train/acc: 0.5125    valid/acc: 0.3333
+Epoch: 700    train/loss: 20.039899826049805    valid/loss: 7.814699649810791    train/acc: 0.5625    valid/acc: 0.3333
+Epoch: 800    train/loss: 19.897499084472656    valid/loss: 7.847299575805664    train/acc: 0.5625    valid/acc: 0.3333
+Epoch: 900    train/loss: 19.913799285888672    valid/loss: 7.743599891662598    train/acc: 0.5625    valid/acc: 0.3333
+Epoch: 1000    train/loss: 19.8760986328125    valid/loss: 7.683099746704102    train/acc: 0.5625    valid/acc: 0.3333
+a:  0.001
+c:  0.01
+     fun: DeviceArray(19.442331, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.67298955, 0.21727973, 0.03455297, ..., 0.27537552,
+             0.41191593, 0.40247282], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 25.6205997467041    valid/loss: 7.392199993133545    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 200    train/loss: 25.15289878845215    valid/loss: 7.390199661254883    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 300    train/loss: 24.89900016784668    valid/loss: 7.111700057983398    train/acc: 0.4    valid/acc: 0.4286
+Epoch: 400    train/loss: 24.474998474121094    valid/loss: 6.848799705505371    train/acc: 0.375    valid/acc: 0.381
+Epoch: 500    train/loss: 24.057100296020508    valid/loss: 6.513099670410156    train/acc: 0.4625    valid/acc: 0.381
+Epoch: 600    train/loss: 23.832199096679688    valid/loss: 6.296299934387207    train/acc: 0.45    valid/acc: 0.381
+Epoch: 700    train/loss: 23.87139892578125    valid/loss: 6.230299949645996    train/acc: 0.425    valid/acc: 0.381
+Epoch: 800    train/loss: 24.09149932861328    valid/loss: 6.1738996505737305    train/acc: 0.475    valid/acc: 0.381
+Epoch: 900    train/loss: 23.64739990234375    valid/loss: 6.150699615478516    train/acc: 0.4375    valid/acc: 0.381
+Epoch: 1000    train/loss: 23.760000228881836    valid/loss: 6.119999885559082    train/acc: 0.45    valid/acc: 0.3333
+a:  0.001
+c:  0.015
+     fun: DeviceArray(23.311813, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.5876704 , 0.29763582, 0.05037989, ..., 0.39947692,
+             0.44111905, 0.5221962 ], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 24.32339859008789    valid/loss: 6.467299938201904    train/acc: 0.375    valid/acc: 0.1905
+Epoch: 200    train/loss: 23.69260025024414    valid/loss: 6.534599781036377    train/acc: 0.4625    valid/acc: 0.381
+Epoch: 300    train/loss: 23.374799728393555    valid/loss: 6.641900062561035    train/acc: 0.4625    valid/acc: 0.2381
+Epoch: 400    train/loss: 23.16339874267578    valid/loss: 6.682199954986572    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 500    train/loss: 23.78299903869629    valid/loss: 6.744199752807617    train/acc: 0.5625    valid/acc: 0.2857
+Epoch: 600    train/loss: 22.79829978942871    valid/loss: 6.765699863433838    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 700    train/loss: 22.92729949951172    valid/loss: 6.7953996658325195    train/acc: 0.525    valid/acc: 0.2857
+Epoch: 800    train/loss: 22.803699493408203    valid/loss: 6.804699897766113    train/acc: 0.4625    valid/acc: 0.3333
+Epoch: 900    train/loss: 23.44059944152832    valid/loss: 6.812299728393555    train/acc: 0.4375    valid/acc: 0.2857
+Epoch: 1000    train/loss: 23.612899780273438    valid/loss: 6.787499904632568    train/acc: 0.55    valid/acc: 0.2857
+a:  0.001
+c:  0.02
+     fun: DeviceArray(22.453276, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.6619465 , 0.26945892, 0.08609451, ..., 0.36768702,
+             0.40599564, 0.55937535], dtype=float32)
+Test accuracy: 0.25
+Epoch: 100    train/loss: 25.046598434448242    valid/loss: 6.700500011444092    train/acc: 0.4125    valid/acc: 0.2381
+Epoch: 200    train/loss: 24.873699188232422    valid/loss: 6.599099636077881    train/acc: 0.3625    valid/acc: 0.1905
+Epoch: 300    train/loss: 23.681499481201172    valid/loss: 6.623799800872803    train/acc: 0.475    valid/acc: 0.1429
+Epoch: 400    train/loss: 24.540998458862305    valid/loss: 6.596499919891357    train/acc: 0.475    valid/acc: 0.2381
+Epoch: 500    train/loss: 23.26889991760254    valid/loss: 6.543499946594238    train/acc: 0.475    valid/acc: 0.2381
+Epoch: 600    train/loss: 23.78059959411621    valid/loss: 6.579899787902832    train/acc: 0.475    valid/acc: 0.2381
+Epoch: 700    train/loss: 22.508098602294922    valid/loss: 6.611000061035156    train/acc: 0.5625    valid/acc: 0.2381
+Epoch: 800    train/loss: 23.11079978942871    valid/loss: 6.649999618530273    train/acc: 0.5    valid/acc: 0.2381
+Epoch: 900    train/loss: 22.380998611450195    valid/loss: 6.719099998474121    train/acc: 0.475    valid/acc: 0.2381
+Epoch: 1000    train/loss: 23.150598526000977    valid/loss: 6.724099636077881    train/acc: 0.475    valid/acc: 0.2381
+a:  0.001
+c:  0.025
+     fun: DeviceArray(21.738056, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.6502553 , 0.26338154, 0.04016408, ..., 0.4014934 ,
+             0.49992976, 0.48367023], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 24.908899307250977    valid/loss: 7.178299903869629    train/acc: 0.4125    valid/acc: 0.1429
+Epoch: 200    train/loss: 23.41119956970215    valid/loss: 7.758299827575684    train/acc: 0.35    valid/acc: 0.1429
+Epoch: 300    train/loss: 24.014299392700195    valid/loss: 7.558399677276611    train/acc: 0.4    valid/acc: 0.1429
+Epoch: 400    train/loss: 23.173500061035156    valid/loss: 7.610799789428711    train/acc: 0.425    valid/acc: 0.1429
+Epoch: 500    train/loss: 22.57069969177246    valid/loss: 7.67419958114624    train/acc: 0.425    valid/acc: 0.1429
+Epoch: 600    train/loss: 22.51719856262207    valid/loss: 7.517499923706055    train/acc: 0.3625    valid/acc: 0.1429
+Epoch: 700    train/loss: 22.760099411010742    valid/loss: 7.605799674987793    train/acc: 0.425    valid/acc: 0.1429
+Epoch: 800    train/loss: 23.24650001525879    valid/loss: 7.618599891662598    train/acc: 0.4125    valid/acc: 0.1429
+Epoch: 900    train/loss: 22.65239906311035    valid/loss: 7.6240997314453125    train/acc: 0.4    valid/acc: 0.1429
+Epoch: 1000    train/loss: 22.74679946899414    valid/loss: 7.493899822235107    train/acc: 0.3625    valid/acc: 0.1429
+a:  0.001
+c:  0.03
+     fun: DeviceArray(21.691734, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.62100345,  0.2757386 , -0.00754402, ...,  0.33835584,
+              0.48809886,  0.45127392], dtype=float32)
+Test accuracy: 0.2
+Epoch: 100    train/loss: 24.685400009155273    valid/loss: 7.682299613952637    train/acc: 0.3625    valid/acc: 0.3333
+Epoch: 200    train/loss: 22.95119857788086    valid/loss: 6.7669997215271    train/acc: 0.425    valid/acc: 0.2381
+Epoch: 300    train/loss: 21.854999542236328    valid/loss: 8.135000228881836    train/acc: 0.5    valid/acc: 0.3333
+Epoch: 400    train/loss: 21.238100051879883    valid/loss: 9.041099548339844    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 500    train/loss: 21.378799438476562    valid/loss: 9.705100059509277    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 600    train/loss: 20.832199096679688    valid/loss: 8.309199333190918    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 700    train/loss: 20.344999313354492    valid/loss: 8.464200019836426    train/acc: 0.5375    valid/acc: 0.2857
+Epoch: 800    train/loss: 19.83479881286621    valid/loss: 8.081899642944336    train/acc: 0.5375    valid/acc: 0.4286
+Epoch: 900    train/loss: 19.843700408935547    valid/loss: 7.840299606323242    train/acc: 0.55    valid/acc: 0.4762
+Epoch: 1000    train/loss: 19.609399795532227    valid/loss: 8.281299591064453    train/acc: 0.5375    valid/acc: 0.4762
+a:  0.005
+c:  0.001
+     fun: DeviceArray(19.549753, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-0.5738107, -1.3402333,  1.6214199, ..., -1.0133681,
+              2.6620145, -0.2917451], dtype=float32)
+Test accuracy: 0.45
+Epoch: 100    train/loss: 26.886598587036133    valid/loss: 8.122699737548828    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 200    train/loss: 26.195899963378906    valid/loss: 8.616199493408203    train/acc: 0.3625    valid/acc: 0.1905
+Epoch: 300    train/loss: 25.689699172973633    valid/loss: 8.126799583435059    train/acc: 0.55    valid/acc: 0.381
+Epoch: 400    train/loss: 26.627199172973633    valid/loss: 7.351099967956543    train/acc: 0.4    valid/acc: 0.381
+Epoch: 500    train/loss: 25.79309844970703    valid/loss: 7.119899749755859    train/acc: 0.2375    valid/acc: 0.1905
+Epoch: 600    train/loss: 25.279998779296875    valid/loss: 7.283899784088135    train/acc: 0.45    valid/acc: 0.3333
+Epoch: 700    train/loss: 24.38089942932129    valid/loss: 7.708199977874756    train/acc: 0.45    valid/acc: 0.381
+Epoch: 800    train/loss: 24.481800079345703    valid/loss: 7.597099781036377    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 900    train/loss: 24.25160026550293    valid/loss: 7.403599739074707    train/acc: 0.4625    valid/acc: 0.3333
+Epoch: 1000    train/loss: 24.16899871826172    valid/loss: 7.833199977874756    train/acc: 0.3625    valid/acc: 0.2857
+a:  0.005
+c:  0.005
+     fun: DeviceArray(24.034363, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.6270115 ,  0.9545705 , -0.11313167, ..., -0.04407074,
+              0.42995724,  0.14886285], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 26.498498916625977    valid/loss: 8.381799697875977    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 200    train/loss: 23.719200134277344    valid/loss: 7.387699604034424    train/acc: 0.475    valid/acc: 0.3333
+Epoch: 300    train/loss: 21.307899475097656    valid/loss: 6.8171000480651855    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 400    train/loss: 20.491899490356445    valid/loss: 7.0279998779296875    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 500    train/loss: 21.892499923706055    valid/loss: 6.818299770355225    train/acc: 0.4875    valid/acc: 0.2857
+Epoch: 600    train/loss: 20.480998992919922    valid/loss: 7.089900016784668    train/acc: 0.4625    valid/acc: 0.5714
+Epoch: 700    train/loss: 20.224498748779297    valid/loss: 6.093100070953369    train/acc: 0.5    valid/acc: 0.4286
+Epoch: 800    train/loss: 19.5497989654541    valid/loss: 6.375    train/acc: 0.525    valid/acc: 0.381
+Epoch: 900    train/loss: 19.212900161743164    valid/loss: 5.718800067901611    train/acc: 0.5    valid/acc: 0.4762
+Epoch: 1000    train/loss: 21.0718994140625    valid/loss: 6.8471999168396    train/acc: 0.525    valid/acc: 0.5238
+a:  0.005
+c:  0.01
+     fun: DeviceArray(20.203403, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.675844  , -0.13913608,  0.34187165, ...,  0.02851053,
+              0.9066288 , -0.00599776], dtype=float32)
+Test accuracy: 0.5
+Epoch: 100    train/loss: 24.47719955444336    valid/loss: 7.2042999267578125    train/acc: 0.3875    valid/acc: 0.1905
+Epoch: 200    train/loss: 23.6570987701416    valid/loss: 6.8100996017456055    train/acc: 0.475    valid/acc: 0.381
+Epoch: 300    train/loss: 22.291500091552734    valid/loss: 7.0914998054504395    train/acc: 0.4625    valid/acc: 0.4286
+Epoch: 400    train/loss: 22.05729866027832    valid/loss: 7.547499656677246    train/acc: 0.4625    valid/acc: 0.381
+Epoch: 500    train/loss: 21.587299346923828    valid/loss: 7.891599655151367    train/acc: 0.5375    valid/acc: 0.4286
+Epoch: 600    train/loss: 21.676898956298828    valid/loss: 7.845799922943115    train/acc: 0.525    valid/acc: 0.381
+Epoch: 700    train/loss: 21.403499603271484    valid/loss: 7.773200035095215    train/acc: 0.5    valid/acc: 0.4286
+Epoch: 800    train/loss: 21.176198959350586    valid/loss: 7.610199928283691    train/acc: 0.45    valid/acc: 0.4286
+Epoch: 900    train/loss: 21.094499588012695    valid/loss: 7.696099758148193    train/acc: 0.5    valid/acc: 0.4286
+Epoch: 1000    train/loss: 21.404998779296875    valid/loss: 7.394199848175049    train/acc: 0.45    valid/acc: 0.4286
+a:  0.005
+c:  0.015
+     fun: DeviceArray(20.643015, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([1.0937898 , 0.29318964, 0.0744194 , ..., 0.3839605 ,
+             0.66245   , 0.49091125], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 22.732799530029297    valid/loss: 7.4303998947143555    train/acc: 0.35    valid/acc: 0.1429
+Epoch: 200    train/loss: 22.353899002075195    valid/loss: 7.0391998291015625    train/acc: 0.5375    valid/acc: 0.381
+Epoch: 300    train/loss: 21.28190040588379    valid/loss: 6.848999977111816    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 400    train/loss: 20.517000198364258    valid/loss: 7.019199848175049    train/acc: 0.5    valid/acc: 0.4286
+Epoch: 500    train/loss: 20.972000122070312    valid/loss: 6.611199855804443    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 600    train/loss: 19.28890037536621    valid/loss: 7.277699947357178    train/acc: 0.55    valid/acc: 0.381
+Epoch: 700    train/loss: 19.533199310302734    valid/loss: 6.305299758911133    train/acc: 0.5625    valid/acc: 0.4762
+Epoch: 800    train/loss: 19.117399215698242    valid/loss: 6.17519998550415    train/acc: 0.625    valid/acc: 0.4762
+Epoch: 900    train/loss: 19.450199127197266    valid/loss: 6.514099597930908    train/acc: 0.65    valid/acc: 0.4762
+Epoch: 1000    train/loss: 18.762800216674805    valid/loss: 7.745899677276611    train/acc: 0.5875    valid/acc: 0.381
+a:  0.005
+c:  0.02
+     fun: DeviceArray(17.999832, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.28051367,  0.7909116 ,  0.1306937 , ...,  0.3127115 ,
+              0.4538872 , -0.32964435], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 26.815898895263672    valid/loss: 7.889599800109863    train/acc: 0.325    valid/acc: 0.2381
+Epoch: 200    train/loss: 25.485198974609375    valid/loss: 7.750699996948242    train/acc: 0.325    valid/acc: 0.381
+Epoch: 300    train/loss: 25.160099029541016    valid/loss: 7.517899990081787    train/acc: 0.35    valid/acc: 0.4762
+Epoch: 400    train/loss: 25.195199966430664    valid/loss: 7.178899765014648    train/acc: 0.275    valid/acc: 0.4286
+Epoch: 500    train/loss: 24.619298934936523    valid/loss: 7.624799728393555    train/acc: 0.4875    valid/acc: 0.4762
+Epoch: 600    train/loss: 24.447999954223633    valid/loss: 7.44980001449585    train/acc: 0.4875    valid/acc: 0.4762
+Epoch: 700    train/loss: 24.158599853515625    valid/loss: 7.183199882507324    train/acc: 0.45    valid/acc: 0.4286
+Epoch: 800    train/loss: 23.601699829101562    valid/loss: 6.973199844360352    train/acc: 0.375    valid/acc: 0.381
+Epoch: 900    train/loss: 23.684598922729492    valid/loss: 7.01039981842041    train/acc: 0.5    valid/acc: 0.4286
+Epoch: 1000    train/loss: 23.56679916381836    valid/loss: 7.683399677276611    train/acc: 0.4125    valid/acc: 0.4286
+a:  0.005
+c:  0.025
+     fun: DeviceArray(22.72283, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.63486123,  0.47786272, -0.22112647, ...,  0.06773904,
+              0.00548385,  0.48666623], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 23.721698760986328    valid/loss: 6.984399795532227    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 200    train/loss: 23.241899490356445    valid/loss: 6.479399681091309    train/acc: 0.425    valid/acc: 0.6667
+Epoch: 300    train/loss: 21.60099983215332    valid/loss: 7.067599773406982    train/acc: 0.5    valid/acc: 0.4286
+Epoch: 400    train/loss: 21.677398681640625    valid/loss: 7.0341997146606445    train/acc: 0.525    valid/acc: 0.4286
+Epoch: 500    train/loss: 21.179399490356445    valid/loss: 7.2669997215271    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 600    train/loss: 21.009498596191406    valid/loss: 7.305999755859375    train/acc: 0.4875    valid/acc: 0.4286
+Epoch: 700    train/loss: 21.353199005126953    valid/loss: 7.3105998039245605    train/acc: 0.5375    valid/acc: 0.381
+Epoch: 800    train/loss: 21.1476993560791    valid/loss: 7.781299591064453    train/acc: 0.5375    valid/acc: 0.3333
+Epoch: 900    train/loss: 21.117799758911133    valid/loss: 7.673399925231934    train/acc: 0.45    valid/acc: 0.3333
+Epoch: 1000    train/loss: 21.065399169921875    valid/loss: 7.717899799346924    train/acc: 0.5625    valid/acc: 0.2857
+a:  0.005
+c:  0.03
+     fun: DeviceArray(20.209457, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.7017005 , 0.37419483, 0.07862173, ..., 0.27907875,
+             0.24991438, 0.7696287 ], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 25.783199310302734    valid/loss: 7.814299583435059    train/acc: 0.3875    valid/acc: 0.2381
+Epoch: 200    train/loss: 33.194400787353516    valid/loss: 7.621299743652344    train/acc: 0.2125    valid/acc: 0.1905
+Epoch: 300    train/loss: 26.272998809814453    valid/loss: 6.518699645996094    train/acc: 0.325    valid/acc: 0.4762
+Epoch: 400    train/loss: 25.13759994506836    valid/loss: 6.993599891662598    train/acc: 0.5    valid/acc: 0.619
+Epoch: 500    train/loss: 25.155099868774414    valid/loss: 8.107099533081055    train/acc: 0.475    valid/acc: 0.2857
+Epoch: 600    train/loss: 27.176599502563477    valid/loss: 7.153899669647217    train/acc: 0.3875    valid/acc: 0.3333
+Epoch: 700    train/loss: 23.824098587036133    valid/loss: 7.568599700927734    train/acc: 0.475    valid/acc: 0.5714
+Epoch: 800    train/loss: 23.43869972229004    valid/loss: 7.181399822235107    train/acc: 0.475    valid/acc: 0.5238
+Epoch: 900    train/loss: 26.45119857788086    valid/loss: 7.013899803161621    train/acc: 0.3125    valid/acc: 0.2857
+Epoch: 1000    train/loss: 26.093599319458008    valid/loss: 7.705099582672119    train/acc: 0.3875    valid/acc: 0.2381
+a:  0.01
+c:  0.001
+     fun: DeviceArray(26.106335, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-2.8481371 , -2.989021  ,  0.01390737, ...,  1.0617635 ,
+             -0.1465235 , -0.33263695], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 27.925798416137695    valid/loss: 7.253200054168701    train/acc: 0.375    valid/acc: 0.381
+Epoch: 200    train/loss: 26.316699981689453    valid/loss: 6.801599979400635    train/acc: 0.25    valid/acc: 0.2857
+Epoch: 300    train/loss: 26.279399871826172    valid/loss: 7.6118998527526855    train/acc: 0.3125    valid/acc: 0.1429
+Epoch: 400    train/loss: 25.142499923706055    valid/loss: 7.059499740600586    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 500    train/loss: 26.55109977722168    valid/loss: 6.777499675750732    train/acc: 0.3625    valid/acc: 0.4286
+Epoch: 600    train/loss: 23.527799606323242    valid/loss: 7.049699783325195    train/acc: 0.475    valid/acc: 0.3333
+Epoch: 700    train/loss: 24.27039909362793    valid/loss: 7.830399990081787    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 800    train/loss: 21.256999969482422    valid/loss: 7.964399814605713    train/acc: 0.4875    valid/acc: 0.2381
+Epoch: 900    train/loss: 24.725799560546875    valid/loss: 7.118099689483643    train/acc: 0.4625    valid/acc: 0.2857
+Epoch: 1000    train/loss: 23.624399185180664    valid/loss: 7.238800048828125    train/acc: 0.475    valid/acc: 0.2857
+a:  0.01
+c:  0.005
+     fun: DeviceArray(23.716644, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-0.7332355 ,  1.5736228 ,  2.3411505 , ...,  0.61686194,
+             -1.5200995 , -0.37279347], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 26.479299545288086    valid/loss: 7.329799652099609    train/acc: 0.3625    valid/acc: 0.3333
+Epoch: 200    train/loss: 25.341798782348633    valid/loss: 6.65939998626709    train/acc: 0.4    valid/acc: 0.2381
+Epoch: 300    train/loss: 24.553699493408203    valid/loss: 6.866299629211426    train/acc: 0.45    valid/acc: 0.2381
+Epoch: 400    train/loss: 22.279098510742188    valid/loss: 7.037600040435791    train/acc: 0.525    valid/acc: 0.2857
+Epoch: 500    train/loss: 24.28929901123047    valid/loss: 7.231599807739258    train/acc: 0.475    valid/acc: 0.3333
+Epoch: 600    train/loss: 22.812599182128906    valid/loss: 6.843499660491943    train/acc: 0.5125    valid/acc: 0.4286
+Epoch: 700    train/loss: 20.208398818969727    valid/loss: 7.853299617767334    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 800    train/loss: 22.985898971557617    valid/loss: 7.660099983215332    train/acc: 0.4375    valid/acc: 0.2857
+Epoch: 900    train/loss: 22.623699188232422    valid/loss: 7.722099781036377    train/acc: 0.525    valid/acc: 0.2857
+Epoch: 1000    train/loss: 23.953998565673828    valid/loss: 6.7017998695373535    train/acc: 0.5375    valid/acc: 0.4286
+a:  0.01
+c:  0.01
+     fun: DeviceArray(24.86163, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-0.8704433 ,  0.43024072, -0.59284276, ...,  1.332765  ,
+              2.0806353 ,  1.5214254 ], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 26.334999084472656    valid/loss: 7.888299942016602    train/acc: 0.4125    valid/acc: 0.2381
+Epoch: 200    train/loss: 29.656198501586914    valid/loss: 8.148300170898438    train/acc: 0.225    valid/acc: 0.1429
+Epoch: 300    train/loss: 24.42879867553711    valid/loss: 7.412299633026123    train/acc: 0.3875    valid/acc: 0.2857
+Epoch: 400    train/loss: 25.360198974609375    valid/loss: 7.125699996948242    train/acc: 0.5    valid/acc: 0.2857
+Epoch: 500    train/loss: 22.83479881286621    valid/loss: 6.8171000480651855    train/acc: 0.4625    valid/acc: 0.4762
+Epoch: 600    train/loss: 21.072898864746094    valid/loss: 7.525899887084961    train/acc: 0.5    valid/acc: 0.3333
+Epoch: 700    train/loss: 22.3710994720459    valid/loss: 7.183699607849121    train/acc: 0.475    valid/acc: 0.4286
+Epoch: 800    train/loss: 22.39569854736328    valid/loss: 7.5717997550964355    train/acc: 0.4875    valid/acc: 0.2857
+Epoch: 900    train/loss: 20.71929931640625    valid/loss: 7.500999927520752    train/acc: 0.4375    valid/acc: 0.4286
+Epoch: 1000    train/loss: 19.392398834228516    valid/loss: 7.465099811553955    train/acc: 0.5125    valid/acc: 0.2381
+a:  0.01
+c:  0.015
+     fun: DeviceArray(19.16555, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 3.4572155 , -0.16004652, -0.9449607 , ...,  0.70250607,
+              0.357322  ,  2.5769398 ], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 26.462398529052734    valid/loss: 7.575599670410156    train/acc: 0.325    valid/acc: 0.2381
+Epoch: 200    train/loss: 24.51420021057129    valid/loss: 7.739799976348877    train/acc: 0.4625    valid/acc: 0.2381
+Epoch: 300    train/loss: 23.582698822021484    valid/loss: 7.875199794769287    train/acc: 0.5125    valid/acc: 0.4286
+Epoch: 400    train/loss: 23.677099227905273    valid/loss: 7.750499725341797    train/acc: 0.4875    valid/acc: 0.381
+Epoch: 500    train/loss: 23.457799911499023    valid/loss: 7.643499851226807    train/acc: 0.4    valid/acc: 0.381
+Epoch: 600    train/loss: 22.55150032043457    valid/loss: 6.8501996994018555    train/acc: 0.5375    valid/acc: 0.381
+Epoch: 700    train/loss: 22.41499900817871    valid/loss: 6.917199611663818    train/acc: 0.4375    valid/acc: 0.381
+Epoch: 800    train/loss: 22.216699600219727    valid/loss: 6.97189998626709    train/acc: 0.5375    valid/acc: 0.4286
+Epoch: 900    train/loss: 23.128799438476562    valid/loss: 7.374799728393555    train/acc: 0.525    valid/acc: 0.2381
+Epoch: 1000    train/loss: 22.533100128173828    valid/loss: 7.293900012969971    train/acc: 0.4875    valid/acc: 0.2381
+a:  0.01
+c:  0.02
+     fun: DeviceArray(21.683157, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 1.0948669 , -0.548536  ,  0.22491589, ..., -0.28639492,
+              0.17816916,  1.3932761 ], dtype=float32)
+Test accuracy: 0.25
+Epoch: 100    train/loss: 26.548398971557617    valid/loss: 7.104399681091309    train/acc: 0.45    valid/acc: 0.381
+Epoch: 200    train/loss: 26.011999130249023    valid/loss: 7.526399612426758    train/acc: 0.3875    valid/acc: 0.2857
+Epoch: 300    train/loss: 23.896499633789062    valid/loss: 6.966300010681152    train/acc: 0.425    valid/acc: 0.4286
+Epoch: 400    train/loss: 23.834598541259766    valid/loss: 7.465099811553955    train/acc: 0.4125    valid/acc: 0.3333
+Epoch: 500    train/loss: 23.034198760986328    valid/loss: 8.58899974822998    train/acc: 0.4125    valid/acc: 0.3333
+Epoch: 600    train/loss: 22.77359962463379    valid/loss: 7.347099781036377    train/acc: 0.45    valid/acc: 0.5238
+Epoch: 700    train/loss: 23.36859893798828    valid/loss: 7.389599800109863    train/acc: 0.475    valid/acc: 0.381
+Epoch: 800    train/loss: 24.16339874267578    valid/loss: 6.6362996101379395    train/acc: 0.4375    valid/acc: 0.4762
+Epoch: 900    train/loss: 21.898799896240234    valid/loss: 7.354099750518799    train/acc: 0.4625    valid/acc: 0.381
+Epoch: 1000    train/loss: 21.542200088500977    valid/loss: 7.136999607086182    train/acc: 0.4125    valid/acc: 0.4762
+a:  0.01
+c:  0.025
+     fun: DeviceArray(20.071705, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.87650996,  1.3056438 ,  0.8518197 , ..., -0.19500433,
+              1.0591817 ,  0.4073035 ], dtype=float32)
+Test accuracy: 0.15
+Epoch: 100    train/loss: 25.594799041748047    valid/loss: 7.717199802398682    train/acc: 0.3875    valid/acc: 0.1905
+Epoch: 200    train/loss: 23.904699325561523    valid/loss: 7.509099960327148    train/acc: 0.45    valid/acc: 0.1905
+Epoch: 300    train/loss: 23.529499053955078    valid/loss: 7.4701995849609375    train/acc: 0.45    valid/acc: 0.3333
+Epoch: 400    train/loss: 23.042200088500977    valid/loss: 7.1880998611450195    train/acc: 0.5125    valid/acc: 0.5238
+Epoch: 500    train/loss: 24.30109977722168    valid/loss: 6.986299991607666    train/acc: 0.4125    valid/acc: 0.4762
+Epoch: 600    train/loss: 22.217199325561523    valid/loss: 7.271599769592285    train/acc: 0.4875    valid/acc: 0.5714
+Epoch: 700    train/loss: 22.93589973449707    valid/loss: 6.951099872589111    train/acc: 0.4375    valid/acc: 0.5714
+Epoch: 800    train/loss: 21.69879913330078    valid/loss: 6.9532999992370605    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 900    train/loss: 21.464399337768555    valid/loss: 7.164000034332275    train/acc: 0.525    valid/acc: 0.5714
+Epoch: 1000    train/loss: 21.32969856262207    valid/loss: 6.792199611663818    train/acc: 0.525    valid/acc: 0.5714
+a:  0.01
+c:  0.03
+     fun: DeviceArray(20.989277, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.44549623,  0.54424703, -0.4300953 , ..., -0.3171198 ,
+              0.5857557 ,  0.55024135], dtype=float32)
+Test accuracy: 0.5
+Epoch: 100    train/loss: 27.758499145507812    valid/loss: 7.239799976348877    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 200    train/loss: 28.023799896240234    valid/loss: 7.654099941253662    train/acc: 0.35    valid/acc: 0.3333
+Epoch: 300    train/loss: 25.560298919677734    valid/loss: 7.337800025939941    train/acc: 0.3    valid/acc: 0.1429
+Epoch: 400    train/loss: 26.744199752807617    valid/loss: 7.150699615478516    train/acc: 0.325    valid/acc: 0.1905
+Epoch: 500    train/loss: 25.31410026550293    valid/loss: 6.766499996185303    train/acc: 0.325    valid/acc: 0.381
+Epoch: 600    train/loss: 29.11079978942871    valid/loss: 7.284299850463867    train/acc: 0.2875    valid/acc: 0.4286
+Epoch: 700    train/loss: 26.45870018005371    valid/loss: 8.22070026397705    train/acc: 0.4125    valid/acc: 0.3333
+Epoch: 800    train/loss: 24.078899383544922    valid/loss: 6.440000057220459    train/acc: 0.325    valid/acc: 0.1905
+Epoch: 900    train/loss: 23.989099502563477    valid/loss: 6.552799701690674    train/acc: 0.3875    valid/acc: 0.4286
+Epoch: 1000    train/loss: 24.99759864807129    valid/loss: 7.072099685668945    train/acc: 0.4375    valid/acc: 0.381
+a:  0.015
+c:  0.001
+     fun: DeviceArray(24.719204, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-3.2105997, -6.4273014, -5.5014105, ...,  6.008239 ,
+             -5.584194 , -4.992865 ], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 28.129199981689453    valid/loss: 6.994199752807617    train/acc: 0.275    valid/acc: 0.0476
+Epoch: 200    train/loss: 27.05459976196289    valid/loss: 7.179800033569336    train/acc: 0.3375    valid/acc: 0.381
+Epoch: 300    train/loss: 28.284099578857422    valid/loss: 7.270899772644043    train/acc: 0.25    valid/acc: 0.1429
+Epoch: 400    train/loss: 27.02400016784668    valid/loss: 6.455499649047852    train/acc: 0.3875    valid/acc: 0.4762
+Epoch: 500    train/loss: 26.441999435424805    valid/loss: 7.153599739074707    train/acc: 0.3    valid/acc: 0.3333
+Epoch: 600    train/loss: 24.948598861694336    valid/loss: 7.461599826812744    train/acc: 0.4875    valid/acc: 0.4286
+Epoch: 700    train/loss: 24.816699981689453    valid/loss: 7.3018999099731445    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 800    train/loss: 23.334598541259766    valid/loss: 7.094399929046631    train/acc: 0.4125    valid/acc: 0.3333
+Epoch: 900    train/loss: 22.94839859008789    valid/loss: 7.134399890899658    train/acc: 0.425    valid/acc: 0.4762
+Epoch: 1000    train/loss: 22.81399917602539    valid/loss: 6.4126996994018555    train/acc: 0.45    valid/acc: 0.4286
+a:  0.015
+c:  0.005
+     fun: DeviceArray(22.812098, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-0.45399314,  2.9283352 , -3.885347  , ..., -1.1365471 ,
+              1.2792647 ,  0.02407018], dtype=float32)
+Test accuracy: 0.5
+Epoch: 100    train/loss: 28.497499465942383    valid/loss: 7.496199607849121    train/acc: 0.35    valid/acc: 0.1429
+Epoch: 200    train/loss: 26.927398681640625    valid/loss: 7.3165998458862305    train/acc: 0.2375    valid/acc: 0.3333
+Epoch: 300    train/loss: 26.721899032592773    valid/loss: 7.005300045013428    train/acc: 0.2625    valid/acc: 0.2381
+Epoch: 400    train/loss: 25.621700286865234    valid/loss: 7.3013997077941895    train/acc: 0.35    valid/acc: 0.3333
+Epoch: 500    train/loss: 25.20949935913086    valid/loss: 7.519399642944336    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 600    train/loss: 25.88629913330078    valid/loss: 7.1296000480651855    train/acc: 0.475    valid/acc: 0.5714
+Epoch: 700    train/loss: 23.801300048828125    valid/loss: 7.5295000076293945    train/acc: 0.4375    valid/acc: 0.3333
+Epoch: 800    train/loss: 25.288000106811523    valid/loss: 6.918399810791016    train/acc: 0.35    valid/acc: 0.2381
+Epoch: 900    train/loss: 24.749099731445312    valid/loss: 6.592199802398682    train/acc: 0.325    valid/acc: 0.3333
+Epoch: 1000    train/loss: 24.2239990234375    valid/loss: 6.539899826049805    train/acc: 0.4125    valid/acc: 0.381
+a:  0.015
+c:  0.01
+     fun: DeviceArray(24.101646, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.31786132,  0.35318518,  0.57302564, ...,  2.1362545 ,
+             -1.2044618 , -1.1435223 ], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 27.902099609375    valid/loss: 8.263899803161621    train/acc: 0.2    valid/acc: 0.3333
+Epoch: 200    train/loss: 36.32509994506836    valid/loss: 9.318099975585938    train/acc: 0.2875    valid/acc: 0.1429
+Epoch: 300    train/loss: 26.011098861694336    valid/loss: 7.303400039672852    train/acc: 0.225    valid/acc: 0.1429
+Epoch: 400    train/loss: 27.984098434448242    valid/loss: 7.075899600982666    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 500    train/loss: 27.867300033569336    valid/loss: 7.017699718475342    train/acc: 0.25    valid/acc: 0.381
+Epoch: 600    train/loss: 24.996198654174805    valid/loss: 6.839799880981445    train/acc: 0.525    valid/acc: 0.381
+Epoch: 700    train/loss: 27.234798431396484    valid/loss: 7.235499858856201    train/acc: 0.3875    valid/acc: 0.3333
+Epoch: 800    train/loss: 29.7549991607666    valid/loss: 7.999799728393555    train/acc: 0.175    valid/acc: 0.1905
+Epoch: 900    train/loss: 23.563499450683594    valid/loss: 7.90339994430542    train/acc: 0.4    valid/acc: 0.2381
+Epoch: 1000    train/loss: 23.09280014038086    valid/loss: 7.849699974060059    train/acc: 0.4625    valid/acc: 0.4286
+a:  0.015
+c:  0.015
+     fun: DeviceArray(22.851625, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.5634777 , -1.144831  ,  3.2868085 , ..., -0.7009497 ,
+              0.59420556,  1.4395452 ], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 25.344999313354492    valid/loss: 9.173199653625488    train/acc: 0.4    valid/acc: 0.1429
+Epoch: 200    train/loss: 27.65519905090332    valid/loss: 7.377599716186523    train/acc: 0.3    valid/acc: 0.1905
+Epoch: 300    train/loss: 23.521099090576172    valid/loss: 7.905799865722656    train/acc: 0.5375    valid/acc: 0.4762
+Epoch: 400    train/loss: 26.495899200439453    valid/loss: 7.353499889373779    train/acc: 0.5125    valid/acc: 0.2857
+Epoch: 500    train/loss: 25.0447998046875    valid/loss: 7.786399841308594    train/acc: 0.4125    valid/acc: 0.2857
+Epoch: 600    train/loss: 21.952899932861328    valid/loss: 6.492199897766113    train/acc: 0.5125    valid/acc: 0.5238
+Epoch: 700    train/loss: 23.86680030822754    valid/loss: 7.459499835968018    train/acc: 0.4375    valid/acc: 0.4286
+Epoch: 800    train/loss: 21.69729995727539    valid/loss: 7.239999771118164    train/acc: 0.4625    valid/acc: 0.3333
+Epoch: 900    train/loss: 21.909000396728516    valid/loss: 6.402299880981445    train/acc: 0.55    valid/acc: 0.2381
+Epoch: 1000    train/loss: 20.757598876953125    valid/loss: 6.620499610900879    train/acc: 0.5    valid/acc: 0.2857
+a:  0.015
+c:  0.02
+     fun: DeviceArray(20.664618, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 1.8576311 ,  0.77804315, -1.9309016 , ..., -1.8723038 ,
+              0.7779975 ,  0.23940903], dtype=float32)
+Test accuracy: 0.45
+Epoch: 100    train/loss: 26.590499877929688    valid/loss: 7.246500015258789    train/acc: 0.5125    valid/acc: 0.381
+Epoch: 200    train/loss: 29.86639976501465    valid/loss: 7.526700019836426    train/acc: 0.225    valid/acc: 0.2381
+Epoch: 300    train/loss: 28.037099838256836    valid/loss: 7.257499694824219    train/acc: 0.3    valid/acc: 0.4762
+Epoch: 400    train/loss: 26.39550018310547    valid/loss: 6.752599716186523    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 500    train/loss: 23.73699951171875    valid/loss: 7.070099830627441    train/acc: 0.5125    valid/acc: 0.4762
+Epoch: 600    train/loss: 22.87849998474121    valid/loss: 7.5117998123168945    train/acc: 0.5125    valid/acc: 0.381
+Epoch: 700    train/loss: 23.833799362182617    valid/loss: 6.9614996910095215    train/acc: 0.525    valid/acc: 0.3333
+Epoch: 800    train/loss: 22.837200164794922    valid/loss: 6.115900039672852    train/acc: 0.5125    valid/acc: 0.4286
+Epoch: 900    train/loss: 22.54949951171875    valid/loss: 6.152099609375    train/acc: 0.5    valid/acc: 0.2857
+Epoch: 1000    train/loss: 21.760499954223633    valid/loss: 6.945999622344971    train/acc: 0.575    valid/acc: 0.4286
+a:  0.015
+c:  0.025
+     fun: DeviceArray(21.211926, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([0.19054994, 1.2010328 , 0.64785844, ..., 0.6558741 ,
+             1.1020812 , 1.866624  ], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 26.56399917602539    valid/loss: 6.879799842834473    train/acc: 0.375    valid/acc: 0.4762
+Epoch: 200    train/loss: 27.535900115966797    valid/loss: 7.348199844360352    train/acc: 0.3125    valid/acc: 0.2381
+Epoch: 300    train/loss: 24.049299240112305    valid/loss: 8.130599975585938    train/acc: 0.4375    valid/acc: 0.1905
+Epoch: 400    train/loss: 24.957698822021484    valid/loss: 7.842199802398682    train/acc: 0.35    valid/acc: 0.381
+Epoch: 500    train/loss: 23.141599655151367    valid/loss: 6.748600006103516    train/acc: 0.475    valid/acc: 0.5714
+Epoch: 600    train/loss: 20.755998611450195    valid/loss: 7.012399673461914    train/acc: 0.5375    valid/acc: 0.381
+Epoch: 700    train/loss: 20.879798889160156    valid/loss: 6.599599838256836    train/acc: 0.55    valid/acc: 0.5238
+Epoch: 800    train/loss: 20.62959861755371    valid/loss: 6.9116997718811035    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 900    train/loss: 20.21419906616211    valid/loss: 6.18149995803833    train/acc: 0.5625    valid/acc: 0.5714
+Epoch: 1000    train/loss: 20.938499450683594    valid/loss: 6.966300010681152    train/acc: 0.525    valid/acc: 0.381
+a:  0.015
+c:  0.03
+     fun: DeviceArray(20.491613, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 2.0632014 ,  0.54869974, -1.1814412 , ...,  0.47437492,
+             -0.04757337,  0.47260302], dtype=float32)
+Test accuracy: 0.2
+Epoch: 100    train/loss: 28.74319839477539    valid/loss: 7.381799697875977    train/acc: 0.35    valid/acc: 0.2857
+Epoch: 200    train/loss: 29.044498443603516    valid/loss: 7.1001996994018555    train/acc: 0.2625    valid/acc: 0.1905
+Epoch: 300    train/loss: 30.982898712158203    valid/loss: 8.367199897766113    train/acc: 0.3125    valid/acc: 0.0952
+Epoch: 400    train/loss: 31.915699005126953    valid/loss: 7.966799736022949    train/acc: 0.125    valid/acc: 0.0476
+Epoch: 500    train/loss: 27.713199615478516    valid/loss: 7.736599922180176    train/acc: 0.2875    valid/acc: 0.1905
+Epoch: 600    train/loss: 24.708999633789062    valid/loss: 6.63100004196167    train/acc: 0.475    valid/acc: 0.4762
+Epoch: 700    train/loss: 27.881999969482422    valid/loss: 7.495100021362305    train/acc: 0.275    valid/acc: 0.1905
+Epoch: 800    train/loss: 25.75510025024414    valid/loss: 7.132499694824219    train/acc: 0.375    valid/acc: 0.2381
+Epoch: 900    train/loss: 24.210498809814453    valid/loss: 6.985199928283691    train/acc: 0.45    valid/acc: 0.1905
+Epoch: 1000    train/loss: 24.3612003326416    valid/loss: 7.3815999031066895    train/acc: 0.4625    valid/acc: 0.1905
+a:  0.02
+c:  0.001
+     fun: DeviceArray(28.296844, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 5.5280557 , -0.95327276, -8.560646  , ...,  1.6584241 ,
+              4.404406  , -0.8964617 ], dtype=float32)
+Test accuracy: 0.0
+Epoch: 100    train/loss: 27.20549964904785    valid/loss: 7.30079984664917    train/acc: 0.225    valid/acc: 0.5238
+Epoch: 200    train/loss: 27.02050018310547    valid/loss: 7.179199695587158    train/acc: 0.4    valid/acc: 0.381
+Epoch: 300    train/loss: 27.3617000579834    valid/loss: 7.433300018310547    train/acc: 0.35    valid/acc: 0.2857
+Epoch: 400    train/loss: 27.921998977661133    valid/loss: 7.770599842071533    train/acc: 0.25    valid/acc: 0.1905
+Epoch: 500    train/loss: 25.0447998046875    valid/loss: 6.8242998123168945    train/acc: 0.4    valid/acc: 0.381
+Epoch: 600    train/loss: 26.734098434448242    valid/loss: 6.776099681854248    train/acc: 0.4    valid/acc: 0.4286
+Epoch: 700    train/loss: 28.550498962402344    valid/loss: 7.770299911499023    train/acc: 0.2    valid/acc: 0.1905
+Epoch: 800    train/loss: 25.638399124145508    valid/loss: 7.253699779510498    train/acc: 0.3625    valid/acc: 0.1905
+Epoch: 900    train/loss: 27.22209930419922    valid/loss: 6.298699855804443    train/acc: 0.325    valid/acc: 0.381
+Epoch: 1000    train/loss: 25.063400268554688    valid/loss: 7.990099906921387    train/acc: 0.4125    valid/acc: 0.3333
+a:  0.02
+c:  0.005
+     fun: DeviceArray(24.946484, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 3.9226341,  3.3569427, -2.3674314, ...,  9.324408 ,
+             -1.2823743,  0.0343674], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 28.33329963684082    valid/loss: 7.962599754333496    train/acc: 0.3125    valid/acc: 0.2381
+Epoch: 200    train/loss: 28.674299240112305    valid/loss: 7.704099655151367    train/acc: 0.3    valid/acc: 0.0476
+Epoch: 300    train/loss: 28.234798431396484    valid/loss: 8.355999946594238    train/acc: 0.2375    valid/acc: 0.2381
+Epoch: 400    train/loss: 28.925498962402344    valid/loss: 7.735999584197998    train/acc: 0.3125    valid/acc: 0.2381
+Epoch: 500    train/loss: 29.71379852294922    valid/loss: 7.410699844360352    train/acc: 0.2375    valid/acc: 0.381
+Epoch: 600    train/loss: 25.42259979248047    valid/loss: 6.9197998046875    train/acc: 0.4125    valid/acc: 0.381
+Epoch: 700    train/loss: 34.2681999206543    valid/loss: 8.025599479675293    train/acc: 0.1375    valid/acc: 0.2857
+Epoch: 800    train/loss: 24.260499954223633    valid/loss: 6.817699909210205    train/acc: 0.425    valid/acc: 0.5714
+Epoch: 900    train/loss: 27.060199737548828    valid/loss: 7.177499771118164    train/acc: 0.3875    valid/acc: 0.4762
+Epoch: 1000    train/loss: 26.018400192260742    valid/loss: 7.3805999755859375    train/acc: 0.45    valid/acc: 0.381
+a:  0.02
+c:  0.01
+     fun: DeviceArray(25.862675, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 1.58573   ,  0.15148848,  1.6403593 , ...,  0.98391604,
+              2.854062  , -1.0727347 ], dtype=float32)
+Test accuracy: 0.45
+Epoch: 100    train/loss: 27.218698501586914    valid/loss: 9.304399490356445    train/acc: 0.2375    valid/acc: 0.0476
+Epoch: 200    train/loss: 25.960899353027344    valid/loss: 8.189499855041504    train/acc: 0.3625    valid/acc: 0.2857
+Epoch: 300    train/loss: 27.03299903869629    valid/loss: 7.32729959487915    train/acc: 0.275    valid/acc: 0.1905
+Epoch: 400    train/loss: 27.035499572753906    valid/loss: 7.8506999015808105    train/acc: 0.3875    valid/acc: 0.1905
+Epoch: 500    train/loss: 24.453298568725586    valid/loss: 7.706299781799316    train/acc: 0.325    valid/acc: 0.2381
+Epoch: 600    train/loss: 23.930299758911133    valid/loss: 7.989099979400635    train/acc: 0.4375    valid/acc: 0.381
+Epoch: 700    train/loss: 28.2189998626709    valid/loss: 7.332699775695801    train/acc: 0.2    valid/acc: 0.381
+Epoch: 800    train/loss: 27.926498413085938    valid/loss: 7.851999759674072    train/acc: 0.25    valid/acc: 0.0952
+Epoch: 900    train/loss: 22.850299835205078    valid/loss: 7.490900039672852    train/acc: 0.4625    valid/acc: 0.2857
+Epoch: 1000    train/loss: 25.618499755859375    valid/loss: 7.621699810028076    train/acc: 0.4125    valid/acc: 0.2381
+a:  0.02
+c:  0.015
+     fun: DeviceArray(24.936537, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 2.828745 ,  3.6315455, -2.6523442, ..., -2.6031976,
+              3.2072563, -0.9945409], dtype=float32)
+Test accuracy: 0.2
+Epoch: 100    train/loss: 30.14659881591797    valid/loss: 7.649199962615967    train/acc: 0.15    valid/acc: 0.1429
+Epoch: 200    train/loss: 26.196800231933594    valid/loss: 7.545899868011475    train/acc: 0.3875    valid/acc: 0.1429
+Epoch: 300    train/loss: 35.589900970458984    valid/loss: 8.267799377441406    train/acc: 0.125    valid/acc: 0.381
+Epoch: 400    train/loss: 25.179100036621094    valid/loss: 7.430899620056152    train/acc: 0.4625    valid/acc: 0.381
+Epoch: 500    train/loss: 28.877498626708984    valid/loss: 7.92519998550415    train/acc: 0.1625    valid/acc: 0.1905
+Epoch: 600    train/loss: 24.394498825073242    valid/loss: 7.432999610900879    train/acc: 0.4625    valid/acc: 0.3333
+Epoch: 700    train/loss: 23.972898483276367    valid/loss: 7.101500034332275    train/acc: 0.375    valid/acc: 0.2381
+Epoch: 800    train/loss: 22.827199935913086    valid/loss: 8.17080020904541    train/acc: 0.55    valid/acc: 0.4286
+Epoch: 900    train/loss: 24.320199966430664    valid/loss: 7.27679967880249    train/acc: 0.3875    valid/acc: 0.381
+Epoch: 1000    train/loss: 25.069398880004883    valid/loss: 8.324999809265137    train/acc: 0.475    valid/acc: 0.381
+a:  0.02
+c:  0.02
+     fun: DeviceArray(24.638876, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-2.9694550e+00,  2.9406006e+00,  1.5214990e+00, ...,
+             -2.7198228e-01, -2.2011474e-03, -2.9536420e-01],            dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 28.347999572753906    valid/loss: 7.321899890899658    train/acc: 0.3125    valid/acc: 0.2381
+Epoch: 200    train/loss: 24.55449867248535    valid/loss: 6.127299785614014    train/acc: 0.4625    valid/acc: 0.5714
+Epoch: 300    train/loss: 27.60019874572754    valid/loss: 6.959699630737305    train/acc: 0.2625    valid/acc: 0.5714
+Epoch: 400    train/loss: 25.234399795532227    valid/loss: 6.988100051879883    train/acc: 0.2875    valid/acc: 0.4286
+Epoch: 500    train/loss: 24.74169921875    valid/loss: 6.681699752807617    train/acc: 0.3375    valid/acc: 0.381
+Epoch: 600    train/loss: 26.156099319458008    valid/loss: 7.684799671173096    train/acc: 0.2    valid/acc: 0.381
+Epoch: 700    train/loss: 28.350099563598633    valid/loss: 7.165999889373779    train/acc: 0.2125    valid/acc: 0.3333
+Epoch: 800    train/loss: 25.901100158691406    valid/loss: 7.462399959564209    train/acc: 0.45    valid/acc: 0.2857
+Epoch: 900    train/loss: 24.707698822021484    valid/loss: 7.278299808502197    train/acc: 0.5    valid/acc: 0.619
+Epoch: 1000    train/loss: 23.42949867248535    valid/loss: 7.269000053405762    train/acc: 0.525    valid/acc: 0.3333
+a:  0.02
+c:  0.025
+     fun: DeviceArray(23.157507, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.256019  ,  0.7994688 , -1.2922506 , ..., -2.1514153 ,
+             -1.4946759 ,  0.31881136], dtype=float32)
+Test accuracy: 0.3
+Epoch: 100    train/loss: 26.618398666381836    valid/loss: 7.370699882507324    train/acc: 0.25    valid/acc: 0.381
+Epoch: 200    train/loss: 28.53969955444336    valid/loss: 7.522500038146973    train/acc: 0.3875    valid/acc: 0.2857
+Epoch: 300    train/loss: 27.485198974609375    valid/loss: 7.260900020599365    train/acc: 0.2875    valid/acc: 0.2381
+Epoch: 400    train/loss: 27.873699188232422    valid/loss: 7.669999599456787    train/acc: 0.3625    valid/acc: 0.3333
+Epoch: 500    train/loss: 25.378398895263672    valid/loss: 7.679299831390381    train/acc: 0.45    valid/acc: 0.3333
+Epoch: 600    train/loss: 24.96150016784668    valid/loss: 7.764999866485596    train/acc: 0.425    valid/acc: 0.3333
+Epoch: 700    train/loss: 24.12849998474121    valid/loss: 7.388499736785889    train/acc: 0.4125    valid/acc: 0.381
+Epoch: 800    train/loss: 24.31639862060547    valid/loss: 7.0488996505737305    train/acc: 0.3625    valid/acc: 0.2857
+Epoch: 900    train/loss: 22.941299438476562    valid/loss: 9.23799991607666    train/acc: 0.5    valid/acc: 0.1905
+Epoch: 1000    train/loss: 23.662399291992188    valid/loss: 7.882400035858154    train/acc: 0.45    valid/acc: 0.381
+a:  0.02
+c:  0.03
+     fun: DeviceArray(23.317858, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 1.9713999 , -0.23800366, -0.13767551, ..., -0.8709255 ,
+              0.15737979,  0.17794125], dtype=float32)
+Test accuracy: 0.45
+Epoch: 100    train/loss: 28.11629867553711    valid/loss: 7.466699600219727    train/acc: 0.325    valid/acc: 0.2857
+Epoch: 200    train/loss: 27.55069923400879    valid/loss: 7.286499977111816    train/acc: 0.2875    valid/acc: 0.2381
+Epoch: 300    train/loss: 26.226099014282227    valid/loss: 7.0355000495910645    train/acc: 0.2625    valid/acc: 0.1905
+Epoch: 400    train/loss: 26.349699020385742    valid/loss: 7.522799968719482    train/acc: 0.375    valid/acc: 0.1905
+Epoch: 500    train/loss: 29.341598510742188    valid/loss: 8.878999710083008    train/acc: 0.2375    valid/acc: 0.2381
+Epoch: 600    train/loss: 27.577899932861328    valid/loss: 6.81749963760376    train/acc: 0.3    valid/acc: 0.381
+Epoch: 700    train/loss: 26.033599853515625    valid/loss: 6.65749979019165    train/acc: 0.3    valid/acc: 0.381
+Epoch: 800    train/loss: 29.251598358154297    valid/loss: 6.933899879455566    train/acc: 0.2625    valid/acc: 0.4286
+Epoch: 900    train/loss: 27.060298919677734    valid/loss: 6.793499946594238    train/acc: 0.2625    valid/acc: 0.4286
+Epoch: 1000    train/loss: 28.078100204467773    valid/loss: 7.6992998123168945    train/acc: 0.2875    valid/acc: 0.381
+a:  0.025
+c:  0.001
+     fun: DeviceArray(28.05539, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 4.9937778, -6.0961423, -9.10124  , ...,  1.562504 ,
+             -4.156488 ,  6.785709 ], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 28.081098556518555    valid/loss: 9.200900077819824    train/acc: 0.35    valid/acc: 0.1905
+Epoch: 200    train/loss: 27.943599700927734    valid/loss: 6.912899971008301    train/acc: 0.3375    valid/acc: 0.2857
+Epoch: 300    train/loss: 26.864198684692383    valid/loss: 6.841599941253662    train/acc: 0.35    valid/acc: 0.381
+Epoch: 400    train/loss: 26.481298446655273    valid/loss: 7.892099857330322    train/acc: 0.4    valid/acc: 0.3333
+Epoch: 500    train/loss: 26.99289894104004    valid/loss: 6.9838995933532715    train/acc: 0.3    valid/acc: 0.3333
+Epoch: 600    train/loss: 27.495698928833008    valid/loss: 7.928399562835693    train/acc: 0.35    valid/acc: 0.0952
+Epoch: 700    train/loss: 27.06869888305664    valid/loss: 7.469799995422363    train/acc: 0.2625    valid/acc: 0.2381
+Epoch: 800    train/loss: 28.524898529052734    valid/loss: 7.743000030517578    train/acc: 0.1375    valid/acc: 0.1905
+Epoch: 900    train/loss: 27.660398483276367    valid/loss: 7.53849983215332    train/acc: 0.2875    valid/acc: 0.2857
+Epoch: 1000    train/loss: 25.715099334716797    valid/loss: 7.53439998626709    train/acc: 0.3875    valid/acc: 0.1905
+a:  0.025
+c:  0.005
+     fun: DeviceArray(26.068054, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 9.01184  ,  7.068584 ,  6.883823 , ...,  1.8891836,
+             -3.4276829,  4.5538993], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 28.628799438476562    valid/loss: 8.879899978637695    train/acc: 0.35    valid/acc: 0.2381
+Epoch: 200    train/loss: 29.715700149536133    valid/loss: 7.212499618530273    train/acc: 0.2125    valid/acc: 0.1429
+Epoch: 300    train/loss: 24.850698471069336    valid/loss: 6.661499977111816    train/acc: 0.375    valid/acc: 0.1905
+Epoch: 400    train/loss: 26.7549991607666    valid/loss: 6.533400058746338    train/acc: 0.325    valid/acc: 0.1905
+Epoch: 500    train/loss: 29.117599487304688    valid/loss: 7.348499774932861    train/acc: 0.25    valid/acc: 0.3333
+Epoch: 600    train/loss: 26.49329948425293    valid/loss: 7.367300033569336    train/acc: 0.2875    valid/acc: 0.1905
+Epoch: 700    train/loss: 26.533998489379883    valid/loss: 7.440899848937988    train/acc: 0.4125    valid/acc: 0.1905
+Epoch: 800    train/loss: 26.393699645996094    valid/loss: 7.9816999435424805    train/acc: 0.35    valid/acc: 0.2857
+Epoch: 900    train/loss: 25.798500061035156    valid/loss: 7.387399673461914    train/acc: 0.2375    valid/acc: 0.2857
+Epoch: 1000    train/loss: 23.680599212646484    valid/loss: 7.736799716949463    train/acc: 0.4    valid/acc: 0.2381
+a:  0.025
+c:  0.01
+     fun: DeviceArray(23.678715, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 4.3141756,  1.0890622,  2.4501526, ...,  0.8438693,
+             -2.2488463,  1.1002586], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 32.039100646972656    valid/loss: 9.715799331665039    train/acc: 0.225    valid/acc: 0.0952
+Epoch: 200    train/loss: 30.78569984436035    valid/loss: 7.367099761962891    train/acc: 0.3125    valid/acc: 0.381
+Epoch: 300    train/loss: 25.871599197387695    valid/loss: 7.385900020599365    train/acc: 0.375    valid/acc: 0.381
+Epoch: 400    train/loss: 27.65019989013672    valid/loss: 7.364799976348877    train/acc: 0.4125    valid/acc: 0.3333
+Epoch: 500    train/loss: 26.91309928894043    valid/loss: 6.576499938964844    train/acc: 0.25    valid/acc: 0.381
+Epoch: 600    train/loss: 26.281198501586914    valid/loss: 8.79069995880127    train/acc: 0.4125    valid/acc: 0.1429
+Epoch: 700    train/loss: 26.662399291992188    valid/loss: 7.338799953460693    train/acc: 0.375    valid/acc: 0.2857
+Epoch: 800    train/loss: 24.555500030517578    valid/loss: 7.518699645996094    train/acc: 0.35    valid/acc: 0.1905
+Epoch: 900    train/loss: 26.19729995727539    valid/loss: 6.398499965667725    train/acc: 0.375    valid/acc: 0.5238
+Epoch: 1000    train/loss: 26.05889892578125    valid/loss: 7.0264997482299805    train/acc: 0.425    valid/acc: 0.4762
+a:  0.025
+c:  0.015
+     fun: DeviceArray(25.998175, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 0.56311315,  0.8340208 , -1.0681049 , ...,  1.5325242 ,
+              2.494013  , -2.871754  ], dtype=float32)
+Test accuracy: 0.45
+Epoch: 100    train/loss: 26.322898864746094    valid/loss: 7.456299781799316    train/acc: 0.375    valid/acc: 0.1429
+Epoch: 200    train/loss: 27.950899124145508    valid/loss: 7.184999942779541    train/acc: 0.25    valid/acc: 0.3333
+Epoch: 300    train/loss: 26.48499870300293    valid/loss: 7.37369966506958    train/acc: 0.325    valid/acc: 0.1905
+Epoch: 400    train/loss: 24.477399826049805    valid/loss: 6.780699729919434    train/acc: 0.4375    valid/acc: 0.3333
+Epoch: 500    train/loss: 27.856298446655273    valid/loss: 8.601200103759766    train/acc: 0.2625    valid/acc: 0.2381
+Epoch: 600    train/loss: 31.92840003967285    valid/loss: 7.569900035858154    train/acc: 0.2625    valid/acc: 0.2857
+Epoch: 700    train/loss: 27.6083984375    valid/loss: 7.873299598693848    train/acc: 0.2125    valid/acc: 0.2381
+Epoch: 800    train/loss: 27.019899368286133    valid/loss: 7.242300033569336    train/acc: 0.325    valid/acc: 0.381
+Epoch: 900    train/loss: 24.354700088500977    valid/loss: 6.979099750518799    train/acc: 0.4    valid/acc: 0.5238
+Epoch: 1000    train/loss: 23.87150001525879    valid/loss: 6.198099613189697    train/acc: 0.475    valid/acc: 0.4286
+a:  0.025
+c:  0.02
+     fun: DeviceArray(24.01182, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 3.3663547,  5.7743707, -3.971397 , ..., -1.0089167,
+              1.1942915, -4.8495936], dtype=float32)
+Test accuracy: 0.5
+Epoch: 100    train/loss: 27.539199829101562    valid/loss: 7.351500034332275    train/acc: 0.3375    valid/acc: 0.3333
+Epoch: 200    train/loss: 29.289098739624023    valid/loss: 8.431499481201172    train/acc: 0.1625    valid/acc: 0.0952
+Epoch: 300    train/loss: 26.755998611450195    valid/loss: 7.260799884796143    train/acc: 0.2375    valid/acc: 0.3333
+Epoch: 400    train/loss: 27.26219940185547    valid/loss: 7.047299861907959    train/acc: 0.3    valid/acc: 0.2857
+Epoch: 500    train/loss: 23.699199676513672    valid/loss: 7.172699928283691    train/acc: 0.4125    valid/acc: 0.381
+Epoch: 600    train/loss: 25.003398895263672    valid/loss: 8.507399559020996    train/acc: 0.4125    valid/acc: 0.2857
+Epoch: 700    train/loss: 26.066299438476562    valid/loss: 7.2338995933532715    train/acc: 0.3    valid/acc: 0.381
+Epoch: 800    train/loss: 23.479598999023438    valid/loss: 6.936899662017822    train/acc: 0.375    valid/acc: 0.4286
+Epoch: 900    train/loss: 27.769800186157227    valid/loss: 7.428699970245361    train/acc: 0.1625    valid/acc: 0.0476
+Epoch: 1000    train/loss: 23.061399459838867    valid/loss: 6.97629976272583    train/acc: 0.55    valid/acc: 0.5238
+a:  0.025
+c:  0.025
+     fun: DeviceArray(22.797434, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-1.6680341,  0.8182178,  1.4911753, ...,  0.9376485,
+             -1.3054179, -1.3761307], dtype=float32)
+Test accuracy: 0.55
+Epoch: 100    train/loss: 29.226398468017578    valid/loss: 7.555299758911133    train/acc: 0.15    valid/acc: 0.2857
+Epoch: 200    train/loss: 29.70279884338379    valid/loss: 8.540499687194824    train/acc: 0.2625    valid/acc: 0.2381
+Epoch: 300    train/loss: 27.719398498535156    valid/loss: 8.326199531555176    train/acc: 0.3625    valid/acc: 0.2857
+Epoch: 400    train/loss: 26.5768985748291    valid/loss: 7.540499687194824    train/acc: 0.275    valid/acc: 0.3333
+Epoch: 500    train/loss: 27.052000045776367    valid/loss: 7.234499931335449    train/acc: 0.2375    valid/acc: 0.2857
+Epoch: 600    train/loss: 25.291898727416992    valid/loss: 6.578799724578857    train/acc: 0.4125    valid/acc: 0.381
+Epoch: 700    train/loss: 27.77239990234375    valid/loss: 7.372699737548828    train/acc: 0.3    valid/acc: 0.3333
+Epoch: 800    train/loss: 23.073200225830078    valid/loss: 8.334199905395508    train/acc: 0.375    valid/acc: 0.0952
+Epoch: 900    train/loss: 23.198598861694336    valid/loss: 7.66540002822876    train/acc: 0.375    valid/acc: 0.381
+Epoch: 1000    train/loss: 21.91659927368164    valid/loss: 8.3641996383667    train/acc: 0.5625    valid/acc: 0.4286
+a:  0.025
+c:  0.03
+     fun: DeviceArray(21.847736, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-0.1257553 ,  0.5974293 , -0.6023853 , ..., -0.9857435 ,
+             -2.3105967 , -0.53619504], dtype=float32)
+Test accuracy: 0.4
+Epoch: 100    train/loss: 28.564199447631836    valid/loss: 6.769099712371826    train/acc: 0.1875    valid/acc: 0.381
+Epoch: 200    train/loss: 30.501598358154297    valid/loss: 9.96150016784668    train/acc: 0.25    valid/acc: 0.1429
+Epoch: 300    train/loss: 29.73699951171875    valid/loss: 7.608199596405029    train/acc: 0.25    valid/acc: 0.2857
+Epoch: 400    train/loss: 26.15530014038086    valid/loss: 7.11929988861084    train/acc: 0.4375    valid/acc: 0.5238
+Epoch: 500    train/loss: 26.63759994506836    valid/loss: 7.099999904632568    train/acc: 0.225    valid/acc: 0.2857
+Epoch: 600    train/loss: 35.08399963378906    valid/loss: 7.779099941253662    train/acc: 0.25    valid/acc: 0.1429
+Epoch: 700    train/loss: 26.182998657226562    valid/loss: 6.863699913024902    train/acc: 0.375    valid/acc: 0.3333
+Epoch: 800    train/loss: 26.884300231933594    valid/loss: 7.1992998123168945    train/acc: 0.2625    valid/acc: 0.2381
+Epoch: 900    train/loss: 27.922998428344727    valid/loss: 7.200799942016602    train/acc: 0.2375    valid/acc: 0.2857
+Epoch: 1000    train/loss: 26.451398849487305    valid/loss: 6.8592000007629395    train/acc: 0.3    valid/acc: 0.4286
+a:  0.03
+c:  0.001
+     fun: DeviceArray(26.466085, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 9.346593 , -5.4859347,  1.9473491, ..., -6.181915 ,
+             -0.8815662,  6.5482097], dtype=float32)
+Test accuracy: 0.25
+Epoch: 100    train/loss: 26.45119857788086    valid/loss: 9.864099502563477    train/acc: 0.3625    valid/acc: 0.0476
+Epoch: 200    train/loss: 28.362699508666992    valid/loss: 7.734699726104736    train/acc: 0.2375    valid/acc: 0.2381
+Epoch: 300    train/loss: 30.30069923400879    valid/loss: 8.095799446105957    train/acc: 0.25    valid/acc: 0.1429
+Epoch: 400    train/loss: 28.015798568725586    valid/loss: 7.046999931335449    train/acc: 0.25    valid/acc: 0.381
+Epoch: 500    train/loss: 28.92959976196289    valid/loss: 8.997099876403809    train/acc: 0.25    valid/acc: 0.3333
+Epoch: 600    train/loss: 27.3435001373291    valid/loss: 7.468599796295166    train/acc: 0.3875    valid/acc: 0.3333
+Epoch: 700    train/loss: 25.358699798583984    valid/loss: 6.9430999755859375    train/acc: 0.4375    valid/acc: 0.2857
+Epoch: 800    train/loss: 26.999399185180664    valid/loss: 7.845999717712402    train/acc: 0.3    valid/acc: 0.2381
+Epoch: 900    train/loss: 27.32110023498535    valid/loss: 7.534599781036377    train/acc: 0.25    valid/acc: 0.3333
+Epoch: 1000    train/loss: 27.479598999023438    valid/loss: 7.797999858856201    train/acc: 0.4    valid/acc: 0.2857
+a:  0.03
+c:  0.005
+     fun: DeviceArray(27.33729, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-2.1148171, -3.0345244,  2.5061593, ..., -2.2748752,
+             -0.5670557, -6.3185287], dtype=float32)
+Test accuracy: 0.55
+Epoch: 100    train/loss: 28.612199783325195    valid/loss: 7.951299667358398    train/acc: 0.35    valid/acc: 0.1905
+Epoch: 200    train/loss: 31.172100067138672    valid/loss: 6.9766998291015625    train/acc: 0.25    valid/acc: 0.4286
+Epoch: 300    train/loss: 28.681798934936523    valid/loss: 7.220399856567383    train/acc: 0.2375    valid/acc: 0.2857
+Epoch: 400    train/loss: 27.338298797607422    valid/loss: 7.115799903869629    train/acc: 0.275    valid/acc: 0.381
+Epoch: 500    train/loss: 28.868000030517578    valid/loss: 7.038599967956543    train/acc: 0.25    valid/acc: 0.3333
+Epoch: 600    train/loss: 26.45989990234375    valid/loss: 7.5169997215271    train/acc: 0.25    valid/acc: 0.3333
+Epoch: 700    train/loss: 26.814699172973633    valid/loss: 7.078699588775635    train/acc: 0.225    valid/acc: 0.3333
+Epoch: 800    train/loss: 28.251598358154297    valid/loss: 8.002300262451172    train/acc: 0.3375    valid/acc: 0.2857
+Epoch: 900    train/loss: 27.263099670410156    valid/loss: 7.822299957275391    train/acc: 0.35    valid/acc: 0.2857
+Epoch: 1000    train/loss: 24.402698516845703    valid/loss: 7.652599811553955    train/acc: 0.3125    valid/acc: 0.381
+a:  0.03
+c:  0.01
+     fun: DeviceArray(24.099564, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 1.6518217, -4.714812 ,  4.1768928, ..., -1.3044885,
+             -1.182495 ,  7.4201674], dtype=float32)
+Test accuracy: 0.25
+Epoch: 100    train/loss: 28.978599548339844    valid/loss: 7.695099830627441    train/acc: 0.1875    valid/acc: 0.1429
+Epoch: 200    train/loss: 26.985698699951172    valid/loss: 7.27869987487793    train/acc: 0.2125    valid/acc: 0.1905
+Epoch: 300    train/loss: 27.421899795532227    valid/loss: 7.257999897003174    train/acc: 0.2125    valid/acc: 0.1429
+Epoch: 400    train/loss: 27.54010009765625    valid/loss: 7.714900016784668    train/acc: 0.375    valid/acc: 0.3333
+Epoch: 500    train/loss: 25.264799118041992    valid/loss: 7.220999717712402    train/acc: 0.3875    valid/acc: 0.3333
+Epoch: 600    train/loss: 24.95549964904785    valid/loss: 7.086799621582031    train/acc: 0.3875    valid/acc: 0.3333
+Epoch: 700    train/loss: 29.182798385620117    valid/loss: 7.3755998611450195    train/acc: 0.2875    valid/acc: 0.381
+Epoch: 800    train/loss: 25.574098587036133    valid/loss: 7.419399738311768    train/acc: 0.375    valid/acc: 0.381
+Epoch: 900    train/loss: 26.754899978637695    valid/loss: 6.96560001373291    train/acc: 0.375    valid/acc: 0.3333
+Epoch: 1000    train/loss: 26.479398727416992    valid/loss: 7.216699600219727    train/acc: 0.3125    valid/acc: 0.2381
+a:  0.03
+c:  0.015
+     fun: DeviceArray(26.434704, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-0.24154082, -0.6966446 ,  1.055277  , ..., -1.0964729 ,
+             -0.8158867 ,  2.276459  ], dtype=float32)
+Test accuracy: 0.05
+Epoch: 100    train/loss: 31.962099075317383    valid/loss: 6.960799694061279    train/acc: 0.225    valid/acc: 0.3333
+Epoch: 200    train/loss: 27.189599990844727    valid/loss: 7.191999912261963    train/acc: 0.35    valid/acc: 0.3333
+Epoch: 300    train/loss: 27.280899047851562    valid/loss: 7.277400016784668    train/acc: 0.3375    valid/acc: 0.1905
+Epoch: 400    train/loss: 25.225099563598633    valid/loss: 6.757599830627441    train/acc: 0.4375    valid/acc: 0.381
+Epoch: 500    train/loss: 26.810199737548828    valid/loss: 7.324899673461914    train/acc: 0.3625    valid/acc: 0.2857
+Epoch: 600    train/loss: 26.583499908447266    valid/loss: 7.522599697113037    train/acc: 0.4375    valid/acc: 0.1905
+Epoch: 700    train/loss: 28.38469886779785    valid/loss: 7.754599571228027    train/acc: 0.225    valid/acc: 0.2381
+Epoch: 800    train/loss: 25.37889862060547    valid/loss: 6.604499816894531    train/acc: 0.4375    valid/acc: 0.381
+Epoch: 900    train/loss: 26.75119972229004    valid/loss: 7.232699871063232    train/acc: 0.45    valid/acc: 0.4286
+Epoch: 1000    train/loss: 25.98819923400879    valid/loss: 7.817899703979492    train/acc: 0.35    valid/acc: 0.2857
+a:  0.03
+c:  0.02
+     fun: DeviceArray(25.450293, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 6.1166644 ,  1.5477523 ,  3.5841084 , ..., -0.6567001 ,
+              6.737704  , -0.07191284], dtype=float32)
+Test accuracy: 0.35
+Epoch: 100    train/loss: 28.018798828125    valid/loss: 7.192299842834473    train/acc: 0.375    valid/acc: 0.2857
+Epoch: 200    train/loss: 27.743499755859375    valid/loss: 7.073999881744385    train/acc: 0.2625    valid/acc: 0.1905
+Epoch: 300    train/loss: 25.662899017333984    valid/loss: 6.370100021362305    train/acc: 0.375    valid/acc: 0.4762
+Epoch: 400    train/loss: 29.258399963378906    valid/loss: 8.43139934539795    train/acc: 0.4125    valid/acc: 0.0952
+Epoch: 500    train/loss: 25.927398681640625    valid/loss: 7.597799777984619    train/acc: 0.375    valid/acc: 0.381
+Epoch: 600    train/loss: 27.113800048828125    valid/loss: 7.281899929046631    train/acc: 0.2875    valid/acc: 0.1905
+Epoch: 700    train/loss: 27.36699867248535    valid/loss: 7.404699802398682    train/acc: 0.375    valid/acc: 0.1905
+Epoch: 800    train/loss: 26.170299530029297    valid/loss: 7.81119966506958    train/acc: 0.375    valid/acc: 0.2857
+Epoch: 900    train/loss: 25.915498733520508    valid/loss: 8.016399383544922    train/acc: 0.375    valid/acc: 0.2381
+Epoch: 1000    train/loss: 27.02979850769043    valid/loss: 8.019800186157227    train/acc: 0.3    valid/acc: 0.1429
+a:  0.03
+c:  0.025
+     fun: DeviceArray(26.890549, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([-3.026544  ,  2.6780677 , -5.4094834 , ..., -3.389215  ,
+              0.97498107,  1.7999501 ], dtype=float32)
+Test accuracy: 0.25
+Epoch: 100    train/loss: 28.048599243164062    valid/loss: 7.190199851989746    train/acc: 0.1875    valid/acc: 0.1905
+Epoch: 200    train/loss: 25.910099029541016    valid/loss: 6.633699893951416    train/acc: 0.275    valid/acc: 0.2857
+Epoch: 300    train/loss: 33.85009765625    valid/loss: 7.26039981842041    train/acc: 0.1875    valid/acc: 0.2381
+Epoch: 400    train/loss: 26.118099212646484    valid/loss: 7.660799980163574    train/acc: 0.3875    valid/acc: 0.1905
+Epoch: 500    train/loss: 31.48419952392578    valid/loss: 7.610699653625488    train/acc: 0.275    valid/acc: 0.2857
+Epoch: 600    train/loss: 26.774499893188477    valid/loss: 6.8780999183654785    train/acc: 0.375    valid/acc: 0.381
+Epoch: 700    train/loss: 23.976499557495117    valid/loss: 8.560999870300293    train/acc: 0.4    valid/acc: 0.5714
+Epoch: 800    train/loss: 24.92799949645996    valid/loss: 7.223299980163574    train/acc: 0.4375    valid/acc: 0.4762
+Epoch: 900    train/loss: 27.53619956970215    valid/loss: 7.321599960327148    train/acc: 0.3125    valid/acc: 0.4286
+Epoch: 1000    train/loss: 25.174999237060547    valid/loss: 7.368499755859375    train/acc: 0.35    valid/acc: 0.0952
+a:  0.03
+c:  0.03
+     fun: DeviceArray(25.147646, dtype=float32)
+ message: 'terminated after reaching max number of iterations'
+    nfev: 2000
+     nit: 1000
+ success: True
+       x: DeviceArray([ 1.2593213 ,  4.09967   , -2.6972537 , ...,  1.6211663 ,
+              1.591056  , -0.33625343], dtype=float32)
+Test accuracy: 0.25

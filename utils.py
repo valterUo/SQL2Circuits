@@ -67,8 +67,8 @@ def multi_class_loss(y_hat, y):
     for pair in zip(y_hat, y):
         x = pair[1]
         y_pred = np.array(pair[0]).flatten()
-        if i % 100 == 0:
-            print(y_pred, x)
+        #if i % 100 == 0:
+        #    print(y_pred, x)
         if len(y_pred) != len(x):
             return 0
         total_loss += -np.sum(x * np.log(y_pred)) / len(x)
