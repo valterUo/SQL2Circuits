@@ -1,0 +1,1 @@
+SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;

@@ -1,0 +1,1 @@
+SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND t.id = mc.movie_id;

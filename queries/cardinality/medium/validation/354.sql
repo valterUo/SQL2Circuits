@@ -1,0 +1,1 @@
+SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE mc.note IS NOT NULL AND t.id = mc.movie_id;
