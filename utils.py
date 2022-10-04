@@ -1,8 +1,8 @@
 from pathlib import Path
 import pickle
 import math
-#import numpy as np
-from jax import numpy as np
+import numpy as np
+#from jax import numpy as np
 i = 0
 import matplotlib.pyplot as plt
 
