@@ -4,6 +4,32 @@ import math
 #import numpy as np
 from jax import numpy as np
 i = 0
+import matplotlib.pyplot as plt
+
+def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc):
+
+    fig, ((ax_tl, ax_tr), (ax_bl, ax_br)) = plt.subplots(2, 2, sharex=True, sharey='row', figsize=(10, 6))
+    ax_tl.set_title('Training set')
+    ax_tr.set_title('Development set')
+    ax_bl.set_xlabel('Iterations')
+    ax_br.set_xlabel('Iterations')
+    ax_bl.set_ylabel('Accuracy')
+    ax_tl.set_ylabel('Loss')
+
+    colours = iter(plt.rcParams['axes.prop_cycle'].by_key()['color'])
+    ax_tl.plot(trainer.train_epoch_costs[::10], color=next(colours))
+    ax_bl.plot(trainer.train_results['acc'][::10], color=next(colours))
+    ax_tr.plot(trainer.val_costs[::10], color=next(colours))
+    ax_br.plot(trainer.val_results['acc'][::10], color=next(colours))
+
+    #for e in model(test_circuits_l):
+    #    print(e)
+    #for e in test_data_labels_l:
+    #    print(e)
+
+    # print test accuracy
+    test_acc = acc(model(test_circuits_l), test_data_labels_l)
+    print('Test accuracy:', test_acc)
 
 def read_diagrams(circuit_paths):
     circuits = {}
