@@ -1,10 +1,11 @@
 from pathlib import Path
 import pickle
 import math
-import numpy as np
-#from jax import numpy as np
+#import numpy as np
+from jax import numpy as np
 i = 0
 import matplotlib.pyplot as plt
+
 
 def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc):
 
@@ -31,6 +32,7 @@ def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc):
     test_acc = acc(model(test_circuits_l), test_data_labels_l)
     print('Test accuracy:', test_acc)
 
+    
 def read_diagrams(circuit_paths):
     circuits = {}
     for serialized_diagram in circuit_paths:

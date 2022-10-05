@@ -1,0 +1,400 @@
+Progress:  0.0
+Number of training circuits: 10    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.3058   valid/loss: 1.2051   train/acc: 0.4000   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.3610   valid/loss: 1.0827   train/acc: 0.9000   valid/acc: 0.7222
+Epoch 200:   train/loss: 0.3083   valid/loss: 1.0104   train/acc: 0.9000   valid/acc: 0.7222
+Epoch 300:   train/loss: 0.3094   valid/loss: 1.0343   train/acc: 0.9000   valid/acc: 0.6667
+Epoch 400:   train/loss: 0.2961   valid/loss: 1.0615   train/acc: 0.9000   valid/acc: 0.6667
+Epoch 500:   train/loss: 0.2882   valid/loss: 1.0964   train/acc: 0.9000   valid/acc: 0.6667
+Epoch 600:   train/loss: 0.2900   valid/loss: 1.1120   train/acc: 0.9000   valid/acc: 0.6111
+Epoch 700:   train/loss: 0.2769   valid/loss: 1.1249   train/acc: 0.9000   valid/acc: 0.6111
+Epoch 800:   train/loss: 0.2663   valid/loss: 1.1549   train/acc: 0.9000   valid/acc: 0.6111
+Epoch 900:   train/loss: 0.2674   valid/loss: 1.1931   train/acc: 0.9000   valid/acc: 0.6111
+Epoch 1000:  train/loss: 0.2611   valid/loss: 1.2199   train/acc: 0.9000   valid/acc: 0.6111
+
+Training completed!
+Test accuracy: 0.53333336
+Progress:  0.0
+Number of training circuits: 11    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.2080   valid/loss: 1.2162   train/acc: 0.4545   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.4029   valid/loss: 1.8016   train/acc: 0.8182   valid/acc: 0.7222
+Epoch 200:   train/loss: 0.3584   valid/loss: 1.1466   train/acc: 0.8182   valid/acc: 0.7222
+Epoch 300:   train/loss: 0.3556   valid/loss: 1.0995   train/acc: 0.8182   valid/acc: 0.7222
+Epoch 400:   train/loss: 0.3406   valid/loss: 1.0780   train/acc: 0.9091   valid/acc: 0.7222
+Epoch 500:   train/loss: 0.3352   valid/loss: 1.0971   train/acc: 0.9091   valid/acc: 0.7222
+Epoch 600:   train/loss: 0.3328   valid/loss: 1.1054   train/acc: 0.8182   valid/acc: 0.7222
+Epoch 700:   train/loss: 0.3242   valid/loss: 1.0907   train/acc: 0.9091   valid/acc: 0.7222
+Epoch 800:   train/loss: 0.3121   valid/loss: 1.0941   train/acc: 0.9091   valid/acc: 0.7222
+Epoch 900:   train/loss: 0.3108   valid/loss: 1.1130   train/acc: 0.9091   valid/acc: 0.7222
+Epoch 1000:  train/loss: 0.3058   valid/loss: 1.1071   train/acc: 0.9091   valid/acc: 0.7222
+
+Training completed!
+Test accuracy: 0.53333336
+Progress:  0.0
+Number of training circuits: 12    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.1759   valid/loss: 1.2267   train/acc: 0.4167   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.5207   valid/loss: 0.6581   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 200:   train/loss: 0.4910   valid/loss: 0.6769   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 300:   train/loss: 0.4794   valid/loss: 0.6763   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 400:   train/loss: 0.4650   valid/loss: 0.6876   train/acc: 0.8333   valid/acc: 0.6667
+Epoch 500:   train/loss: 0.4607   valid/loss: 0.6997   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 600:   train/loss: 0.4655   valid/loss: 0.7084   train/acc: 0.6667   valid/acc: 0.6667
+Epoch 700:   train/loss: 0.4574   valid/loss: 0.7170   train/acc: 0.7500   valid/acc: 0.6111
+Epoch 800:   train/loss: 0.4436   valid/loss: 0.7287   train/acc: 0.7500   valid/acc: 0.6111
+Epoch 900:   train/loss: 0.4426   valid/loss: 0.7419   train/acc: 0.8333   valid/acc: 0.6667
+Epoch 1000:  train/loss: 0.4381   valid/loss: 0.7466   train/acc: 0.8333   valid/acc: 0.6111
+
+Training completed!
+Test accuracy: 0.53333336
+Progress:  0.0
+Number of training circuits: 13    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.1589   valid/loss: 1.2314   train/acc: 0.3846   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.5062   valid/loss: 0.7136   train/acc: 0.7692   valid/acc: 0.6111
+Epoch 200:   train/loss: 0.4696   valid/loss: 0.7511   train/acc: 0.7692   valid/acc: 0.6111
+Epoch 300:   train/loss: 0.4598   valid/loss: 0.7587   train/acc: 0.7692   valid/acc: 0.6111
+Epoch 400:   train/loss: 0.4453   valid/loss: 0.7768   train/acc: 0.7692   valid/acc: 0.5556
+Epoch 500:   train/loss: 0.4356   valid/loss: 0.7972   train/acc: 0.7692   valid/acc: 0.5556
+Epoch 600:   train/loss: 0.4425   valid/loss: 0.8083   train/acc: 0.6923   valid/acc: 0.5556
+Epoch 700:   train/loss: 0.4324   valid/loss: 0.8226   train/acc: 0.7692   valid/acc: 0.5556
+Epoch 800:   train/loss: 0.4194   valid/loss: 0.8426   train/acc: 0.6923   valid/acc: 0.5556
+Epoch 900:   train/loss: 0.4176   valid/loss: 0.8667   train/acc: 0.7692   valid/acc: 0.5556
+Epoch 1000:  train/loss: 0.4150   valid/loss: 0.8793   train/acc: 0.8462   valid/acc: 0.5556
+
+Training completed!
+Test accuracy: 0.53333336
+Progress:  0.1
+Number of training circuits: 14    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.1112   valid/loss: 1.2342   train/acc: 0.4286   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.4905   valid/loss: 0.7341   train/acc: 0.7857   valid/acc: 0.6111
+Epoch 200:   train/loss: 0.4552   valid/loss: 0.7580   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 300:   train/loss: 0.4436   valid/loss: 0.7606   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 400:   train/loss: 0.4325   valid/loss: 0.7654   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 500:   train/loss: 0.4237   valid/loss: 0.7676   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 600:   train/loss: 0.4466   valid/loss: 0.7672   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 700:   train/loss: 0.4258   valid/loss: 0.7718   train/acc: 0.7143   valid/acc: 0.5556
+Epoch 800:   train/loss: 0.4092   valid/loss: 0.7789   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 900:   train/loss: 0.4117   valid/loss: 0.7833   train/acc: 0.7857   valid/acc: 0.5556
+Epoch 1000:  train/loss: 0.4046   valid/loss: 0.7852   train/acc: 0.7857   valid/acc: 0.5556
+
+Training completed!
+Test accuracy: 0.53333336
+Progress:  0.1
+Number of training circuits: 15    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.0842   valid/loss: 1.2386   train/acc: 0.4000   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.4804   valid/loss: 0.7168   train/acc: 0.8000   valid/acc: 0.6111
+Epoch 200:   train/loss: 0.4439   valid/loss: 0.7353   train/acc: 0.8000   valid/acc: 0.5556
+Epoch 300:   train/loss: 0.4285   valid/loss: 0.7357   train/acc: 0.8000   valid/acc: 0.5556
+Epoch 400:   train/loss: 0.4192   valid/loss: 0.7376   train/acc: 0.8000   valid/acc: 0.5556
+Epoch 500:   train/loss: 0.4075   valid/loss: 0.7369   train/acc: 0.8000   valid/acc: 0.5556
+Epoch 600:   train/loss: 0.4290   valid/loss: 0.7356   train/acc: 0.8000   valid/acc: 0.5556
+Epoch 700:   train/loss: 0.4119   valid/loss: 0.7388   train/acc: 0.8000   valid/acc: 0.5556
+Epoch 800:   train/loss: 0.3935   valid/loss: 0.7432   train/acc: 0.7333   valid/acc: 0.5556
+Epoch 900:   train/loss: 0.3958   valid/loss: 0.7434   train/acc: 0.7333   valid/acc: 0.5556
+Epoch 1000:  train/loss: 0.3892   valid/loss: 0.7437   train/acc: 0.7333   valid/acc: 0.5556
+
+Training completed!
+Test accuracy: 0.6
+Progress:  0.1
+Number of training circuits: 16    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.0565   valid/loss: 1.2504   train/acc: 0.4375   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.4834   valid/loss: 0.7018   train/acc: 0.7500   valid/acc: 0.5556
+Epoch 200:   train/loss: 0.4528   valid/loss: 0.7345   train/acc: 0.8125   valid/acc: 0.5556
+Epoch 300:   train/loss: 0.4391   valid/loss: 0.7359   train/acc: 0.8125   valid/acc: 0.5000
+Epoch 400:   train/loss: 0.4229   valid/loss: 0.7504   train/acc: 0.7500   valid/acc: 0.5000
+Epoch 500:   train/loss: 0.4149   valid/loss: 0.7642   train/acc: 0.7500   valid/acc: 0.5000
+Epoch 600:   train/loss: 0.4379   valid/loss: 0.7746   train/acc: 0.8125   valid/acc: 0.5000
+Epoch 700:   train/loss: 0.4129   valid/loss: 0.7823   train/acc: 0.8125   valid/acc: 0.5000
+Epoch 800:   train/loss: 0.3878   valid/loss: 0.7988   train/acc: 0.8125   valid/acc: 0.5000
+Epoch 900:   train/loss: 0.3871   valid/loss: 0.8145   train/acc: 0.8125   valid/acc: 0.5000
+Epoch 1000:  train/loss: 0.3854   valid/loss: 0.8438   train/acc: 0.8125   valid/acc: 0.5000
+
+Training completed!
+Test accuracy: 0.6666667
+Progress:  0.1
+Number of training circuits: 17    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.0484   valid/loss: 1.2660   train/acc: 0.4706   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.5157   valid/loss: 0.7128   train/acc: 0.7059   valid/acc: 0.6667
+Epoch 200:   train/loss: 0.4759   valid/loss: 0.7644   train/acc: 0.8235   valid/acc: 0.6111
+Epoch 300:   train/loss: 0.4727   valid/loss: 0.7456   train/acc: 0.8235   valid/acc: 0.5556
+Epoch 400:   train/loss: 0.4366   valid/loss: 0.7963   train/acc: 0.8824   valid/acc: 0.5000
+Epoch 500:   train/loss: 0.4419   valid/loss: 0.8789   train/acc: 0.7647   valid/acc: 0.5000
+Epoch 600:   train/loss: 0.4818   valid/loss: 0.9517   train/acc: 0.7647   valid/acc: 0.5000
+Epoch 700:   train/loss: 0.4106   valid/loss: 0.9710   train/acc: 0.8235   valid/acc: 0.5000
+Epoch 800:   train/loss: 0.3819   valid/loss: 1.1456   train/acc: 0.7647   valid/acc: 0.5000
+Epoch 900:   train/loss: 0.3722   valid/loss: 1.2688   train/acc: 0.7059   valid/acc: 0.5000
+Epoch 1000:  train/loss: 0.3945   valid/loss: 1.1119   train/acc: 0.8235   valid/acc: 0.5000
+
+Training completed!
+Test accuracy: 0.53333336
+Progress:  0.1
+Number of training circuits: 18    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.0278   valid/loss: 1.2723   train/acc: 0.5000   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.5166   valid/loss: 0.7149   train/acc: 0.7778   valid/acc: 0.6111
+Epoch 200:   train/loss: 0.4859   valid/loss: 0.7565   train/acc: 0.7778   valid/acc: 0.6111
+Epoch 300:   train/loss: 0.4789   valid/loss: 0.7349   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 400:   train/loss: 0.4549   valid/loss: 0.7601   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 500:   train/loss: 0.4496   valid/loss: 0.8064   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 600:   train/loss: 0.4837   valid/loss: 0.8345   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 700:   train/loss: 0.4363   valid/loss: 0.8390   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 800:   train/loss: 0.4115   valid/loss: 0.8999   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 900:   train/loss: 0.4028   valid/loss: 0.8915   train/acc: 0.8333   valid/acc: 0.5556
+Epoch 1000:  train/loss: 0.4205   valid/loss: 0.9662   train/acc: 0.8333   valid/acc: 0.5556
+
+Training completed!
+Test accuracy: 0.6
+Progress:  0.1
+Number of training circuits: 19    Number of validation circuits: 18    Number of test circuits: 15    Number of parameters in model: 70
+Epoch 1:     train/loss: 1.0667   valid/loss: 1.2727   train/acc: 0.4737   valid/acc: 0.3333
+Epoch 100:   train/loss: 0.4973   valid/loss: 0.7903   train/acc: 0.7895   valid/acc: 0.5556
+Epoch 200:   train/loss: 0.4628   valid/loss: 0.8318   train/acc: 0.7895   valid/acc: 0.5556
+Epoch 300:   train/loss: 0.4587   valid/loss: 0.8340   train/acc: 0.7895   valid/acc: 0.5556
+Epoch 400:   train/loss: 0.4353   valid/loss: 0.8543   train/acc: 0.8421   valid/acc: 0.5556
+Epoch 500:   train/loss: 0.4272   valid/loss: 0.8830   train/acc: 0.8421   valid/acc: 0.5556
+Epoch 600:   train/loss: 0.4528   valid/loss: 0.8998   train/acc: 0.8421   valid/acc: 0.5556
+Epoch 700:   train/loss: 0.4170   valid/loss: 0.9167   train/acc: 0.7895   valid/acc: 0.5556
+Epoch 800:   train/loss: 0.3976   valid/loss: 0.9612   train/acc: 0.8421   valid/acc: 0.5556
+Epoch 900:   train/loss: 0.3906   valid/loss: 0.9427   train/acc: 0.8421   valid/acc: 0.5556
+Epoch 1000:  train/loss: 0.4023   valid/loss: 0.9906   train/acc: 0.8421   valid/acc: 0.5556
+
+Training completed!
+Test accuracy: 0.6666667
+Progress:  0.1
+Number of training circuits: 20    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.3086   valid/loss: 1.6876   train/acc: 0.4500   valid/acc: 0.5714
+Epoch 100:   train/loss: 0.7021   valid/loss: 1.0418   train/acc: 0.5500   valid/acc: 0.3810
+Epoch 200:   train/loss: 0.6107   valid/loss: 0.9639   train/acc: 0.5500   valid/acc: 0.5714
+Epoch 300:   train/loss: 0.5841   valid/loss: 0.9152   train/acc: 0.6500   valid/acc: 0.6190
+Epoch 400:   train/loss: 0.5530   valid/loss: 0.8815   train/acc: 0.8000   valid/acc: 0.6190
+Epoch 500:   train/loss: 0.5350   valid/loss: 0.8881   train/acc: 0.6500   valid/acc: 0.5714
+Epoch 600:   train/loss: 0.5429   valid/loss: 0.8948   train/acc: 0.7500   valid/acc: 0.6190
+Epoch 700:   train/loss: 0.5464   valid/loss: 0.9038   train/acc: 0.7500   valid/acc: 0.6190
+Epoch 800:   train/loss: 0.5274   valid/loss: 0.9086   train/acc: 0.8000   valid/acc: 0.6190
+Epoch 900:   train/loss: 0.5116   valid/loss: 0.9128   train/acc: 0.8000   valid/acc: 0.6190
+Epoch 1000:  train/loss: 0.5208   valid/loss: 0.9262   train/acc: 0.8000   valid/acc: 0.5714
+
+Training completed!
+Test accuracy: 0.4666667
+Progress:  0.1
+Number of training circuits: 21    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.3489   valid/loss: 1.6132   train/acc: 0.4286   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.6030   valid/loss: 1.1223   train/acc: 0.7143   valid/acc: 0.3810
+Epoch 200:   train/loss: 0.5082   valid/loss: 0.9801   train/acc: 0.7143   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.5192   valid/loss: 0.9601   train/acc: 0.7143   valid/acc: 0.5238
+Epoch 400:   train/loss: 0.4655   valid/loss: 0.9440   train/acc: 0.6667   valid/acc: 0.5714
+Epoch 500:   train/loss: 0.4508   valid/loss: 0.9523   train/acc: 0.7143   valid/acc: 0.6190
+Epoch 600:   train/loss: 0.4125   valid/loss: 0.9309   train/acc: 0.7619   valid/acc: 0.6190
+Epoch 700:   train/loss: 0.4030   valid/loss: 0.9339   train/acc: 0.7619   valid/acc: 0.6190
+Epoch 800:   train/loss: 0.4042   valid/loss: 0.9116   train/acc: 0.8571   valid/acc: 0.6190
+Epoch 900:   train/loss: 0.3585   valid/loss: 0.9117   train/acc: 0.8571   valid/acc: 0.6190
+Epoch 1000:  train/loss: 0.3768   valid/loss: 0.8996   train/acc: 0.8095   valid/acc: 0.6190
+
+Training completed!
+Test accuracy: 0.6666667
+Progress:  0.1
+Number of training circuits: 22    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.2995   valid/loss: 1.6048   train/acc: 0.4545   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.5788   valid/loss: 1.0245   train/acc: 0.7273   valid/acc: 0.4286
+Epoch 200:   train/loss: 0.5109   valid/loss: 1.0306   train/acc: 0.7273   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.4886   valid/loss: 1.0525   train/acc: 0.7273   valid/acc: 0.4762
+Epoch 400:   train/loss: 0.4678   valid/loss: 1.0401   train/acc: 0.7727   valid/acc: 0.5238
+Epoch 500:   train/loss: 0.4667   valid/loss: 1.0423   train/acc: 0.7273   valid/acc: 0.5714
+Epoch 600:   train/loss: 0.4892   valid/loss: 1.0397   train/acc: 0.7273   valid/acc: 0.5714
+Epoch 700:   train/loss: 0.4477   valid/loss: 1.0579   train/acc: 0.8182   valid/acc: 0.5238
+Epoch 800:   train/loss: 0.4211   valid/loss: 1.0901   train/acc: 0.8636   valid/acc: 0.5238
+Epoch 900:   train/loss: 0.3892   valid/loss: 1.0996   train/acc: 0.8636   valid/acc: 0.5238
+Epoch 1000:  train/loss: 0.3824   valid/loss: 1.1039   train/acc: 0.8636   valid/acc: 0.5238
+
+Training completed!
+Test accuracy: 0.6
+Progress:  0.2
+Number of training circuits: 23    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.2731   valid/loss: 1.6147   train/acc: 0.4348   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.6016   valid/loss: 1.0336   train/acc: 0.7826   valid/acc: 0.4286
+Epoch 200:   train/loss: 0.5272   valid/loss: 1.0304   train/acc: 0.6957   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.5035   valid/loss: 1.0382   train/acc: 0.6957   valid/acc: 0.4286
+Epoch 400:   train/loss: 0.4767   valid/loss: 1.0153   train/acc: 0.7391   valid/acc: 0.4286
+Epoch 500:   train/loss: 0.4746   valid/loss: 1.0038   train/acc: 0.7391   valid/acc: 0.5238
+Epoch 600:   train/loss: 0.5003   valid/loss: 0.9875   train/acc: 0.6957   valid/acc: 0.5238
+Epoch 700:   train/loss: 0.4565   valid/loss: 0.9841   train/acc: 0.8261   valid/acc: 0.5714
+Epoch 800:   train/loss: 0.4245   valid/loss: 0.9791   train/acc: 0.8696   valid/acc: 0.5714
+Epoch 900:   train/loss: 0.3924   valid/loss: 0.9691   train/acc: 0.8696   valid/acc: 0.5714
+Epoch 1000:  train/loss: 0.3834   valid/loss: 0.9687   train/acc: 0.7826   valid/acc: 0.5714
+
+Training completed!
+Test accuracy: 0.6
+Progress:  0.2
+Number of training circuits: 24    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.3047   valid/loss: 1.6313   train/acc: 0.4167   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.5678   valid/loss: 1.0249   train/acc: 0.7917   valid/acc: 0.4286
+Epoch 200:   train/loss: 0.4840   valid/loss: 0.9956   train/acc: 0.7083   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.4555   valid/loss: 0.9872   train/acc: 0.7083   valid/acc: 0.5238
+Epoch 400:   train/loss: 0.4195   valid/loss: 0.9712   train/acc: 0.7917   valid/acc: 0.5714
+Epoch 500:   train/loss: 0.4207   valid/loss: 0.9553   train/acc: 0.8333   valid/acc: 0.5714
+Epoch 600:   train/loss: 0.4028   valid/loss: 0.9336   train/acc: 0.7500   valid/acc: 0.5714
+Epoch 700:   train/loss: 0.3751   valid/loss: 0.9271   train/acc: 0.8750   valid/acc: 0.5714
+Epoch 800:   train/loss: 0.3609   valid/loss: 0.9242   train/acc: 0.8750   valid/acc: 0.5714
+Epoch 900:   train/loss: 0.3444   valid/loss: 0.9219   train/acc: 0.8750   valid/acc: 0.5714
+Epoch 1000:  train/loss: 0.3527   valid/loss: 0.9250   train/acc: 0.7917   valid/acc: 0.5714
+
+Training completed!
+Test accuracy: 0.6666667
+Progress:  0.2
+Number of training circuits: 25    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.2936   valid/loss: 1.6044   train/acc: 0.4400   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.5416   valid/loss: 1.0872   train/acc: 0.8000   valid/acc: 0.4286
+Epoch 200:   train/loss: 0.4784   valid/loss: 1.0443   train/acc: 0.7200   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.4521   valid/loss: 1.0423   train/acc: 0.7200   valid/acc: 0.4762
+Epoch 400:   train/loss: 0.4226   valid/loss: 1.0312   train/acc: 0.7600   valid/acc: 0.5238
+Epoch 500:   train/loss: 0.4251   valid/loss: 1.0189   train/acc: 0.7600   valid/acc: 0.5714
+Epoch 600:   train/loss: 0.4155   valid/loss: 0.9980   train/acc: 0.7600   valid/acc: 0.5714
+Epoch 700:   train/loss: 0.3792   valid/loss: 0.9962   train/acc: 0.8400   valid/acc: 0.5714
+Epoch 800:   train/loss: 0.3561   valid/loss: 0.9993   train/acc: 0.8800   valid/acc: 0.5714
+Epoch 900:   train/loss: 0.3382   valid/loss: 0.9992   train/acc: 0.8800   valid/acc: 0.5714
+Epoch 1000:  train/loss: 0.3412   valid/loss: 1.0083   train/acc: 0.8000   valid/acc: 0.6190
+
+Training completed!
+Test accuracy: 0.6
+Progress:  0.2
+Number of training circuits: 26    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.2492   valid/loss: 1.5982   train/acc: 0.4615   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.5198   valid/loss: 1.0576   train/acc: 0.8077   valid/acc: 0.4286
+Epoch 200:   train/loss: 0.4506   valid/loss: 1.0226   train/acc: 0.7308   valid/acc: 0.4286
+Epoch 300:   train/loss: 0.4215   valid/loss: 1.0155   train/acc: 0.7308   valid/acc: 0.5238
+Epoch 400:   train/loss: 0.3909   valid/loss: 0.9979   train/acc: 0.8077   valid/acc: 0.5714
+Epoch 500:   train/loss: 0.3925   valid/loss: 0.9825   train/acc: 0.8462   valid/acc: 0.5714
+Epoch 600:   train/loss: 0.3759   valid/loss: 0.9623   train/acc: 0.7692   valid/acc: 0.5714
+Epoch 700:   train/loss: 0.3503   valid/loss: 0.9565   train/acc: 0.8846   valid/acc: 0.5714
+Epoch 800:   train/loss: 0.3358   valid/loss: 0.9566   train/acc: 0.8846   valid/acc: 0.5714
+Epoch 900:   train/loss: 0.3211   valid/loss: 0.9544   train/acc: 0.8846   valid/acc: 0.5714
+Epoch 1000:  train/loss: 0.3289   valid/loss: 0.9577   train/acc: 0.8077   valid/acc: 0.5714
+
+Training completed!
+Test accuracy: 0.6666667
+Progress:  0.2
+Number of training circuits: 27    Number of validation circuits: 21    Number of test circuits: 15    Number of parameters in model: 73
+Epoch 1:     train/loss: 1.3590   valid/loss: 1.5292   train/acc: 0.4444   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.4709   valid/loss: 1.0293   train/acc: 0.8148   valid/acc: 0.4762
+Epoch 200:   train/loss: 0.3914   valid/loss: 1.0382   train/acc: 0.7778   valid/acc: 0.6190
+Epoch 300:   train/loss: 0.3601   valid/loss: 1.0462   train/acc: 0.7407   valid/acc: 0.6190
+Epoch 400:   train/loss: 0.3290   valid/loss: 1.0400   train/acc: 0.8519   valid/acc: 0.6190
+Epoch 500:   train/loss: 0.3300   valid/loss: 1.0350   train/acc: 0.8889   valid/acc: 0.6190
+Epoch 600:   train/loss: 0.3107   valid/loss: 1.0214   train/acc: 0.7778   valid/acc: 0.6190
+Epoch 700:   train/loss: 0.2976   valid/loss: 1.0129   train/acc: 0.9259   valid/acc: 0.6190
+Epoch 800:   train/loss: 0.2919   valid/loss: 1.0111   train/acc: 0.8889   valid/acc: 0.6190
+Epoch 900:   train/loss: 0.2784   valid/loss: 1.0025   train/acc: 0.9259   valid/acc: 0.6190
+Epoch 1000:  train/loss: 0.2854   valid/loss: 0.9997   train/acc: 0.8148   valid/acc: 0.6190
+
+Training completed!
+Test accuracy: 0.73333335
+Progress:  0.2
+Number of training circuits: 28    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.5917   valid/loss: 1.4680   train/acc: 0.3929   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.5536   valid/loss: 0.6832   train/acc: 0.6786   valid/acc: 0.6190
+Epoch 200:   train/loss: 0.4641   valid/loss: 0.7205   train/acc: 0.7857   valid/acc: 0.6667
+Epoch 300:   train/loss: 0.4479   valid/loss: 0.7502   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 400:   train/loss: 0.4019   valid/loss: 0.7784   train/acc: 0.7857   valid/acc: 0.6667
+Epoch 500:   train/loss: 0.3946   valid/loss: 0.7748   train/acc: 0.8214   valid/acc: 0.6667
+Epoch 600:   train/loss: 0.3909   valid/loss: 0.7624   train/acc: 0.8929   valid/acc: 0.6667
+Epoch 700:   train/loss: 0.3749   valid/loss: 0.7577   train/acc: 0.8571   valid/acc: 0.6667
+Epoch 800:   train/loss: 0.3713   valid/loss: 0.7543   train/acc: 0.8571   valid/acc: 0.6667
+Epoch 900:   train/loss: 0.3635   valid/loss: 0.7492   train/acc: 0.8571   valid/acc: 0.6667
+Epoch 1000:  train/loss: 0.3537   valid/loss: 0.7409   train/acc: 0.8571   valid/acc: 0.6667
+
+Training completed!
+Test accuracy: 0.85
+Progress:  0.2
+Number of training circuits: 29    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.5638   valid/loss: 1.4669   train/acc: 0.3793   valid/acc: 0.5238
+Epoch 100:   train/loss: 0.5556   valid/loss: 0.7093   train/acc: 0.6897   valid/acc: 0.6190
+Epoch 200:   train/loss: 0.4590   valid/loss: 0.7429   train/acc: 0.7586   valid/acc: 0.6667
+Epoch 300:   train/loss: 0.4415   valid/loss: 0.7697   train/acc: 0.7586   valid/acc: 0.6667
+Epoch 400:   train/loss: 0.3954   valid/loss: 0.7996   train/acc: 0.8276   valid/acc: 0.6667
+Epoch 500:   train/loss: 0.3865   valid/loss: 0.7936   train/acc: 0.8276   valid/acc: 0.6667
+Epoch 600:   train/loss: 0.3821   valid/loss: 0.7795   train/acc: 0.8966   valid/acc: 0.6667
+Epoch 700:   train/loss: 0.3682   valid/loss: 0.7767   train/acc: 0.8621   valid/acc: 0.6667
+Epoch 800:   train/loss: 0.3623   valid/loss: 0.7733   train/acc: 0.8966   valid/acc: 0.6667
+Epoch 900:   train/loss: 0.3558   valid/loss: 0.7686   train/acc: 0.8621   valid/acc: 0.6667
+Epoch 1000:  train/loss: 0.3459   valid/loss: 0.7617   train/acc: 0.8966   valid/acc: 0.6667
+
+Training completed!
+Test accuracy: 0.85
+Progress:  0.2
+Number of training circuits: 30    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.5370   valid/loss: 1.4761   train/acc: 0.3667   valid/acc: 0.5714
+Epoch 100:   train/loss: 0.5292   valid/loss: 0.6566   train/acc: 0.7000   valid/acc: 0.7143
+Epoch 200:   train/loss: 0.4637   valid/loss: 0.7287   train/acc: 0.7667   valid/acc: 0.6667
+Epoch 300:   train/loss: 0.4608   valid/loss: 0.7493   train/acc: 0.7333   valid/acc: 0.7619
+Epoch 400:   train/loss: 0.4203   valid/loss: 0.8068   train/acc: 0.7667   valid/acc: 0.7619
+Epoch 500:   train/loss: 0.4112   valid/loss: 0.9094   train/acc: 0.7667   valid/acc: 0.7143
+Epoch 600:   train/loss: 0.4214   valid/loss: 0.8900   train/acc: 0.8333   valid/acc: 0.7143
+Epoch 700:   train/loss: 0.3881   valid/loss: 0.8736   train/acc: 0.8000   valid/acc: 0.7143
+Epoch 800:   train/loss: 0.3874   valid/loss: 0.8230   train/acc: 0.8333   valid/acc: 0.7143
+Epoch 900:   train/loss: 0.3747   valid/loss: 0.8127   train/acc: 0.8333   valid/acc: 0.7143
+Epoch 1000:  train/loss: 0.3707   valid/loss: 0.7839   train/acc: 0.8000   valid/acc: 0.6667
+
+Training completed!
+Test accuracy: 0.8
+Progress:  0.3
+Number of training circuits: 31    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.4875   valid/loss: 1.4753   train/acc: 0.3871   valid/acc: 0.5714
+Epoch 100:   train/loss: 0.5161   valid/loss: 0.6545   train/acc: 0.7097   valid/acc: 0.7143
+Epoch 200:   train/loss: 0.4432   valid/loss: 0.7431   train/acc: 0.7419   valid/acc: 0.6667
+Epoch 300:   train/loss: 0.4464   valid/loss: 0.7559   train/acc: 0.7419   valid/acc: 0.7143
+Epoch 400:   train/loss: 0.4065   valid/loss: 0.8116   train/acc: 0.7419   valid/acc: 0.7619
+Epoch 500:   train/loss: 0.3989   valid/loss: 0.9054   train/acc: 0.7742   valid/acc: 0.7143
+Epoch 600:   train/loss: 0.4190   valid/loss: 0.8855   train/acc: 0.8387   valid/acc: 0.7619
+Epoch 700:   train/loss: 0.3781   valid/loss: 0.8828   train/acc: 0.8065   valid/acc: 0.7143
+Epoch 800:   train/loss: 0.3784   valid/loss: 0.8100   train/acc: 0.8387   valid/acc: 0.7143
+Epoch 900:   train/loss: 0.3652   valid/loss: 0.7981   train/acc: 0.8387   valid/acc: 0.7143
+Epoch 1000:  train/loss: 0.3607   valid/loss: 0.7766   train/acc: 0.8065   valid/acc: 0.7143
+
+Training completed!
+Test accuracy: 0.8
+Progress:  0.3
+Number of training circuits: 32    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.4413   valid/loss: 1.4747   train/acc: 0.4062   valid/acc: 0.5714
+Epoch 100:   train/loss: 0.5222   valid/loss: 0.6641   train/acc: 0.7188   valid/acc: 0.7143
+Epoch 200:   train/loss: 0.4505   valid/loss: 0.7745   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 300:   train/loss: 0.4512   valid/loss: 0.8174   train/acc: 0.6875   valid/acc: 0.6667
+Epoch 400:   train/loss: 0.4111   valid/loss: 0.9261   train/acc: 0.7500   valid/acc: 0.6667
+Epoch 500:   train/loss: 0.4054   valid/loss: 0.8915   train/acc: 0.7812   valid/acc: 0.6667
+Epoch 600:   train/loss: 0.4199   valid/loss: 0.8077   train/acc: 0.8438   valid/acc: 0.7143
+Epoch 700:   train/loss: 0.3771   valid/loss: 0.8079   train/acc: 0.8125   valid/acc: 0.6667
+Epoch 800:   train/loss: 0.3789   valid/loss: 0.7746   train/acc: 0.8438   valid/acc: 0.7143
+Epoch 900:   train/loss: 0.3645   valid/loss: 0.7700   train/acc: 0.8125   valid/acc: 0.7143
+Epoch 1000:  train/loss: 0.3581   valid/loss: 0.7582   train/acc: 0.8438   valid/acc: 0.6667
+
+Training completed!
+Test accuracy: 0.8
+Progress:  0.3
+Number of training circuits: 33    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.4381   valid/loss: 1.4856   train/acc: 0.3939   valid/acc: 0.5714
+Epoch 100:   train/loss: 0.5410   valid/loss: 0.6861   train/acc: 0.6364   valid/acc: 0.6667
+Epoch 200:   train/loss: 0.4679   valid/loss: 0.7566   train/acc: 0.7879   valid/acc: 0.6190
+Epoch 300:   train/loss: 0.4497   valid/loss: 0.7658   train/acc: 0.7576   valid/acc: 0.6667
+Epoch 400:   train/loss: 0.4041   valid/loss: 0.7882   train/acc: 0.8182   valid/acc: 0.6667
+Epoch 500:   train/loss: 0.3975   valid/loss: 0.7906   train/acc: 0.8182   valid/acc: 0.6667
+Epoch 600:   train/loss: 0.3951   valid/loss: 0.7839   train/acc: 0.8485   valid/acc: 0.6667
+Epoch 700:   train/loss: 0.3742   valid/loss: 0.7802   train/acc: 0.8485   valid/acc: 0.6667
+Epoch 800:   train/loss: 0.3705   valid/loss: 0.7796   train/acc: 0.8485   valid/acc: 0.6667
+Epoch 900:   train/loss: 0.3622   valid/loss: 0.7771   train/acc: 0.8485   valid/acc: 0.6667
+Epoch 1000:  train/loss: 0.3519   valid/loss: 0.7655   train/acc: 0.8485   valid/acc: 0.6667
+
+Training completed!
+Test accuracy: 0.85
+Progress:  0.3
+Number of training circuits: 34    Number of validation circuits: 21    Number of test circuits: 20    Number of parameters in model: 76
+Epoch 1:     train/loss: 1.5585   valid/loss: 1.4800   train/acc: 0.3824   valid/acc: 0.5714
+Epoch 100:   train/loss: 0.5161   valid/loss: 0.6608   train/acc: 0.7353   valid/acc: 0.6190
+Epoch 200:   train/loss: 0.4743   valid/loss: 0.6914   train/acc: 0.7353   valid/acc: 0.6190
+Epoch 300:   train/loss: 0.4647   valid/loss: 0.6928   train/acc: 0.7647   valid/acc: 0.6190
+Epoch 400:   train/loss: 0.4306   valid/loss: 0.7257   train/acc: 0.7941   valid/acc: 0.6190
+Epoch 500:   train/loss: 0.4240   valid/loss: 0.7357   train/acc: 0.7941   valid/acc: 0.6190
+Epoch 600:   train/loss: 0.4239   valid/loss: 0.7591   train/acc: 0.7941   valid/acc: 0.6190
+Epoch 700:   train/loss: 0.4091   valid/loss: 0.7634   train/acc: 0.7941   valid/acc: 0.6190
+Epoch 800:   train/loss: 0.4085   valid/loss: 0.7790   train/acc: 0.7941   valid/acc: 0.6190
+Epoch 900:   train/loss: 0.4028   valid/loss: 0.7889   train/acc: 0.7941   valid/acc: 0.6190
+Epoch 1000:  train/loss: 0.3897   valid/loss: 0.8026   train/acc: 0.8235   valid/acc: 0.6190
+
+Training completed!
+Test accuracy: 0.75
