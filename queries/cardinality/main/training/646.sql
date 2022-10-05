@@ -1,0 +1,1 @@
+SELECT at.title AS aka_title FROM aka_title AS at, title AS t WHERE t.production_year < 2011 AND t.id = at.movie_id;

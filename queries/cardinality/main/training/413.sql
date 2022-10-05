@@ -1,0 +1,1 @@
+SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND t.id = mc.movie_id;

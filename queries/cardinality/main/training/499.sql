@@ -1,0 +1,1 @@
+SELECT an.name AS actress_pseudonym FROM aka_name AS an, cast_info AS ci WHERE ci.note ='(voice: English version)' AND an.person_id = ci.person_id;

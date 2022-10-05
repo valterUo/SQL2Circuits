@@ -1,0 +1,1 @@
+SELECT MIN(mi.info) AS release_date FROM movie_info AS mi, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND mc.movie_id = mi.movie_id;

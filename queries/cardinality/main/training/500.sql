@@ -1,0 +1,1 @@
+SELECT an.name AS actress_pseudonym FROM name AS n, aka_name AS an WHERE n.name LIKE 'B%' AND an.name LIKE '%a%' AND n.id = an.person_id;

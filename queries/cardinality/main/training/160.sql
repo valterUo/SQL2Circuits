@@ -1,0 +1,1 @@
+SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;

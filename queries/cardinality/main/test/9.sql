@@ -1,0 +1,1 @@
+SELECT mc.note AS production_note FROM complete_cast AS cc, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.movie_id = cc.movie_id;

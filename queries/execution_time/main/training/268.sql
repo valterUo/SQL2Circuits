@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM movie_companies AS mc, company_name AS cn WHERE cn.country_code ='[sm]' AND mc.note IS NULL AND cn.id = mc.company_id;
