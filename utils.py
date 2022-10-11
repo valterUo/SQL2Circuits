@@ -7,7 +7,31 @@ i = 0
 import matplotlib.pyplot as plt
 
 
-def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc):
+def get_symbols(circs):
+    return set([sym for circuit in circs.values() for sym in circuit.free_symbols])
+
+
+def construct_data_and_labels(circuits, labels):
+    circuits_l = []
+    data_labels_l = []
+    for key in circuits:
+        if key in labels:
+            circuits_l.append(circuits[key])
+            data_labels_l.append(labels[key])
+    return circuits_l, data_labels_l
+
+
+def select_circuits(base_circuits, selected_circuits):
+    res = {}
+    syms = get_symbols(base_circuits)
+    for c in selected_circuits:
+        s_syms = set(selected_circuits[c].free_symbols)
+        if s_syms.difference(syms) == set():
+            res[c] = selected_circuits[c]
+    return res
+
+
+def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc, figure_path):
 
     fig, ((ax_tl, ax_tr), (ax_bl, ax_br)) = plt.subplots(2, 2, sharex=True, sharey='row', figsize=(10, 6))
     ax_tl.set_title('Training set')
@@ -28,9 +52,33 @@ def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc):
     #for e in test_data_labels_l:
     #    print(e)
 
-    # print test accuracy
+    # Print test accuracy
     test_acc = acc(model(test_circuits_l), test_data_labels_l)
     print('Test accuracy:', test_acc)
+    plt.savefig(figure_path)
+    
+    
+def visualize_result_noisyopt(result, make_cost_fn, test_pred_fn, test_data_labels_l, train_costs, train_accs, dev_costs, dev_accs, figure_path):
+    fig, ((ax_tl, ax_tr), (ax_bl, ax_br)) = plt.subplots(2, 2, sharex=True, sharey='row', figsize=(10, 6))
+    ax_tl.set_title('Training set')
+    ax_tr.set_title('Development set')
+    ax_bl.set_xlabel('Iterations')
+    ax_br.set_xlabel('Iterations')
+    ax_bl.set_ylabel('Accuracy')
+    ax_tl.set_ylabel('Loss')
+
+    colours = iter(plt.rcParams['axes.prop_cycle'].by_key()['color'])
+    ax_tl.plot(train_costs[1::2], color=next(colours))  # training evaluates twice per iteration
+    ax_bl.plot(train_accs[1::2], color=next(colours))   # so take every other entry
+    ax_tr.plot(dev_costs, color=next(colours))
+    ax_br.plot(dev_accs, color=next(colours))
+
+    # Print test accuracy
+    test_cost_fn, _, test_accs = make_cost_fn(test_pred_fn, test_data_labels_l)
+    test_cost_fn(result.x)
+    print('Test accuracy:', test_accs[0])
+
+    plt.savefig(figure_path)    
 
     
 def read_diagrams(circuit_paths):
