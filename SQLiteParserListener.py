@@ -918,24 +918,6 @@ class SQLiteParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SQLiteParser#of_OF_fset.
-    def enterOf_OF_fset(self, ctx:SQLiteParser.Of_OF_fsetContext):
-        pass
-
-    # Exit a parse tree produced by SQLiteParser#of_OF_fset.
-    def exitOf_OF_fset(self, ctx:SQLiteParser.Of_OF_fsetContext):
-        pass
-
-
-    # Enter a parse tree produced by SQLiteParser#default_DEFAULT__value.
-    def enterDefault_DEFAULT__value(self, ctx:SQLiteParser.Default_DEFAULT__valueContext):
-        pass
-
-    # Exit a parse tree produced by SQLiteParser#default_DEFAULT__value.
-    def exitDefault_DEFAULT__value(self, ctx:SQLiteParser.Default_DEFAULT__valueContext):
-        pass
-
-
     # Enter a parse tree produced by SQLiteParser#partition_by.
     def enterPartition_by(self, ctx:SQLiteParser.Partition_byContext):
         pass
@@ -981,14 +963,6 @@ class SQLiteParserListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by SQLiteParser#recursive__select.
-    def enterRecursive__select(self, ctx:SQLiteParser.Recursive__selectContext):
-        pass
-
-    # Exit a parse tree produced by SQLiteParser#recursive__select.
-    def exitRecursive__select(self, ctx:SQLiteParser.Recursive__selectContext):
-        pass
-
 
     # Enter a parse tree produced by SQLiteParser#error_message.
     def enterError_message(self, ctx:SQLiteParser.Error_messageContext):
@@ -1025,14 +999,6 @@ class SQLiteParserListener(ParseTreeListener):
     def exitTable_or_index_name(self, ctx:SQLiteParser.Table_or_index_nameContext):
         pass
 
-
-    # Enter a parse tree produced by SQLiteParser#new_table_name.
-    def enterNew_table_name(self, ctx:SQLiteParser.New_table_nameContext):
-        pass
-
-    # Exit a parse tree produced by SQLiteParser#new_table_name.
-    def exitNew_table_name(self, ctx:SQLiteParser.New_table_nameContext):
-        pass
 
 
     # Enter a parse tree produced by SQLiteParser#collation_name.
