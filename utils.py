@@ -1,10 +1,12 @@
 from pathlib import Path
+import matplotlib.pyplot as plt
 import pickle
 import math
 #import numpy as np
 from jax import numpy as np
+import sys
+np.set_printoptions(threshold=sys.maxsize)
 i = 0
-import matplotlib.pyplot as plt
 
 
 def get_symbols(circs):
@@ -58,7 +60,7 @@ def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc, 
     plt.savefig(figure_path)
     
     
-def visualize_result_noisyopt(result, make_cost_fn, test_pred_fn, test_data_labels_l, train_costs, train_accs, dev_costs, dev_accs, figure_path):
+def visualize_result_noisyopt(result, make_cost_fn, test_pred_fn, test_data_labels_l, train_costs, train_accs, dev_costs, dev_accs, figure_path, result_file):
     fig, ((ax_tl, ax_tr), (ax_bl, ax_br)) = plt.subplots(2, 2, sharex=True, sharey='row', figsize=(10, 6))
     ax_tl.set_title('Training set')
     ax_tr.set_title('Development set')
@@ -76,6 +78,13 @@ def visualize_result_noisyopt(result, make_cost_fn, test_pred_fn, test_data_labe
     # Print test accuracy
     test_cost_fn, _, test_accs = make_cost_fn(test_pred_fn, test_data_labels_l)
     test_cost_fn(result.x)
+    
+    with open("results//" + result_file + ".txt", "a") as f:
+        f.write('Test accuracy: ' + str(test_accs[0]) + "\n")
+    
+    with open("points//" + result_file + ".npz", "wb") as f:
+        np.savez(f, result.x)
+        
     print('Test accuracy:', test_accs[0])
 
     plt.savefig(figure_path)    
@@ -102,9 +111,12 @@ def normalise(predictions):
     return predictions / predictions.sum()
         
 
-def create_labeled_classes(data, classification):
+def create_labeled_classes(data, classification, workload):
     labeled_data = {}
-    sorted_data = sorted(data, key=lambda d: d['time'])
+    if workload == "execution_time":
+        sorted_data = sorted(data, key=lambda d: d["time"])
+    elif workload == "cardinality":
+        sorted_data = sorted(data, key=lambda d: d["cardinality"])
     chunk_size = math.ceil(len(sorted_data)/2**classification)
     for i, clas in enumerate(chunks(sorted_data, chunk_size)):
         label = [0]*(2**classification)
