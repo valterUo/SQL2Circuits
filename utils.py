@@ -5,6 +5,9 @@ import math
 #import numpy as np
 from jax import numpy as np
 import sys
+import pennylane as qml
+from sympy import default_sort_key
+from discopy.quantum.pennylane import to_pennylane
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
 
@@ -148,7 +151,7 @@ def multi_class_acc(y_hat, y):
 
 
 def multi_class_loss(y_hat, y):
-    global i
+    #global i
     total_loss = 0
     if len(y_hat) != len(y):
         return 0
@@ -160,5 +163,37 @@ def multi_class_loss(y_hat, y):
         if len(y_pred) != len(x):
             return 0
         total_loss += -np.sum(x * np.log(y_pred)) / len(x)
-    i+=1
+    #i+=1
     return total_loss
+
+
+def transform_into_pennylane_circuits(circuits, n_qubits, dev):
+    qml_circuits = []
+    symbols = set([elem for c in circuits for elem in c.free_symbols])
+    symbols = list(sorted(symbols, key=default_sort_key))
+
+    for circuit_diagram in circuits:
+        pennylane_circuit = to_pennylane(circuit_diagram)
+        params = pennylane_circuit.params
+        pennylane_wires = pennylane_circuit.wires
+        ops = pennylane_circuit.ops
+        param_symbols = [[sym[0].as_ordered_factors()[2]] if len(sym) > 0 else [] for sym in params]
+        symbol_to_index = {}
+
+        for sym in param_symbols:
+            if len(sym) > 0:
+                symbol_to_index[sym[0]] = symbols.index(sym[0])
+
+        @qml.qnode(dev)
+        def qml_circuit(circ_params):
+            for op, param, wires in zip(ops, param_symbols, pennylane_wires):
+                if len(param) > 0:
+                    param = param[0]
+                    op(circ_params[symbol_to_index[param]], wires = wires)
+                else:
+                    op(wires = wires)
+            return qml.sample()
+
+        qml_circuits.append(qml_circuit)
+
+    return qml_circuits, symbols
