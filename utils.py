@@ -168,12 +168,12 @@ def multi_class_loss(y_hat, y):
 
 
 def transform_into_pennylane_circuits(circuits, n_qubits, dev):
-    qml_circuits = []
-    symbols = set([elem for c in circuits for elem in c.free_symbols])
+    qml_circuits = {}
+    symbols = set([elem for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key=default_sort_key))
 
-    for circuit_diagram in circuits:
-        pennylane_circuit = to_pennylane(circuit_diagram)
+    for circ_key in circuits:
+        pennylane_circuit = to_pennylane(circuits[circ_key])
         params = pennylane_circuit.params
         pennylane_wires = pennylane_circuit.wires
         ops = pennylane_circuit.ops
@@ -194,6 +194,6 @@ def transform_into_pennylane_circuits(circuits, n_qubits, dev):
                     op(wires = wires)
             return qml.sample()
 
-        qml_circuits.append(qml_circuit)
+        qml_circuits[circ_key] = qml_circuit
 
     return qml_circuits, symbols
