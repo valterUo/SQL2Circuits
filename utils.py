@@ -173,7 +173,9 @@ def transform_into_pennylane_circuits(circuits, n_qubits, dev):
     symbols = list(sorted(symbols, key=default_sort_key))
 
     for circ_key in circuits:
-        pennylane_circuit = to_pennylane(circuits[circ_key])
+        circuit = circuits[circ_key]
+        n_qubits = circuit.width()
+        pennylane_circuit = to_pennylane(circuit)
         params = pennylane_circuit.params
         pennylane_wires = pennylane_circuit.wires
         ops = pennylane_circuit.ops
@@ -194,6 +196,6 @@ def transform_into_pennylane_circuits(circuits, n_qubits, dev):
                     op(wires = wires)
             return qml.sample()
 
-        qml_circuits[circ_key] = qml_circuit
+        qml_circuits[circ_key] = {"qml_circuit": qml_circuit, "n_qubits": n_qubits}
 
     return qml_circuits, symbols
