@@ -1,0 +1,1 @@
+Number of training circuits: 6   Number of validation circuits: 17   Number of test circuits: 18   Number of parameters in model: 127

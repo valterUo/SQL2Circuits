@@ -1,4 +1,4 @@
-train/circ,valid/circ,test/circ,parameters,train/loss,valid/loss,train/acc,valid/acc,test/acc,train/test
+train/circ,valid/circ,test/circ,parameters,train/loss,valid/loss,train/acc,valid/acc,test/acc,test/train
 5,15,11,110,0.0837,0.8123,100.0,53.33,36.363637,2.2
 6,30,25,119,0.0883,0.9484,100.0,53.33,40.0,4.166666666666667
 7,32,26,125,0.1685,0.858,100.0,56.25,42.307693,3.7142857142857144
