@@ -2,8 +2,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-#import numpy as np
-from jax import numpy as np
+import numpy as np
+#from jax import numpy as np
 import sys
 import pennylane as qml
 from sympy import default_sort_key
