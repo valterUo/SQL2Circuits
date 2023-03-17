@@ -2,14 +2,19 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-#import numpy as np
-from jax import numpy as np
+import numpy as np
+#from jax import numpy as np
 import sys
+import copy
 import pennylane as qml
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
+
+
+def flatten(l):
+    return [item for sublist in l for item in sublist]
 
 
 def get_symbols(circs):
@@ -167,17 +172,37 @@ def multi_class_loss(y_hat, y):
     return total_loss
 
 
-def transform_into_pennylane_circuits(circuits, n_qubits, dev):
+def acc_from_dict(dict_predictions, dict_labels):
+    total_acc = 0
+    for query_id in dict_predictions:
+        y_meas = np.array(dict_predictions[query_id]).flatten()
+        max_index = np.argmax(y_meas)
+        total_acc += int(int(dict_labels[query_id][max_index]) == 1)
+    return total_acc / len(dict_predictions)
+
+
+def loss_from_dict(dict_predictions, dict_labels):
+    total_loss = 0
+    for query_id in dict_predictions:
+        x = np.array(dict_labels[query_id])
+        y_pred = np.array(dict_predictions[query_id]).flatten()
+        total_loss += -np.sum(x * np.log(y_pred)) / len(x)
+    return total_loss
+
+
+def transform_into_pennylane_circuits(circuits):
     qml_circuits = {}
     symbols = set([elem for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key=default_sort_key))
 
     for circ_key in circuits:
         circuit = circuits[circ_key]
-        n_qubits = circuit.width()
+        #n_qubits = circuit.width()
         pennylane_circuit = to_pennylane(circuit)
         params = pennylane_circuit.params
         pennylane_wires = pennylane_circuit.wires
+        n_qubits = pennylane_circuit.n_qubits
+        #dev = qml.device(dev_name, wires=n_qubits, shots=nshot)
         ops = pennylane_circuit.ops
         param_symbols = [[sym[0].as_ordered_factors()[2]] if len(sym) > 0 else [] for sym in params]
         symbol_to_index = {}
@@ -186,7 +211,7 @@ def transform_into_pennylane_circuits(circuits, n_qubits, dev):
             if len(sym) > 0:
                 symbol_to_index[sym[0]] = symbols.index(sym[0])
 
-        @qml.qnode(dev)
+        #@qml.qnode(dev)
         def qml_circuit(circ_params):
             for op, param, wires in zip(ops, param_symbols, pennylane_wires):
                 if len(param) > 0:
@@ -196,6 +221,6 @@ def transform_into_pennylane_circuits(circuits, n_qubits, dev):
                     op(wires = wires)
             return qml.sample()
 
-        qml_circuits[circ_key] = {"qml_circuit": qml_circuit, "n_qubits": n_qubits}
+        qml_circuits[circ_key] = { "circuit_fun": qml_circuit, "n_qubits": n_qubits }
 
     return qml_circuits, symbols
