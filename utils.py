@@ -119,18 +119,54 @@ def normalise(predictions):
     return predictions / predictions.sum()
         
 
-def create_labeled_classes(data, classification, workload):
+def create_labeled_training_classes(data, classification, workload):
     labeled_data = {}
+    classes = []
     if workload == "execution_time":
         sorted_data = sorted(data, key=lambda d: d["time"])
     elif workload == "cardinality":
         sorted_data = sorted(data, key=lambda d: d["cardinality"])
     chunk_size = math.ceil(len(sorted_data)/2**classification)
     for i, clas in enumerate(chunks(sorted_data, chunk_size)):
+        if workload == "execution_time":
+            classes.append((clas[0]["time"], clas[-1]["time"]))
+        elif workload == "cardinality":
+            classes.append((clas[0]["cardinality"], clas[-1]["cardinality"]))
         label = [0]*(2**classification)
         label[i] = 1
         for elem in clas:
             labeled_data[elem["name"]] = label
+    return labeled_data, classes
+
+
+def create_labeled_test_validation_classes(data, classes, workload):
+    labeled_data = {}
+    classification = len(classes)
+    
+    if workload == "execution_time":
+        sorted_data = sorted(data, key=lambda d: d["time"])
+    elif workload == "cardinality":
+        sorted_data = sorted(data, key=lambda d: d["cardinality"])
+    
+    for elem in sorted_data:
+        if workload == "execution_time":
+            data_value = float(elem["time"])
+        elif workload == "cardinality":
+            data_value = float(elem["cardinality"])
+        
+        index = None
+        for i, clas in enumerate(classes):
+            if data_value >= clas[0] and data_value <= clas[1]:
+                index = i
+        
+        label = [0]*classification
+        try:
+            label[index] = 1
+        except:
+            label[-1] = 1
+            #print(data_value)
+            
+        labeled_data[elem["name"]] = label
     return labeled_data
 
 
