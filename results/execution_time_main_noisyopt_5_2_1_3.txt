@@ -1,0 +1,51 @@
+Number of training circuits: 11   Number of validation circuits: 57   Number of test circuits: 47   Number of parameters in model: 136
+Epoch: 200   train/loss: 1.8862   valid/loss: 27.6246   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 400   train/loss: 1.9282   valid/loss: 34.1104   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 600   train/loss: 1.896   valid/loss: 32.4204   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 800   train/loss: 1.8124   valid/loss: 36.4465   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 1000   train/loss: 1.8726   valid/loss: 36.8723   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 1200   train/loss: 1.8077   valid/loss: 35.7873   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 1400   train/loss: 1.8085   valid/loss: 36.5863   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 1600   train/loss: 1.7696   valid/loss: 38.3757   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 1800   train/loss: 1.7516   valid/loss: 37.3864   train/acc: 0.6364   valid/acc: 0.2632
+Epoch: 2000   train/loss: 1.76   valid/loss: 38.9262   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 2200   train/loss: 1.812   valid/loss: 39.0869   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 2400   train/loss: 1.7514   valid/loss: 38.4253   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 2600   train/loss: 1.718   valid/loss: 40.3785   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 2800   train/loss: 1.7693   valid/loss: 38.1264   train/acc: 0.6364   valid/acc: 0.2807
+Epoch: 3000   train/loss: 1.7744   valid/loss: 36.7739   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 3200   train/loss: 1.6393   valid/loss: 34.7114   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 3400   train/loss: 1.6078   valid/loss: 36.9384   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 3600   train/loss: 1.5519   valid/loss: 36.5311   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 3800   train/loss: 1.5197   valid/loss: 37.1091   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 4000   train/loss: 1.4366   valid/loss: 39.0013   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 4200   train/loss: 1.4826   valid/loss: 37.8759   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 4400   train/loss: 1.4128   valid/loss: 38.1025   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 4600   train/loss: 1.4182   valid/loss: 37.9487   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 4800   train/loss: 1.4042   valid/loss: 38.8083   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 5000   train/loss: 1.3703   valid/loss: 43.1519   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 5200   train/loss: 1.4004   valid/loss: 36.6907   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 5400   train/loss: 1.3761   valid/loss: 40.0225   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 5600   train/loss: 1.3672   valid/loss: 42.0263   train/acc: 0.7273   valid/acc: 0.2807
+Epoch: 5800   train/loss: 1.4086   valid/loss: 42.1609   train/acc: 0.7273   valid/acc: 0.3158
+Epoch: 6000   train/loss: 1.3162   valid/loss: 39.8998   train/acc: 0.8182   valid/acc: 0.3158
+Epoch: 6200   train/loss: 1.2919   valid/loss: 38.8217   train/acc: 0.8182   valid/acc: 0.3158
+Epoch: 6400   train/loss: 1.3048   valid/loss: 39.277   train/acc: 0.8182   valid/acc: 0.3158
+Epoch: 6600   train/loss: 1.2401   valid/loss: 38.6932   train/acc: 0.8182   valid/acc: 0.3158
+Epoch: 6800   train/loss: 1.2556   valid/loss: 40.9323   train/acc: 0.8182   valid/acc: 0.3158
+Epoch: 7000   train/loss: 1.176   valid/loss: 42.213   train/acc: 0.8182   valid/acc: 0.3158
+Test accuracy: 0.2978723404255319
+Number of training circuits: 12   Number of validation circuits: 57   Number of test circuits: 47   Number of parameters in model: 136
+Number of training circuits: 13   Number of validation circuits: 60   Number of test circuits: 50   Number of parameters in model: 139
+Number of training circuits: 14   Number of validation circuits: 60   Number of test circuits: 50   Number of parameters in model: 139
+Number of training circuits: 15   Number of validation circuits: 60   Number of test circuits: 50   Number of parameters in model: 139
+Number of training circuits: 16   Number of validation circuits: 64   Number of test circuits: 53   Number of parameters in model: 142
+Number of training circuits: 17   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 18   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 19   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 20   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 21   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 22   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 23   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
+Number of training circuits: 24   Number of validation circuits: 81   Number of test circuits: 73   Number of parameters in model: 186
+Number of training circuits: 21   Number of validation circuits: 80   Number of test circuits: 70   Number of parameters in model: 174
