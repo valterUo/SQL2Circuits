@@ -1,4 +1,4 @@
-# SQLambeq: SQL Execution Time Estimations with A Quantum Natural Language Processing Method
+# SQL2Circuits: Estimating Metrics for SQL Queries with A Quantum Natural Language Processing Method
 
 On-going work!
 
