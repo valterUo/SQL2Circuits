@@ -1,0 +1,1 @@
+{"execution_time_main_1_1_3_1": {"workload": "execution_time", "classification": 2, "training_circuits": 448, "validation_circuits": 113, "test_circuits": 112, "total": 673, "train_symbols": 0, "avarage_depth": 0.0, "gate_counts": {"Hadamard": 7202, "CRZ": 3837, "RX": 26066, "RZ": 4354}}}

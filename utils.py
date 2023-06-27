@@ -119,18 +119,25 @@ def normalise(predictions):
     return predictions / predictions.sum()
         
 
-def create_labeled_classes(data, classification, workload):
+def create_labeled_classes(data, classification, workload, get_statistics = False):
     labeled_data = {}
+    stats = []
     if workload == "execution_time":
         sorted_data = sorted(data, key=lambda d: d["time"])
     elif workload == "cardinality":
         sorted_data = sorted(data, key=lambda d: d["cardinality"])
-    chunk_size = math.ceil(len(sorted_data)/2**classification)
+    chunk_size = math.ceil(len(sorted_data)/(2**classification))
     for i, clas in enumerate(chunks(sorted_data, chunk_size)):
         label = [0]*(2**classification)
         label[i] = 1
+        if workload == "execution_time":
+            stats.append((clas[0]["time"], clas[-1]["time"]))
+        elif workload == "cardinality":
+            stats.append((clas[0]["cardinality"], clas[-1]["cardinality"]))
         for elem in clas:
             labeled_data[elem["name"]] = label
+    if get_statistics:
+        return labeled_data, stats
     return labeled_data
 
 
