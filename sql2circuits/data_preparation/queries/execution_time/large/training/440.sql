@@ -1,0 +1,1 @@
+SELECT MIN(t.title) AS movie_title FROM complete_cast AS cc, title AS t, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND t.id = mi.movie_id AND t.id = cc.movie_id;

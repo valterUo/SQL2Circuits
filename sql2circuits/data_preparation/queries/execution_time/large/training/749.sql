@@ -1,0 +1,1 @@
+SELECT MIN(t.title) AS movie_title FROM cast_info AS ci, title AS t, movie_info AS mi WHERE ci.note ='(voice: English version)' AND t.id = ci.movie_id AND ci.movie_id = mi.movie_id;

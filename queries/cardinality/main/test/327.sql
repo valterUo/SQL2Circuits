@@ -1,1 +1,0 @@
-SELECT t.title AS movie_title FROM title AS t, movie_info AS mi WHERE t.production_year < 2011 AND t.id = mi.movie_id;

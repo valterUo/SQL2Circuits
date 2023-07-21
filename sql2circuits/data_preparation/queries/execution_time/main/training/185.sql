@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;

@@ -1,0 +1,1 @@
+SELECT MIN(chn.name) AS character_name FROM cast_info AS ci, char_name AS chn, movie_keyword AS mk WHERE chn.name = 'Queen' AND chn.id = ci.person_role_id AND ci.movie_id = mk.movie_id;

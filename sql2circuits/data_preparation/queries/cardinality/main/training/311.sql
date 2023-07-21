@@ -1,0 +1,1 @@
+SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;

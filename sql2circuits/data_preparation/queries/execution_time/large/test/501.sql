@@ -1,0 +1,1 @@
+SELECT MIN(t.title) AS movie_title FROM movie_link AS ml, title AS t, movie_info AS mi WHERE t.production_year > 2004 AND t.id = mi.movie_id AND ml.movie_id = mi.movie_id;

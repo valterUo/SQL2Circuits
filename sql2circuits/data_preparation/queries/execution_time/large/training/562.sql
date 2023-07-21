@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM movie_companies AS mc, info_type AS it, movie_info AS mi WHERE mc.note IS NOT NULL AND mc.movie_id = mi.movie_id AND it.id = mi.info_type_id;

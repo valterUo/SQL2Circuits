@@ -1,1 +1,0 @@
-SELECT MIN(t.production_year) AS movie_year FROM kind_type AS kt, title AS t WHERE t.production_year < 2011 AND kt.kind ='movie' AND kt.id = t.kind_id;

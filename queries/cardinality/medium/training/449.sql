@@ -1,1 +1,0 @@
-SELECT an.name AS actress_pseudonym FROM cast_info AS ci, aka_name AS an WHERE an.name LIKE '%a%' AND ci.note ='(voice: English version)' AND an.person_id = ci.person_id;

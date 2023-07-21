@@ -1,0 +1,1 @@
+SELECT MIN(mi.info) AS release_date FROM movie_link AS ml, cast_info AS ci, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND ci.movie_id = mi.movie_id AND ml.movie_id = mi.movie_id;

@@ -1,1 +1,0 @@
-SELECT MIN(mi.info) AS release_date FROM aka_title AS at, info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.id = mi.info_type_id AND mi.movie_id = at.movie_id;

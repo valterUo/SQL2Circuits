@@ -1,0 +1,1 @@
+SELECT mi.info AS release_date FROM movie_companies AS mc, movie_info AS mi WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND mc.movie_id = mi.movie_id;

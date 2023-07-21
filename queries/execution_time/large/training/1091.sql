@@ -1,1 +1,0 @@
-SELECT MIN(mc.note) AS production_note FROM cast_info AS ci, movie_companies AS mc, title AS t WHERE mc.note LIKE '%(presents)%' AND ci.movie_id = mc.movie_id AND t.id = mc.movie_id;

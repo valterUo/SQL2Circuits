@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM cast_info AS ci, title AS t, char_name AS chn WHERE t.production_year > 2004 AND t.id = ci.movie_id AND chn.id = ci.person_role_id;

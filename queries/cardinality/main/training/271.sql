@@ -1,1 +1,0 @@
-SELECT mc.note AS production_note FROM movie_companies AS mc, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND mc.note IS NOT NULL AND mc.movie_id = mi.movie_id;

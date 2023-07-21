@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM cast_info AS ci, title AS t, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND t.id = mi.movie_id AND t.id = ci.movie_id;

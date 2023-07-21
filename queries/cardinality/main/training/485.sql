@@ -1,1 +1,0 @@
-SELECT n.name AS actor_name FROM name AS n, cast_info AS ci WHERE n.gender='m' AND n.gender='f' AND n.id = ci.person_id;

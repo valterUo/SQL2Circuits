@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;

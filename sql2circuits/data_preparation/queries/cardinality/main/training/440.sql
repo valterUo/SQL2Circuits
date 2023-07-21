@@ -1,0 +1,1 @@
+SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;

@@ -1,1 +1,0 @@
-SELECT MIN(mi.info) AS release_date FROM complete_cast AS cc, cast_info AS ci, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND ci.movie_id = mi.movie_id AND mi.movie_id = cc.movie_id;

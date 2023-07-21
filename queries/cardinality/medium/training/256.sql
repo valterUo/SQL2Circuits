@@ -1,1 +1,0 @@
-SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND mc.movie_id = at.movie_id;

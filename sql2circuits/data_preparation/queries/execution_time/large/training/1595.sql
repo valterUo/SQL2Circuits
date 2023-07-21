@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM complete_cast AS cc, movie_companies AS mc, comp_cast_type AS cct WHERE mc.note IS NOT NULL AND mc.movie_id = cc.movie_id AND cct.id = cc.status_id;

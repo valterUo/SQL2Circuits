@@ -1,1 +1,0 @@
-SELECT MIN(an.name) AS actress_pseudonym FROM aka_name AS an, cast_info AS ci, person_info AS pi WHERE pi.note ='Volker Boehm' AND pi.person_id = an.person_id AND an.person_id = ci.person_id;

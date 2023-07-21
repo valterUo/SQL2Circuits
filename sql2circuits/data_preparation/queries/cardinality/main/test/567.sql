@@ -1,0 +1,1 @@
+SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE cn.country_code ='[sm]' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;

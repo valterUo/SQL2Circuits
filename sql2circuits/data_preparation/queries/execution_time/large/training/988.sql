@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM complete_cast AS cc, movie_companies AS mc, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND mc.movie_id = mi.movie_id AND mi.movie_id = cc.movie_id;

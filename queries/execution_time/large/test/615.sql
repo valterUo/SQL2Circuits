@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM complete_cast AS cc, title AS t, kind_type AS kt WHERE kt.kind ='movie' AND kt.id = t.kind_id AND t.id = cc.movie_id;

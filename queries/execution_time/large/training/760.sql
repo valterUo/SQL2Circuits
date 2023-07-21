@@ -1,1 +1,0 @@
-SELECT MIN(an.name) AS actress_pseudonym FROM aka_name AS an, movie_link AS ml, cast_info AS ci WHERE ci.note ='(voice: English version)' AND an.person_id = ci.person_id AND ci.movie_id = ml.linked_movie_id;

@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;

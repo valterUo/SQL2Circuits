@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM company_type AS ct, movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND t.id = mc.movie_id AND ct.id = mc.company_type_id;

@@ -1,1 +1,0 @@
-SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;

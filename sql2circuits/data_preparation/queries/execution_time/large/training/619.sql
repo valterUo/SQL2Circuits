@@ -1,0 +1,1 @@
+SELECT MIN(n.name) AS actor_name FROM cast_info AS ci, name AS n, title AS t WHERE n.gender='m' AND n.id = ci.person_id AND t.id = ci.movie_id;

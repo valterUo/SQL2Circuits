@@ -1,0 +1,1 @@
+SELECT MIN(cn.name) AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;

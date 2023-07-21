@@ -1,1 +1,0 @@
-SELECT at.title AS aka_title FROM aka_title AS at, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND mi.movie_id = at.movie_id;

@@ -1,1 +1,0 @@
-SELECT MIN(mi.info) AS release_date FROM movie_link AS ml, info_type AS it, movie_info AS mi WHERE it.info ='mini biography' AND it.id = mi.info_type_id AND ml.movie_id = mi.movie_id;

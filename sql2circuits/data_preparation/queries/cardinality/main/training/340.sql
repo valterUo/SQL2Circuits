@@ -1,0 +1,1 @@
+SELECT t.title AS movie_title FROM kind_type AS kt, title AS t WHERE kt.kind ='movie' AND kt.id = t.kind_id;

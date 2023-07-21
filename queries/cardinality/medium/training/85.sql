@@ -1,1 +1,0 @@
-SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;

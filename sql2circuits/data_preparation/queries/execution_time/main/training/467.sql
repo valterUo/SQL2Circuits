@@ -1,0 +1,1 @@
+SELECT MIN(n.name) AS actor_name FROM name AS n, aka_name AS an WHERE n.gender='m' AND n.id = an.person_id;

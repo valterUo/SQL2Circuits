@@ -1,0 +1,1 @@
+SELECT mc.note AS production_note FROM movie_keyword AS mk, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = mk.movie_id;

@@ -1,1 +1,0 @@
-SELECT MIN(t.production_year) AS movie_year FROM cast_info AS ci, title AS t WHERE ci.note ='(voice: English version)' AND t.id = ci.movie_id;

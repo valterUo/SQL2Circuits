@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM company_name AS cn, movie_companies AS mc, company_type AS ct WHERE cn.country_code ='[us]' AND cn.id = mc.company_id AND ct.id = mc.company_type_id;

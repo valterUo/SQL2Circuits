@@ -1,0 +1,1 @@
+SELECT MIN(an.name) AS actress_pseudonym FROM aka_name AS an, person_info AS pi WHERE pi.note ='Volker Boehm' AND pi.person_id = an.person_id;

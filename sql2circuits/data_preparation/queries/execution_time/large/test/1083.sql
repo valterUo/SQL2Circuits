@@ -1,0 +1,1 @@
+SELECT MIN(an.name) AS actress_pseudonym FROM aka_name AS an, cast_info AS ci, char_name AS chn WHERE an.name LIKE '%a%' AND an.person_id = ci.person_id AND chn.id = ci.person_role_id;

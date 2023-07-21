@@ -1,1 +1,0 @@
-SELECT MIN(mc.note) AS production_note FROM movie_link AS ml, movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND t.id = mc.movie_id AND ml.movie_id = t.id;

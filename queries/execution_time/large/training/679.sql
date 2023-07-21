@@ -1,1 +1,0 @@
-SELECT MIN(lt.link) AS movie_link_type FROM movie_link AS ml, cast_info AS ci, link_type AS lt WHERE lt.link LIKE '%follow%' AND lt.id = ml.link_type_id AND ci.movie_id = ml.linked_movie_id;

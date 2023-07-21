@@ -1,0 +1,1 @@
+SELECT MIN(lt.link) AS movie_link_type FROM complete_cast AS cc, movie_link AS ml, link_type AS lt WHERE lt.link ='features' AND lt.id = ml.link_type_id AND ml.movie_id = cc.movie_id;

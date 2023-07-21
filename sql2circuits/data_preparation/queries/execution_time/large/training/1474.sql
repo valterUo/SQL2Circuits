@@ -1,0 +1,1 @@
+SELECT MIN(mc.note) AS production_note FROM keyword AS k, movie_companies AS mc, movie_keyword AS mk WHERE mc.note IS NOT NULL AND mc.movie_id = mk.movie_id AND mk.keyword_id = k.id;

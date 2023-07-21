@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM movie_link AS ml, cast_info AS ci, title AS t WHERE ci.note ='(voice: English version)' AND t.id = ci.movie_id AND ci.movie_id = ml.linked_movie_id;

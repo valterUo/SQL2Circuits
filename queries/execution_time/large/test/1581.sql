@@ -1,1 +1,0 @@
-SELECT MIN(chn.name) AS character_name FROM role_type AS rt, cast_info AS ci, char_name AS chn WHERE chn.name = 'Queen' AND chn.id = ci.person_role_id AND ci.role_id = rt.id;

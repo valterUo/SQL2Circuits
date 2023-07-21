@@ -1,1 +1,0 @@
-SELECT MIN(k.keyword) AS movie_keyword FROM keyword AS k, movie_info AS mi, movie_keyword AS mk WHERE k.keyword ='character-name-in-title' AND mk.keyword_id = k.id AND mk.movie_id = mi.movie_id;

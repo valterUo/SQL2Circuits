@@ -1,0 +1,1 @@
+SELECT MIN(chn.name) AS character_name FROM cast_info AS ci, name AS n, char_name AS chn WHERE ci.note ='(voice: English version)' AND chn.id = ci.person_role_id AND n.id = ci.person_id;

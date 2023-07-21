@@ -1,0 +1,1 @@
+SELECT MIN(k.keyword) AS movie_keyword FROM keyword AS k, movie_link AS ml, movie_keyword AS mk WHERE k.keyword IN ('superhero', 'sequel') AND mk.keyword_id = k.id AND ml.movie_id = mk.movie_id;

@@ -1,0 +1,1 @@
+SELECT MIN(cn.name) AS company_name FROM movie_companies AS mc, company_name AS cn WHERE cn.country_code ='[de]' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;

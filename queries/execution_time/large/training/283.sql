@@ -1,1 +1,0 @@
-SELECT MIN(mc.note) AS production_note FROM complete_cast AS cc, movie_companies AS mc, title AS t WHERE mc.note IS NULL AND mc.movie_id = cc.movie_id AND t.id = mc.movie_id;
