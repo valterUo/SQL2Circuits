@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import glob
 import os
-import re
 import json
-import psycopg2
-from pathlib import Path
 
 this_folder = os.path.abspath(os.getcwd())
 
@@ -28,3 +24,20 @@ class DataPreparation:
         print("Number of validation queries is ", stats["number_of_validation_queries"])
 
         self.data_file = self.database.generate_data(id, queries, workload_type)
+
+        self.data = dict()
+        with open(self.data_file) as json_file:
+            self.data = json.load(json_file)
+
+
+    def get_data_file(self):
+        return self.data_file
+    
+    def get_training_data(self):
+        return self.data["training"]
+    
+    def get_test_data(self):
+        return self.data["test"]
+    
+    def get_validation_data(self):
+        return self.data["validation"]

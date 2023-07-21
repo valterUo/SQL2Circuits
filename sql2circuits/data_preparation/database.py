@@ -41,13 +41,17 @@ class Database:
     
     
     def generate_data(self, id, queries, workload, statement_timeout = 20000):
-        connection = psycopg2.connect(user=self.pg_user, 
-                                      password=self.pg_pw, 
-                                      host=self.host, 
-                                      port=self.port, 
-                                      database=self.pg_db_name)
-        cursor = connection.cursor()
-        cursor.execute("SET statement_timeout = " + str(statement_timeout) + "; COMMIT;")
+        connection = None
+        try:
+            connection = psycopg2.connect(user=self.pg_user, 
+                                        password=self.pg_pw, 
+                                        host=self.host, 
+                                        port=self.port, 
+                                        database=self.pg_db_name)
+            cursor = connection.cursor()
+            cursor.execute("SET statement_timeout = " + str(statement_timeout) + "; COMMIT;")
+        except (Exception, psycopg2.Error) as error:
+            print("Error while fetching data from PostgreSQL", error)
         file_name = ""
 
         if workload == "E":
@@ -64,8 +68,12 @@ class Database:
     def genereta_data_execution_time(self, id, queries, connection):
         shots_per_query = 10
         result = dict()
-        file_name = self.this_folder + "//data_preparation//data//execution_time//" + str(id) + "_data.json"
         cursor = None
+        file_name = self.this_folder + "//data_preparation//data//execution_time//" + str(id) + "_data.json"
+        if os.path.isfile(file_name):
+            if connection:
+                connection.close()
+            return file_name
 
         for query_set in queries:
             data = dict()
@@ -100,9 +108,13 @@ class Database:
     
     def genereta_data_cardinality(self, id, queries, connection):
         result = dict()
-        file_name = self.this_folder + "//data_preparation//data//cardinality//" + str(id) + "_data.json"
         cursor = None
-
+        file_name = self.this_folder + "//data_preparation//data//cardinality//" + str(id) + "_data.json"
+        if os.path.isfile(file_name):
+            if connection:
+                connection.close()
+            return file_name
+        
         for query_set in queries:
             data = dict()
             for query in queries[query_set]:
