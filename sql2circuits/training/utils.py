@@ -68,7 +68,7 @@ def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc, 
     plt.savefig(figure_path)
     
     
-def visualize_result_noisyopt(result, make_cost_fn, test_pred_fn, test_data_labels_l, train_costs, train_accs, dev_costs, dev_accs, figure_path, result_file):
+def visualize_result_noisyopt(train_costs, train_accs, dev_costs, dev_accs, figure_path):
     fig, ((ax_tl, ax_tr), (ax_bl, ax_br)) = plt.subplots(2, 2, sharex=True, sharey='row', figsize=(10, 6))
     ax_tl.set_title('Training set')
     ax_tr.set_title('Development set')
@@ -82,18 +82,6 @@ def visualize_result_noisyopt(result, make_cost_fn, test_pred_fn, test_data_labe
     ax_bl.plot(train_accs[1::2], color=next(colours))   # so take every other entry
     ax_tr.plot(dev_costs, color=next(colours))
     ax_br.plot(dev_accs, color=next(colours))
-
-    # Print test accuracy
-    test_cost_fn, _, test_accs = make_cost_fn(test_pred_fn, test_data_labels_l)
-    test_cost_fn(result.x)
-    
-    with open("results//" + result_file + ".txt", "a") as f:
-        f.write('Test accuracy: ' + str(test_accs[0]) + "\n")
-    
-    with open("points//" + result_file + ".npz", "wb") as f:
-        np.savez(f, result.x)
-        
-    print('Test accuracy:', test_accs[0])
 
     plt.savefig(figure_path)    
 
