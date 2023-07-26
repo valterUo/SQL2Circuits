@@ -4,20 +4,22 @@ import warnings
 import json
 import os
 from jax import numpy as np
+#import numpy as np
 from sympy import default_sort_key
 import numpy
 from jax import jit
+#from jax import config
+#config.update("jax_enable_x64", True)
 from noisyopt import minimizeSPSA, minimizeCompass
 from training.utils import *
-from discopy.quantum import Circuit
 from discopy.tensor import Tensor
-#from pytket.extensions.qiskit import AerBackend
-#from pytket.extensions.qulacs import QulacsBackend
-#from pytket.extensions.cirq import CirqStateSampleBackend
-backend = None
+
+from training.trainers.lambeq_trainer import make_lambeq_pred_fn, make_lambeq_cost_fn
+from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn
+
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
-os.environ['TOKENIZERS_PARALLELISM'] = 'true'
+os.environ['TOKENIZERS_PARALLELISM'] = 'True'
 #os.environ["JAX_PLATFORMS"] = "cpu"
 
 # This avoids TracerArrayConversionError from jax
@@ -29,23 +31,36 @@ numpy.random.seed(SEED)
 
 class SQL2CircuitsTrainer:
 
-    def __init__(self, id, circuits, data_prep, workload = "execution_time", classification = 2, a = 0.01, c = 0.01):
+    def __init__(self, 
+                 id, 
+                 circuits, 
+                 data_prep, 
+                 workload = "execution_time", 
+                 classification = 2, 
+                 a = 0.01, 
+                 c = 0.01, 
+                 optimization_method = "SPSA", 
+                 epochs = 1000, 
+                 optimization_interval = 20, 
+                 plot_results = True,
+                 initial_number_of_circuits = 20):
         self.id = id
         self.circuits = circuits
         self.data_prep = data_prep
-        self.workload = workload # execution_time or cardinality
+        self.workload = workload
         self.classification = classification
-        self.plot_results = True
+        self.plot_results = plot_results
         diagrams = self.circuits.get_circuit_diagrams()
         self.stats = {}
-
         self.a = a
         self.c = c
-        self.optimization_method = "SPSA"
-        self.epochs = 1000
-        self.initial_number_of_circuits = 20
-        self.optimization_interval = 20
+        self.optimization_method = optimization_method
+        self.epochs = epochs
+        self.run = 0
+        self.optimization_interval = optimization_interval
         self.result = None
+        self.make_pred_fn = make_lambeq_pred_fn
+        self.make_cost_fn = make_lambeq_cost_fn
 
         # Training, test and validation circuits
         self.training_circuits = diagrams["training"]
@@ -66,6 +81,15 @@ class SQL2CircuitsTrainer:
         self.training_circuits = {k: v for k, v in self.training_circuits.items() if k in self.training_data}
         self.test_circuits = {k: v for k, v in self.test_circuits.items() if k in self.test_data}
         self.validation_circuits = {k: v for k, v in self.validation_circuits.items() if k in self.validation_data}
+
+        if "Pennylane" in self.optimization_method:
+            self.training_circuits, self.train_symbols = transform_into_pennylane_circuits(self.training_circuits)
+            self.test_circuits, self.test_symbols = transform_into_pennylane_circuits(self.test_circuits)
+            self.validation_circuits, self.val_symbols = transform_into_pennylane_circuits(self.validation_circuits)
+            self.make_pred_fn = make_pennylane_pred_fn
+            self.make_cost_fn = make_pennylane_cost_fn
+
+        self.initial_number_of_circuits = initial_number_of_circuits
 
         self.all_training_keys = list(self.training_circuits.keys())
 
@@ -106,17 +130,16 @@ class SQL2CircuitsTrainer:
             }
         
         self.store_and_log("hyperparameters", hyperparameters, self.hyperparameters_file)
-
-        self.run = 0
         
         initial_circuit_keys = self.all_training_keys[:self.initial_number_of_circuits + 1]
         self.current_training_circuits = {}
         for k in initial_circuit_keys:
             self.current_training_circuits[k] = self.training_circuits[k]
-            
-        self.syms = get_symbols(self.current_training_circuits)
-        self.parameters = sorted(self.syms, key = default_sort_key)
-        self.read_parameters()
+        
+        if self.optimization_method == "SPSA":
+            self.syms = get_symbols(self.current_training_circuits)
+            self.parameters = sorted(self.syms, key = default_sort_key)
+            self.read_parameters()
     
 
     def store_parameters(self, params):
@@ -139,47 +162,19 @@ class SQL2CircuitsTrainer:
 
 
     def initialize_parameters(self, old_params, old_values, new_params):
-        new_values = list(numpy.array(rng.random(len(new_params))))
         old_param_dict = {}
         for p, v in zip(old_params, old_values):
             old_param_dict[p] = v
             
-        parameters = sorted(set(old_params + new_params), key=default_sort_key)
+        parameters = sorted(set(old_params + new_params), key = default_sort_key)
         values = []
         for p in parameters:
             if p in old_param_dict:
                 values.append(old_param_dict[p])
             else:
-                values.append(new_values.pop())
+                values.append(rng.random())
                 
         return parameters, np.array(values)
-
-    
-    def make_pred_fn(self, circuits):
-        circuit_fns = [circuit.lambdify(*self.parameters) for circuit in circuits]
-        def predict(params):
-            outputs = Circuit.eval(*(c(*params) for c in circuit_fns), backend = backend)
-            res = []
-            
-            for output in outputs:
-                predictions = np.abs(output.array) + 1e-9 # type: ignore
-                ratio = predictions / predictions.sum()
-                res.append(ratio)
-                
-            return np.array(res)
-        return predict
-    
-    def make_cost_fn(self, predict, labels):
-        def cost_fn(params, **kwargs):
-            predictions = predict(params)
-            cost = self.loss_function(predictions, labels)
-            accuracy = self.accuracy(predictions, labels)
-            costs.append(cost)
-            accuracies.append(accuracy)
-            return cost
-
-        costs, accuracies = [], []
-        return cost_fn, costs, accuracies
     
 
     def make_callback_fn(self, i, dev_cost_fn, train_costs, train_accs, dev_accs):
@@ -217,7 +212,21 @@ class SQL2CircuitsTrainer:
         else:
             with open(file, 'w') as f:
                 json.dump({str(iteration) : current_data}, f, indent = 4)
+
+
+    def visualize_result(self, i, train_costs, train_accs, dev_costs, dev_accs):
+        if self.plot_results:
+            figure_path = "training//results//" + str(self.id) + "//" + str(self.id) + "_" + str(i) + ".png"
+            visualize_result_noisyopt(train_costs, train_accs, dev_costs, dev_accs, figure_path)
+            
+
+    def evaluate_on_test_set(self, test_pred_fn, test_data_labels_l):
+        test_cost_fn, _, test_accs = self.make_cost_fn(test_pred_fn, test_data_labels_l, self.loss_function, self.accuracy)
+        test_cost_fn(self.result.x) # type: ignore
+        self.store_and_log(i, {"test_accuracy": test_accs[0]}, self.result_file)
+        self.store_parameters(self.result.x)
     
+
     def train(self):
 
         for i, key in enumerate(self.all_training_keys[self.initial_number_of_circuits:]):
@@ -257,16 +266,15 @@ class SQL2CircuitsTrainer:
             
             if self.result == None or self.run % self.optimization_interval == 0:
             
-                train_pred_fn = jit(self.make_pred_fn(training_circuits_l))
-                dev_pred_fn = jit(self.make_pred_fn(validation_circuits_l))
-                test_pred_fn = self.make_pred_fn(test_circuits_l)
+                train_pred_fn = jit(self.make_pred_fn(training_circuits_l, self.parameters, self.classification))
+                dev_pred_fn = jit(self.make_pred_fn(validation_circuits_l, self.parameters, self.classification))
+                test_pred_fn = self.make_pred_fn(test_circuits_l, self.parameters, self.classification)
 
-                train_cost_fn, train_costs, train_accs = self.make_cost_fn(train_pred_fn, training_data_labels_l)
-                dev_cost_fn, dev_costs, dev_accs = self.make_cost_fn(dev_pred_fn, validation_data_labels_l)
+                train_cost_fn, train_costs, train_accs = self.make_cost_fn(train_pred_fn, training_data_labels_l, self.loss_function, self.accuracy)
+                dev_cost_fn, dev_costs, dev_accs = self.make_cost_fn(dev_pred_fn, validation_data_labels_l, self.loss_function, self.accuracy)
 
                 callback_fn = self.make_callback_fn(i, dev_cost_fn, train_costs, train_accs, dev_accs)
                 
-                # Actual optimization
                 self.result = minimizeSPSA(train_cost_fn,
                                       x0 = self.init_params_spsa,
                                       a = self.a,
@@ -287,20 +295,8 @@ class SQL2CircuitsTrainer:
                                               alpha=0.05, 
                                               callback=callback_fn)"""
                 
-                # Visualize the result
-                if self.plot_results:
-                    figure_path = "training//results//" + str(self.id) + "//" + str(self.id) + "_" + str(i) + ".png"
-                    visualize_result_noisyopt(train_costs,
-                                              train_accs,
-                                              dev_costs,
-                                              dev_accs,
-                                              figure_path)
-                
-                # Evaluate the result on the test set
-                test_cost_fn, _, test_accs = self.make_cost_fn(test_pred_fn, test_data_labels_l)
-                test_cost_fn(self.result.x) # type: ignore
-                self.store_and_log(i, {"test_accuracy": test_accs[0]}, self.result_file)
-                self.store_parameters(self.result.x)
+                self.visualize_result(i, train_costs, train_accs, dev_costs, dev_accs)
+                self.evaluate_on_test_set(test_pred_fn, test_data_labels_l)
             
             # Extend for the next optimization round
             self.run += 1
@@ -308,3 +304,37 @@ class SQL2CircuitsTrainer:
             self.current_training_circuits[key] = self.training_circuits[key]
             new_parameters = sorted(get_symbols({key: self.training_circuits[key]}), key = default_sort_key)
             self.parameters, self.init_params_spsa = self.initialize_parameters(self.parameters, self.result.x, new_parameters)
+
+    def train_with_pennylane(self):
+
+        self.training_circuits_limited = {}
+        for i, key in enumerate(self.all_training_keys[:10]):
+            self.training_circuits_limited[key] = self.training_circuits[key]
+
+        training_circuits_l, training_data_labels_l = construct_data_and_labels(self.training_circuits_limited, self.training_data_labels)
+        validation_circuits_l, validation_data_labels_l = construct_data_and_labels(self.validation_circuits, self.validation_data_labels)
+        test_circuits_l, test_data_labels_l = construct_data_and_labels(self.test_circuits, self.test_data_labels)
+
+        train_pred_fn = self.make_pred_fn(training_circuits_l, self.train_symbols, self.classification)
+        test_pred_fn = self.make_pred_fn(test_circuits_l, self.test_symbols, self.classification)
+        dev_pred_fn = self.make_pred_fn(validation_circuits_l, self.val_symbols, self.classification)
+
+        train_cost_fn, train_costs, train_accs = self.make_cost_fn(train_pred_fn, training_data_labels_l, self.loss_function, self.accuracy)
+        dev_cost_fn, dev_costs, dev_accs = self.make_cost_fn(dev_pred_fn, validation_data_labels_l, self.loss_function, self.accuracy)
+
+        callback_fn = self.make_callback_fn(0, dev_cost_fn, train_costs, train_accs, dev_accs)
+
+        init_params_spsa = np.array(rng.random(len(self.train_symbols)))
+        
+        self.result = minimizeSPSA(train_cost_fn,
+                                x0 = init_params_spsa,
+                                a = self.a,
+                                c = self.c,
+                                niter = self.epochs,
+                                paired = False,
+                                callback = callback_fn)
+        
+        self.visualize_result(0, train_costs, train_accs, dev_costs, dev_accs)
+        self.evaluate_on_test_set(test_pred_fn, test_data_labels_l)
+
+

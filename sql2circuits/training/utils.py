@@ -2,13 +2,16 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-#import numpy as np
+from sympy.core.symbol import Symbol
 from jax import numpy as np
+#import numpy as np
+#from jax import jit
 import sys
-import copy
 import pennylane as qml
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
+import covalent as ct
+
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
 
@@ -57,12 +60,6 @@ def visualize_results(model, trainer, test_circuits_l, test_data_labels_l, acc, 
     ax_tr.plot(trainer.val_costs[::10], color=next(colours))
     ax_br.plot(trainer.val_results['acc'][::10], color=next(colours))
 
-    #for e in model(test_circuits_l):
-    #    print(e)
-    #for e in test_data_labels_l:
-    #    print(e)
-
-    # Print test accuracy
     test_acc = acc(model(test_circuits_l), test_data_labels_l)
     print('Test accuracy:', test_acc)
     plt.savefig(figure_path)
@@ -222,37 +219,58 @@ def loss_from_dict(dict_predictions, dict_labels):
     return total_loss
 
 
+class PennylaneCircuit:
+
+    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols) -> None:
+        self.ops = ops
+        self.params = params
+        self.pennylane_wires = pennylane_wires
+        self.n_qubits = n_qubits
+        self.param_symbols = param_symbols
+        self.symbol_to_index = symbol_to_index
+        self.dev = qml.device("lightning.qubit", wires=range(n_qubits), shots=10000)
+        self.symbols = symbols
+
+
+    def get_QNode(self):
+        
+        @ct.electron
+        @qml.qnode(self.dev)
+        def qml_circuit(circ_params):
+            for op, param, wires in zip(self.ops, self.param_symbols, self.pennylane_wires):
+                if len(param) > 0:
+                    param = param[0]
+                    op(circ_params[self.symbol_to_index[param]], wires = wires)
+                else:
+                    op(wires = wires)
+            return qml.sample()
+        
+        return qml_circuit
+    
+
+    def get_n_qubits(self):
+        return self.n_qubits
+    
+
 def transform_into_pennylane_circuits(circuits):
     qml_circuits = {}
-    symbols = set([elem for c in circuits.values() for elem in c.free_symbols])
-    symbols = list(sorted(symbols, key=default_sort_key))
+    symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
+    symbols = list(sorted(symbols, key = default_sort_key))
 
     for circ_key in circuits:
         circuit = circuits[circ_key]
-        #n_qubits = circuit.width()
         pennylane_circuit = to_pennylane(circuit)
-        params = pennylane_circuit.params
-        pennylane_wires = pennylane_circuit.wires
-        n_qubits = pennylane_circuit.n_qubits
-        #dev = qml.device(dev_name, wires=n_qubits, shots=nshot)
-        ops = pennylane_circuit.ops
-        param_symbols = [[sym[0].as_ordered_factors()[2]] if len(sym) > 0 else [] for sym in params]
+        ops = pennylane_circuit._ops
+        params = pennylane_circuit._params
+        pennylane_wires = pennylane_circuit._wires
+        n_qubits = pennylane_circuit._n_qubits
+        param_symbols = [[sym[0].as_ordered_factors()[1]] if len(sym) > 0 else [] for sym in params]
         symbol_to_index = {}
 
         for sym in param_symbols:
             if len(sym) > 0:
                 symbol_to_index[sym[0]] = symbols.index(sym[0])
 
-        #@qml.qnode(dev)
-        def qml_circuit(circ_params):
-            for op, param, wires in zip(ops, param_symbols, pennylane_wires):
-                if len(param) > 0:
-                    param = param[0]
-                    op(circ_params[symbol_to_index[param]], wires = wires)
-                else:
-                    op(wires = wires)
-            return qml.sample()
-
-        qml_circuits[circ_key] = { "circuit_fun": qml_circuit, "n_qubits": n_qubits }
+        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols)
 
     return qml_circuits, symbols
