@@ -23,14 +23,14 @@ def make_lambeq_pred_fn(circuits, parameters, classification):
     return predict
 
 
-def make_lambeq_cost_fn(pred_fn, labels, loss_fn, accuracy_fn):
+def make_lambeq_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies, type):
+    
     def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
         cost = loss_fn(predictions, labels)
         accuracy = accuracy_fn(predictions, labels)
-        costs.append(cost)
-        accuracies.append(accuracy)
+        costs_accuracies.add_cost(cost, type)
+        costs_accuracies.add_accuracy(accuracy, type)
         return cost
 
-    costs, accuracies = [], []
-    return cost_fn, costs, accuracies
+    return cost_fn
