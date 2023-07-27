@@ -2,6 +2,8 @@
 
 from jax import numpy as np
 from discopy.quantum import Circuit
+from discopy.tensor import Tensor
+Tensor.np = np
 
 # Maybe explore these backends later
 #from pytket.extensions.qiskit import AerBackend

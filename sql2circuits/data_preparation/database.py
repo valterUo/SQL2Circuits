@@ -54,9 +54,9 @@ class Database:
             print("Error while fetching data from PostgreSQL", error)
         file_name = ""
 
-        if workload == "E":
+        if workload == "E" or workload == "execution_time":
             file_name = self.genereta_data_execution_time(id, queries, connection)
-        elif workload == "C":
+        elif workload == "C" or workload == "cardinality":
             file_name = self.genereta_data_cardinality(id, queries, connection)
         else:
             print("Unknown workload type!")

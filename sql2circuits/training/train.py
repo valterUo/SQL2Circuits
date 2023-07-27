@@ -3,14 +3,16 @@
 import warnings
 import json
 import os
-#from jax import numpy as np
-import numpy as np
+from jax import numpy as np
+#import numpy as np
 from sympy import default_sort_key
 import numpy
-#from jax import jit
+from jax import jit
 from noisyopt import minimizeSPSA, minimizeCompass
+from training.cost_accuracy import CostAccuracy
 from training.utils import *
 from discopy.tensor import Tensor
+from sklearn.base import BaseEstimator
 
 from training.trainers.lambeq_trainer import make_lambeq_pred_fn, make_lambeq_cost_fn
 from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn, transform_into_pennylane_circuits
@@ -27,139 +29,31 @@ SEED = 0
 rng = numpy.random.default_rng(SEED)
 numpy.random.seed(SEED)
 
-class CostAccuracy:
 
-    def __init__(self):
-        self.train_costs = []
-        self.train_accs = []
-        self.dev_costs = []
-        self.dev_accs = []
-        self.test_accs = []
-        self.test_costs = []
-
-    def add_cost(self, cost, type):
-        if type == "train":
-            self.train_costs.append(cost)
-        elif type == "dev":
-            self.dev_costs.append(cost)
-        elif type == "test":
-            self.test_costs.append(cost)
-    
-    def add_accuracy(self, acc, type):
-        if type == "train":
-            self.train_accs.append(acc)
-        elif type == "dev":
-            self.dev_accs.append(acc)
-        elif type == "test":
-            self.test_accs.append(acc)
-
-    def get_train_costs(self):
-        return self.train_costs
-
-    def get_train_loss(self):
-        if len(self.train_costs) < 2:
-            return 100
-        return numpy.around(min(float(self.train_costs[-1]), float(self.train_costs[-2])), 4)
-    
-    def get_train_acc(self):
-        if len(self.train_accs) < 2:
-            return 0
-        return numpy.around(min(float(self.train_accs[-1]), float(self.train_accs[-2])), 4)
-    
-    def get_train_accs(self):
-        return self.train_accs
-    
-    def get_dev_costs(self):
-        return self.dev_costs
-    
-    def get_dev_acc(self):
-        if len(self.dev_accs) == 0:
-            return 0
-        return numpy.around(float(self.dev_accs[-1]), 4)
-    
-    def get_dev_accs(self):
-        return self.dev_accs
-    
-    def get_test_costs(self):
-        return self.test_costs
-    
-    def get_test_accs(self):
-        return self.test_accs
-
-
-class SQL2CircuitsTrainer:
+class SQL2CircuitsEstimator(BaseEstimator):
 
     def __init__(self, 
                  id, 
-                 circuits, 
-                 data_prep, 
                  workload = "execution_time", 
                  classification = 2, 
                  a = 0.01, 
                  c = 0.01, 
                  optimization_method = "SPSA", 
                  epochs = 1000, 
-                 optimization_interval = 20, 
-                 plot_results = True,
-                 initial_number_of_circuits = 20):
+                 plot_results = True):
         self.id = id
-        self.circuits = circuits
-        self.data_prep = data_prep
         self.workload = workload
         self.classification = classification
         self.plot_results = plot_results
-        diagrams = self.circuits.get_circuit_diagrams()
         self.stats = {}
         self.a = a
         self.c = c
         self.optimization_method = optimization_method
         self.epochs = epochs
         self.run = 0
-        self.optimization_interval = optimization_interval
         self.result = None
         self.make_pred_fn = make_lambeq_pred_fn
         self.make_cost_fn = make_lambeq_cost_fn
-
-        # Training, test and validation circuits
-        self.training_circuits = diagrams["training"]
-        self.test_circuits = diagrams["test"]
-        self.validation_circuits = diagrams["validation"]
-
-        # Training, test and validation data
-        self.training_data = self.data_prep.get_training_data()
-        self.test_data = self.data_prep.get_test_data()
-        self.validation_data = self.data_prep.get_validation_data()
-
-        self.training_data_list = [{"id": k, "cardinality": v} for k, v in self.training_data.items()]
-        self.test_data_list= [{"id": k, "cardinality": v} for k, v in self.test_data.items()]
-        self.validation_data_list = [{"id": k, "cardinality": v} for k, v in self.validation_data.items()]
-
-        # Because we did not get a data point for each query (limited excution time), we need to remove the circuits that do not have a data point
-        # Select all those circuits whose key is in the training_data dictionary
-        self.training_circuits = {k: v for k, v in self.training_circuits.items() if k in self.training_data}
-        self.test_circuits = {k: v for k, v in self.test_circuits.items() if k in self.test_data}
-        self.validation_circuits = {k: v for k, v in self.validation_circuits.items() if k in self.validation_data}
-
-        if "Pennylane" in self.optimization_method:
-            self.training_circuits, self.train_symbols = transform_into_pennylane_circuits(self.training_circuits)
-            self.test_circuits, self.test_symbols = transform_into_pennylane_circuits(self.test_circuits)
-            self.validation_circuits, self.val_symbols = transform_into_pennylane_circuits(self.validation_circuits)
-            self.make_pred_fn = make_pennylane_pred_fn
-            self.make_cost_fn = make_pennylane_cost_fn
-
-        self.initial_number_of_circuits = initial_number_of_circuits
-
-        self.all_training_keys = list(self.training_circuits.keys())
-
-        # Check that the keys of the circuits and the data are the same
-        #print(set(self.training_circuits.keys()) - set(self.training_data.keys()))
-        #print(set(self.test_circuits.keys()) - set(self.test_data.keys()))
-        #print(set(self.validation_circuits.keys()) - set(self.validation_data.keys()))
-
-        self.training_data_labels, classes = create_labeled_training_classes(self.training_data_list, self.classification, workload)
-        self.test_data_labels = create_labeled_test_validation_classes(self.test_data_list, classes, workload)
-        self.validation_data_labels = create_labeled_test_validation_classes(self.validation_data_list, classes, workload)
-
         self.loss_function = multi_class_loss
         self.accuracy = multi_class_acc
 
@@ -181,23 +75,12 @@ class SQL2CircuitsTrainer:
                 "a": self.a,
                 "c": self.c,
                 "epochs": self.epochs,
-                "initial_number_of_circuits": self.initial_number_of_circuits,
                 "classification": 2**self.classification,
                 "workload": self.workload,
                 "optimization_medthod": self.optimization_method
             }
         
         self.store_and_log("hyperparameters", hyperparameters, self.hyperparameters_file)
-        
-        initial_circuit_keys = self.all_training_keys[:self.initial_number_of_circuits + 1]
-        self.current_training_circuits = {}
-        for k in initial_circuit_keys:
-            self.current_training_circuits[k] = self.training_circuits[k]
-        
-        if self.optimization_method == "SPSA":
-            self.syms = get_symbols(self.current_training_circuits)
-            self.parameters = sorted(self.syms, key = default_sort_key)
-            self.read_parameters()
     
 
     def store_parameters(self, params):
@@ -294,9 +177,9 @@ class SQL2CircuitsTrainer:
         self.store_parameters(self.result.x) # type: ignore
     
 
-    def train(self):
+    def fit_with_lambeq_noisyopt(self, X, y, X_valid):
 
-        for i, key in enumerate(self.all_training_keys[self.initial_number_of_circuits:]):
+        """for i, key in enumerate(self.all_training_keys[self.initial_number_of_circuits:]):
             print("Progress: ", round((i + self.initial_number_of_circuits)/len(self.all_training_keys), 3))
             
             if len(self.syms) == len(get_symbols(self.current_training_circuits)) and i > 0:
@@ -324,87 +207,136 @@ class SQL2CircuitsTrainer:
             validation_circuits_l, validation_data_labels_l = construct_data_and_labels(current_validation_circuits, self.validation_data_labels)
             test_circuits_l, test_data_labels_l = construct_data_and_labels(current_test_circuits, self.test_data_labels)
 
-            self.stats[i] = {"number_of_training_circuits": len(training_circuits_l), 
-                             "number_of_validation_circuits": len(validation_circuits_l), 
-                             "number_of_test_circuits": len(test_circuits_l), 
-                             "number_of_parameters_in_model": len(set([sym for circuit in training_circuits_l for sym in circuit.free_symbols]))}
-            
-            self.store_and_log(i, self.stats[i], self.stats_circuits_file)
-            
-            # Train if there is no result yet or if the optimization interval is reached or if this is the last circuit
-            if self.result == None or self.run % self.optimization_interval == 0 or i == len(self.all_training_keys[self.initial_number_of_circuits:]) - 1:
-            
-                train_pred_fn = jit(self.make_pred_fn(training_circuits_l, self.parameters, self.classification))
-                val_pred_fn = jit(self.make_pred_fn(validation_circuits_l, self.parameters, self.classification))
-                test_pred_fn = self.make_pred_fn(test_circuits_l, self.parameters, self.classification)
+        self.stats[i] = {"number_of_training_circuits": len(training_circuits_l), 
+                            "number_of_validation_circuits": len(validation_circuits_l), 
+                            "number_of_test_circuits": len(test_circuits_l), 
+                            "number_of_parameters_in_model": len(set([sym for circuit in training_circuits_l for sym in circuit.free_symbols]))}
+        
+        self.store_and_log(i, self.stats[i], self.stats_circuits_file)
+        
+        # Train if there is no result yet or if the optimization interval is reached or if this is the last circuit
+        if self.result == None or self.run % self.optimization_interval == 0 or i == len(self.all_training_keys[self.initial_number_of_circuits:]) - 1:"""
+        
+        training_circuits = [data[0] for data in X]
+        training_data_labels = [data[1] for data in X]
 
-                costs_accuracies = CostAccuracy()
+        validation_circuits = [data[0] for data in X_valid]
+        validation_data_labels = [data[1] for data in X_valid]
 
-                train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "train")
-                dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, validation_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "dev")
+        test_circuits = [data[0] for data in y]
 
-                callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
+        syms = get_symbols(training_circuits)
+        self.parameters = sorted(syms, key = default_sort_key)
+        self.read_parameters()
+
+        print(len(training_circuits), len(training_data_labels))
+
+        train_pred_fn = jit(self.make_pred_fn(training_circuits, self.parameters, self.classification))
+        val_pred_fn = jit(self.make_pred_fn(validation_circuits, self.parameters, self.classification))
+        test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
+
+        costs_accuracies = CostAccuracy()
+
+        train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
+        dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, validation_data_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
+
+        callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
+        
+        self.result = minimizeSPSA(train_cost_fn,
+                                x0 = self.init_params_spsa,
+                                a = self.a,
+                                c = self.c,
+                                niter = self.epochs,
+                                callback = callback_fn)
                 
-                self.result = minimizeSPSA(train_cost_fn,
-                                      x0 = self.init_params_spsa,
-                                      a = self.a,
-                                      c = self.c,
-                                      niter = self.epochs,
-                                      callback = callback_fn)
+        """self.result = minimizeCompass(train_cost_fn, 
+                                        x0 = self.init_params_spsa,
+                                        redfactor=2.0, 
+                                        deltainit=1.0, 
+                                        deltatol=0.001, 
+                                        feps=1e-15, 
+                                        errorcontrol=True, 
+                                        funcNinit=30, 
+                                        funcmultfactor=2.0, 
+                                        paired=True, 
+                                        alpha=0.05, 
+                                        callback=callback_fn)"""
                 
-                """self.result = minimizeCompass(train_cost_fn, 
-                                              x0 = self.init_params_spsa,
-                                              redfactor=2.0, 
-                                              deltainit=1.0, 
-                                              deltatol=0.001, 
-                                              feps=1e-15, 
-                                              errorcontrol=True, 
-                                              funcNinit=30, 
-                                              funcmultfactor=2.0, 
-                                              paired=True, 
-                                              alpha=0.05, 
-                                              callback=callback_fn)"""
-                
-                self.visualize_result(0, costs_accuracies)
-                self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
+                #self.visualize_result(0, costs_accuracies)
+                #self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
             
             # Extend for the next optimization round
-            self.run += 1
-            self.syms = get_symbols(self.current_training_circuits)
-            self.current_training_circuits[key] = self.training_circuits[key]
-            new_parameters = sorted(get_symbols({key: self.training_circuits[key]}), key = default_sort_key)
-            self.parameters, self.init_params_spsa = self.initialize_parameters(self.parameters, self.result.x, new_parameters)
+            #self.run += 1
+            #self.syms = get_symbols(self.current_training_circuits)
+            #self.current_training_circuits[key] = self.training_circuits[key]
+            #new_parameters = sorted(get_symbols({key: self.training_circuits[key]}), key = default_sort_key)
+            #self.parameters, self.init_params_spsa = self.initialize_parameters(self.parameters, self.result.x, new_parameters)
 
 
-    def train_with_pennylane(self):
+    def fit_with_pennylane_noisyopt(self, X, y):
+        costs_accuracies = CostAccuracy()
 
         #self.training_circuits_limited = {}
         #for key in self.all_training_keys[:10]:
         #    self.training_circuits_limited[key] = self.training_circuits[key]
 
-        training_circuits_l, training_data_labels_l = construct_data_and_labels(self.training_circuits, self.training_data_labels)
-        validation_circuits_l, validation_data_labels_l = construct_data_and_labels(self.validation_circuits, self.validation_data_labels)
-        test_circuits_l, test_data_labels_l = construct_data_and_labels(self.test_circuits, self.test_data_labels)
+         # Select those circuits from test and validation circuits which share the parameters with the current training circuits
+        #validation_circuits_limited = select_pennylane_circuits(self.training_circuits_limited, self.validation_circuits, 10)
+        #test_circuits_limited = select_pennylane_circuits(self.training_circuits_limited, self.test_circuits, 10)
 
-        train_pred_fn = make_pennylane_pred_fn(training_circuits_l, self.train_symbols, self.classification)
-        test_pred_fn = make_pennylane_pred_fn(test_circuits_l, self.test_symbols, self.classification)
-        dev_pred_fn = make_pennylane_pred_fn(validation_circuits_l, self.val_symbols, self.classification)
+        #self.validation_circuits = validation_circuits_limited
+        #self.test_circuits = test_circuits_limited
 
-        costs_accuracies = CostAccuracy()
+        #training_circuits_l, training_data_labels_l = construct_data_and_labels(self.training_circuits, self.training_data_labels)
+        #validation_circuits_l, validation_data_labels_l = construct_data_and_labels(self.validation_circuits, self.validation_data_labels)
+        #test_circuits_l, test_data_labels_l = construct_data_and_labels(self.test_circuits, self.test_data_labels)
 
+        train_pred_fn = jit(make_pennylane_pred_fn(training_circuits_l, self.train_symbols, self.classification))
+        dev_pred_fn = jit(make_pennylane_pred_fn(validation_circuits_l, self.val_symbols, self.classification))
+        #test_pred_fn = make_pennylane_pred_fn(test_circuits_l, self.test_symbols, self.classification)
+        
         train_cost_fn = make_pennylane_cost_fn(train_pred_fn, training_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "train")
         dev_cost_fn = make_pennylane_cost_fn(dev_pred_fn, validation_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
         callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
-
-        init_params_spsa = np.array(rng.random(len(self.train_symbols)))
         
         self.result = minimizeSPSA(train_cost_fn,
-                                x0 = init_params_spsa,
-                                a = self.a,
-                                c = self.c,
-                                niter = self.epochs,
-                                callback = callback_fn)
+                                   x0 = self.init_params_spsa,
+                                   a = self.a,
+                                   c = self.c,
+                                   niter = self.epochs,
+                                   callback = callback_fn)
         
-        self.visualize_result(0, costs_accuracies)
-        self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
+        #self.visualize_result(0, costs_accuracies)
+        #self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
+
+
+    def predict_with_pennylane_noisyopt(self, X):
+        predict_fun = make_pennylane_pred_fn([X], [], self.classification)
+        return predict_fun(self.result.x)
+    
+
+    def predict_with_lambeq_noisyopt(self, X):
+        predict_fun = make_lambeq_pred_fn([X], self.parameters, self.classification)
+        return predict_fun(self.result.x)
+
+
+    def fit(self, X, y, **kwargs):
+        """
+        Parameters
+        X       array-like of shape (n_samples, n_features)
+        y       array-like of shape (n_samples,)
+        kwargs  optional data-dependent parameters
+        """
+        if self.optimization_method == "SPSA":
+            self.fit_with_lambeq_noisyopt(X, y, X_valid = kwargs["X_valid"])
+        elif self.optimization_method == "PennyLane":
+            self.fit_with_pennylane_noisyopt(X, y, X_valid = kwargs["X_valid"])
+        return self
+    
+
+    def predict(self, X):
+        if self.optimization_method == "SPSA":
+            return self.predict_with_lambeq_noisyopt(X)
+        elif self.optimization_method == "PennyLane":
+            return self.predict_with_pennylane_noisyopt(X)

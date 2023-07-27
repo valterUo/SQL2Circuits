@@ -24,20 +24,28 @@ def get_symbols(circs):
 def construct_data_and_labels(circuits, labels):
     circuits_l = []
     data_labels_l = []
-    for key in circuits:
-        if key in labels:
-            circuits_l.append(circuits[key])
-            data_labels_l.append(labels[key])
+    if len(circuits) <= len(labels):
+        for key in circuits:
+            if key in labels:
+                circuits_l.append(circuits[key])
+                data_labels_l.append(labels[key])
+    else:
+        for key in labels:
+            if key in circuits:
+                circuits_l.append(circuits[key])
+                data_labels_l.append(labels[key])
     return circuits_l, data_labels_l
 
 
-def select_circuits(base_circuits, selected_circuits):
+def select_circuits(base_circuits, selected_circuits, max_circuits = -1):
     res = {}
     syms = get_symbols(base_circuits)
     for c in selected_circuits:
         s_syms = set(selected_circuits[c].free_symbols)
         if s_syms.difference(syms) == set():
             res[c] = selected_circuits[c]
+        if len(res) == max_circuits:
+            break
     return res
 
 

@@ -12,25 +12,18 @@ class QueryGenerator:
     The generated queries are used for training, testing, and validation of SQL2Circuits model.
     """
 
-    def __init__(self, id, database = "IMDB", workload_type = "E", query_seed_file_path = "", total_number_of_queries = 100, test_query_ratio = 0.2, validation_query_ratio = 0.2) -> None:
+    def __init__(self, id, workload_type, database = "IMDB", query_seed_file_path = "", total_number_of_queries = 100, test_query_ratio = 0.2, validation_query_ratio = 0.2) -> None:
         self.id = id
         self.database = database
         self.workload_type = workload_type
         self.total_number_of_queries = total_number_of_queries
         self.test_query_ratio = test_query_ratio
         self.validation_query_ratio = validation_query_ratio
-        
         self.this_folder = os.path.abspath(os.getcwd())
         query_seed_file = open(self.this_folder + "//" + query_seed_file_path, "r")
         self.query_seed = json.load(query_seed_file)
 
-        workload = ""
-        if self.workload_type == "E":
-            workload = "execution_time"
-        elif self.workload_type == "C":
-            workload = "cardinality"
-
-        self.path_for_queries = self.this_folder + "//data_preparation//queries//" + workload + "//"
+        self.path_for_queries = self.this_folder + "//data_preparation//queries//" + self.workload_type + "//"
 
         final_queries = self.query_generator(max_num_of_filters = 2, max_num_of_joins = 2, max_num_of_tables = 2)
         self.queries = self.construct_queries(final_queries)

@@ -1,18 +1,15 @@
+# -*- coding: utf-8 -*-
+
 import collections
-#from jax import numpy as np
-import numpy as np
+from jax import numpy as np
+#import numpy as np
 from discopy.quantum.pennylane import to_pennylane
-#from jax import jit
 import pennylane as qml
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
-
 from QNodeCollection import QNodeCollection
 import concurrent.futures
-#import time
-#from jax import config
-#config.update("jax_enable_x64", True)
 
 class PennylaneCircuit:
 
@@ -26,7 +23,6 @@ class PennylaneCircuit:
         self.dev = qml.device("lightning.qubit", wires=range(n_qubits), shots=10000)
         self.symbols = symbols
 
-        #@jit
         @qml.qnode(self.dev)
         def qml_circuit(circ_params):
             for op, param, wires in zip(self.ops, self.param_symbols, self.pennylane_wires):
@@ -39,13 +35,14 @@ class PennylaneCircuit:
         
         self.qml_circuit = qml_circuit
 
-
     def get_QNode(self):
         return self.qml_circuit
     
-
     def get_n_qubits(self):
         return self.n_qubits
+    
+    def get_param_symbols(self):
+        return self.param_symbols
     
 
 def transform_into_pennylane_circuits(circuits):

@@ -4,6 +4,7 @@ import os
 import json
 import pickle
 from circuit_preparation.diagrams.diagram_generators import create_CFG_diagrams, create_pregroup_grammar_diagrams, remove_cups_and_simplify, create_circuit_ansatz
+from training.trainers.pennylane_trainer import transform_into_pennylane_circuits
 
 def split(list_a, chunk_size):
     if list_a == []:
@@ -41,7 +42,7 @@ class Circuits:
     def __init__(self, 
                  id, 
                  query_file_path, 
-                 output_folder, 
+                 output_folder,
                  write_cfg_to_file = False, 
                  write_pregroup_to_file = False, 
                  generate_cfg_png_diagrams = False, 
@@ -61,6 +62,16 @@ class Circuits:
         self.write_cfg_to_file = write_cfg_to_file
         self.write_pregroup_to_file = write_pregroup_to_file
         self.generate_circuit_json_diagrams = generate_circuit_json_diagrams
+
+        self.training_circuits = None
+        self.validation_circuits = None
+        self.test_circuits = None
+        self.qml_training_circuits = None
+        self.qml_validation_circuits = None
+        self.qml_test_circuits = None
+        self.qml_train_symbols = None
+        self.qml_validation_symbols = None
+        self.qml_test_symbols = None
 
         query_file = open(self.query_file_path, "r")
         self.query_data = json.load(query_file)
@@ -84,6 +95,15 @@ class Circuits:
         if os.path.isfile(self.output_folder + "//circuit_diagrams_" + str(self.id) + ".pickle"):
             with open(self.output_folder + "//circuit_diagrams_" + str(self.id) + ".pickle", 'rb') as outfile:
                     self.circuit_diagrams = pickle.load(outfile)
+                    self.training_circuits = self.circuit_diagrams["training"]
+                    self.test_circuits = self.circuit_diagrams["test"]
+                    self.validation_circuits = self.circuit_diagrams["validation"]
+                
+
+    def generate_pennylane_circuits(self):
+        self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits)
+        self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits)
+        self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits)
 
 
     def generate_cfg_diagrams(self):
@@ -140,19 +160,36 @@ class Circuits:
         self.generate_pregroup_diagrams()
         self.generate_capless_pregroup_diagrams()
         self.genereate_circuit_diagrams()
+        self.training_circuits = self.circuit_diagrams["training"]
+        self.test_circuits = self.circuit_diagrams["test"]
+        self.validation_circuits = self.circuit_diagrams["validation"]
 
 
     def get_cfg_diagrams(self):
         return self.cfg_diagrams
     
-
     def get_pregroup_diagrams(self):
         return self.pregroup_diagrams
     
-
     def get_capless_pregroup_diagrams(self):
         return self.capless_pregroup_diagrams
     
-
     def get_circuit_diagrams(self):
         return self.circuit_diagrams
+    
+    def select_circuits_with_data_point(self, training_data, validation_data, test_data):
+        # Because we did not get a data point for each query (limited excution time), 
+        # we need to remove the circuits that do not have a data point
+        # Select all those circuits whose key is in the training_data dictionary
+        self.training_circuits = {k: v for k, v in self.training_circuits.items() if k in training_data}
+        self.validation_circuits = {k: v for k, v in self.validation_circuits.items() if k in validation_data}
+        self.test_circuits = {k: v for k, v in self.test_circuits.items() if k in test_data}
+
+    def get_training_circuits(self):
+        return self.training_circuits
+    
+    def get_validation_circuits(self):
+        return self.validation_circuits
+    
+    def get_test_circuits(self):
+        return self.test_circuits

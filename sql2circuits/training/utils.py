@@ -2,9 +2,10 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-#from jax import numpy as np
-import numpy as np
+from jax import numpy as np
+#import numpy as np
 import sys
+import numpy
 #import covalent as ct
 
 np.set_printoptions(threshold=sys.maxsize)
@@ -16,7 +17,13 @@ def flatten(l):
 
 
 def get_symbols(circs):
-    return set([sym for circuit in circs.values() for sym in circuit.free_symbols])
+    if type(circs) == dict:
+        return set([sym for circuit in circs.values() for sym in circuit.free_symbols])
+    elif type(circs) == list:
+        syms = set()
+        for circuit in circs:
+            syms.update(circuit.free_symbols)
+        return syms
 
 
 def construct_data_and_labels(circuits, labels):
@@ -29,13 +36,34 @@ def construct_data_and_labels(circuits, labels):
     return circuits_l, data_labels_l
 
 
-def select_circuits(base_circuits, selected_circuits):
+def select_circuits(base_circuits, select_from_circuits, n_circuits = -1):
     res = {}
     syms = get_symbols(base_circuits)
-    for c in selected_circuits:
-        s_syms = set(selected_circuits[c].free_symbols)
+    for c in select_from_circuits:
+        s_syms = set(select_from_circuits[c].free_symbols)
         if s_syms.difference(syms) == set():
-            res[c] = selected_circuits[c]
+            res[c] = select_from_circuits[c]
+        if len(res) == n_circuits:
+            break
+    return res
+
+
+def select_pennylane_circuits(base_circuits, select_from_circuits, n_circuits = -1):
+    res = {}
+    syms = set()
+    for c in base_circuits:
+        for sym in base_circuits[c].get_param_symbols():
+            for s in sym:
+                syms.add(s)
+    for c in select_from_circuits:
+        s_syms = set()
+        for sym in select_from_circuits[c].get_param_symbols():
+            for s in sym:
+                s_syms.add(s)
+        if s_syms.difference(syms) == set():
+            res[c] = select_from_circuits[c]
+        if len(res) == n_circuits:
+            break
     return res
 
 
@@ -103,9 +131,13 @@ def create_labeled_training_classes(data, classification, workload):
     labeled_data = {}
     classes = []
     sorted_data = []
-    if workload == "execution_time":
+    if workload == "execution_time" or workload == "E":
+        if type(data) != list:
+            data = [{"id": k, "time": v} for k, v in data.items()]
         sorted_data = sorted(data, key=lambda d: d["time"])
-    elif workload == "cardinality":
+    elif workload == "cardinality" or workload == "C":
+        if type(data) != list:
+            data = data = [{"id": k, "cardinality": v} for k, v in data.items()]
         sorted_data = sorted(data, key=lambda d: d["cardinality"])
     chunk_size = math.ceil(len(sorted_data)/(2**classification))
     for i, clas in enumerate(chunks(sorted_data, chunk_size)):
@@ -115,11 +147,6 @@ def create_labeled_training_classes(data, classification, workload):
             classes.append((clas[0]["cardinality"], clas[-1]["cardinality"]))
         label = [0]*(2**classification)
         label[i] = 1
-        stats = []
-        if workload == "execution_time":
-            stats.append((clas[0]["time"], clas[-1]["time"]))
-        elif workload == "cardinality":
-            stats.append((clas[0]["cardinality"], clas[-1]["cardinality"]))
         for elem in clas:
             labeled_data[elem["id"]] = label
     return labeled_data, classes
@@ -132,8 +159,12 @@ def create_labeled_test_validation_classes(data, classes, workload):
     data_value = None
 
     if workload == "execution_time":
+        if type(data) != list:
+            data = [{"id": k, "time": v} for k, v in data.items()]
         sorted_data = sorted(data, key=lambda d: d["time"])
     elif workload == "cardinality":
+        if type(data) != list:
+            data = data = [{"id": k, "cardinality": v} for k, v in data.items()]
         sorted_data = sorted(data, key=lambda d: d["cardinality"])
     
     for elem in sorted_data:
@@ -149,10 +180,9 @@ def create_labeled_test_validation_classes(data, classes, workload):
         
         label = [0]*classification
         try:
-            label[index] = 1 # type: ignore
+            label[index] = 1
         except:
             label[-1] = 1
-            #print(data_value)
             
         labeled_data[elem["id"]] = label
     return labeled_data
@@ -180,19 +210,15 @@ def multi_class_acc(y_hat, y):
 
 
 def multi_class_loss(y_hat, y):
-    #global i
     total_loss = 0
     if len(y_hat) != len(y):
         raise Exception("Length of predictions and labels must be equal")
     for pair in zip(y_hat, y):
         x = np.array(pair[1])
-        y_pred = np.array(pair[0]).flatten()
-        #if i % 100 == 0:
-        #    print(y_pred, x)
-        if len(y_pred) != len(x):
+        y_pred = np.array(numpy.array(pair[0]).flatten())
+        if y_pred.size != x.size:
             raise Exception("Length of prediction and label vectors must be equal")
-        total_loss += -np.sum(x * np.log(y_pred)) / len(x)
-    #i+=1
+        total_loss += -np.sum(x * np.log(y_pred)) / x.size
     return total_loss
 
 
