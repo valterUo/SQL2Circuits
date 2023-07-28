@@ -1,1 +1,0 @@
-SELECT MIN(k.keyword) AS movie_keyword FROM keyword AS k, aka_title AS at, movie_keyword AS mk WHERE k.keyword IN ('superhero', 'sequel') AND mk.keyword_id = k.id AND mk.movie_id = at.movie_id;

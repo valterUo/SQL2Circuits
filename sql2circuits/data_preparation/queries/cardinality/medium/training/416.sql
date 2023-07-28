@@ -1,1 +1,0 @@
-SELECT n.name AS actor_name FROM cast_info AS ci, name AS n WHERE ci.note ='(voice: English version)' AND n.id = ci.person_id;

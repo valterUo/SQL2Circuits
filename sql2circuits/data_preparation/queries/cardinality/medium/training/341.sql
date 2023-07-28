@@ -1,1 +1,0 @@
-SELECT t.production_year AS movie_year FROM complete_cast AS cc, title AS t WHERE t.production_year > 2004 AND t.id = cc.movie_id;

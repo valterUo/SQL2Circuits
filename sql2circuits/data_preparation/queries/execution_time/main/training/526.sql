@@ -1,1 +1,0 @@
-SELECT MIN(cn.name) AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;

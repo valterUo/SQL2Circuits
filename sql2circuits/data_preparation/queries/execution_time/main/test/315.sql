@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.id = mc.movie_id;

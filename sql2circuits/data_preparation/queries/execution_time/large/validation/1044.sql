@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM movie_keyword AS mk, title AS t, kind_type AS kt WHERE kt.kind ='movie' AND kt.id = t.kind_id AND t.id = mk.movie_id;

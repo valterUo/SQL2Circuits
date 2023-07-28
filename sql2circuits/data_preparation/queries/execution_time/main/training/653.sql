@@ -1,1 +1,0 @@
-SELECT MIN(at.title) AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;

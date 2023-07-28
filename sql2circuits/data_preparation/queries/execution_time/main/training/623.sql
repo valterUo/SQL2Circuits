@@ -1,1 +1,0 @@
-SELECT MIN(mi.info) AS release_date FROM movie_info AS mi, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = mi.movie_id;

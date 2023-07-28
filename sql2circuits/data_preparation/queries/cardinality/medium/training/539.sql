@@ -1,1 +1,0 @@
-SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.info ='rating' AND it.id = mi.info_type_id;

@@ -1,1 +1,0 @@
-SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE mc.note LIKE '%(co-production)%' AND t.production_year < 2011 AND t.id = mc.movie_id;

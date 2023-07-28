@@ -1,1 +1,0 @@
-SELECT MIN(n.name) AS actor_name FROM aka_name AS an, name AS n, person_info AS pi WHERE n.gender='m' AND n.id = an.person_id AND pi.person_id = an.person_id;

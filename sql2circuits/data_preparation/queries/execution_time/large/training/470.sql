@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM movie_link AS ml, title AS t, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND t.id = mi.movie_id AND ml.movie_id = mi.movie_id;

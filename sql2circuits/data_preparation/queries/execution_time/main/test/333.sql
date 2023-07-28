@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM complete_cast AS cc, title AS t WHERE t.production_year < 2011 AND t.id = cc.movie_id;

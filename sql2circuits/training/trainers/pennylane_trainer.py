@@ -2,6 +2,7 @@
 
 import collections
 from jax import numpy as np
+import numpy
 #import numpy as np
 from discopy.quantum.pennylane import to_pennylane
 import pennylane as qml
@@ -71,8 +72,8 @@ def transform_into_pennylane_circuits(circuits):
 
 def post_selection(circuit_samples, n_qubits, post_selection):
     selected_samples = []
-    post_select_array = np.array([0]*(n_qubits - post_selection))
-    selected_samples = circuit_samples[np.all(circuit_samples[:, post_selection - 1 :-1] == post_select_array)]
+    post_select_array = numpy.array([0]*(n_qubits - post_selection))
+    selected_samples = circuit_samples[numpy.all(circuit_samples[:, post_selection - 1 :-1] == post_select_array, axis = 1)]
     return selected_samples[:, :post_selection].tolist()
 
 

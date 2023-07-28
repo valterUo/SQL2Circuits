@@ -1,1 +1,0 @@
-SELECT n.name AS actor_name FROM name AS n, person_info AS pi WHERE n.name LIKE 'B%' AND n.gender='m' AND n.id = pi.person_id;

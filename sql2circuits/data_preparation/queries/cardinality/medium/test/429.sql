@@ -1,1 +1,0 @@
-SELECT n.name AS actor_name FROM aka_name AS an, name AS n WHERE n.gender='m' AND n.gender='f' AND n.id = an.person_id;

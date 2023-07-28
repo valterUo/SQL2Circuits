@@ -1,1 +1,0 @@
-SELECT mi.info AS release_date FROM movie_info AS mi, title AS t WHERE t.production_year > 2004 AND t.id = mi.movie_id;

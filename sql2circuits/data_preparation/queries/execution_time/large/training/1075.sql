@@ -1,1 +1,0 @@
-SELECT MIN(chn.name) AS character_name FROM movie_link AS ml, cast_info AS ci, char_name AS chn WHERE chn.name = 'Queen' AND chn.id = ci.person_role_id AND ci.movie_id = ml.linked_movie_id;

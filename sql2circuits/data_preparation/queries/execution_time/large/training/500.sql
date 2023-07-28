@@ -1,1 +1,0 @@
-SELECT MIN(n.name) AS actor_name FROM movie_link AS ml, cast_info AS ci, name AS n WHERE n.gender='f' AND n.id = ci.person_id AND ci.movie_id = ml.linked_movie_id;

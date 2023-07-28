@@ -1,1 +1,0 @@
-SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;

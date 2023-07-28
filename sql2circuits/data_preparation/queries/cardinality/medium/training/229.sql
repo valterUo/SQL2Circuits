@@ -1,1 +1,0 @@
-SELECT mc.note AS production_note FROM movie_keyword AS mk, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND mc.movie_id = mk.movie_id;

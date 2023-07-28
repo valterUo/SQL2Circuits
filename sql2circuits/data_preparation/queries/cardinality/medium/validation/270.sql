@@ -1,1 +1,0 @@
-SELECT t.title AS movie_title FROM title AS t, kind_type AS kt WHERE t.production_year > 2004 AND kt.id = t.kind_id;

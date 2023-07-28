@@ -1,1 +1,0 @@
-SELECT mi.info AS release_date FROM movie_companies AS mc, movie_info AS mi WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.movie_id = mi.movie_id;

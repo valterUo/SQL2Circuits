@@ -11,7 +11,9 @@ Tensor.np = np
 #from pytket.extensions.cirq import CirqStateSampleBackend
 
 def make_lambeq_pred_fn(circuits, parameters, classification):
+
     circuit_fns = [circuit.lambdify(*parameters) for circuit in circuits]
+
     def predict(params):
         outputs = Circuit.eval(*(c(*params) for c in circuit_fns))
         res = []
@@ -22,17 +24,19 @@ def make_lambeq_pred_fn(circuits, parameters, classification):
             res.append(ratio)
             
         return np.array(res)
+    
     return predict
 
 
-def make_lambeq_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies, type):
+def make_lambeq_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies = None, type = None):
     
     def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
         cost = loss_fn(predictions, labels)
         accuracy = accuracy_fn(predictions, labels)
-        costs_accuracies.add_cost(cost, type)
-        costs_accuracies.add_accuracy(accuracy, type)
+        if costs_accuracies is not None and type is not None:
+            costs_accuracies.add_cost(cost, type)
+            costs_accuracies.add_accuracy(accuracy, type)
         return cost
 
     return cost_fn

@@ -39,12 +39,20 @@ def construct_data_and_labels(circuits, labels):
 def select_circuits(base_circuits, select_from_circuits, n_circuits = -1):
     res = {}
     syms = get_symbols(base_circuits)
-    for c in select_from_circuits:
-        s_syms = set(select_from_circuits[c].free_symbols)
-        if s_syms.difference(syms) == set():
-            res[c] = select_from_circuits[c]
-        if len(res) == n_circuits:
-            break
+    if type(select_from_circuits) == dict:
+        for c in select_from_circuits:
+            s_syms = set(select_from_circuits[c].free_symbols)
+            if s_syms.difference(syms) == set():
+                res[c] = select_from_circuits[c]
+            if len(res) == n_circuits:
+                break
+    elif type(select_from_circuits) == list:
+        for c in select_from_circuits:
+            s_syms = set(c.free_symbols)
+            if s_syms.difference(syms) == set():
+                res[c] = c
+            if len(res) == n_circuits:
+                break
     return res
 
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import itertools
 import warnings
 import json
 import os
@@ -15,7 +16,7 @@ from discopy.tensor import Tensor
 from sklearn.base import BaseEstimator
 
 from training.trainers.lambeq_trainer import make_lambeq_pred_fn, make_lambeq_cost_fn
-from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn, transform_into_pennylane_circuits
+from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
@@ -174,10 +175,9 @@ class SQL2CircuitsEstimator(BaseEstimator):
         test_cost_fn(self.result.x) # type: ignore
         test_accs = costs_accuracies.get_test_accs()
         self.store_and_log(i, { "test_accuracy": test_accs[0] }, self.result_file)
-        self.store_parameters(self.result.x) # type: ignore
     
 
-    def fit_with_lambeq_noisyopt(self, X, y, X_valid):
+    def fit_with_lambeq_noisyopt(self, X, y, X_valid, save_parameters = True):
 
         """for i, key in enumerate(self.all_training_keys[self.initial_number_of_circuits:]):
             print("Progress: ", round((i + self.initial_number_of_circuits)/len(self.all_training_keys), 3))
@@ -218,12 +218,16 @@ class SQL2CircuitsEstimator(BaseEstimator):
         if self.result == None or self.run % self.optimization_interval == 0 or i == len(self.all_training_keys[self.initial_number_of_circuits:]) - 1:"""
         
         training_circuits = [data[0] for data in X]
-        training_data_labels = [data[1] for data in X]
+        training_data_labels = y
 
         validation_circuits = [data[0] for data in X_valid]
         validation_data_labels = [data[1] for data in X_valid]
 
-        test_circuits = [data[0] for data in y]
+        current_validation_circuits = select_circuits(training_circuits, validation_circuits, len(training_circuits))
+        current_validation_labels = []
+
+        for circuit in current_validation_circuits:
+            current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
 
         syms = get_symbols(training_circuits)
         self.parameters = sorted(syms, key = default_sort_key)
@@ -232,13 +236,13 @@ class SQL2CircuitsEstimator(BaseEstimator):
         print(len(training_circuits), len(training_data_labels))
 
         train_pred_fn = jit(self.make_pred_fn(training_circuits, self.parameters, self.classification))
-        val_pred_fn = jit(self.make_pred_fn(validation_circuits, self.parameters, self.classification))
-        test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
+        val_pred_fn = jit(self.make_pred_fn(current_validation_circuits, self.parameters, self.classification))
+        #test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
 
         costs_accuracies = CostAccuracy()
 
         train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
-        dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, validation_data_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
+        dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
         callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
         
@@ -248,6 +252,8 @@ class SQL2CircuitsEstimator(BaseEstimator):
                                 c = self.c,
                                 niter = self.epochs,
                                 callback = callback_fn)
+        if save_parameters:
+            self.store_parameters(self.result.x)
                 
         """self.result = minimizeCompass(train_cost_fn, 
                                         x0 = self.init_params_spsa,
@@ -273,7 +279,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
             #self.parameters, self.init_params_spsa = self.initialize_parameters(self.parameters, self.result.x, new_parameters)
 
 
-    def fit_with_pennylane_noisyopt(self, X, y):
+    def fit_with_pennylane_noisyopt(self, X, y, X_valid, save_parameters = True):
         costs_accuracies = CostAccuracy()
 
         #self.training_circuits_limited = {}
@@ -291,12 +297,30 @@ class SQL2CircuitsEstimator(BaseEstimator):
         #validation_circuits_l, validation_data_labels_l = construct_data_and_labels(self.validation_circuits, self.validation_data_labels)
         #test_circuits_l, test_data_labels_l = construct_data_and_labels(self.test_circuits, self.test_data_labels)
 
-        train_pred_fn = jit(make_pennylane_pred_fn(training_circuits_l, self.train_symbols, self.classification))
-        dev_pred_fn = jit(make_pennylane_pred_fn(validation_circuits_l, self.val_symbols, self.classification))
+        training_circuits = [data[0] for data in X]
+        training_data_labels = y
+
+        validation_circuits = [data[0] for data in X_valid]
+        validation_data_labels = [data[1] for data in X_valid]
+
+        current_validation_circuits = select_circuits(training_circuits, validation_circuits, len(training_circuits))
+        current_validation_labels = []
+
+        for circuit in current_validation_circuits:
+            current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
+
+        syms = get_symbols(training_circuits)
+        self.parameters = sorted(syms, key = default_sort_key)
+        self.read_parameters()
+
+        print("Number of training circuits: ", len(training_circuits))
+
+        train_pred_fn = jit(make_pennylane_pred_fn(training_circuits, syms, self.classification))
+        dev_pred_fn = jit(make_pennylane_pred_fn(current_validation_circuits, syms, self.classification))
         #test_pred_fn = make_pennylane_pred_fn(test_circuits_l, self.test_symbols, self.classification)
         
-        train_cost_fn = make_pennylane_cost_fn(train_pred_fn, training_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "train")
-        dev_cost_fn = make_pennylane_cost_fn(dev_pred_fn, validation_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "dev")
+        train_cost_fn = make_pennylane_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
+        dev_cost_fn = make_pennylane_cost_fn(dev_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
         callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
         
@@ -307,36 +331,36 @@ class SQL2CircuitsEstimator(BaseEstimator):
                                    niter = self.epochs,
                                    callback = callback_fn)
         
+        if save_parameters:
+            self.store_parameters(self.result.x)
+        
         #self.visualize_result(0, costs_accuracies)
         #self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
 
 
-    def predict_with_pennylane_noisyopt(self, X):
-        predict_fun = make_pennylane_pred_fn([X], [], self.classification)
-        return predict_fun(self.result.x)
-    
-
-    def predict_with_lambeq_noisyopt(self, X):
-        predict_fun = make_lambeq_pred_fn([X], self.parameters, self.classification)
-        return predict_fun(self.result.x)
-
-
     def fit(self, X, y, **kwargs):
         """
+        
+        This method is called by the scikit-learn BayesSearchCV class
+        which is used to optimize hyperparameters a and c in SPSA algorithm.
+
         Parameters
         X       array-like of shape (n_samples, n_features)
         y       array-like of shape (n_samples,)
         kwargs  optional data-dependent parameters
+
         """
         if self.optimization_method == "SPSA":
-            self.fit_with_lambeq_noisyopt(X, y, X_valid = kwargs["X_valid"])
+            self.fit_with_lambeq_noisyopt(X, y, X_valid = kwargs["X_valid"], save_parameters = False)
         elif self.optimization_method == "PennyLane":
-            self.fit_with_pennylane_noisyopt(X, y, X_valid = kwargs["X_valid"])
+            self.fit_with_pennylane_noisyopt(X, y, X_valid = kwargs["X_valid"], save_parameters = False)
         return self
-    
 
-    def predict(self, X):
-        if self.optimization_method == "SPSA":
-            return self.predict_with_lambeq_noisyopt(X)
-        elif self.optimization_method == "PennyLane":
-            return self.predict_with_pennylane_noisyopt(X)
+
+    def score(self, X, y):
+        circuits = [item for sublist in X for item in sublist]
+        predict_fun_for_score = make_lambeq_pred_fn(circuits, self.parameters, self.classification)
+        cost_for_score = make_lambeq_cost_fn(predict_fun_for_score, y, self.loss_function, self.accuracy)
+        score_cost = cost_for_score(self.result.x)
+        print("Score cost: ", score_cost)
+        return score_cost

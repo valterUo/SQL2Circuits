@@ -1,1 +1,0 @@
-SELECT MIN(lt.link) AS movie_link_type FROM movie_link AS ml, link_type AS lt, title AS t WHERE lt.link ='features' AND lt.id = ml.link_type_id AND ml.linked_movie_id = t.id;

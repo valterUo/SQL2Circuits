@@ -1,1 +1,0 @@
-SELECT MIN(mc.note) AS production_note FROM cast_info AS ci, movie_companies AS mc, title AS t WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ci.movie_id = mc.movie_id AND t.id = ci.movie_id;

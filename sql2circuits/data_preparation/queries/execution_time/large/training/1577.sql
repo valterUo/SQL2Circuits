@@ -1,1 +1,0 @@
-SELECT MIN(t.title) AS movie_title FROM movie_link AS ml, cast_info AS ci, title AS t WHERE t.production_year < 2011 AND ml.movie_id = t.id AND ci.movie_id = ml.linked_movie_id;

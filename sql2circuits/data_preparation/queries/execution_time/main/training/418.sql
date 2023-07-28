@@ -1,1 +1,0 @@
-SELECT MIN(t.production_year) AS movie_year FROM movie_companies AS mc, title AS t WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND t.id = mc.movie_id;

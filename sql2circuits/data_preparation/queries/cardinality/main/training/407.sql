@@ -1,1 +1,0 @@
-SELECT t.production_year AS movie_year FROM title AS t, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND t.id = mi.movie_id;

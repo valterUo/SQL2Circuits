@@ -1,1 +1,0 @@
-SELECT t.production_year AS movie_year FROM title AS t, kind_type AS kt WHERE kt.kind ='movie' AND kt.id = t.kind_id;

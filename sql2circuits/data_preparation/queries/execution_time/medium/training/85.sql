@@ -1,1 +1,0 @@
-SELECT MIN(t.production_year) AS movie_year FROM title AS t, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND t.id = mc.movie_id;

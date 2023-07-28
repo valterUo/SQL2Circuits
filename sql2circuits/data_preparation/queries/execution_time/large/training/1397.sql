@@ -1,1 +1,0 @@
-SELECT MIN(an.name) AS actress_pseudonym FROM aka_name AS an, person_info AS pi WHERE an.name LIKE '%a%' AND pi.person_id = an.person_id;

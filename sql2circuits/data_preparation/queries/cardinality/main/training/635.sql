@@ -1,1 +1,0 @@
-SELECT mi.info AS release_date FROM cast_info AS ci, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND ci.note ='(voice: English version)' AND ci.movie_id = mi.movie_id;

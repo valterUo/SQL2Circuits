@@ -1,1 +1,0 @@
-SELECT MIN(mi.info) AS release_date FROM movie_info AS mi, title AS t WHERE mi.info IN ('Sweden', 'USA', 'German') AND t.id = mi.movie_id;

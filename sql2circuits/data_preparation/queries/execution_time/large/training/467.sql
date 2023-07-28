@@ -1,1 +1,0 @@
-SELECT MIN(chn.name) AS character_name FROM cast_info AS ci, title AS t, char_name AS chn WHERE ci.note ='(voice: English version)' AND chn.id = ci.person_role_id AND t.id = ci.movie_id;

@@ -1,1 +1,0 @@
-SELECT n.name AS actor_name FROM name AS n, person_info AS pi WHERE n.gender='m' AND pi.note ='Volker Boehm' AND n.id = pi.person_id;
