@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import itertools
 import warnings
-import json
 import os
 from jax import numpy as np
 #import numpy as np
 from sympy import default_sort_key
 import numpy
 from jax import jit
-from noisyopt import minimizeSPSA, minimizeCompass
+from noisyopt import minimizeSPSA
 from training.cost_accuracy import CostAccuracy
 from training.utils import *
 from discopy.tensor import Tensor
@@ -34,12 +32,12 @@ numpy.random.seed(SEED)
 class SQL2CircuitsEstimator(BaseEstimator):
 
     def __init__(self, 
-                 id, 
-                 workload = "execution_time", 
-                 classification = 2, 
-                 a = 0.01, 
-                 c = 0.01, 
-                 optimization_method = "SPSA", 
+                 id,
+                 workload, 
+                 classification, 
+                 a, 
+                 c, 
+                 optimization_method, 
                  epochs = 1000, 
                  plot_results = True):
         self.id = id
@@ -67,7 +65,6 @@ class SQL2CircuitsEstimator(BaseEstimator):
             os.makedirs("training//results//" + str(self.id))
 
         self.result_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_result.json"
-        self.stats_circuits_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_stats_circuits_level.json"
         self.stats_iter_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_stats_iteration_level.json"
         self.hyperparameters_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_hyperparameters.json"
 
@@ -81,7 +78,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
                 "optimization_medthod": self.optimization_method
             }
         
-        self.store_and_log("hyperparameters", hyperparameters, self.hyperparameters_file)
+        store_and_log("hyperparameters", hyperparameters, self.hyperparameters_file)
     
 
     def store_parameters(self, params):
@@ -91,15 +88,26 @@ class SQL2CircuitsEstimator(BaseEstimator):
         print("Storing parameters in file " + stored_parameters)
     
 
-    def read_parameters(self):
+    def read_parameters(self, circuits):
+        syms = get_symbols(circuits)
+        new_params = sorted(syms, key = default_sort_key)
         stored_parameters = "training//checkpoints//" + str(self.id) + ".npz"
         if os.path.exists(stored_parameters):
             with open(stored_parameters, "rb") as f:
-                npzfile = np.load(f)
-                self.init_params_spsa = npzfile['arr_0'] # type: ignore
+                npzfile = np.load(f, allow_pickle=True)
+                old_params = npzfile['arr_0'] # type: ignore
                 print("Loading parameters from file " + stored_parameters)
+                self.parameters = sorted(set(list(old_params.keys()) + new_params), key = default_sort_key)
+                values = []
+                for p in self.parameters:
+                    if p in old_params:
+                        values.append(old_params[p])
+                    else:
+                        values.append(rng.random())
+                self.init_params_spsa = values
         else:
             print("Initializing new parameters")
+            self.parameters = new_params
             self.init_params_spsa = np.array(rng.random(len(self.parameters)))
 
 
@@ -134,27 +142,9 @@ class SQL2CircuitsEstimator(BaseEstimator):
                             "train/acc": train_acc, 
                             "valid/loss": valid_loss, 
                             "valid/acc": valid_acc}
-                self.store_and_log(iters, stats_data, self.stats_iter_file)
+                store_and_log(iters, stats_data, self.stats_iter_file)
             return valid_loss
         return callback_fn
-    
-
-    def store_and_log(self, iteration, data, file):
-        info = ""
-        for k, v in data.items():
-            info += k + ": " + str(v) + "\n"
-        print(info, file = sys.stderr)
-
-        current_data = data
-        if os.path.exists(file):
-            with open(file, 'r') as f:
-                current_data = json.load(f)
-            current_data[iteration] = data
-            with open(file, 'w') as f:
-                json.dump(current_data, f, indent = 4)
-        else:
-            with open(file, 'w') as f:
-                json.dump({str(iteration) : current_data}, f, indent = 4)
 
 
     def visualize_result(self, i, costs_accuracies):
@@ -174,49 +164,10 @@ class SQL2CircuitsEstimator(BaseEstimator):
             test_cost_fn = make_pennylane_cost_fn(test_pred_fn, test_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "test")
         test_cost_fn(self.result.x) # type: ignore
         test_accs = costs_accuracies.get_test_accs()
-        self.store_and_log(i, { "test_accuracy": test_accs[0] }, self.result_file)
+        store_and_log(i, { "test_accuracy": test_accs[0] }, self.result_file)
     
 
     def fit_with_lambeq_noisyopt(self, X, y, X_valid, save_parameters = True):
-
-        """for i, key in enumerate(self.all_training_keys[self.initial_number_of_circuits:]):
-            print("Progress: ", round((i + self.initial_number_of_circuits)/len(self.all_training_keys), 3))
-            
-            if len(self.syms) == len(get_symbols(self.current_training_circuits)) and i > 0:
-                if i != len(self.all_training_keys[1:]):
-                    self.current_training_circuits[key] = self.training_circuits[key]
-                    new_parameters = sorted(get_symbols({ key: self.training_circuits[key] }), key = default_sort_key)
-                    if self.result:
-                        self.parameters, self.init_params_spsa = self.initialize_parameters(self.parameters, self.result.x, new_parameters)
-                    else:
-                        self.syms = get_symbols(self.current_training_circuits)
-                        self.parameters = sorted(self.syms, key=default_sort_key)
-                        self.init_params_spsa = np.array(rng.random(len(self.parameters)))
-            else:
-                self.run += 1
-            
-            # Select those circuits from test and validation circuits which share the parameters with the current training circuits
-            current_validation_circuits = select_circuits(self.current_training_circuits, self.validation_circuits)
-            current_test_circuits = select_circuits(self.current_training_circuits, self.test_circuits)
-            
-            if len(current_validation_circuits) == 0 or len(current_test_circuits) == 0:
-                continue
-            
-            # Create lists with circuits and their corresponding label
-            training_circuits_l, training_data_labels_l = construct_data_and_labels(self.current_training_circuits, self.training_data_labels)
-            validation_circuits_l, validation_data_labels_l = construct_data_and_labels(current_validation_circuits, self.validation_data_labels)
-            test_circuits_l, test_data_labels_l = construct_data_and_labels(current_test_circuits, self.test_data_labels)
-
-        self.stats[i] = {"number_of_training_circuits": len(training_circuits_l), 
-                            "number_of_validation_circuits": len(validation_circuits_l), 
-                            "number_of_test_circuits": len(test_circuits_l), 
-                            "number_of_parameters_in_model": len(set([sym for circuit in training_circuits_l for sym in circuit.free_symbols]))}
-        
-        self.store_and_log(i, self.stats[i], self.stats_circuits_file)
-        
-        # Train if there is no result yet or if the optimization interval is reached or if this is the last circuit
-        if self.result == None or self.run % self.optimization_interval == 0 or i == len(self.all_training_keys[self.initial_number_of_circuits:]) - 1:"""
-        
         training_circuits = [data[0] for data in X]
         training_data_labels = y
 
@@ -229,9 +180,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
         for circuit in current_validation_circuits:
             current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
 
-        syms = get_symbols(training_circuits)
-        self.parameters = sorted(syms, key = default_sort_key)
-        self.read_parameters()
+        self.read_parameters(training_circuits)
 
         print(len(training_circuits), len(training_data_labels))
 
@@ -252,50 +201,18 @@ class SQL2CircuitsEstimator(BaseEstimator):
                                 c = self.c,
                                 niter = self.epochs,
                                 callback = callback_fn)
+        
         if save_parameters:
-            self.store_parameters(self.result.x)
+            print("Store parameters: ", len(self.parameters), len(self.result.x))
+            old_params = dict(zip(self.parameters, self.result.x))
+            self.store_parameters(old_params)
                 
-        """self.result = minimizeCompass(train_cost_fn, 
-                                        x0 = self.init_params_spsa,
-                                        redfactor=2.0, 
-                                        deltainit=1.0, 
-                                        deltatol=0.001, 
-                                        feps=1e-15, 
-                                        errorcontrol=True, 
-                                        funcNinit=30, 
-                                        funcmultfactor=2.0, 
-                                        paired=True, 
-                                        alpha=0.05, 
-                                        callback=callback_fn)"""
-                
-                #self.visualize_result(0, costs_accuracies)
-                #self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
-            
-            # Extend for the next optimization round
-            #self.run += 1
-            #self.syms = get_symbols(self.current_training_circuits)
-            #self.current_training_circuits[key] = self.training_circuits[key]
-            #new_parameters = sorted(get_symbols({key: self.training_circuits[key]}), key = default_sort_key)
-            #self.parameters, self.init_params_spsa = self.initialize_parameters(self.parameters, self.result.x, new_parameters)
+        #self.visualize_result(0, costs_accuracies)
+        #self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
 
 
     def fit_with_pennylane_noisyopt(self, X, y, X_valid, save_parameters = True):
         costs_accuracies = CostAccuracy()
-
-        #self.training_circuits_limited = {}
-        #for key in self.all_training_keys[:10]:
-        #    self.training_circuits_limited[key] = self.training_circuits[key]
-
-         # Select those circuits from test and validation circuits which share the parameters with the current training circuits
-        #validation_circuits_limited = select_pennylane_circuits(self.training_circuits_limited, self.validation_circuits, 10)
-        #test_circuits_limited = select_pennylane_circuits(self.training_circuits_limited, self.test_circuits, 10)
-
-        #self.validation_circuits = validation_circuits_limited
-        #self.test_circuits = test_circuits_limited
-
-        #training_circuits_l, training_data_labels_l = construct_data_and_labels(self.training_circuits, self.training_data_labels)
-        #validation_circuits_l, validation_data_labels_l = construct_data_and_labels(self.validation_circuits, self.validation_data_labels)
-        #test_circuits_l, test_data_labels_l = construct_data_and_labels(self.test_circuits, self.test_data_labels)
 
         training_circuits = [data[0] for data in X]
         training_data_labels = y
@@ -309,14 +226,12 @@ class SQL2CircuitsEstimator(BaseEstimator):
         for circuit in current_validation_circuits:
             current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
 
-        syms = get_symbols(training_circuits)
-        self.parameters = sorted(syms, key = default_sort_key)
-        self.read_parameters()
+        self.read_parameters(training_circuits)
 
         print("Number of training circuits: ", len(training_circuits))
 
-        train_pred_fn = jit(make_pennylane_pred_fn(training_circuits, syms, self.classification))
-        dev_pred_fn = jit(make_pennylane_pred_fn(current_validation_circuits, syms, self.classification))
+        train_pred_fn = jit(make_pennylane_pred_fn(training_circuits, self.parameters, self.classification))
+        dev_pred_fn = jit(make_pennylane_pred_fn(current_validation_circuits, self.parameters, self.classification))
         #test_pred_fn = make_pennylane_pred_fn(test_circuits_l, self.test_symbols, self.classification)
         
         train_cost_fn = make_pennylane_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")

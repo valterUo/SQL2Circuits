@@ -1,3 +1,5 @@
+import json
+import os
 from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
@@ -246,3 +248,21 @@ def loss_from_dict(dict_predictions, dict_labels):
         y_pred = np.array(dict_predictions[query_id]).flatten()
         total_loss += -np.sum(x * np.log(y_pred)) / len(x)
     return total_loss
+
+
+def store_and_log(iteration, data, file):
+    info = ""
+    for k, v in data.items():
+        info += k + ": " + str(v) + "\n"
+    print(info, file = sys.stderr)
+
+    current_data = data
+    if os.path.exists(file):
+        with open(file, 'r') as f:
+            current_data = json.load(f)
+        current_data[iteration] = data
+        with open(file, 'w') as f:
+            json.dump(current_data, f, indent = 4)
+    else:
+        with open(file, 'w') as f:
+            json.dump({str(iteration) : current_data}, f, indent = 4)
