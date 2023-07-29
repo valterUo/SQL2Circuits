@@ -35,9 +35,9 @@ class SQL2CircuitsEstimator(BaseEstimator):
                  id,
                  workload, 
                  classification, 
+                 optimization_method,
                  a, 
                  c, 
-                 optimization_method, 
                  epochs = 1000, 
                  plot_results = True):
         self.id = id
@@ -168,23 +168,23 @@ class SQL2CircuitsEstimator(BaseEstimator):
     
 
     def fit_with_lambeq_noisyopt(self, X, y, X_valid, save_parameters = True):
-        training_circuits = [data[0] for data in X]
+        self.training_circuits = [data[0] for data in X]
         training_data_labels = y
 
         validation_circuits = [data[0] for data in X_valid]
         validation_data_labels = [data[1] for data in X_valid]
 
-        current_validation_circuits = select_circuits(training_circuits, validation_circuits, len(training_circuits))
+        current_validation_circuits = select_circuits(self.training_circuits, validation_circuits, len(self.training_circuits))
         current_validation_labels = []
 
         for circuit in current_validation_circuits:
             current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
 
-        self.read_parameters(training_circuits)
+        self.read_parameters(self.training_circuits)
 
-        print(len(training_circuits), len(training_data_labels))
+        print(len(self.training_circuits), len(training_data_labels))
 
-        train_pred_fn = jit(self.make_pred_fn(training_circuits, self.parameters, self.classification))
+        train_pred_fn = jit(self.make_pred_fn(self.training_circuits, self.parameters, self.classification))
         val_pred_fn = jit(self.make_pred_fn(current_validation_circuits, self.parameters, self.classification))
         #test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
 
@@ -274,7 +274,8 @@ class SQL2CircuitsEstimator(BaseEstimator):
 
     def score(self, X, y):
         circuits = [item for sublist in X for item in sublist]
-        predict_fun_for_score = make_lambeq_pred_fn(circuits, self.parameters, self.classification)
+        fixed_circuits = select_circuits(self.training_circuits, circuits)
+        predict_fun_for_score = make_lambeq_pred_fn(fixed_circuits, self.parameters, self.classification)
         cost_for_score = make_lambeq_cost_fn(predict_fun_for_score, y, self.loss_function, self.accuracy)
         score_cost = cost_for_score(self.result.x)
         print("Score cost: ", score_cost)

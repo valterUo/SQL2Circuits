@@ -1,9 +1,9 @@
 {
     "hyperparameters": {
         "id": 1,
-        "a": 0.001,
-        "c": 0.001,
-        "epochs": 1000,
+        "a": 0.01,
+        "c": 0.01,
+        "epochs": 500,
         "classification": 4,
         "workload": "cardinality",
         "optimization_medthod": "SPSA"
