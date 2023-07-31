@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import collections
-from jax import numpy as np
+import multiprocessing
+#from jax import numpy as np
 import numpy
-#import numpy as np
+import numpy as np
 from discopy.quantum.pennylane import to_pennylane
 import pennylane as qml
 from sympy.core.symbol import Symbol
@@ -12,6 +13,8 @@ from discopy.quantum.pennylane import to_pennylane
 from QNodeCollection import QNodeCollection
 import concurrent.futures
 
+from training.utils import get_symbols
+
 class PennylaneCircuit:
 
     def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols) -> None:
@@ -19,25 +22,28 @@ class PennylaneCircuit:
         self.params = params
         self.pennylane_wires = pennylane_wires
         self.n_qubits = n_qubits
+        self.dev = qml.device("default.qubit", wires=range(n_qubits), shots=10000)
         self.param_symbols = param_symbols
         self.symbol_to_index = symbol_to_index
-        self.dev = qml.device("lightning.qubit", wires=range(n_qubits), shots=10000)
         self.symbols = symbols
 
-        @qml.qnode(self.dev)
-        def qml_circuit(circ_params):
-            for op, param, wires in zip(self.ops, self.param_symbols, self.pennylane_wires):
-                if len(param) > 0:
-                    param = param[0]
-                    op(circ_params[self.symbol_to_index[param]], wires = wires)
-                else:
-                    op(wires = wires)
-            return qml.sample()
+    #@qml.qnode(self.dev)
+    def qml_circuit(self, circ_params):
+        for op, param, wires in zip(self.ops, self.param_symbols, self.pennylane_wires):
+            if len(param) > 0:
+                param = param[0]
+                #print(circ_params)
+                #print(self.symbol_to_index)
+                op(circ_params[self.symbol_to_index[param]], wires = wires)
+            else:
+                op(wires = wires)
+        return qml.sample()
         
-        self.qml_circuit = qml_circuit
+        #self.qml_circuit = qml_circuit
 
     def get_QNode(self):
-        return self.qml_circuit
+        return qml.QNode(self.qml_circuit, self.dev)
+        #return self.qml_circuit
     
     def get_n_qubits(self):
         return self.n_qubits
@@ -62,8 +68,13 @@ def transform_into_pennylane_circuits(circuits):
         symbol_to_index = {}
 
         for sym in param_symbols:
+            #print(sym)
             if len(sym) > 0:
                 symbol_to_index[sym[0]] = symbols.index(sym[0])
+        
+        #for sym in symbol_to_index:
+        #    print(sym)
+        #    print(symbol_to_index[sym])
 
         qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols)
 
@@ -125,25 +136,15 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
             for future in concurrent.futures.as_completed(futures):
                 predictions.append(future.result())
         return predictions
-
-
-    def predict_circuit(circuit, params, n_qubits, classification):
-        measurement = circuit(params)
-        post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
-        post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
-        counts = collections.Counter(post_selected_samples)
-        if len(post_selected_samples) == 0:
-            return [1] + [1e-9]*(2**classification - 1)
-        try:
-            predicted = counts.most_common(1)[0][0]
-            binary_string = ''.join(str(bit) for bit in predicted[::-1])
-            binary_int = int(binary_string, 2)
-            result = [1e-9]*2**classification
-            result[binary_int] = 1
-            return result
-        except:
-            return [1] + [1e-9]*(2**classification - 1)
     
+
+    def predict_parallel(params):        
+        args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
+
+        with multiprocessing.Pool(processes=15) as pool:
+            results = pool.starmap(predict_circuit, args)
+
+        return results
     
 
     def predict_new(params):
@@ -169,7 +170,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
                 predictions.append([1] + [1e-9]*(2**classification - 1))
         return predictions
 
-    return predict
+    return predict_parallel
 
 
 def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies, type):
@@ -183,3 +184,27 @@ def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuraci
         return cost
 
     return cost_fn
+
+
+def predict_circuit(circuit, params, n_qubits, classification):
+        measurement = circuit(params)
+        post_selected_samples = post_selection(numpy.array(measurement), n_qubits, classification)
+        post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+        counts = collections.Counter(post_selected_samples)
+        if len(post_selected_samples) == 0:
+            return [1] + [1e-9]*(2**classification - 1)
+            #queue.put([1] + [1e-9]*(2**classification - 1))
+        try:
+            predicted = counts.most_common(1)[0][0]
+            binary_string = ''.join(str(bit) for bit in predicted[::-1])
+            binary_int = int(binary_string, 2)
+            result = [1e-9]*2**classification
+            result[binary_int] = 1
+            return result
+            #queue.put(result)
+        except:
+            return [1] + [1e-9]*(2**classification - 1)
+            #queue.put([1] + [1e-9]*(2**classification - 1))
+
+def init_cuda():
+    qml.device('default.qubit', wires=2)

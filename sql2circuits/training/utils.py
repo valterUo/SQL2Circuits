@@ -4,14 +4,22 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-from jax import numpy as np
-#import numpy as np
+#from jax import numpy as np
+import numpy as np
 import sys
 import numpy
 #import covalent as ct
 
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
+
+def get_element(obj, index):
+    if isinstance(obj, list):
+        return obj[index]
+    elif isinstance(obj, dict):
+        return obj[list(obj.keys())[index]]
+    else:
+        raise TypeError("Object must be a list or a dictionary")
 
 
 def flatten(l):
@@ -61,19 +69,36 @@ def select_circuits(base_circuits, select_from_circuits, n_circuits = -1):
 def select_pennylane_circuits(base_circuits, select_from_circuits, n_circuits = -1):
     res = {}
     syms = set()
-    for c in base_circuits:
-        for sym in base_circuits[c].get_param_symbols():
-            for s in sym:
-                syms.add(s)
-    for c in select_from_circuits:
-        s_syms = set()
-        for sym in select_from_circuits[c].get_param_symbols():
-            for s in sym:
-                s_syms.add(s)
-        if s_syms.difference(syms) == set():
-            res[c] = select_from_circuits[c]
-        if len(res) == n_circuits:
-            break
+    if type(base_circuits) == dict:
+        for c in base_circuits:
+            for sym in base_circuits[c].get_param_symbols():
+                for s in sym:
+                    syms.add(s)
+    elif type(base_circuits) == list:
+        for c in base_circuits:
+            for sym in c.get_param_symbols():
+                for s in sym:
+                    syms.add(s)
+    if type(select_from_circuits) == dict:
+        for c in select_from_circuits:
+            s_syms = set()
+            for sym in select_from_circuits[c].get_param_symbols():
+                for s in sym:
+                    s_syms.add(s)
+            if s_syms.difference(syms) == set():
+                res[c] = select_from_circuits[c]
+            if len(res) == n_circuits:
+                break
+    elif type(select_from_circuits) == list:
+        for c in select_from_circuits:
+            s_syms = set()
+            for sym in c.get_param_symbols():
+                for s in sym:
+                    s_syms.add(s)
+            if s_syms.difference(syms) == set():
+                res[c] = c
+            if len(res) == n_circuits:
+                break
     return res
 
 

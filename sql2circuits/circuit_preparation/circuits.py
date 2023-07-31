@@ -193,3 +193,21 @@ class Circuits:
     
     def get_test_circuits(self):
         return self.test_circuits
+    
+    def get_qml_training_circuits(self):
+        return self.qml_training_circuits
+    
+    def get_qml_validation_circuits(self):
+        return self.qml_validation_circuits
+    
+    def get_qml_test_circuits(self):
+        return self.qml_test_circuits
+    
+    def get_qml_train_symbols(self):
+        return self.qml_train_symbols
+    
+    def get_qml_val_symbols(self):
+        return self.qml_val_symbols
+    
+    def get_qml_test_symbols(self):
+        return self.qml_test_symbols

@@ -2,12 +2,12 @@
 
 import itertools
 
-from training.utils import construct_data_and_labels, select_circuits, store_and_log
+from training.utils import construct_data_and_labels, select_circuits, store_and_log, select_pennylane_circuits
 
 
 class SampleFeaturePreparator:
 
-    def __init__(self, id, data_preparator, circuits, number_of_circuits):
+    def __init__(self, id, data_preparator, circuits, number_of_circuits, optimization_method):
         self.id = id
         self.stats_circuits_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_stats_circuits_level.json"
         training_data = data_preparator.get_training_data()
@@ -25,13 +25,23 @@ class SampleFeaturePreparator:
         validation_circuits = circuits.get_validation_circuits()
         test_circuits = circuits.get_test_circuits()
 
+        if optimization_method == "pennylane":
+            circuits.generate_pennylane_circuits()
+            training_circuits = circuits.get_qml_training_circuits()
+            validation_circuits = circuits.get_qml_validation_circuits()
+            test_circuits = circuits.get_qml_test_circuits()
+
         if number_of_circuits == "all":
             number_of_circuits = len(training_circuits)
 
         # Select the first circuits
         self.current_training_circuits = dict(itertools.islice(training_circuits.items(), number_of_circuits))
-        self.current_validation_circuits = select_circuits(self.current_training_circuits, validation_circuits, number_of_circuits)
-        self.current_test_circuits = select_circuits(self.current_training_circuits, test_circuits, number_of_circuits)
+        if optimization_method == "pennylane":
+            self.current_validation_circuits = select_pennylane_circuits(self.current_training_circuits, validation_circuits, number_of_circuits)
+            self.current_test_circuits = select_pennylane_circuits(self.current_training_circuits, test_circuits, number_of_circuits)
+        else:
+            self.current_validation_circuits = select_circuits(self.current_training_circuits, validation_circuits, number_of_circuits)
+            self.current_test_circuits = select_circuits(self.current_training_circuits, test_circuits, number_of_circuits)
 
         # Construct the data and labels for the training, validation and test circuits
         training_circuits_X, training_labels_y = construct_data_and_labels(self.current_training_circuits, training_classes)

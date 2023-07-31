@@ -2,16 +2,17 @@
 
 import warnings
 import os
-from jax import numpy as np
-#import numpy as np
+#from jax import numpy as np
+import numpy as np
 from sympy import default_sort_key
 import numpy
-from jax import jit
+#from jax import jit
 from noisyopt import minimizeSPSA
 from training.cost_accuracy import CostAccuracy
 from training.utils import *
 from discopy.tensor import Tensor
 from sklearn.base import BaseEstimator
+from discopy.quantum.circuit import Circuit
 
 from training.trainers.lambeq_trainer import make_lambeq_pred_fn, make_lambeq_cost_fn
 from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn
@@ -49,10 +50,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
         self.c = c
         self.optimization_method = optimization_method
         self.epochs = epochs
-        self.run = 0
         self.result = None
-        self.make_pred_fn = make_lambeq_pred_fn
-        self.make_cost_fn = make_lambeq_cost_fn
         self.loss_function = multi_class_loss
         self.accuracy = multi_class_acc
 
@@ -89,7 +87,14 @@ class SQL2CircuitsEstimator(BaseEstimator):
     
 
     def read_parameters(self, circuits):
-        syms = get_symbols(circuits)
+        syms = set()
+        if type(get_element(circuits, 0)) == Circuit:
+            syms = get_symbols(circuits)
+        else:
+            for circ in circuits:
+                for symbols in circ.get_param_symbols():
+                    for sym in symbols:
+                        syms.add(sym)
         new_params = sorted(syms, key = default_sort_key)
         stored_parameters = "training//checkpoints//" + str(self.id) + ".npz"
         if os.path.exists(stored_parameters):
@@ -108,6 +113,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
         else:
             print("Initializing new parameters")
             self.parameters = new_params
+            print(len(new_params))
             self.init_params_spsa = np.array(rng.random(len(self.parameters)))
 
 
@@ -176,7 +182,6 @@ class SQL2CircuitsEstimator(BaseEstimator):
 
         current_validation_circuits = select_circuits(self.training_circuits, validation_circuits, len(self.training_circuits))
         current_validation_labels = []
-
         for circuit in current_validation_circuits:
             current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
 
@@ -184,14 +189,14 @@ class SQL2CircuitsEstimator(BaseEstimator):
 
         print(len(self.training_circuits), len(training_data_labels))
 
-        train_pred_fn = jit(self.make_pred_fn(self.training_circuits, self.parameters, self.classification))
-        val_pred_fn = jit(self.make_pred_fn(current_validation_circuits, self.parameters, self.classification))
+        train_pred_fn = make_lambeq_pred_fn(self.training_circuits, self.parameters, self.classification)
+        val_pred_fn = make_lambeq_pred_fn(current_validation_circuits, self.parameters, self.classification)
         #test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
 
         costs_accuracies = CostAccuracy()
 
-        train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
-        dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
+        train_cost_fn = jit(make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train"))
+        dev_cost_fn = jit(make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev"))
 
         callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
         
@@ -220,9 +225,8 @@ class SQL2CircuitsEstimator(BaseEstimator):
         validation_circuits = [data[0] for data in X_valid]
         validation_data_labels = [data[1] for data in X_valid]
 
-        current_validation_circuits = select_circuits(training_circuits, validation_circuits, len(training_circuits))
+        current_validation_circuits = select_pennylane_circuits(training_circuits, validation_circuits, len(training_circuits))
         current_validation_labels = []
-
         for circuit in current_validation_circuits:
             current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
 
@@ -230,8 +234,9 @@ class SQL2CircuitsEstimator(BaseEstimator):
 
         print("Number of training circuits: ", len(training_circuits))
 
-        train_pred_fn = jit(make_pennylane_pred_fn(training_circuits, self.parameters, self.classification))
-        dev_pred_fn = jit(make_pennylane_pred_fn(current_validation_circuits, self.parameters, self.classification))
+        train_pred_fn = make_pennylane_pred_fn(training_circuits, self.parameters, self.classification)
+        print("Number of current validation circuits: ", len(current_validation_circuits))
+        dev_pred_fn = make_pennylane_pred_fn(current_validation_circuits, self.parameters, self.classification)
         #test_pred_fn = make_pennylane_pred_fn(test_circuits_l, self.test_symbols, self.classification)
         
         train_cost_fn = make_pennylane_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
@@ -274,8 +279,9 @@ class SQL2CircuitsEstimator(BaseEstimator):
 
     def score(self, X, y):
         circuits = [item for sublist in X for item in sublist]
-        fixed_circuits = select_circuits(self.training_circuits, circuits)
-        predict_fun_for_score = make_lambeq_pred_fn(fixed_circuits, self.parameters, self.classification)
+        accepted_circuits = select_circuits(self.training_circuits, circuits)
+        print("Number of circuits: ", len(circuits), "Number of accepted circuits: ", len(accepted_circuits))
+        predict_fun_for_score = make_lambeq_pred_fn(accepted_circuits, self.parameters, self.classification)
         cost_for_score = make_lambeq_cost_fn(predict_fun_for_score, y, self.loss_function, self.accuracy)
         score_cost = cost_for_score(self.result.x)
         print("Score cost: ", score_cost)
