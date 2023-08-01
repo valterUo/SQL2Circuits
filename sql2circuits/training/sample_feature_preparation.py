@@ -25,7 +25,7 @@ class SampleFeaturePreparator:
         validation_circuits = circuits.get_validation_circuits()
         test_circuits = circuits.get_test_circuits()
 
-        if optimization_method == "pennylane":
+        if optimization_method == "Pennylane":
             circuits.generate_pennylane_circuits()
             training_circuits = circuits.get_qml_training_circuits()
             validation_circuits = circuits.get_qml_validation_circuits()
@@ -36,7 +36,7 @@ class SampleFeaturePreparator:
 
         # Select the first circuits
         self.current_training_circuits = dict(itertools.islice(training_circuits.items(), number_of_circuits))
-        if optimization_method == "pennylane":
+        if optimization_method == "Pennylane":
             self.current_validation_circuits = select_pennylane_circuits(self.current_training_circuits, validation_circuits, number_of_circuits)
             self.current_test_circuits = select_pennylane_circuits(self.current_training_circuits, test_circuits, number_of_circuits)
         else:

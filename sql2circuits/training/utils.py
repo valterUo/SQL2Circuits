@@ -21,7 +21,6 @@ def get_element(obj, index):
     else:
         raise TypeError("Object must be a list or a dictionary")
 
-
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
@@ -247,11 +246,13 @@ def multi_class_acc(y_hat, y):
 def multi_class_loss(y_hat, y):
     total_loss = 0
     if len(y_hat) != len(y):
+        print("Y_hat: ", len(y_hat), "y: ", len(y))
         raise Exception("Length of predictions and labels must be equal")
     for pair in zip(y_hat, y):
         x = np.array(pair[1])
         y_pred = np.array(numpy.array(pair[0]).flatten())
         if y_pred.size != x.size:
+            print("y_pred: ", y_pred.size, "x: ", x.size)
             raise Exception("Length of prediction and label vectors must be equal")
         total_loss += -np.sum(x * np.log(y_pred)) / x.size
     return total_loss
