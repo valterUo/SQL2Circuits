@@ -56,6 +56,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
         self.circuits = circuits
         self.training_circuits = self.circuits.get_qml_training_circuits()
         self.parameters = []
+        self.executions = 0
 
         if classification == 1:
             self.loss_function = bin_class_loss
@@ -79,7 +80,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
                 "optimization_medthod": self.optimization_method
             }
         
-        store_and_log("hyperparameters", hyperparameters, self.hyperparameters_file)
+        store_and_log(self.executions, hyperparameters, self.hyperparameters_file)
     
 
     def store_parameters(self, params):
@@ -151,7 +152,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
                             "train/acc": train_acc, 
                             "valid/loss": valid_loss, 
                             "valid/acc": valid_acc}
-                store_and_log(iters, stats_data, self.stats_iter_file)
+                store_and_log(self.executions, stats_data, self.stats_iter_file)
             return valid_loss
         return callback_fn
 
@@ -173,7 +174,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
             test_cost_fn = make_pennylane_cost_fn(test_pred_fn, test_data_labels_l, self.loss_function, self.accuracy, costs_accuracies, "test")
         test_cost_fn(self.result.x) # type: ignore
         test_accs = costs_accuracies.get_test_accs()
-        store_and_log(i, { "test_accuracy": test_accs[0] }, self.result_file)
+        store_and_log(self.executions, { "test_accuracy": test_accs[0] }, self.result_file)
     
 
     def fit_with_lambeq_noisyopt(self, X, y, X_valid, save_parameters = True):
@@ -221,7 +222,7 @@ class SQL2CircuitsEstimator(BaseEstimator):
 
     def fit_with_pennylane_noisyopt(self, X, y, X_valid, save_parameters = True):
         costs_accuracies = CostAccuracy()
-
+        self.executions += 1
         self.training_circuits = [data[0] for data in X]
         training_data_labels = y
 
@@ -258,9 +259,6 @@ class SQL2CircuitsEstimator(BaseEstimator):
             print("Store parameters: ", len(self.parameters), len(self.result.x))
             old_params = dict(zip(self.parameters, self.result.x))
             self.store_parameters(old_params)
-        
-        #self.visualize_result(0, costs_accuracies)
-        #self.evaluate_on_test_set(test_pred_fn, test_data_labels_l, costs_accuracies)
 
 
     def fit(self, X, y, **kwargs):
@@ -287,9 +285,9 @@ class SQL2CircuitsEstimator(BaseEstimator):
         accepted_circuits = []
         predict_fun_for_score, cost_for_score = None, None
         if self.optimization_method == "Pennylane":
-            accepted_circuits = select_pennylane_circuits(self.training_circuits, circuits, len(self.training_circuits))
+            accepted_circuits, y_new = select_pennylane_circuits(self.training_circuits, circuits, len(self.training_circuits), y)
             predict_fun_for_score = make_pennylane_pred_fn(accepted_circuits, self.parameters, self.classification)
-            cost_for_score = make_pennylane_cost_fn(predict_fun_for_score, y, self.loss_function, self.accuracy)
+            cost_for_score = make_pennylane_cost_fn(predict_fun_for_score, y_new, self.loss_function, self.accuracy)
         else:
             accepted_circuits = select_circuits(self.training_circuits, circuits)
             predict_fun_for_score = make_lambeq_pred_fn(accepted_circuits, self.parameters, self.classification)

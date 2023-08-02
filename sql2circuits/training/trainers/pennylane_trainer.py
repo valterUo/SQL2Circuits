@@ -2,6 +2,7 @@
 
 import collections
 import multiprocessing
+import time
 #from jax import numpy as np
 import numpy
 import numpy as np
@@ -102,8 +103,11 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
 
     def predict_parallel(params):        
         args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
-        with multiprocessing.Pool(processes=15) as pool:
+        results = []
+        with multiprocessing.Pool(processes=16) as pool:
             results = pool.starmap(predict_circuit, args)
+            pool.close()
+            pool.join()
         return results
 
     return predict_parallel

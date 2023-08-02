@@ -65,9 +65,10 @@ def select_circuits(base_circuits, select_from_circuits, n_circuits = -1):
     return res
 
 
-def select_pennylane_circuits(base_circuits, select_from_circuits, n_circuits = -1):
+def select_pennylane_circuits(base_circuits, select_from_circuits, n_circuits = -1, y = None):
     res = {}
     syms = set()
+    selected_data = []
     if type(base_circuits) == dict:
         for c in base_circuits:
             for sym in base_circuits[c].get_param_symbols():
@@ -89,15 +90,19 @@ def select_pennylane_circuits(base_circuits, select_from_circuits, n_circuits = 
             if len(res) == n_circuits:
                 break
     elif type(select_from_circuits) == list:
-        for c in select_from_circuits:
+        for i, c in enumerate(select_from_circuits):
             s_syms = set()
             for sym in c.get_param_symbols():
                 for s in sym:
                     s_syms.add(s)
             if s_syms.difference(syms) == set():
                 res[c] = c
+                if y is not None:
+                    selected_data.append(y[i])
             if len(res) == n_circuits:
                 break
+    if y is not None:
+        return res, selected_data
     return res
 
 
@@ -276,19 +281,22 @@ def loss_from_dict(dict_predictions, dict_labels):
     return total_loss
 
 
-def store_and_log(iteration, data, file):
+def store_and_log(execution, data, file):
     info = ""
     for k, v in data.items():
         info += k + ": " + str(v) + "\n"
-    print(info, file = sys.stderr)
-
+    print(info)
+    
+    execution = str(execution)
     current_data = data
     if os.path.exists(file):
         with open(file, 'r') as f:
             current_data = json.load(f)
-        current_data[iteration] = data
+            if execution not in current_data:
+                current_data[execution] = []
+            current_data[execution].append(data)
         with open(file, 'w') as f:
             json.dump(current_data, f, indent = 4)
     else:
         with open(file, 'w') as f:
-            json.dump({str(iteration) : current_data}, f, indent = 4)
+            json.dump({ execution : [{ current_data }]}, f, indent = 4)
