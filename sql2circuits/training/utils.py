@@ -299,4 +299,4 @@ def store_and_log(execution, data, file):
             json.dump(current_data, f, indent = 4)
     else:
         with open(file, 'w') as f:
-            json.dump({ execution : [{ current_data }]}, f, indent = 4)
+            json.dump({ execution : [ current_data ]}, f, indent = 4)

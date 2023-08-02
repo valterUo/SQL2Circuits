@@ -101,13 +101,25 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
                 predictions.append([1] + [1e-9]*(2**classification - 1))
         return predictions
 
-    def predict_parallel(params):        
+    #def predict_parallel(params):        
+    #    args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
+    #    results = []
+    #    with multiprocessing.Pool(processes=16) as pool:
+    #        results = pool.starmap(predict_circuit, args)
+    #        pool.close()
+    #        pool.join()
+    #    return results
+
+    def predict_parallel(params):
         args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
         results = []
+        queue = multiprocessing.Queue()
         with multiprocessing.Pool(processes=16) as pool:
-            results = pool.starmap(predict_circuit, args)
+            pool.starmap_async(predict_circuit, args, callback=queue.put)
             pool.close()
             pool.join()
+        while not queue.empty():
+            results += queue.get()
         return results
 
     return predict_parallel

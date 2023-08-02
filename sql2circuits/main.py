@@ -40,31 +40,31 @@ X_valid = sf.get_X_valid()
 y = sf.get_y()
 
 # This also ensures that the multiprocessing module does not produce BrokenPipeError
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    opt = BayesSearchCV(
-        SQL2CircuitsEstimator(run_id,
-                        circuits = circuits,
-                        workload = "cardinality",
-                        classification = 2,
-                        a = 0.01,
-                        c = 0.01,
-                        optimization_method = optimization_method,
-                        epochs = 500), 
-                        { 'a': Real(0.0001, 0.01, 'uniform'), 
-                         'c': Real(0.0001, 0.01, 'uniform') }, 
-                         n_iter = 2)
+opt = BayesSearchCV(
+    SQL2CircuitsEstimator(run_id,
+                    circuits = circuits,
+                    workload = "cardinality",
+                    classification = 2,
+                    a = 0.01,
+                    c = 0.01,
+                    optimization_method = optimization_method,
+                    epochs = 500), 
+                    { 'a': Real(0.0001, 0.01, 'uniform'), 
+                        'c': Real(0.0001, 0.01, 'uniform') }, 
+                        n_iter = 2)
 
-    opt.fit(X_train, y, X_valid = X_valid)
+opt.fit(X_train, y, X_valid = X_valid)
 
-    results = dict(opt.cv_results_)
-    for key, value in results.items():
-        if isinstance(value, np.ndarray):
-            results[key] = value.tolist()
-    best_params = dict(opt.best_params_)
-    for key, value in best_params.items():
-        if isinstance(value, np.ndarray):
-            best_params[key] = value.tolist()
-    results["best_params"] = best_params
-    with open("training//results//" + str(run_id) + "//" + str(run_id) + "_cv_results_.json", "w") as f:
-        json.dump(results, f)
+results = dict(opt.cv_results_)
+for key, value in results.items():
+    if isinstance(value, np.ndarray):
+        results[key] = value.tolist()
+best_params = dict(opt.best_params_)
+for key, value in best_params.items():
+    if isinstance(value, np.ndarray):
+        best_params[key] = value.tolist()
+results["best_params"] = best_params
+with open("training//results//" + str(run_id) + "//" + str(run_id) + "_cv_results_.json", "w") as f:
+    json.dump(results, f)
