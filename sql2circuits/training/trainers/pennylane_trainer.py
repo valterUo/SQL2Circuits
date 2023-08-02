@@ -114,36 +114,41 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
         args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
         results = []
         queue = multiprocessing.Queue()
-        with multiprocessing.Pool(processes=16) as pool:
-            pool.starmap_async(predict_circuit, args, callback=queue.put)
+        with multiprocessing.Pool(processes=8) as pool:
+            for arg in args:
+                pool.apply_async(predict_circuit, arg, callback=queue.put)
             pool.close()
             pool.join()
         while not queue.empty():
-            results += queue.get()
+            results.append(queue.get())
         return results
 
     return predict_parallel
 
 
 def predict_circuit(circuit, params, n_qubits, classification):
-        measurement = circuit(params)
-        post_selected_samples = post_selection(numpy.array(measurement), n_qubits, classification)
-        post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
-        counts = collections.Counter(post_selected_samples)
-        if len(post_selected_samples) == 0:
-            return [1e-9]*(2**classification)
-            #return [1] + [1e-9]*(2**classification - 1)
         try:
-            predicted = counts.most_common(1)[0][0]
-            binary_string = ''.join(str(bit) for bit in predicted[::-1])
-            binary_int = int(binary_string, 2)
-            result = [1e-9]*2**classification
-            result[binary_int] = 1
-            return result
-            #queue.put(result)
-        except:
+            measurement = circuit(params)
+            post_selected_samples = post_selection(numpy.array(measurement), n_qubits, classification)
+            post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+            counts = collections.Counter(post_selected_samples)
+            if len(post_selected_samples) == 0:
+                return [1e-9]*(2**classification)
+                #return [1] + [1e-9]*(2**classification - 1)
+            try:
+                predicted = counts.most_common(1)[0][0]
+                binary_string = ''.join(str(bit) for bit in predicted[::-1])
+                binary_int = int(binary_string, 2)
+                result = [1e-9]*2**classification
+                result[binary_int] = 1
+                return result
+                #queue.put(result)
+            except:
+                return [1e-9]*(2**classification)
+                #return [1] + [1e-9]*(2**classification - 1)
+        except Exception as e:
+            print("Error", e)
             return [1e-9]*(2**classification)
-            #return [1] + [1e-9]*(2**classification - 1)
 
 
 def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies = None, type = None):

@@ -39,9 +39,6 @@ X_train = sf.get_X_train()
 X_valid = sf.get_X_valid()
 y = sf.get_y()
 
-# This also ensures that the multiprocessing module does not produce BrokenPipeError
-#if __name__ == "__main__":
-
 opt = BayesSearchCV(
     SQL2CircuitsEstimator(run_id,
                     circuits = circuits,
