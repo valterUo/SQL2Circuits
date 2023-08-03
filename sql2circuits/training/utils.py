@@ -45,9 +45,10 @@ def construct_data_and_labels(circuits, labels):
     return circuits_l, data_labels_l
 
 
-def select_circuits(base_circuits, select_from_circuits, n_circuits = -1):
+def select_circuits(base_circuits, select_from_circuits, n_circuits = -1, y = None):
     res = {}
     syms = get_symbols(base_circuits)
+    selected_data = []
     if type(select_from_circuits) == dict:
         for c in select_from_circuits:
             s_syms = set(select_from_circuits[c].free_symbols)
@@ -60,8 +61,12 @@ def select_circuits(base_circuits, select_from_circuits, n_circuits = -1):
             s_syms = set(c.free_symbols)
             if s_syms.difference(syms) == set():
                 res[c] = c
+                if y is not None:
+                    selected_data.append(y[i])
             if len(res) == n_circuits:
                 break
+    if y is not None:
+        return res, selected_data
     return res
 
 
@@ -241,6 +246,11 @@ def bin_class_loss(y_hat, y):
 
 def multi_class_acc(y_hat, y):
     total_acc = 0
+    if len(y_hat) != len(y):
+        print("y_hat: ", len(y_hat), "y: ", len(y))
+        raise Exception("Length of predictions and labels must be equal")
+    if len(y) == 0 or len(y_hat) == 0:
+        return 0
     for pair in zip(y_hat, y):
         y_meas = np.array(pair[0]).flatten()
         max_index = np.argmax(y_meas)
@@ -251,7 +261,7 @@ def multi_class_acc(y_hat, y):
 def multi_class_loss(y_hat, y):
     total_loss = 0
     if len(y_hat) != len(y):
-        print("Y_hat: ", len(y_hat), "y: ", len(y))
+        print("y_hat: ", len(y_hat), "y: ", len(y))
         raise Exception("Length of predictions and labels must be equal")
     for pair in zip(y_hat, y):
         x = np.array(pair[1])

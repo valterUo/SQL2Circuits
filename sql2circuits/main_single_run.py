@@ -10,7 +10,7 @@ this_folder = os.path.abspath(os.getcwd())
 seed_paths = ["data_preparation//query_seeds//JOB_query_seed_execution_time.json",
               "data_preparation//query_seeds//JOB_query_seed_cardinality.json"]
 workload_types = ["execution_time", "cardinality"]
-run_id = 2
+run_id = 1
 ty = 1
 workload_type = workload_types[ty]
 database = Database("IMDB")
@@ -36,7 +36,8 @@ trainer = SQL2CircuitsEstimator(run_id,
                               workload = "cardinality", 
                               a = 0.00535654523302626, 
                               c = 0.006793187137881445, 
-                              classification = 2, 
+                              classification = 2,
+                              epochs=10000,
                               optimization_method = "Pennylane")
 
 #for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_circuits_to_add):
@@ -50,7 +51,7 @@ trainer = SQL2CircuitsEstimator(run_id,
     #trainer.evaluate
 
 # Train for the last time with all the data
-sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", "pennylane")
+sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", "Pennylane")
 X_train = sf.get_X_train()
 X_valid = sf.get_X_valid()
 y = sf.get_y()

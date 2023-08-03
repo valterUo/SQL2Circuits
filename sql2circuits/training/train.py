@@ -106,7 +106,11 @@ class SQL2CircuitsEstimator(BaseEstimator):
                 npzfile = np.load(f, allow_pickle=True)
                 old_params = npzfile['arr_0'] # type: ignore
                 print("Loading parameters from file " + stored_parameters)
-                self.parameters = sorted(set(list(old_params.keys()) + new_params), key = default_sort_key)
+                if type(old_params) == np.ndarray:
+                    old_params = dict(old_params.item())
+                    self.parameters = sorted(set(list(old_params.keys()) + new_params), key = default_sort_key)
+                elif type(old_params) == dict:
+                    self.parameters = sorted(set(list(old_params.keys()) + new_params), key = default_sort_key)
                 values = []
                 for p in self.parameters:
                     if p in old_params:
@@ -276,29 +280,23 @@ class SQL2CircuitsEstimator(BaseEstimator):
         if self.optimization_method == "SPSA":
             self.fit_with_lambeq_noisyopt(X, y, X_valid = kwargs["X_valid"], save_parameters = False)
         elif self.optimization_method == "Pennylane":
-            self.fit_with_pennylane_noisyopt(X, y, X_valid = kwargs["X_valid"], save_parameters = False)
+            self.fit_with_pennylane_noisyopt(X, y, X_valid = kwargs["X_valid"], save_parameters = True)
         return self
 
 
     def score(self, X, y):
         circuits = [item for sublist in X for item in sublist]
         accepted_circuits = []
-        predict_fun_for_score, cost_for_score = None, None
+        score = 0
         if self.optimization_method == "Pennylane":
             accepted_circuits, y_new = select_pennylane_circuits(self.training_circuits, circuits, len(self.training_circuits), y)
             predict_fun_for_score = make_pennylane_pred_fn(accepted_circuits, self.parameters, self.classification)
-            cost_for_score = make_pennylane_cost_fn(predict_fun_for_score, y_new, self.loss_function, self.accuracy)
+            predictions = predict_fun_for_score(self.result.x)
+            score = self.accuracy(predictions, y_new)
         else:
-            accepted_circuits = select_circuits(self.training_circuits, circuits)
+            accepted_circuits, y_new = select_circuits(self.training_circuits, circuits, len(self.training_circuits), y)
             predict_fun_for_score = make_lambeq_pred_fn(accepted_circuits, self.parameters, self.classification)
-            cost_for_score = make_lambeq_cost_fn(predict_fun_for_score, y, self.loss_function, self.accuracy)
-        print("Number of circuits: ", len(circuits), "Number of accepted circuits: ", len(accepted_circuits))
-        if self.result:
-            try:
-                score_cost = cost_for_score(self.result.x)
-                print("Score cost: ", score_cost)
-                return score_cost
-            except:
-                print("Error in score")
-                return 2000
-        return 2000
+            predictions = predict_fun_for_score(self.result.x)
+            score = self.accuracy(predictions, y_new)
+        print("Number of circuits: ", len(circuits), "Number of accepted circuits: ", len(accepted_circuits), "Score: ", score)
+        return score

@@ -4,7 +4,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -13,7 +13,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -22,7 +22,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -31,7 +31,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -40,7 +40,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -49,7 +49,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -58,7 +58,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -67,7 +67,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -76,7 +76,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -85,7 +85,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -94,7 +94,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
@@ -103,25 +103,7 @@
             "id": 1,
             "a": 0.01,
             "c": 0.01,
-            "epochs": 500,
-            "classification": 4,
-            "workload": "cardinality",
-            "optimization_medthod": "Pennylane"
-        },
-        {
-            "id": 1,
-            "a": 0.01,
-            "c": 0.01,
-            "epochs": 500,
-            "classification": 4,
-            "workload": "cardinality",
-            "optimization_medthod": "Pennylane"
-        },
-        {
-            "id": 1,
-            "a": 0.00535654523302626,
-            "c": 0.006793187137881445,
-            "epochs": 500,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
