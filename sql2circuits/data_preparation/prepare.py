@@ -33,9 +33,9 @@ class DataPreparation:
         self.test_data = self.data["test"]
         self.validation_data = self.data["validation"]
 
-        self.training_data_labels, classes = create_labeled_training_classes(self.training_data, classification, workload_type)
-        self.test_data_labels = create_labeled_test_validation_classes(self.test_data, classes, workload_type)
-        self.validation_data_labels = create_labeled_test_validation_classes(self.validation_data, classes, workload_type)
+        self.training_data_labels, self.classes = create_labeled_training_classes(self.training_data, classification, workload_type)
+        self.test_data_labels = create_labeled_test_validation_classes(self.test_data, self.classes, workload_type)
+        self.validation_data_labels = create_labeled_test_validation_classes(self.validation_data, self.classes, workload_type)
 
 
     def get_data_file(self):
@@ -70,3 +70,6 @@ class DataPreparation:
     
     def get_classes(self):
         return self.classes
+    
+    def get_data(self):
+        return self.data
