@@ -61,6 +61,15 @@ class SampleFeaturePreparator:
     def get_y(self):
         return self.y
     
+    def get_training_labels(self):
+        return self.training_labels_y
+    
+    def get_validation_labels(self):
+        return self.validation_labels_y
+    
+    def get_test_labels_y(self):
+        return self.test_labels_y
+    
     def save_stats(self):
         n_circs = len(self.current_training_circuits)
         stats = {}
