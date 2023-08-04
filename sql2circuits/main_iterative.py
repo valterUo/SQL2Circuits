@@ -50,7 +50,7 @@ for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_c
                         workload = "cardinality",
                         classification = 2,
                         a = a,
-                        c = a,
+                        c = c,
                         optimization_method = optimization_method,
                         epochs = 1000), 
                         { 'a': Real(0.0001, 0.1, 'uniform'), 
