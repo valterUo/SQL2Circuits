@@ -3,6 +3,8 @@
 import warnings
 import os
 import numpy
+from sympy import default_sort_key
+import torch
 from training.utils import *
 from discopy.tensor import Tensor
 from sklearn.base import BaseEstimator
@@ -24,20 +26,35 @@ numpy.random.seed(SEED)
 class SQL2CircuitsEstimatorPennylane(BaseEstimator):
 
     def __init__(self, epochs = 100, classification = 2):
-        self.opt = qml.GradientDescentOptimizer()
+        #self.opt = qml.GradientDescentOptimizer()
+        #self.opt = qml.AdagradOptimizer()
+        self.opt = qml.AdamOptimizer()
         self.epochs = epochs
-        self.parameters = 0
         self.classification = classification
+        self.loss_function = multi_class_loss
+        self.accuracy = multi_class_acc
 
 
     def fit(self, X, y, **kwargs):
         circuits = [item for sublist in X for item in sublist]
+
+        syms = set()
+        for circ in circuits:
+                for symbols in circ.get_param_symbols():
+                    for sym in symbols:
+                        syms.add(sym)
+        params = sorted(syms, key = default_sort_key)
+
+
         pred_fn = make_pennylane_pred_fn_for_gradient_descent(circuits)
-        cost_function = make_pennylane_cost_fn(pred_fn, y, self.parameters, self.classification)
+        cost_function = make_pennylane_cost_fn(pred_fn, y, self.loss_function, self.accuracy)
+        parameters = torch.tensor(rng.random(len(params)))
+
         for i in range(self.epochs):
-            self.parameters = self.opt.step(cost_function, self.parameters)
-            if i % 10 == 0:
-                print(f"Step {i}, Cost: {cost_function(self.parameters)}")
+            parameters = self.opt.step(cost_function, parameters)
+            if i % 1 == 0:
+                #print(f"parameters: {parameters}")
+                print(f"Step {i}, Cost: {cost_function(parameters)}")
         return self
 
 

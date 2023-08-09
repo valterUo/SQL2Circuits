@@ -2,11 +2,11 @@
 
 import warnings
 import os
-from jax import numpy as np
-#import numpy as np
+#from jax import numpy as np
+import numpy as np
 from sympy import default_sort_key
 import numpy
-from jax import jit
+#from jax import jit
 from noisyopt import minimizeSPSA
 from training.cost_accuracy import CostAccuracy
 from training.utils import *

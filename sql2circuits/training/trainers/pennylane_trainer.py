@@ -19,6 +19,7 @@ from sympy.core.symbol import Symbol
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
 import torch
+from torch.nn.functional import normalize
 from itertools import product
 
 class PennylaneCircuit:
@@ -29,10 +30,7 @@ class PennylaneCircuit:
         self.pennylane_wires = pennylane_wires
         self.n_qubits = n_qubits
         self.dev = qml.device("default.qubit", 
-                              interface="torch", 
-                              diff_method = "backprop", 
-                              wires=range(n_qubits), 
-                              shots=10000)
+                              wires=range(n_qubits))
         self.param_symbols = param_symbols
         self.symbol_to_index = symbol_to_index
         self.symbols = symbols
@@ -45,8 +43,7 @@ class PennylaneCircuit:
         fixed = ['0' if self.post_selection.get(i, 0) == 0 else
                  '1' for i in range(self.n_qubits)]
         open_wires = set(range(self.n_qubits)) - self.post_selection.keys()
-        permutations = [''.join(s) for s in product('01',
-                                                    repeat=len(open_wires))]
+        permutations = [''.join(s) for s in product('01', repeat=len(open_wires))]
         for perm in permutations:
             new = fixed.copy()
             for i, open in enumerate(open_wires):
@@ -72,21 +69,32 @@ class PennylaneCircuit:
                 op(circ_params[self.symbol_to_index[param]], wires = wires)
             else:
                 op(wires = wires)
-            return qml.state()
+        return qml.state()
     
 
     def eval_qml_circuit_with_post_selection(self, circ_params):
-        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev)
+        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev, interface='torch', diff_method = "backprop")
+        #fig, ax = qml.draw_mpl(circuit)(circ_params)
+        # save fig to a file
+        #fig.savefig("qml_circuit.png")
+        #raise Exception
         states = circuit(circ_params)
         open_wires = self.n_qubits - len(self.post_selection)
         post_selected_states = states[self.valid_states]
-        #post_selected_states *= (self._scale ** 2 if self._probabilities
-        #                         else self._scale)
+        #print("post_selected_states: ", post_selected_states)
 
         if post_selected_states.shape[0] == 1:
             return post_selected_states
         else:
-            return torch.reshape(post_selected_states, (2,) * open_wires)
+            post_states = torch.tensor([torch.norm(torch.tensor(x))**2 for x in post_selected_states], dtype=torch.float)
+            sum = torch.sum(post_states, dim = 0)
+            result = post_states / sum
+            # Raise error if the sum is not close to 1
+            if not torch.isclose(torch.sum(result), torch.tensor(1.0)):
+                print(result)
+                raise Exception("The sum of the post-selected states is not close to 1.")
+            #print("result: ", result)
+            return result
 
 
     def get_QNode(self):
@@ -101,13 +109,15 @@ class PennylaneCircuit:
         return self.param_symbols
     
 
-def transform_into_pennylane_circuits(circuits):
+def transform_into_pennylane_circuits(circuits, classification = 2):
     qml_circuits = {}
     symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key = default_sort_key))
 
     for circ_key in circuits:
         circuit = circuits[circ_key]
+        #circuit.draw(figsize=(5, 2))
+        #raise Exception
         pennylane_circuit = to_pennylane(circuit)
         ops = pennylane_circuit._ops
         params = pennylane_circuit._params
@@ -120,7 +130,10 @@ def transform_into_pennylane_circuits(circuits):
             if len(sym) > 0:
                 symbol_to_index[sym[0]] = symbols.index(sym[0])
 
-        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols)
+        # Produces a dictionary like {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0} 
+        # where the wires 0 and 1 are the classifying wires
+        post_selection = dict([(i, 0) for i in range(classification, n_qubits)])
+        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection)
 
     return qml_circuits, symbols
 
@@ -199,11 +212,11 @@ def predict_circuit(circuit, params, n_qubits, classification):
 
 def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies = None, type = None):
     
-    def cost_fn(params, **kwargs):
+    def cost_fn(params):
         predictions = pred_fn(params)
         cost = loss_fn(predictions, labels)
-        accuracy = accuracy_fn(predictions, labels)
         if costs_accuracies is not None and type is not None:
+            accuracy = accuracy_fn(predictions, labels)
             costs_accuracies.add_cost(cost, type)
             costs_accuracies.add_accuracy(accuracy, type)
         return cost
@@ -217,7 +230,7 @@ def make_pennylane_pred_fn_for_gradient_descent(circuits):
         for pennylane_circuit in circuits:
             pred = pennylane_circuit.eval_qml_circuit_with_post_selection(params)
             predictions.append(pred)
-            print(pred)
+            #print(pred)
         return predictions
     
     return predict

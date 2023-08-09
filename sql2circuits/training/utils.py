@@ -7,7 +7,6 @@ import math
 #from jax import numpy as np
 import numpy as np
 import sys
-import numpy
 #import covalent as ct
 
 np.set_printoptions(threshold=sys.maxsize)
@@ -265,7 +264,7 @@ def multi_class_loss(y_hat, y):
         raise Exception("Length of predictions and labels must be equal")
     for pair in zip(y_hat, y):
         x = np.array(pair[1])
-        y_pred = np.array(numpy.array(pair[0]).flatten())
+        y_pred = np.array(pair[0]).flatten()
         if y_pred.size != x.size:
             print("y_pred: ", y_pred.size, "x: ", x.size)
             raise Exception("Length of prediction and label vectors must be equal")

@@ -1,4 +1,5 @@
-from discopy import Ty, Box, Functor, Id, Cup
+from discopy import Ty, Box, Functor, Id
+from discopy.tensor import Cup
 from functools import reduce
 
 def cup_remove_arrow_mapping(box):
