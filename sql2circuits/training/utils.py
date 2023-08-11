@@ -310,3 +310,16 @@ def store_and_log(execution, data, file):
     else:
         with open(file, 'w') as f:
             json.dump({ execution : [ current_data ]}, f, indent = 4)
+
+def store_hyperparameter_opt_results(run_id, opt):
+    results = dict(opt.cv_results_)
+    for key, value in results.items():
+        if isinstance(value, np.ndarray):
+            results[key] = value.tolist()
+    best_params = dict(opt.best_params_)
+    for key, value in best_params.items():
+        if isinstance(value, np.ndarray):
+            best_params[key] = value.tolist()
+    results["best_params"] = best_params
+    with open("training//results//" + str(run_id) + "//" + str(run_id) + "_cv_results_.json", "w") as f:
+        json.dump(results, f)

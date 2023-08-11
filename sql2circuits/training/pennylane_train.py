@@ -4,20 +4,15 @@ import warnings
 import os
 import numpy
 from sympy import default_sort_key
-from training.cost_accuracy import CostAccuracy
+from training.functions.pennylane_functions import *
 from training.utils import *
 from sklearn.base import BaseEstimator
 import pennylane as qml
 from pennylane import numpy as np
-from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn, make_pennylane_pred_fn_for_gradient_descent
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
 os.environ['TOKENIZERS_PARALLELISM'] = 'True'
-#os.environ["JAX_PLATFORMS"] = "cpu"
-
-# This avoids TracerArrayConversionError from jax
-#Tensor.np = np
 
 SEED = 0
 rng = numpy.random.default_rng(SEED)
@@ -25,10 +20,13 @@ numpy.random.seed(SEED)
 
 class SQL2CircuitsEstimatorPennylane(BaseEstimator):
 
-    def __init__(self, epochs = 10000, classification = 2):
-        
+    def __init__(self, optimizer, params, stepsize = 0.01, epochs = 1000, classification = 2):
+        self.stepsize = stepsize
+        self.optimizer = optimizer
+        self.params = params
+
         self.optimizers = {
-            "GradientDescent": qml.GradientDescentOptimizer(),
+            "GradientDescent": qml.GradientDescentOptimizer(self.stepsize),
             "Adagrad": qml.AdagradOptimizer(),
             "Adam": qml.AdamOptimizer(),
             "QNGO": qml.QNGOptimizer(),
@@ -42,37 +40,39 @@ class SQL2CircuitsEstimatorPennylane(BaseEstimator):
             "Rotoselect": qml.RotoselectOptimizer()
         }
         
-        self.opt = self.optimizers["GradientDescent"]
+        self.opt = self.optimizers[optimizer]
         
         self.epochs = epochs
         self.classification = classification
         self.loss_function = multi_class_loss
         self.accuracy = multi_class_acc
+        self.parameters = np.array(rng.random(len(params)), requires_grad=True)
 
 
     def fit(self, X, y, **kwargs):
-        circuits = [item for sublist in X for item in sublist]
+        self.training_circuits = [item for sublist in X for item in sublist]
+        print("Number of training circuits: ", len(self.training_circuits))
+        #syms = set()
+        #for circ in self.training_circuits:
+        #        for symbols in circ.get_param_symbols():
+        #            for sym in symbols:
+        #                syms.add(sym)
+        #params = sorted(syms, key = default_sort_key)
+        #print("Number of parameters: ", len(params))
 
-        syms = set()
-        for circ in circuits:
-                for symbols in circ.get_param_symbols():
-                    for sym in symbols:
-                        syms.add(sym)
-        params = sorted(syms, key = default_sort_key)
-
-        pred_fn = make_pennylane_pred_fn_for_gradient_descent(circuits)
+        pred_fn = make_pennylane_pred_fn_for_gradient_descent(self.training_circuits)
         cost_function = make_pennylane_cost_fn(pred_fn, 
                                                y, 
                                                self.loss_function)
-        parameters = np.array(rng.random(len(params)), requires_grad=True)
+        #self.parameters = np.array(rng.random(len(params)), requires_grad=True)
         
 
         for i in range(self.epochs):
             if i % 10 == 0:
-                print(f"Step {i}, Cost: {cost_function(parameters)}")
-                print("Accuracy: ", self.accuracy(pred_fn(parameters), y))
+                print(f"Step {i}, Cost: {cost_function(self.parameters)}")
+                print("Accuracy: ", self.accuracy(pred_fn(self.parameters), y))
                 
-            parameters = self.opt.step(cost_function, parameters)
+            self.parameters = self.opt.step(cost_function, self.parameters)
         return self
 
 

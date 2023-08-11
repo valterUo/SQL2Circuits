@@ -3,8 +3,9 @@
 import os
 import json
 import pickle
-from circuit_preparation.diagrams.diagram_generators import create_CFG_diagrams, create_pregroup_grammar_diagrams, remove_cups_and_simplify, create_circuit_ansatz
-from training.trainers.pennylane_trainer import transform_into_pennylane_circuits
+from circuit_preparation.diagrams.diagram_generators import *
+from training.functions.pennylane_functions import transform_into_pennylane_circuits
+
 
 def split(list_a, chunk_size):
     if list_a == []:

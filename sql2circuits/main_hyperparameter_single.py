@@ -1,10 +1,17 @@
 import os
+import json
+import numpy as np
 from data_preparation.queries import QueryGenerator
 from data_preparation.prepare import DataPreparation
 from data_preparation.database import Database
 from circuit_preparation.circuits import Circuits
-from training.pennylane_train import SQL2CircuitsEstimatorPennylane
+from training.utils import store_hyperparameter_opt_results
+from training.train import SQL2CircuitsEstimator
 from training.sample_feature_preparation import SampleFeaturePreparator
+from skopt import BayesSearchCV
+from skopt.space import Real
+import jax
+jax.config.update("jax_enable_x64", True)
 
 this_folder = os.path.abspath(os.getcwd())
 seed_paths = ["data_preparation//query_seeds//JOB_query_seed_execution_time.json",
@@ -27,11 +34,25 @@ if not os.path.exists(output_folder):
 circuits = Circuits(run_id, query_file, output_folder, write_cfg_to_file = True, write_pregroup_to_file=True, generate_circuit_png_diagrams = True)
 circuits.execute_full_transformation()
 
-trainer = SQL2CircuitsEstimatorPennylane()
-
-sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", "Pennylane")
+optimization_method = "Pennylane"
+sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", optimization_method)
 X_train = sf.get_X_train()
 X_valid = sf.get_X_valid()
 y = sf.get_y()
 
-trainer.fit(X_train, y, X_valid = X_valid, save_parameters = True)
+opt = BayesSearchCV(
+    SQL2CircuitsEstimator(run_id,
+                    circuits = circuits,
+                    workload = "cardinality",
+                    classification = 2,
+                    a = 0.01,
+                    c = 0.01,
+                    optimization_method = optimization_method,
+                    epochs = 500), 
+                    { 'a': Real(0.0001, 0.01, 'uniform'), 
+                        'c': Real(0.0001, 0.01, 'uniform') }, 
+                        n_iter = 2)
+
+opt.fit(X_train, y, X_valid = X_valid)
+
+store_hyperparameter_opt_results(run_id, opt)
