@@ -12,14 +12,14 @@ https://github.com/discopy/discopy/blob/main/discopy/quantum/pennylane.py
 import collections
 import multiprocessing
 #from jax import numpy as np
-import numpy
+from pennylane import numpy as np
 from discopy.quantum.pennylane import to_pennylane
 import pennylane as qml
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
-import torch
-from torch.nn.functional import normalize
+#import torch
+#from torch.nn.functional import normalize
 from itertools import product
 
 class PennylaneCircuit:
@@ -73,28 +73,13 @@ class PennylaneCircuit:
     
 
     def eval_qml_circuit_with_post_selection(self, circ_params):
-        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev, interface='torch', diff_method = "backprop")
-        #fig, ax = qml.draw_mpl(circuit)(circ_params)
-        # save fig to a file
-        #fig.savefig("qml_circuit.png")
-        #raise Exception
+        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev) #, interface='torch', diff_method = "backprop")
         states = circuit(circ_params)
-        open_wires = self.n_qubits - len(self.post_selection)
         post_selected_states = states[self.valid_states]
-        #print("post_selected_states: ", post_selected_states)
-
-        if post_selected_states.shape[0] == 1:
-            return post_selected_states
-        else:
-            post_states = torch.tensor([torch.norm(torch.tensor(x))**2 for x in post_selected_states], dtype=torch.float)
-            sum = torch.sum(post_states, dim = 0)
-            result = post_states / sum
-            # Raise error if the sum is not close to 1
-            if not torch.isclose(torch.sum(result), torch.tensor(1.0)):
-                print(result)
-                raise Exception("The sum of the post-selected states is not close to 1.")
-            #print("result: ", result)
-            return result
+        post_states = np.array([np.linalg.norm(x)**2 for x in post_selected_states], dtype=np.float32)
+        sum = np.sum(post_states, axis=0)
+        result = post_states / sum
+        return result
 
 
     def get_QNode(self):
@@ -116,8 +101,6 @@ def transform_into_pennylane_circuits(circuits, classification = 2):
 
     for circ_key in circuits:
         circuit = circuits[circ_key]
-        #circuit.draw(figsize=(5, 2))
-        #raise Exception
         pennylane_circuit = to_pennylane(circuit)
         ops = pennylane_circuit._ops
         params = pennylane_circuit._params
@@ -140,8 +123,8 @@ def transform_into_pennylane_circuits(circuits, classification = 2):
 
 def post_selection(circuit_samples, n_qubits, post_selection):
     selected_samples = []
-    post_select_array = numpy.array([0]*(n_qubits - post_selection))
-    selected_samples = circuit_samples[numpy.all(circuit_samples[:, post_selection - 1 :-1] == post_select_array, axis = 1)]
+    post_select_array = np.array([0]*(n_qubits - post_selection))
+    selected_samples = circuit_samples[np.all(circuit_samples[:, post_selection - 1 :-1] == post_select_array, axis = 1)]
     return selected_samples[:, :post_selection].tolist()
 
 
@@ -191,7 +174,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
 def predict_circuit(circuit, params, n_qubits, classification):
         try:
             measurement = circuit(params)
-            post_selected_samples = post_selection(numpy.array(measurement), n_qubits, classification)
+            post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
             post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
             counts = collections.Counter(post_selected_samples)
             if len(post_selected_samples) == 0:
@@ -210,7 +193,7 @@ def predict_circuit(circuit, params, n_qubits, classification):
             return [1e-9]*(2**classification)
 
 
-def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies = None, type = None):
+def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn = None, costs_accuracies = None, type = None):
     
     def cost_fn(params):
         predictions = pred_fn(params)
@@ -230,7 +213,6 @@ def make_pennylane_pred_fn_for_gradient_descent(circuits):
         for pennylane_circuit in circuits:
             pred = pennylane_circuit.eval_qml_circuit_with_post_selection(params)
             predictions.append(pred)
-            #print(pred)
         return predictions
     
     return predict

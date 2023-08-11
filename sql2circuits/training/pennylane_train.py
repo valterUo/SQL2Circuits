@@ -4,11 +4,11 @@ import warnings
 import os
 import numpy
 from sympy import default_sort_key
-import torch
+from training.cost_accuracy import CostAccuracy
 from training.utils import *
-from discopy.tensor import Tensor
 from sklearn.base import BaseEstimator
 import pennylane as qml
+from pennylane import numpy as np
 from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn, make_pennylane_pred_fn_for_gradient_descent
 
 warnings.filterwarnings('ignore')
@@ -17,7 +17,7 @@ os.environ['TOKENIZERS_PARALLELISM'] = 'True'
 #os.environ["JAX_PLATFORMS"] = "cpu"
 
 # This avoids TracerArrayConversionError from jax
-Tensor.np = np
+#Tensor.np = np
 
 SEED = 0
 rng = numpy.random.default_rng(SEED)
@@ -25,10 +25,25 @@ numpy.random.seed(SEED)
 
 class SQL2CircuitsEstimatorPennylane(BaseEstimator):
 
-    def __init__(self, epochs = 100, classification = 2):
-        #self.opt = qml.GradientDescentOptimizer()
-        #self.opt = qml.AdagradOptimizer()
-        self.opt = qml.AdamOptimizer()
+    def __init__(self, epochs = 10000, classification = 2):
+        
+        self.optimizers = {
+            "GradientDescent": qml.GradientDescentOptimizer(),
+            "Adagrad": qml.AdagradOptimizer(),
+            "Adam": qml.AdamOptimizer(),
+            "QNGO": qml.QNGOptimizer(),
+            "Rotosolve": qml.RotosolveOptimizer(),
+            "RMSProp": qml.RMSPropOptimizer(),
+            "Adaptive": qml.AdaptiveOptimizer(),
+            "Momentum": qml.MomentumOptimizer(),
+            "NesterovMomentum": qml.NesterovMomentumOptimizer(),
+            "QNSPSA": qml.QNSPSAOptimizer(),
+            "SPSA": qml.SPSAOptimizer(1000),
+            "Rotoselect": qml.RotoselectOptimizer()
+        }
+        
+        self.opt = self.optimizers["GradientDescent"]
+        
         self.epochs = epochs
         self.classification = classification
         self.loss_function = multi_class_loss
@@ -45,16 +60,19 @@ class SQL2CircuitsEstimatorPennylane(BaseEstimator):
                         syms.add(sym)
         params = sorted(syms, key = default_sort_key)
 
-
         pred_fn = make_pennylane_pred_fn_for_gradient_descent(circuits)
-        cost_function = make_pennylane_cost_fn(pred_fn, y, self.loss_function, self.accuracy)
-        parameters = torch.tensor(rng.random(len(params)))
+        cost_function = make_pennylane_cost_fn(pred_fn, 
+                                               y, 
+                                               self.loss_function)
+        parameters = np.array(rng.random(len(params)), requires_grad=True)
+        
 
         for i in range(self.epochs):
-            parameters = self.opt.step(cost_function, parameters)
-            if i % 1 == 0:
-                #print(f"parameters: {parameters}")
+            if i % 10 == 0:
                 print(f"Step {i}, Cost: {cost_function(parameters)}")
+                print("Accuracy: ", self.accuracy(pred_fn(parameters), y))
+                
+            parameters = self.opt.step(cost_function, parameters)
         return self
 
 

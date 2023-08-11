@@ -4,7 +4,6 @@ from data_preparation.prepare import DataPreparation
 from data_preparation.database import Database
 from circuit_preparation.circuits import Circuits
 from training.pennylane_train import SQL2CircuitsEstimatorPennylane
-from training.train import SQL2CircuitsEstimator
 from training.sample_feature_preparation import SampleFeaturePreparator
 
 this_folder = os.path.abspath(os.getcwd())

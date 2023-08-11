@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import pickle
 import math
 #from jax import numpy as np
-import numpy as np
+#import numpy as np
+from pennylane import numpy as np
 import sys
 #import covalent as ct
 

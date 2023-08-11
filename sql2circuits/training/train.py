@@ -23,7 +23,7 @@ os.environ['TOKENIZERS_PARALLELISM'] = 'True'
 #os.environ["JAX_PLATFORMS"] = "cpu"
 
 # This avoids TracerArrayConversionError from jax
-Tensor.np = np
+#Tensor.np = np
 
 SEED = 0
 rng = numpy.random.default_rng(SEED)
