@@ -3,9 +3,11 @@ from data_preparation.queries import QueryGenerator
 from data_preparation.prepare import DataPreparation
 from data_preparation.database import Database
 from circuit_preparation.circuits import Circuits
-from sql2circuits.training.pennylane_train import SQL2CircuitsEstimatorPennylane
-from training.train import SQL2CircuitsEstimator
+from training.utils import store_hyperparameter_opt_results
+from training.pennylane_train import SQL2CircuitsEstimatorPennylane
 from training.sample_feature_preparation import SampleFeaturePreparator
+from skopt import BayesSearchCV
+from skopt.space import Real
 
 this_folder = os.path.abspath(os.getcwd())
 seed_paths = ["data_preparation//query_seeds//JOB_query_seed_execution_time.json",
@@ -28,11 +30,31 @@ if not os.path.exists(output_folder):
 circuits = Circuits(run_id, query_file, output_folder, write_cfg_to_file = True, write_pregroup_to_file=True, generate_circuit_png_diagrams = True)
 circuits.execute_full_transformation()
 
-trainer = SQL2CircuitsEstimatorPennylane()
+optimization_method = "Pennylane"
+optimizer = "GradientDescent"
+initial_number_of_circuits = 20
+number_of_circuits_to_add = 20
+total_number_of_circuits = len(data_preparator.get_training_data_labels())
 
-sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", "Pennylane")
-X_train = sf.get_X_train()
-X_valid = sf.get_X_valid()
-y = sf.get_y()
+for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_circuits_to_add):
+    sf = SampleFeaturePreparator(run_id, data_preparator, circuits, i, optimization_method)
+    params = sf.get_qml_train_symbols()
+    X_train = sf.get_X_train()
+    X_valid = sf.get_X_valid()
+    y = sf.get_y()
 
-trainer.fit(X_train, y, X_valid = X_valid, save_parameters = True)
+    opt = BayesSearchCV(
+        SQL2CircuitsEstimatorPennylane(optimizer, params), 
+            { 'stepsize': Real(0.001, 0.1, 'uniform') },
+                n_iter = 3)
+
+    #sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", "Pennylane")
+    #X_train = sf.get_X_train()
+    #X_valid = sf.get_X_valid()
+    #y = sf.get_y()
+
+    #trainer.fit(X_train, y, X_valid = X_valid, save_parameters = True)
+
+    opt.fit(X_train, y, X_valid = X_valid)
+
+    store_hyperparameter_opt_results(run_id + i + 1000, opt)

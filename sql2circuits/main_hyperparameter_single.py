@@ -5,6 +5,7 @@ from data_preparation.queries import QueryGenerator
 from data_preparation.prepare import DataPreparation
 from data_preparation.database import Database
 from circuit_preparation.circuits import Circuits
+from training.utils import store_hyperparameter_opt_results
 from training.train import SQL2CircuitsEstimator
 from training.sample_feature_preparation import SampleFeaturePreparator
 from skopt import BayesSearchCV
@@ -54,14 +55,4 @@ opt = BayesSearchCV(
 
 opt.fit(X_train, y, X_valid = X_valid)
 
-results = dict(opt.cv_results_)
-for key, value in results.items():
-    if isinstance(value, np.ndarray):
-        results[key] = value.tolist()
-best_params = dict(opt.best_params_)
-for key, value in best_params.items():
-    if isinstance(value, np.ndarray):
-        best_params[key] = value.tolist()
-results["best_params"] = best_params
-with open("training//results//" + str(run_id) + "//" + str(run_id) + "_cv_results_.json", "w") as f:
-    json.dump(results, f)
+store_hyperparameter_opt_results(run_id, opt)

@@ -30,6 +30,7 @@ class SampleFeaturePreparator:
             training_circuits = circuits.get_qml_training_circuits()
             validation_circuits = circuits.get_qml_validation_circuits()
             test_circuits = circuits.get_qml_test_circuits()
+            self.qml_train_symbols = circuits.get_qml_train_symbols()
 
         if number_of_circuits == "all":
             number_of_circuits = len(training_circuits)
@@ -79,3 +80,6 @@ class SampleFeaturePreparator:
                 "number_of_parameters_in_model": len(set([sym for circuit in self.current_training_circuits for sym in circuit.free_symbols]))}
         
         store_and_log(n_circs, stats, self.stats_circuits_file)
+
+    def get_qml_train_symbols(self):
+        return self.qml_train_symbols

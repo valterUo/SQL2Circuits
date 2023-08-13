@@ -1,0 +1,138 @@
+# -*- coding: utf-8 -*-
+
+import collections
+import multiprocessing
+from pennylane import numpy as np
+from discopy.quantum.pennylane import to_pennylane
+from sympy.core.symbol import Symbol
+from sympy import default_sort_key
+from discopy.quantum.pennylane import to_pennylane
+
+from training.pennylane_circuit import PennylaneCircuit
+    
+
+def transform_into_pennylane_circuits(circuits, classification = 2):
+    qml_circuits = {}
+    symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
+    symbols = list(sorted(symbols, key = default_sort_key))
+    full_symbol_to_index = {}
+
+    for circ_key in circuits:
+        circuit = circuits[circ_key]
+        pennylane_circuit = to_pennylane(circuit)
+        ops = pennylane_circuit._ops
+        params = pennylane_circuit._params
+        pennylane_wires = pennylane_circuit._wires
+        n_qubits = pennylane_circuit._n_qubits
+        param_symbols = [[sym[0].as_ordered_factors()[1]] if len(sym) > 0 else [] for sym in params]
+        symbol_to_index = {}
+
+        for sym in param_symbols:
+            if len(sym) > 0:
+                symbol_to_index[sym[0]] = symbols.index(sym[0])
+        full_symbol_to_index.update(symbol_to_index)
+
+        # Produces a dictionary like {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0} 
+        # where the wires 0 and 1 are the classifying wires
+        post_selection = dict([(i, 0) for i in range(classification, n_qubits)])
+        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection)
+
+    return qml_circuits, full_symbol_to_index
+
+
+def post_selection(circuit_samples, n_qubits, post_selection):
+    selected_samples = []
+    post_select_array = np.array([0]*(n_qubits - post_selection))
+    selected_samples = circuit_samples[np.all(circuit_samples[:, post_selection - 1 :-1] == post_select_array, axis = 1)]
+    return selected_samples[:, :post_selection].tolist()
+
+
+def predict_circuit(circuit, params, n_qubits, classification):
+        try:
+            measurement = circuit(params)
+            post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
+            post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+            counts = collections.Counter(post_selected_samples)
+            if len(post_selected_samples) == 0:
+                return [1e-9]*(2**classification)
+            try:
+                predicted = counts.most_common(1)[0][0]
+                binary_string = ''.join(str(bit) for bit in predicted[::-1])
+                binary_int = int(binary_string, 2)
+                result = [1e-9]*2**classification
+                result[binary_int] = 1
+                return result
+            except:
+                return [1e-9]*(2**classification)
+        except Exception as e:
+            print("Error", e)
+            return [1e-9]*(2**classification)
+
+
+def make_pennylane_pred_fn(circuits, parameters, classification):
+    
+    def predict(params):
+        predictions = []
+        for pennylane_circuit in circuits:
+            circuit = pennylane_circuit.get_QNode()
+            n_qubits = pennylane_circuit.get_n_qubits()
+            post_selected_samples = []
+            measurement = circuit(params)
+            post_selected_samples = post_selection(measurement, n_qubits, classification)
+            post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+            counts = collections.Counter(post_selected_samples)
+            if len(post_selected_samples) == 0:
+                predictions.append([1] + [1e-9]*(2**classification - 1))
+                continue
+            try:
+                predicted = counts.most_common(1)[0][0]
+                binary_string = ''.join(str(bit) for bit in predicted[::-1])
+                binary_int = int(binary_string, 2)
+                result = [1e-9]*2**classification
+                result[binary_int] = 1
+                predictions.append(result)
+            except:
+                predictions.append([1] + [1e-9]*(2**classification - 1))
+        return predictions
+    
+
+    def predict_parallel(params):
+        args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
+        results = []
+        queue = multiprocessing.Queue()
+        with multiprocessing.Pool(processes=8) as pool:
+            for arg in args:
+                pool.apply_async(predict_circuit, arg, callback=queue.put)
+            pool.close()
+            pool.join()
+        while not queue.empty():
+            results.append(queue.get())
+        return results
+
+    return predict_parallel
+
+
+def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn = None, costs_accuracies = None, type = None):
+    
+    def cost_fn(params):
+        predictions = pred_fn(params)
+        cost = loss_fn(predictions, labels)
+        if costs_accuracies is not None and type is not None:
+            accuracy = accuracy_fn(predictions, labels)
+            costs_accuracies.add_cost(cost, type)
+            costs_accuracies.add_accuracy(accuracy, type)
+        return cost
+
+    return cost_fn
+
+
+def make_pennylane_pred_fn_for_gradient_descent(circuits):
+
+    def predict(params):
+        predictions = []
+        for pennylane_circuit in circuits:
+            pred = pennylane_circuit.eval_qml_circuit_with_post_selection(params)
+            predictions.append(pred)
+        return predictions
+    
+    return predict

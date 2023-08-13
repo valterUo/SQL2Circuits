@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from jax import numpy as np
+#from jax import numpy as np
+import numpy as np
 from discopy.quantum import Circuit
 from discopy.tensor import Tensor
 Tensor.np = np

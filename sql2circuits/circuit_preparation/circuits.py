@@ -3,8 +3,9 @@
 import os
 import json
 import pickle
-from circuit_preparation.diagrams.diagram_generators import create_CFG_diagrams, create_pregroup_grammar_diagrams, remove_cups_and_simplify, create_circuit_ansatz
-from training.trainers.pennylane_trainer import transform_into_pennylane_circuits
+from circuit_preparation.diagrams.diagram_generators import *
+from training.functions.pennylane_functions import transform_into_pennylane_circuits
+
 
 def split(list_a, chunk_size):
     if list_a == []:
@@ -43,6 +44,7 @@ class Circuits:
                  id, 
                  query_file_path, 
                  output_folder,
+                 classification = 2,
                  write_cfg_to_file = False, 
                  write_pregroup_to_file = False, 
                  generate_cfg_png_diagrams = False, 
@@ -52,7 +54,7 @@ class Circuits:
         self.id = id
         self.query_file_path = query_file_path
         self.output_folder = output_folder
-        self.classification = 2
+        self.classification = classification
         self.layers = 1
         self.single_qubit_params = 3
         self.n_wire_count = 1
@@ -101,9 +103,9 @@ class Circuits:
                 
 
     def generate_pennylane_circuits(self):
-        self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits)
-        self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits)
-        self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits)
+        self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits, self.classification)
+        self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits, self.classification)
+        self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits, self.classification)
 
 
     def generate_cfg_diagrams(self):

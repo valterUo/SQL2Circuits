@@ -5,9 +5,9 @@ import matplotlib.pyplot as plt
 import pickle
 import math
 #from jax import numpy as np
-import numpy as np
+#import numpy as np
+from pennylane import numpy as np
 import sys
-import numpy
 #import covalent as ct
 
 np.set_printoptions(threshold=sys.maxsize)
@@ -265,7 +265,7 @@ def multi_class_loss(y_hat, y):
         raise Exception("Length of predictions and labels must be equal")
     for pair in zip(y_hat, y):
         x = np.array(pair[1])
-        y_pred = np.array(numpy.array(pair[0]).flatten())
+        y_pred = np.array(pair[0]).flatten()
         if y_pred.size != x.size:
             print("y_pred: ", y_pred.size, "x: ", x.size)
             raise Exception("Length of prediction and label vectors must be equal")
@@ -310,3 +310,16 @@ def store_and_log(execution, data, file):
     else:
         with open(file, 'w') as f:
             json.dump({ execution : [ current_data ]}, f, indent = 4)
+
+def store_hyperparameter_opt_results(run_id, opt):
+    results = dict(opt.cv_results_)
+    for key, value in results.items():
+        if isinstance(value, np.ndarray):
+            results[key] = value.tolist()
+    best_params = dict(opt.best_params_)
+    for key, value in best_params.items():
+        if isinstance(value, np.ndarray):
+            best_params[key] = value.tolist()
+    results["best_params"] = best_params
+    with open("training//results//" + str(run_id) + "//" + str(run_id) + "_cv_results_.json", "w") as f:
+        json.dump(results, f)

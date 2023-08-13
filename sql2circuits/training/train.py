@@ -2,20 +2,19 @@
 
 import warnings
 import os
-from jax import numpy as np
-#import numpy as np
+#from jax import numpy as np
+import numpy as np
 from sympy import default_sort_key
 import numpy
-from jax import jit
+#from jax import jit
 from noisyopt import minimizeSPSA
+from training.functions.lambeq_functions import make_lambeq_cost_fn, make_lambeq_pred_fn
+from training.functions.pennylane_functions import make_pennylane_cost_fn, make_pennylane_pred_fn
 from training.cost_accuracy import CostAccuracy
 from training.utils import *
 from discopy.tensor import Tensor
 from sklearn.base import BaseEstimator
 from discopy.quantum.circuit import Circuit
-
-from training.trainers.lambeq_trainer import make_lambeq_pred_fn, make_lambeq_cost_fn
-from training.trainers.pennylane_trainer import make_pennylane_pred_fn, make_pennylane_cost_fn
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
@@ -23,7 +22,7 @@ os.environ['TOKENIZERS_PARALLELISM'] = 'True'
 #os.environ["JAX_PLATFORMS"] = "cpu"
 
 # This avoids TracerArrayConversionError from jax
-Tensor.np = np
+#Tensor.np = np
 
 SEED = 0
 rng = numpy.random.default_rng(SEED)
