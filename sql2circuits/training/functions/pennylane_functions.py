@@ -11,7 +11,7 @@ from discopy.quantum.pennylane import to_pennylane
 from training.pennylane_circuit import PennylaneCircuit
     
 
-def transform_into_pennylane_circuits(circuits, classification = 2):
+def transform_into_pennylane_circuits(circuits, classification = 2, interface = 'best', diff_method = 'best'):
     qml_circuits = {}
     symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key = default_sort_key))
@@ -35,7 +35,7 @@ def transform_into_pennylane_circuits(circuits, classification = 2):
         # Produces a dictionary like {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0} 
         # where the wires 0 and 1 are the classifying wires
         post_selection = dict([(i, 0) for i in range(classification, n_qubits)])
-        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection)
+        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection, interface, diff_method)
 
     return qml_circuits, full_symbol_to_index
 

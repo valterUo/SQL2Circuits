@@ -8,13 +8,14 @@ https://github.com/discopy/discopy/blob/main/discopy/quantum/pennylane.py
 
 """
 
-from pennylane import numpy as np
+#from pennylane import numpy as np
+from jax import numpy as np
 import pennylane as qml
 from itertools import product
 
 class PennylaneCircuit:
 
-    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection) -> None:
+    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection, interface, diff_method) -> None:
         self.ops = ops
         self.params = params
         self.pennylane_wires = pennylane_wires
@@ -25,7 +26,9 @@ class PennylaneCircuit:
         self.symbol_to_index = symbol_to_index
         self.symbols = symbols
         self.post_selection = post_selection
-        self.valid_states = self.get_valid_states()
+        self.interface = interface
+        self.diff_method = diff_method
+        self.valid_states = np.array(self.get_valid_states())
 
 
     def get_valid_states(self):
@@ -63,7 +66,7 @@ class PennylaneCircuit:
     
 
     def eval_qml_circuit_with_post_selection(self, circ_params):
-        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev) #, interface='torch', diff_method = "backprop")
+        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev, interface = self.interface, diff_method = self.diff_method)
         states = circuit(circ_params)
         post_selected_states = states[self.valid_states]
         post_states = np.array([np.linalg.norm(x)**2 for x in post_selected_states], dtype=np.float32)

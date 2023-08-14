@@ -45,6 +45,8 @@ class Circuits:
                  query_file_path, 
                  output_folder,
                  classification = 2,
+                 interface = 'auto',
+                 diff_method = 'best',
                  write_cfg_to_file = False, 
                  write_pregroup_to_file = False, 
                  generate_cfg_png_diagrams = False, 
@@ -64,6 +66,8 @@ class Circuits:
         self.write_cfg_to_file = write_cfg_to_file
         self.write_pregroup_to_file = write_pregroup_to_file
         self.generate_circuit_json_diagrams = generate_circuit_json_diagrams
+        self.interface = interface
+        self.diff_method = diff_method
 
         self.training_circuits = None
         self.validation_circuits = None
@@ -103,9 +107,18 @@ class Circuits:
                 
 
     def generate_pennylane_circuits(self):
-        self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits, self.classification)
-        self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits, self.classification)
-        self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits, self.classification)
+        self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits, 
+                                                                                               self.classification, 
+                                                                                               interface = self.interface, 
+                                                                                               diff_method = self.diff_method)
+        self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits, 
+                                                                                          self.classification, 
+                                                                                          interface = self.interface, 
+                                                                                          diff_method = self.diff_method)
+        self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits, 
+                                                                                               self.classification, 
+                                                                                               interface = self.interface, 
+                                                                                               diff_method = self.diff_method)
 
 
     def generate_cfg_diagrams(self):
