@@ -983,9 +983,3456 @@
         },
         {
             "id": 1,
-            "a": 0.00535654523302626,
-            "c": 0.006793187137881445,
-            "epochs": 10000,
+            "a": 0.053143320078719525,
+            "c": 0.053143320078719525,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.053143320078719525,
+            "c": 0.053143320078719525,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.053143320078719525,
+            "c": 0.053143320078719525,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.053143320078719525,
+            "c": 0.053143320078719525,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.053143320078719525,
+            "c": 0.053143320078719525,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.035242661664372066,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.049020645986534675,
+            "c": 0.049020645986534675,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.07844986534620699,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02502624248860782,
+            "c": 0.02502624248860782,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.09658613617113689,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.047347443243848646,
+            "c": 0.047347443243848646,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.030949311496368627,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06684782467481988,
+            "c": 0.06684782467481988,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.09704640299561584,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.02436027066628127,
+            "c": 0.02436027066628127,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.014959315050546533,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06679133313404242,
+            "c": 0.06679133313404242,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.08991002793500955,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.01358891418726149,
+            "c": 0.01358891418726149,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.08428746736885143,
+            "c": 0.08605639930763721,
+            "epochs": 1000,
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
