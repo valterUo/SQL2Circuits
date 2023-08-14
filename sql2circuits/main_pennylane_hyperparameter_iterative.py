@@ -48,13 +48,6 @@ for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_c
             { 'stepsize': Real(0.001, 0.1, 'uniform') },
                 n_iter = 3)
 
-    #sf = SampleFeaturePreparator(run_id, data_preparator, circuits, "all", "Pennylane")
-    #X_train = sf.get_X_train()
-    #X_valid = sf.get_X_valid()
-    #y = sf.get_y()
-
-    #trainer.fit(X_train, y, X_valid = X_valid, save_parameters = True)
-
     opt.fit(X_train, y, X_valid = X_valid)
 
     store_hyperparameter_opt_results(run_id + i + 1000, opt)

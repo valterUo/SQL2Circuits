@@ -52,20 +52,11 @@ class SQL2CircuitsEstimatorPennylane(BaseEstimator):
     def fit(self, X, y, **kwargs):
         self.training_circuits = [item for sublist in X for item in sublist]
         print("Number of training circuits: ", len(self.training_circuits))
-        #syms = set()
-        #for circ in self.training_circuits:
-        #        for symbols in circ.get_param_symbols():
-        #            for sym in symbols:
-        #                syms.add(sym)
-        #params = sorted(syms, key = default_sort_key)
-        #print("Number of parameters: ", len(params))
 
         pred_fn = make_pennylane_pred_fn_for_gradient_descent(self.training_circuits)
         cost_function = make_pennylane_cost_fn(pred_fn, 
                                                y, 
                                                self.loss_function)
-        #self.parameters = np.array(rng.random(len(params)), requires_grad=True)
-        
 
         for i in range(self.epochs):
             if i % 10 == 0:
@@ -79,8 +70,8 @@ class SQL2CircuitsEstimatorPennylane(BaseEstimator):
     def score(self, X, y):
         circuits = [item for sublist in X for item in sublist]
         accepted_circuits, y_new = select_pennylane_circuits(self.training_circuits, circuits, len(self.training_circuits), y)
-        predict_fun_for_score = make_pennylane_pred_fn(accepted_circuits, self.parameters, self.classification)
-        predictions = predict_fun_for_score(self.result.x)
+        predict_fun_for_score = make_pennylane_pred_fn_for_gradient_descent(accepted_circuits)
+        predictions = predict_fun_for_score(self.parameters)
         score = self.accuracy(predictions, y_new)
         print("Number of circuits: ", len(circuits), "Number of accepted circuits: ", len(accepted_circuits), "Score: ", score)
         return score

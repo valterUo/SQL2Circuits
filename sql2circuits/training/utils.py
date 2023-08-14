@@ -321,5 +321,5 @@ def store_hyperparameter_opt_results(run_id, opt):
         if isinstance(value, np.ndarray):
             best_params[key] = value.tolist()
     results["best_params"] = best_params
-    with open("training//results//" + str(run_id) + "//" + str(run_id) + "_cv_results_.json", "w") as f:
+    with open("training//results//" + str(run_id) + "_cv_results_.json", "w") as f:
         json.dump(results, f)
