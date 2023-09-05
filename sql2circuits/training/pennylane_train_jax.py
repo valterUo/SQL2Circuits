@@ -20,11 +20,11 @@ numpy.random.seed(SEED)
 
 class SQL2CircuitsEstimatorPennylaneJAX(BaseEstimator):
 
-    def __init__(self, optimizer, params, stepsize = 0.01, epochs = 1000, classification = 2):
+    def __init__(self, optimizer, params, stepsize = 0.01, learning_rate = 0.01, epochs = 1000, classification = 2):
         self.stepsize = stepsize
         self.optimizer = optimizer
         self.params = params
-        self.opt = optax.adam(learning_rate = 0.01)
+        self.learning_rate = learning_rate
         self.epochs = epochs
         self.classification = classification
         self.loss_function = multi_class_loss
@@ -41,6 +41,7 @@ class SQL2CircuitsEstimatorPennylaneJAX(BaseEstimator):
                                                y, 
                                                self.loss_function))
         
+        self.opt = optax.adam(self.learning_rate)
         opt_state = self.opt.init(self.parameters)
 
         for i in range(self.epochs):

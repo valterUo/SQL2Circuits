@@ -56,8 +56,8 @@ for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_c
 
     opt = BayesSearchCV(
         SQL2CircuitsEstimatorPennylaneJAX(optimizer, params, epochs = 500), 
-            { 'stepsize': Real(0.001, 0.1, 'uniform') }, n_iter = 1)
+            { 'learning_rate': Real(0.001, 0.1, 'uniform') }, n_iter = 3)
 
     opt.fit(X_train, y, X_valid = X_valid)
 
-    store_hyperparameter_opt_results(run_id + i + 2000, opt)
+    store_hyperparameter_opt_results("main_pennylane_jax_" + str(i), opt)
