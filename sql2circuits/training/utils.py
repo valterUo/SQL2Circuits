@@ -8,7 +8,6 @@ import math
 import numpy as np
 #from pennylane import numpy as np
 import sys
-#import covalent as ct
 
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
@@ -321,5 +320,15 @@ def store_hyperparameter_opt_results(run_id, opt):
         if isinstance(value, np.ndarray):
             best_params[key] = value.tolist()
     results["best_params"] = best_params
-    with open("training//results//" + str(run_id) + "_cv_results_.json", "w") as f:
-        json.dump(results, f)
+    with open("training//results//" + str(run_id) + "_cv_results.json", "w") as f:
+        # If results contains ndarray, convert them to list
+        for key, value in results.items():
+            if isinstance(value, np.ndarray):
+                results[key] = value.tolist()
+        try:
+            json.dump(results, f, indent = 4)
+        except TypeError:
+            print("TypeError: ", results)
+            # Store results as pickle
+            with open("training//results//" + str(run_id) + "_cv_results.pickle", "wb") as f:
+                pickle.dump(results, f)
