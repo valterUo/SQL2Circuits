@@ -10403,6 +10403,33 @@
             "classification": 4,
             "workload": "cardinality",
             "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.030331204785291607,
+            "c": 0.04198451983082157,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.030331204785291607,
+            "c": 0.04198451983082157,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
+        },
+        {
+            "id": 1,
+            "a": 0.06731713888727898,
+            "c": 0.045230758307983406,
+            "epochs": 1000,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "Pennylane"
         }
     ]
 }
