@@ -12,13 +12,13 @@ from training.functions.lambeq_functions import make_lambeq_cost_fn, make_lambeq
 from training.functions.pennylane_functions import make_pennylane_cost_fn, make_pennylane_pred_fn
 from training.cost_accuracy import CostAccuracy
 from training.utils import *
-from discopy.tensor import Tensor
+#from discopy.tensor import Tensor
 from sklearn.base import BaseEstimator
 from discopy.quantum.circuit import Circuit
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
-os.environ['TOKENIZERS_PARALLELISM'] = 'True'
+#os.environ['TOKENIZERS_PARALLELISM'] = 'True'
 #os.environ["JAX_PLATFORMS"] = "cpu"
 
 # This avoids TracerArrayConversionError from jax
@@ -250,6 +250,8 @@ class SQL2CircuitsEstimator(BaseEstimator):
         dev_cost_fn = make_pennylane_cost_fn(dev_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
         callback_fn = self.make_callback_fn(dev_cost_fn, costs_accuracies)
+
+        #print(train_cost_fn, self.init_params_spsa, self.a, self.c, self.epochs, callback_fn)
         
         self.result = minimizeSPSA(train_cost_fn,
                                    x0 = self.init_params_spsa,

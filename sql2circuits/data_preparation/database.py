@@ -2,7 +2,10 @@
 
 import json
 import re
-import psycopg2
+try:
+    import psycopg2
+except ModuleNotFoundError:
+    print("psycopg2 not found. Please install it with 'pip install psycopg2' and try again.")
 import os
 
 class Database:

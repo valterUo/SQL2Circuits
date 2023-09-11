@@ -32,11 +32,11 @@ circuits = Circuits(run_id, query_file, output_folder, write_cfg_to_file = True,
 circuits.execute_full_transformation()
 
 optimization_method = "Pennylane"
-initial_number_of_circuits = 20
+initial_number_of_circuits = 160
 number_of_circuits_to_add = 20
 total_number_of_circuits = len(data_preparator.get_training_data_labels())
-a = 0.01
-c = 0.01
+a = 0.01358891418726149
+c = 0.08991002793500955
 
 for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_circuits_to_add):
     sf = SampleFeaturePreparator(run_id, data_preparator, circuits, i, optimization_method)

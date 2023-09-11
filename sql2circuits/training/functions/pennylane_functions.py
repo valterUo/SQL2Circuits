@@ -2,7 +2,8 @@
 
 import collections
 import multiprocessing
-from pennylane import numpy as np
+#from pennylane import numpy as np
+import numpy as np
 from discopy.quantum.pennylane import to_pennylane
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
@@ -114,7 +115,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
 
 def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn = None, costs_accuracies = None, type = None):
     
-    def cost_fn(params):
+    def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
         cost = loss_fn(predictions, labels)
         if costs_accuracies is not None and type is not None:

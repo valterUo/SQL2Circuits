@@ -1,4 +1,7 @@
-from antlr4 import *
+try:
+    from antlr4 import *
+except ModuleNotFoundError:
+    print("Please install antlr4-python3-runtime to use the parser.")
 import json
 import os
 from discopy import Ty, Functor
