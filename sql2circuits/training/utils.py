@@ -4,10 +4,16 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-from jax import numpy as np
-#import numpy as np
-#from pennylane import numpy as np
 import sys
+
+try:
+    from jax import numpy as np
+except ModuleNotFoundError:
+    try:
+        from pennylane import numpy as np
+    except ModuleNotFoundError:
+        import numpy as np
+
 
 from utils.custom_json_encoder import CustomEncoder
 

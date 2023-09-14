@@ -11,6 +11,7 @@ from sql2circuits.training.data_preparation_manager import DataPreparationManage
 from sql2circuits.training.trainers.pennylane_optax import PennylaneTrainerJAX
 from skopt import BayesSearchCV
 from skopt.space import Real
+import pickle
 
 this_folder = os.path.abspath(os.getcwd())
 seed_paths = ["data_preparation//query_seeds//JOB_query_seed_execution_time.json",
@@ -43,7 +44,7 @@ circuits.execute_full_transformation()
 
 optimization_method = "Pennylane"
 optimizer = "GradientDescent"
-initial_number_of_circuits = 20
+initial_number_of_circuits = 70
 number_of_circuits_to_add = 50
 total_number_of_circuits = len(data_preparator.get_training_data_labels())
 
@@ -59,5 +60,8 @@ for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_c
             { 'learning_rate': Real(0.001, 0.1, 'uniform') }, n_iter = 3)
 
     opt.fit(X_train, y, X_valid = X_valid)
+    
+    # Store opt to pickle file
+    pickle.dump(opt, open("main_pennylane_jax_" + str(i) + ".pkl", "wb"))
 
-    store_hyperparameter_opt_results("main_pennylane_jax_" + str(i), opt)
+    #store_hyperparameter_opt_results("main_pennylane_jax_" + str(i), opt)

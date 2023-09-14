@@ -6,9 +6,18 @@ import numpy
 from training.functions.pennylane_functions import *
 from training.utils import *
 from sklearn.base import BaseEstimator
-from jax import numpy as np
-import jax
-import optax
+
+try:
+    from jax import numpy as np
+    import jax
+    import optax
+except ModuleNotFoundError:
+    try:
+        from pennylane import numpy as np
+    except ModuleNotFoundError:
+        import numpy as np
+
+
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())

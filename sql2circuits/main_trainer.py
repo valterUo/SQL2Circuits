@@ -68,7 +68,7 @@ class SQL2Circuits():
             os.makedirs(self.results_folder)
             print("The new directory: ", self.results_folder, " is created for results.")
 
-        self.circuits = Circuits(run_id, query_file, output_folder, write_cfg_to_file = True, write_pregroup_to_file=True, generate_circuit_png_diagrams = True)
+        self.circuits = Circuits(run_id, query_file, output_folder, self.classification, write_cfg_to_file = True, write_pregroup_to_file=True, generate_circuit_png_diagrams = True)
         self.circuits.execute_full_transformation()
 
 
@@ -111,7 +111,7 @@ class SQL2Circuits():
             trainer = LambeqTrainer(self.run_id,
                                 circuits = self.circuits,
                                 workload_type = self.workload_type,
-                                classification = 2,
+                                classification = self.classification,
                                 a = a,
                                 c = c,
                                 epochs = epochs,
@@ -124,7 +124,7 @@ class SQL2Circuits():
             trainer = PennylaneTrainer(self.run_id,
                                 circuits = self.circuits,
                                 workload_type = self.workload_type,
-                                classification = 2,
+                                classification = self.classification,
                                 a = a,
                                 c = c,
                                 epochs = epochs,
