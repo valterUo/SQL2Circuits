@@ -2,9 +2,12 @@
 
 import warnings
 import os
-from jax import jit
-#from jax import numpy as np
-#from jax import jit
+
+try:
+    import jax
+except ModuleNotFoundError:
+    pass
+
 from noisyopt import minimizeSPSA
 from training.trainers.training_utils import make_callback_fn, read_parameters, visualize_result
 from training.functions.lambeq_functions import make_lambeq_cost_fn, make_lambeq_pred_fn
@@ -87,8 +90,8 @@ class LambeqTrainer(BaseEstimator):
 
         costs_accuracies = CostAccuracy()
 
-        train_cost_fn = jit(make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train"))
-        dev_cost_fn = jit(make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev"))
+        train_cost_fn = jax.jit(make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train"))
+        dev_cost_fn = jax.jit(make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev"))
 
         callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.stats_iter_file)
         

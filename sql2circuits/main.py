@@ -1,8 +1,12 @@
 import json
 import os
 from main_trainer import SQL2Circuits
-from jax.config import config
-config.update("jax_enable_x64", True)
+
+try:
+    from jax.config import config
+    config.update("jax_enable_x64", True)
+except ModuleNotFoundError:
+    pass
 
 this_folder = os.path.abspath(os.getcwd())
 configurations = json.load(open("sql2circuits_config.json", "r"))

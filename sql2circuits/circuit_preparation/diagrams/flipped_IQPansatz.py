@@ -20,19 +20,10 @@ from typing import Any, Callable, Optional
 
 from discopy.quantum.circuit import (Circuit, Discard, Functor, Id, qubit)
 from discopy.quantum.gates import Bra, Ket, Rx, Rz
-from discopy.rigid import Box, Diagram, Ty
+from discopy.rigid import Box, Ty
 import numpy as np
-
-import random
-from itertools import takewhile, chain
-
-from discopy import messages, monoidal, rigid, tensor
-from discopy.cat import AxiomError
-from discopy.tensor import Dim, Tensor
-from math import pi
-from functools import reduce, partial
-
-from lambeq.ansatz import BaseAnsatz, Symbol
+from discopy.tensor import Tensor
+from lambeq.ansatz import Symbol
 from lambeq import CircuitAnsatz
 
 _ArMapT = Callable[[Box], Circuit]
@@ -101,7 +92,8 @@ class IQPAnsatzFlipped(CircuitAnsatz):
                  discard: bool = False,
                  special_cases: Optional[Callable[[_ArMapT], _ArMapT]] = None):
         
-        super().__init__(ob_map=ob_map, n_layers=n_layers,
+        super().__init__(ob_map=ob_map, 
+                         n_layers=n_layers,
                          n_single_qubit_params=n_single_qubit_params)
 
         if special_cases is None:

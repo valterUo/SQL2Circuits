@@ -8,9 +8,14 @@ https://github.com/discopy/discopy/blob/main/discopy/quantum/pennylane.py
 
 """
 
-#from pennylane import numpy as np
-from jax import numpy as np
-#import numpy as np
+try:
+    from jax import numpy as np
+except ModuleNotFoundError:
+    try:
+        from pennylane import numpy as np
+    except ModuleNotFoundError:
+        import numpy as np
+        
 import pennylane as qml
 from itertools import product
 
