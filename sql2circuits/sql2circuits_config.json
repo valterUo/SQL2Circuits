@@ -1,0 +1,24 @@
+{
+    "seed_paths": [
+      "data_preparation//query_seeds//JOB_query_seed_execution_time.json",
+      "data_preparation//query_seeds//JOB_query_seed_cardinality.json"
+    ],
+    "workload_types": [
+      "execution_time",
+      "cardinality"
+    ],
+    "qc_frameworks": [
+      "lambeq",
+      "pennylane"
+    ],
+    "classical_optimizers": [
+      "noisyopt_SPSA",
+      "optax",
+      "pennylane_SPSA",
+      "pennylane_gradient_descent"
+    ],
+    "measurements": [
+      "state",
+      "sample"
+    ]
+  }
