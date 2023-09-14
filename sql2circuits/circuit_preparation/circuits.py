@@ -44,7 +44,7 @@ class Circuits:
                  id, 
                  query_file_path, 
                  output_folder,
-                 classification = 2,
+                 classification,
                  interface = 'auto',
                  diff_method = 'best',
                  write_cfg_to_file = False, 

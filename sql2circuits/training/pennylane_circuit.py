@@ -8,10 +8,20 @@ https://github.com/discopy/discopy/blob/main/discopy/quantum/pennylane.py
 
 """
 
-#from pennylane import numpy as np
-from jax import numpy as np
+try:
+    from jax import numpy as np
+except ModuleNotFoundError:
+    try:
+        from pennylane import numpy as np
+    except ModuleNotFoundError:
+        import numpy as np
+        
 import pennylane as qml
 from itertools import product
+
+# This avoids TracerArrayConversionError from jax
+#from discopy.tensor import Tensor
+#Tensor.np = np
 
 class PennylaneCircuit:
 
@@ -21,7 +31,8 @@ class PennylaneCircuit:
         self.pennylane_wires = pennylane_wires
         self.n_qubits = n_qubits
         self.dev = qml.device("default.qubit", 
-                              wires=range(n_qubits))
+                              wires=range(n_qubits)) #,
+                              #shots=10000)
         self.param_symbols = param_symbols
         self.symbol_to_index = symbol_to_index
         self.symbols = symbols

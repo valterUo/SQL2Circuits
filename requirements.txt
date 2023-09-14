@@ -1,8 +1,6 @@
 covalent==0.220.0
 discopy==0.5.1.2
-discopy==0.4.1
 jax==0.4.13
-lambeq==0.3.1
 lambeq==0.2.1
 matplotlib==3.5.1
 noisyopt==0.2.2

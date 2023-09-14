@@ -2,13 +2,27 @@
 
 import collections
 import multiprocessing
-from pennylane import numpy as np
+try:
+    from jax import numpy as np
+except ModuleNotFoundError:
+    try:
+        from pennylane import numpy as np
+    except ModuleNotFoundError:
+        import numpy as np
+        
 from discopy.quantum.pennylane import to_pennylane
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
 
 from training.pennylane_circuit import PennylaneCircuit
+
+# This avoids TracerArrayConversionError from jax
+try:
+    from discopy.tensor import Tensor
+    Tensor.np = np
+except:
+    pass
     
 
 def transform_into_pennylane_circuits(circuits, classification = 2, interface = 'best', diff_method = 'best'):
@@ -114,7 +128,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
 
 def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn = None, costs_accuracies = None, type = None):
     
-    def cost_fn(params):
+    def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
         cost = loss_fn(predictions, labels)
         if costs_accuracies is not None and type is not None:

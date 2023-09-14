@@ -4,10 +4,18 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pickle
 import math
-from jax import numpy as np
-#import numpy as np
-#from pennylane import numpy as np
 import sys
+
+try:
+    from jax import numpy as np
+except ModuleNotFoundError:
+    try:
+        from pennylane import numpy as np
+    except ModuleNotFoundError:
+        import numpy as np
+
+
+from utils.custom_json_encoder import CustomEncoder
 
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
@@ -332,3 +340,9 @@ def store_hyperparameter_opt_results(run_id, opt):
             # Store results as pickle
             with open("training//results//" + str(run_id) + "_cv_results.pickle", "wb") as f:
                 pickle.dump(results, f)
+
+
+def store_to_json(result, filename):
+    json_str = json.dumps(result, cls=CustomEncoder)
+    with open(filename, "w") as f:
+        f.write(json_str)

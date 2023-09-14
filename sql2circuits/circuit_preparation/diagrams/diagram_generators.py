@@ -1,4 +1,7 @@
-from antlr4 import *
+try:
+    from antlr4 import *
+except ModuleNotFoundError:
+    print("Please install antlr4-python3-runtime to use the parser.")
 import json
 import os
 from discopy import Ty, Functor
@@ -100,28 +103,28 @@ def create_circuit_ansatz(pregroup_diagrams,
                           generate_circuit_png_diagrams, 
                           generate_circuit_json_diagrams):
     circuit_diagrams = dict()
-    try:
-        from circuit_preparation.diagrams.flipped_IQPansatz import IQPAnsatzFlipped
-        ansatz = IQPAnsatzFlipped({n: n_wire_count, 
-                                s: classification}, 
-                                n_layers = layers, 
-                                n_single_qubit_params = single_qubit_params)
-        for count, key in enumerate(pregroup_diagrams):
-            print("Process: ", count, " out of ", len(pregroup_diagrams))
-            cupless_pregroup_diagram = loads(json.dumps(pregroup_diagrams[key]))
-            circuit_diagram = ansatz(cupless_pregroup_diagram) # type: ignore
-            circuit_diagrams[key] = circuit_diagram
+    #try:
+    from circuit_preparation.diagrams.flipped_IQPansatz import IQPAnsatzFlipped
+    ansatz = IQPAnsatzFlipped({n: n_wire_count, 
+                            s: classification}, 
+                            n_layers = layers, 
+                            n_single_qubit_params = single_qubit_params)
+    for count, key in enumerate(pregroup_diagrams):
+        print("Process: ", count, " out of ", len(pregroup_diagrams))
+        cupless_pregroup_diagram = loads(json.dumps(pregroup_diagrams[key]))
+        circuit_diagram = ansatz(cupless_pregroup_diagram) # type: ignore
+        circuit_diagrams[key] = circuit_diagram
 
-            if generate_circuit_png_diagrams and count < 10:
-                width = circuit_diagram.width()
-                height = circuit_diagram.depth()
-                dim = 3*max(width, height)
-                circuit_diagram.draw(figsize=(dim, dim), path = key + ".png")
+        if generate_circuit_png_diagrams and count < 10:
+            width = circuit_diagram.width()
+            height = circuit_diagram.depth()
+            dim = 3*max(width, height)
+            circuit_diagram.draw(figsize=(dim, dim), path = key + ".png")
 
-            if generate_circuit_json_diagrams:
-                with open(key + ".json", 'w') as outfile:
-                    json.dump(json.loads(dumps(circuit_diagram)), outfile)
-    except:
-        print("Failed to create circuit ansatz.")
+        if generate_circuit_json_diagrams:
+            with open(key + ".json", 'w') as outfile:
+                json.dump(json.loads(dumps(circuit_diagram)), outfile)
+    #except:
+    #    print("Failed to create circuit ansatz.")
 
     return circuit_diagrams

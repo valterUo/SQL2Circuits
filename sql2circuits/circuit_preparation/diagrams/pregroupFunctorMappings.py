@@ -1,12 +1,13 @@
 import json
 import os
-from discopy.rigid import Diagram, Cup, Cap, Id, Ty, Box
+from discopy.rigid import Diagram, Cap, Id, Ty, Box
 
 n, s = Ty('n'), Ty('s')
 
 functor_data = None
 this_folder = os.path.abspath(os.getcwd())
-with open(this_folder + "//circuit_preparation//diagrams//pregroup_functor_data.json") as json_file:
+# sql2circuits//circuit_preparation//diagrams//pregroup_functor_data.json
+with open("circuit_preparation//diagrams//pregroup_functor_data.json") as json_file:
     functor_data = json.load(json_file)
     
 def count_boxes(diagram, box_name):
