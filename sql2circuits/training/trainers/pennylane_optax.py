@@ -24,7 +24,8 @@ numpy.random.seed(SEED)
 
 class PennylaneTrainerJAX(BaseEstimator):
 
-    def __init__(self, optimizer, params, stepsize = 0.01, learning_rate = 0.01, epochs = 200, classification = 2):
+    def __init__(self, identifier, optimizer, params, stepsize = 0.01, learning_rate = 0.01, epochs = 200, classification = 2):
+        self.identifier = identifier
         self.stepsize = stepsize
         self.optimizer = optimizer
         self.params = params
@@ -34,6 +35,15 @@ class PennylaneTrainerJAX(BaseEstimator):
         self.loss_function = multi_class_loss
         self.accuracy = multi_class_acc
         self.parameters = np.array(rng.random(len(params)))
+
+        this_folder = os.path.abspath(os.getcwd())
+        # If there exists a file with the parameters, load them
+        if os.path.isfile(this_folder + "/training/parameters/" + self.identifier + ".npy"):
+            self.parameters = np.load(this_folder + "/training/parameters/" + self.identifier + ".npy")
+            print("Parameters loaded from file")
+        else:
+            print("No parameters file found")
+
 
 
     def train(self, X, y, **kwargs):
@@ -58,7 +68,10 @@ class PennylaneTrainerJAX(BaseEstimator):
                 print(f"Step {i}, Cost: {cost}")
                 #print(f"Step {i}")
                 print("Accuracy: ", self.accuracy(pred_fn(self.parameters), y))
-                
+        
+        # Save the parameters
+        np.save(this_folder + "/training/parameters/" + self.identifier + ".npy", self.parameters)
+
         return self.parameters
 
 

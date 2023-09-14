@@ -141,10 +141,10 @@ class SQL2Circuits():
         X_valid = sf.get_X_valid()
         y = sf.get_y()
 
-        trainer = PennylaneTrainerJAX(self.classical_optimizer, params, epochs = 500)
+        trainer = PennylaneTrainerJAX(self.identifier, self.classical_optimizer, params, epochs = 500)
 
         self.result = trainer.train(X_train, y, X_valid = X_valid)
-        print(self.result)
+        
         # Store the results to pickled file
         with open(self.results_folder + str(number_of_circuits) + "_optax_results_.pkl", "wb") as f:
             pickle.dump(self.result, f)
