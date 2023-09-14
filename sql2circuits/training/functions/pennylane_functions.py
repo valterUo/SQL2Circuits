@@ -3,13 +3,18 @@
 import collections
 import multiprocessing
 #from pennylane import numpy as np
-import numpy as np
+#import numpy as np
+from jax import numpy as np
 from discopy.quantum.pennylane import to_pennylane
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
 from discopy.quantum.pennylane import to_pennylane
 
 from training.pennylane_circuit import PennylaneCircuit
+
+# This avoids TracerArrayConversionError from jax
+from discopy.tensor import Tensor
+Tensor.np = np
     
 
 def transform_into_pennylane_circuits(circuits, classification = 2, interface = 'best', diff_method = 'best'):

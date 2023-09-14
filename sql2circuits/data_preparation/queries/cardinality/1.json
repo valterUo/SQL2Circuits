@@ -13,7 +13,7 @@
             },
             {
                 "id": 3,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 4,
@@ -25,11 +25,11 @@
             },
             {
                 "id": 7,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 8,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 9,
@@ -37,11 +37,11 @@
             },
             {
                 "id": 11,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 12,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(co-production)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 15,
@@ -57,7 +57,7 @@
             },
             {
                 "id": 25,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 26,
@@ -65,19 +65,19 @@
             },
             {
                 "id": 30,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 32,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 34,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.id = mc.movie_id;"
             },
             {
                 "id": 35,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND t.id = mc.movie_id;"
             },
             {
                 "id": 37,
@@ -89,11 +89,11 @@
             },
             {
                 "id": 41,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 43,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 44,
@@ -105,15 +105,15 @@
             },
             {
                 "id": 47,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 48,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 51,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 52,
@@ -121,7 +121,7 @@
             },
             {
                 "id": 53,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 54,
@@ -137,7 +137,7 @@
             },
             {
                 "id": 59,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 61,
@@ -145,7 +145,7 @@
             },
             {
                 "id": 64,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note IS NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note IS NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 65,
@@ -153,7 +153,7 @@
             },
             {
                 "id": 66,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 67,
@@ -169,15 +169,15 @@
             },
             {
                 "id": 70,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 71,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 74,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 75,
@@ -185,7 +185,7 @@
             },
             {
                 "id": 82,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 83,
@@ -197,15 +197,15 @@
             },
             {
                 "id": 89,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 91,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 92,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 97,
@@ -213,11 +213,11 @@
             },
             {
                 "id": 99,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 102,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 104,
@@ -229,11 +229,11 @@
             },
             {
                 "id": 107,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 109,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 110,
@@ -245,7 +245,7 @@
             },
             {
                 "id": 113,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 115,
@@ -253,15 +253,15 @@
             },
             {
                 "id": 117,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 120,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 121,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 122,
@@ -273,7 +273,7 @@
             },
             {
                 "id": 125,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 127,
@@ -285,19 +285,19 @@
             },
             {
                 "id": 129,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 132,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 133,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 134,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 135,
@@ -305,7 +305,7 @@
             },
             {
                 "id": 136,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 138,
@@ -317,11 +317,11 @@
             },
             {
                 "id": 140,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 141,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 142,
@@ -329,11 +329,11 @@
             },
             {
                 "id": 144,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 145,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 149,
@@ -341,15 +341,15 @@
             },
             {
                 "id": 152,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 155,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 156,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 157,
@@ -361,19 +361,19 @@
             },
             {
                 "id": 159,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 160,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 161,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 162,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 163,
@@ -381,7 +381,7 @@
             },
             {
                 "id": 164,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 165,
@@ -401,7 +401,7 @@
             },
             {
                 "id": 171,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 172,
@@ -409,15 +409,15 @@
             },
             {
                 "id": 173,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 174,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 176,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 177,
@@ -425,11 +425,11 @@
             },
             {
                 "id": 178,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 183,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 184,
@@ -437,11 +437,11 @@
             },
             {
                 "id": 186,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 187,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 188,
@@ -449,7 +449,7 @@
             },
             {
                 "id": 189,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 191,
@@ -457,11 +457,11 @@
             },
             {
                 "id": 193,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 194,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 195,
@@ -469,7 +469,7 @@
             },
             {
                 "id": 197,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 199,
@@ -481,19 +481,19 @@
             },
             {
                 "id": 201,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 202,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 203,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 204,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 205,
@@ -501,7 +501,7 @@
             },
             {
                 "id": 208,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 209,
@@ -521,7 +521,7 @@
             },
             {
                 "id": 220,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 222,
@@ -533,19 +533,19 @@
             },
             {
                 "id": 225,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 227,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 228,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 229,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 232,
@@ -557,7 +557,7 @@
             },
             {
                 "id": 236,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 237,
@@ -565,27 +565,27 @@
             },
             {
                 "id": 238,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 239,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 242,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
             },
             {
                 "id": 243,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 245,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
             },
             {
                 "id": 247,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note IS NULL AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note IS NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 248,
@@ -641,11 +641,11 @@
             },
             {
                 "id": 274,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 276,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 277,
@@ -661,11 +661,11 @@
             },
             {
                 "id": 280,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 281,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 282,
@@ -673,15 +673,15 @@
             },
             {
                 "id": 283,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 284,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 285,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 286,
@@ -689,7 +689,7 @@
             },
             {
                 "id": 287,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 288,
@@ -701,15 +701,15 @@
             },
             {
                 "id": 291,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 294,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 295,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 297,
@@ -725,7 +725,7 @@
             },
             {
                 "id": 306,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note IS NOT NULL AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 307,
@@ -733,15 +733,15 @@
             },
             {
                 "id": 309,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 310,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NOT NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NOT NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 311,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 312,
@@ -757,7 +757,7 @@
             },
             {
                 "id": 315,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.id = mc.movie_id;"
             },
             {
                 "id": 317,
@@ -765,11 +765,11 @@
             },
             {
                 "id": 318,
-                "query": "SELECT t.title AS movie_title FROM title AS t, cast_info AS ci WHERE t.production_year > 2004 AND t.id = ci.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM cast_info AS ci, title AS t WHERE t.production_year > 2004 AND t.id = ci.movie_id;"
             },
             {
                 "id": 320,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND ml.movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND ml.movie_id = t.id;"
             },
             {
                 "id": 322,
@@ -777,19 +777,19 @@
             },
             {
                 "id": 323,
-                "query": "SELECT t.title AS movie_title FROM title AS t, complete_cast AS cc WHERE t.production_year > 2004 AND t.id = cc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM complete_cast AS cc, title AS t WHERE t.production_year > 2004 AND t.id = cc.movie_id;"
             },
             {
                 "id": 324,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
             },
             {
                 "id": 328,
-                "query": "SELECT t.title AS movie_title FROM title AS t, cast_info AS ci WHERE t.production_year < 2011 AND t.id = ci.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM cast_info AS ci, title AS t WHERE t.production_year < 2011 AND t.id = ci.movie_id;"
             },
             {
                 "id": 330,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year < 2011 AND ml.movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year < 2011 AND ml.movie_id = t.id;"
             },
             {
                 "id": 331,
@@ -801,7 +801,7 @@
             },
             {
                 "id": 333,
-                "query": "SELECT t.title AS movie_title FROM title AS t, complete_cast AS cc WHERE t.production_year < 2011 AND t.id = cc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM complete_cast AS cc, title AS t WHERE t.production_year < 2011 AND t.id = cc.movie_id;"
             },
             {
                 "id": 335,
@@ -865,7 +865,7 @@
             },
             {
                 "id": 360,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_keyword AS mk WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mk.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_keyword AS mk, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mk.movie_id;"
             },
             {
                 "id": 361,
@@ -873,7 +873,7 @@
             },
             {
                 "id": 362,
-                "query": "SELECT t.title AS movie_title FROM title AS t, cast_info AS ci WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = ci.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM cast_info AS ci, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = ci.movie_id;"
             },
             {
                 "id": 365,
@@ -881,7 +881,7 @@
             },
             {
                 "id": 368,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
             },
             {
                 "id": 369,
@@ -889,15 +889,15 @@
             },
             {
                 "id": 371,
-                "query": "SELECT t.title AS movie_title FROM title AS t, cast_info AS ci WHERE t.production_year > 2004 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM cast_info AS ci, title AS t WHERE t.production_year > 2004 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
             },
             {
                 "id": 372,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 373,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note IS NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note IS NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 374,
@@ -905,15 +905,15 @@
             },
             {
                 "id": 376,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
             },
             {
                 "id": 377,
-                "query": "SELECT t.title AS movie_title FROM title AS t, cast_info AS ci WHERE t.production_year < 2011 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM cast_info AS ci, title AS t WHERE t.production_year < 2011 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
             },
             {
                 "id": 378,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 381,
@@ -929,11 +929,11 @@
             },
             {
                 "id": 391,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id;"
             },
             {
                 "id": 392,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND ml.movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND ml.movie_id = t.id;"
             },
             {
                 "id": 393,
@@ -941,19 +941,19 @@
             },
             {
                 "id": 395,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, complete_cast AS cc WHERE t.production_year > 2004 AND t.id = cc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM complete_cast AS cc, title AS t WHERE t.production_year > 2004 AND t.id = cc.movie_id;"
             },
             {
                 "id": 397,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND t.id = mc.movie_id;"
             },
             {
                 "id": 398,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_keyword AS mk WHERE t.production_year < 2011 AND t.id = mk.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_keyword AS mk, title AS t WHERE t.production_year < 2011 AND t.id = mk.movie_id;"
             },
             {
                 "id": 402,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year < 2011 AND ml.movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year < 2011 AND ml.movie_id = t.id;"
             },
             {
                 "id": 403,
@@ -965,11 +965,11 @@
             },
             {
                 "id": 405,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, complete_cast AS cc WHERE t.production_year < 2011 AND t.id = cc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM complete_cast AS cc, title AS t WHERE t.production_year < 2011 AND t.id = cc.movie_id;"
             },
             {
                 "id": 406,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
             },
             {
                 "id": 409,
@@ -1029,19 +1029,19 @@
             },
             {
                 "id": 431,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mc.movie_id;"
             },
             {
                 "id": 432,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_keyword AS mk WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mk.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_keyword AS mk, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mk.movie_id;"
             },
             {
                 "id": 435,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id;"
             },
             {
                 "id": 436,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.movie_id = t.id;"
             },
             {
                 "id": 437,
@@ -1053,15 +1053,15 @@
             },
             {
                 "id": 440,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
             },
             {
                 "id": 443,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, cast_info AS ci WHERE t.production_year > 2004 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM cast_info AS ci, title AS t WHERE t.production_year > 2004 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
             },
             {
                 "id": 445,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note IS NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note IS NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 446,
@@ -1069,7 +1069,7 @@
             },
             {
                 "id": 450,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 457,
@@ -1189,15 +1189,15 @@
             },
             {
                 "id": 511,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 512,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 513,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 514,
@@ -1209,11 +1209,11 @@
             },
             {
                 "id": 518,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 519,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 521,
@@ -1221,75 +1221,75 @@
             },
             {
                 "id": 523,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 524,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 525,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 529,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 531,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 532,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 533,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 537,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 538,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 540,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 541,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 542,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 543,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 544,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 545,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 546,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 547,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 548,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 550,
@@ -1349,35 +1349,35 @@
             },
             {
                 "id": 571,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 572,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 574,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NOT NULL AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 575,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NOT NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NOT NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 576,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NULL AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 578,
-                "query": "SELECT lt.link AS movie_link_type FROM movie_link AS ml, link_type AS lt WHERE lt.link LIKE '%follow%' AND lt.id = ml.link_type_id;"
+                "query": "SELECT lt.link AS movie_link_type FROM link_type AS lt, movie_link AS ml WHERE lt.link LIKE '%follow%' AND lt.id = ml.link_type_id;"
             },
             {
                 "id": 579,
-                "query": "SELECT lt.link AS movie_link_type FROM movie_link AS ml, link_type AS lt WHERE lt.link ='features' AND lt.link LIKE '%follow%' AND lt.id = ml.link_type_id;"
+                "query": "SELECT lt.link AS movie_link_type FROM link_type AS lt, movie_link AS ml WHERE lt.link ='features' AND lt.link LIKE '%follow%' AND lt.id = ml.link_type_id;"
             },
             {
                 "id": 581,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 582,
@@ -1397,7 +1397,7 @@
             },
             {
                 "id": 590,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
             },
             {
                 "id": 591,
@@ -1409,11 +1409,11 @@
             },
             {
                 "id": 596,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info ='rating' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info ='rating' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 598,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info ='mini biography' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info ='mini biography' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 600,
@@ -1421,35 +1421,35 @@
             },
             {
                 "id": 602,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'top 250 rank' AND it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 603,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'top 250 rank' AND it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 604,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'top 250 rank' AND mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
             },
             {
                 "id": 605,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'top 250 rank' AND it.info ='rating' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND it.info ='rating' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 606,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'top 250 rank' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 607,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 608,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
             },
             {
                 "id": 609,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.info ='rating' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.info ='rating' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 612,
@@ -1497,11 +1497,11 @@
             },
             {
                 "id": 626,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND mi.info IN ('Sweden', 'USA', 'German') AND it.id = mi.info_type_id;"
             },
             {
                 "id": 627,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.info ='rating' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.info ='rating' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 629,
@@ -1509,7 +1509,7 @@
             },
             {
                 "id": 632,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.info ='rating' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.info ='rating' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 633,
@@ -1525,7 +1525,7 @@
             },
             {
                 "id": 638,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info ='rating' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info ='rating' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 639,
@@ -1537,15 +1537,15 @@
             },
             {
                 "id": 642,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 643,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 644,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 646,
@@ -1553,35 +1553,35 @@
             },
             {
                 "id": 648,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 649,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 651,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 653,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 654,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 656,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 657,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 658,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 663,
@@ -1589,7 +1589,7 @@
             },
             {
                 "id": 664,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 670,
@@ -1603,7 +1603,7 @@
         "test": [
             {
                 "id": 1,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 6,
@@ -1615,15 +1615,15 @@
             },
             {
                 "id": 14,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 21,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 23,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(presents)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 27,
@@ -1643,7 +1643,7 @@
             },
             {
                 "id": 63,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NOT NULL AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 72,
@@ -1651,7 +1651,7 @@
             },
             {
                 "id": 73,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 76,
@@ -1659,11 +1659,11 @@
             },
             {
                 "id": 84,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 93,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 96,
@@ -1675,19 +1675,19 @@
             },
             {
                 "id": 100,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 103,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 106,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[us]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 111,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 116,
@@ -1695,7 +1695,7 @@
             },
             {
                 "id": 118,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 119,
@@ -1707,7 +1707,7 @@
             },
             {
                 "id": 146,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 150,
@@ -1715,11 +1715,11 @@
             },
             {
                 "id": 153,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 170,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 180,
@@ -1731,11 +1731,11 @@
             },
             {
                 "id": 182,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 185,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 190,
@@ -1743,23 +1743,23 @@
             },
             {
                 "id": 196,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 198,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 206,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 216,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 218,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 221,
@@ -1767,7 +1767,7 @@
             },
             {
                 "id": 224,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 230,
@@ -1775,11 +1775,11 @@
             },
             {
                 "id": 240,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 244,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note IS NULL AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note IS NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 250,
@@ -1819,11 +1819,11 @@
             },
             {
                 "id": 296,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 299,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 302,
@@ -1831,15 +1831,15 @@
             },
             {
                 "id": 305,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 308,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NOT NULL AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 316,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_keyword AS mk WHERE t.production_year > 2004 AND t.id = mk.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_keyword AS mk, title AS t WHERE t.production_year > 2004 AND t.id = mk.movie_id;"
             },
             {
                 "id": 321,
@@ -1847,11 +1847,11 @@
             },
             {
                 "id": 326,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_keyword AS mk WHERE t.production_year < 2011 AND t.id = mk.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_keyword AS mk, title AS t WHERE t.production_year < 2011 AND t.id = mk.movie_id;"
             },
             {
                 "id": 329,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id;"
             },
             {
                 "id": 345,
@@ -1867,7 +1867,7 @@
             },
             {
                 "id": 363,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.linked_movie_id = t.id;"
             },
             {
                 "id": 366,
@@ -1875,7 +1875,7 @@
             },
             {
                 "id": 379,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note IS NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note IS NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 385,
@@ -1883,7 +1883,7 @@
             },
             {
                 "id": 387,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.id = mc.movie_id;"
             },
             {
                 "id": 389,
@@ -1891,15 +1891,15 @@
             },
             {
                 "id": 396,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
             },
             {
                 "id": 400,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, cast_info AS ci WHERE t.production_year < 2011 AND t.id = ci.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM cast_info AS ci, title AS t WHERE t.production_year < 2011 AND t.id = ci.movie_id;"
             },
             {
                 "id": 401,
-                "query": "SELECT t.production_year AS movie_year FROM movie_link AS ml, title AS t WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id;"
+                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_link AS ml WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id;"
             },
             {
                 "id": 413,
@@ -1923,19 +1923,19 @@
             },
             {
                 "id": 434,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, cast_info AS ci WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = ci.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM cast_info AS ci, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = ci.movie_id;"
             },
             {
                 "id": 439,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, complete_cast AS cc WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = cc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM complete_cast AS cc, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = cc.movie_id;"
             },
             {
                 "id": 442,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
             },
             {
                 "id": 444,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 447,
@@ -1943,11 +1943,11 @@
             },
             {
                 "id": 448,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
             },
             {
                 "id": 449,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, cast_info AS ci WHERE t.production_year < 2011 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM cast_info AS ci, title AS t WHERE t.production_year < 2011 AND ci.note ='(voice: English version)' AND t.id = ci.movie_id;"
             },
             {
                 "id": 452,
@@ -2011,11 +2011,11 @@
             },
             {
                 "id": 528,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 539,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 549,
@@ -2043,11 +2043,11 @@
             },
             {
                 "id": 573,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(France)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND cn.name LIKE '%Film%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 580,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'top 250 rank' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'top 250 rank' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 584,
@@ -2055,7 +2055,7 @@
             },
             {
                 "id": 585,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 588,
@@ -2067,11 +2067,11 @@
             },
             {
                 "id": 592,
-                "query": "SELECT mi.info AS release_date FROM aka_title AS at, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND mi.movie_id = at.movie_id;"
+                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, aka_title AS at WHERE mi.info IN ('Sweden', 'USA', 'German') AND mi.movie_id = at.movie_id;"
             },
             {
                 "id": 594,
-                "query": "SELECT mi.info AS release_date FROM movie_link AS ml, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND ml.movie_id = mi.movie_id;"
+                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, movie_link AS ml WHERE mi.info IN ('Sweden', 'USA', 'German') AND ml.movie_id = mi.movie_id;"
             },
             {
                 "id": 595,
@@ -2083,7 +2083,7 @@
             },
             {
                 "id": 610,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 614,
@@ -2095,7 +2095,7 @@
             },
             {
                 "id": 628,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE it.info = 'bottom 10 rank' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE it.info = 'bottom 10 rank' AND it.info ='mini biography' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 630,
@@ -2107,7 +2107,7 @@
             },
             {
                 "id": 634,
-                "query": "SELECT mi.info AS release_date FROM movie_info AS mi, info_type AS it WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.info ='mini biography' AND it.id = mi.info_type_id;"
+                "query": "SELECT mi.info AS release_date FROM info_type AS it, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND it.info ='mini biography' AND it.id = mi.info_type_id;"
             },
             {
                 "id": 636,
@@ -2123,31 +2123,31 @@
             },
             {
                 "id": 647,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_info AS mi WHERE mi.info IN ('Sweden', 'USA', 'German') AND mi.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_info AS mi, aka_title AS at WHERE mi.info IN ('Sweden', 'USA', 'German') AND mi.movie_id = at.movie_id;"
             },
             {
                 "id": 650,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 652,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 660,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 661,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 662,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 665,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 668,
@@ -2169,7 +2169,7 @@
             },
             {
                 "id": 10,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 16,
@@ -2181,15 +2181,15 @@
             },
             {
                 "id": 18,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 19,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 22,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 28,
@@ -2197,7 +2197,7 @@
             },
             {
                 "id": 29,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 31,
@@ -2205,7 +2205,7 @@
             },
             {
                 "id": 33,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND ml.movie_id = mc.movie_id AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 38,
@@ -2225,19 +2225,19 @@
             },
             {
                 "id": 50,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 55,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NOT NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NOT NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 60,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 62,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note IS NOT NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 77,
@@ -2269,7 +2269,7 @@
             },
             {
                 "id": 88,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 90,
@@ -2281,7 +2281,7 @@
             },
             {
                 "id": 95,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 101,
@@ -2289,7 +2289,7 @@
             },
             {
                 "id": 108,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 114,
@@ -2297,7 +2297,7 @@
             },
             {
                 "id": 123,
-                "query": "SELECT mc.note AS production_note FROM company_type AS ct, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_type AS ct WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND ct.id = mc.company_type_id;"
             },
             {
                 "id": 126,
@@ -2305,7 +2305,7 @@
             },
             {
                 "id": 130,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NOT NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 131,
@@ -2313,7 +2313,7 @@
             },
             {
                 "id": 143,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 147,
@@ -2321,7 +2321,7 @@
             },
             {
                 "id": 148,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(presents)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 151,
@@ -2333,7 +2333,7 @@
             },
             {
                 "id": 166,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note LIKE '%(France)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 175,
@@ -2357,15 +2357,15 @@
             },
             {
                 "id": 212,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 213,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 215,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note LIKE '%(France)%' AND ml.linked_movie_id = mc.movie_id;"
             },
             {
                 "id": 219,
@@ -2377,7 +2377,7 @@
             },
             {
                 "id": 231,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 233,
@@ -2385,15 +2385,15 @@
             },
             {
                 "id": 235,
-                "query": "SELECT mc.note AS production_note FROM movie_link AS ml, movie_companies AS mc WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, movie_link AS ml WHERE mc.note LIKE '%(presents)%' AND mc.note IS NULL AND ml.movie_id = mc.movie_id;"
             },
             {
                 "id": 241,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mc.movie_id;"
             },
             {
                 "id": 246,
-                "query": "SELECT mc.note AS production_note FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note IS NOT NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 252,
@@ -2421,7 +2421,7 @@
             },
             {
                 "id": 292,
-                "query": "SELECT mc.note AS production_note FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(France)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 293,
@@ -2433,7 +2433,7 @@
             },
             {
                 "id": 301,
-                "query": "SELECT mc.note AS production_note FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NOT NULL AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT mc.note AS production_note FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 304,
@@ -2441,11 +2441,11 @@
             },
             {
                 "id": 319,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND ml.linked_movie_id = t.id;"
             },
             {
                 "id": 325,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND t.id = mc.movie_id;"
             },
             {
                 "id": 327,
@@ -2453,7 +2453,7 @@
             },
             {
                 "id": 334,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year < 2011 AND ml.linked_movie_id = t.id AND ml.movie_id = t.id;"
             },
             {
                 "id": 341,
@@ -2481,19 +2481,19 @@
             },
             {
                 "id": 359,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = mc.movie_id;"
             },
             {
                 "id": 364,
-                "query": "SELECT t.title AS movie_title FROM movie_link AS ml, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.movie_id = t.id;"
+                "query": "SELECT t.title AS movie_title FROM title AS t, movie_link AS ml WHERE t.production_year > 2004 AND t.production_year < 2011 AND ml.movie_id = t.id;"
             },
             {
                 "id": 367,
-                "query": "SELECT t.title AS movie_title FROM title AS t, complete_cast AS cc WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = cc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM complete_cast AS cc, title AS t WHERE t.production_year > 2004 AND t.production_year < 2011 AND t.id = cc.movie_id;"
             },
             {
                 "id": 370,
-                "query": "SELECT t.title AS movie_title FROM title AS t, movie_companies AS mc WHERE t.production_year > 2004 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
+                "query": "SELECT t.title AS movie_title FROM movie_companies AS mc, title AS t WHERE t.production_year > 2004 AND mc.note LIKE '%(France)%' AND t.id = mc.movie_id;"
             },
             {
                 "id": 375,
@@ -2513,11 +2513,11 @@
             },
             {
                 "id": 388,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_keyword AS mk WHERE t.production_year > 2004 AND t.id = mk.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_keyword AS mk, title AS t WHERE t.production_year > 2004 AND t.id = mk.movie_id;"
             },
             {
                 "id": 390,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, cast_info AS ci WHERE t.production_year > 2004 AND t.id = ci.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM cast_info AS ci, title AS t WHERE t.production_year > 2004 AND t.id = ci.movie_id;"
             },
             {
                 "id": 394,
@@ -2557,7 +2557,7 @@
             },
             {
                 "id": 451,
-                "query": "SELECT t.production_year AS movie_year FROM title AS t, movie_companies AS mc WHERE t.production_year < 2011 AND mc.note IS NULL AND t.id = mc.movie_id;"
+                "query": "SELECT t.production_year AS movie_year FROM movie_companies AS mc, title AS t WHERE t.production_year < 2011 AND mc.note IS NULL AND t.id = mc.movie_id;"
             },
             {
                 "id": 453,
@@ -2629,35 +2629,35 @@
             },
             {
                 "id": 520,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 522,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note LIKE '%(co-production)%' AND cn.id = mc.company_id;"
             },
             {
                 "id": 526,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 527,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 530,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND cn.id = mc.company_id;"
             },
             {
                 "id": 534,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[de]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 535,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[nl]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 536,
-                "query": "SELECT cn.name AS company_name FROM movie_companies AS mc, company_name AS cn WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
+                "query": "SELECT cn.name AS company_name FROM company_name AS cn, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND cn.country_code ='[sm]' AND cn.id = mc.company_id;"
             },
             {
                 "id": 556,
@@ -2669,7 +2669,7 @@
             },
             {
                 "id": 577,
-                "query": "SELECT lt.link AS movie_link_type FROM movie_link AS ml, link_type AS lt WHERE lt.link ='features' AND lt.id = ml.link_type_id;"
+                "query": "SELECT lt.link AS movie_link_type FROM link_type AS lt, movie_link AS ml WHERE lt.link ='features' AND lt.id = ml.link_type_id;"
             },
             {
                 "id": 599,
@@ -2689,15 +2689,15 @@
             },
             {
                 "id": 655,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note NOT LIKE '%(as Metro-Goldwyn-Mayer Pictures)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 659,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note LIKE '%(co-production)%' AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 666,
-                "query": "SELECT at.title AS aka_title FROM aka_title AS at, movie_companies AS mc WHERE mc.note IS NOT NULL AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
+                "query": "SELECT at.title AS aka_title FROM movie_companies AS mc, aka_title AS at WHERE mc.note IS NOT NULL AND mc.note IS NULL AND mc.movie_id = at.movie_id;"
             },
             {
                 "id": 667,
