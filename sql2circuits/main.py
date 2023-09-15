@@ -5,6 +5,7 @@ from main_trainer import SQL2Circuits
 try:
     from jax.config import config
     config.update("jax_enable_x64", True)
+    #config.update('jax_platform_name', 'cpu')
 except ModuleNotFoundError:
     pass
 
@@ -17,15 +18,16 @@ classical_optimizer = configurations["classical_optimizers"][1]
 measurement = configurations["measurements"][0]
 workload_type = configurations["workload_types"][1]
 
-model = SQL2Circuits(run_id = 3,
-                     classification = 3,
+model = SQL2Circuits(run_id = 1,
+                     classification = 2,
                      seed_file = seed_file, 
                      qc_framework = qc_framework, 
                      classical_optimizer = classical_optimizer, 
                      measurement = measurement, 
                      workload_type = workload_type, 
-                     initial_number_of_circuits = 50, 
-                     number_of_circuits_to_add = 50, 
-                     iterative = True)
+                     initial_number_of_circuits = 20, 
+                     number_of_circuits_to_add = 20, 
+                     iterative = True,
+                     epochs = 200)
 
 model.train()

@@ -1,6 +1,15 @@
 # SQL2Circuits: Estimating Metrics for SQL Queries with A Quantum Natural Language Processing Method
 
-On-going work!
+## Example
+
+1. The user has a fixed relational database
+2. The user wants to estimate the execution time / cardinality / cost of a query
+3. The SQL2Circuits framework estimates the metrics with quantum circuits with the following pipeline
+    1. The SQL query is parsed into an abstract syntax tree which is represented with a context-free grammar diagram
+    2. The context-free grammar diagram is mapped functorially to a pregroup grammar diagram
+    3. The pregroup grammar diagram is mapped functorially to a parametrized quantum circuit
+    4. The system utilizes various classical optimization methods to tune the parameters of the quantum circuit so that the measurement result of the circuit corresponds to a classification which estimates the wanted database metric
+4. The user and the database can use the estimated metric to optimize the query further
 
 ## Introduction
 
@@ -16,34 +25,18 @@ The core idea of this implementation is heavily influenced by paper [A Quantum N
 The obtained ansätze are furthermore optimized with Lambeq's native QuantumTrainer and SPSA algorithm (similarly as in [A Quantum Natural Language Processing Approach to Musical Intelligence](https://arxiv.org/abs/2111.06741) and for example, see [Quanthoven](https://github.com/CQCL/Quanthoven/blob/main/experiment.ipynb). Instead of binary classification, we have multiple classes and we also transform them into Pennylane which enables wide variety of other optimization approaches.
 
 ## How to reproduce the results
-0. You can create your own queries and later in the code correct the paths to point to the queries. Note that SQL queries need to be conjunctive SELECT-FROM-WHERE type of queries without subqueries. For example, the queries in Join Order Benchmark follow the requirements.
-1. Create and initialize PostgreSQL database with IMDB dataset. This will be used to collect the training data.
-    1. Follow PostgreSQL installation guidelines at PostgreSQL
-    2. Execute the correct CREATE DATABASE command from IMDBtoPostgresCommand.txt file:
-    ```
-    CREATE DATABASE imdb2017
-    WITH OWNER postgres
-    TEMPLATE = template0
-    ENCODING UTF8
-    LC_COLLATE = 'und-x-icu'
-    LC_CTYPE = 'und-x-icu';
-    ```
-    If the database does not have correct template and encoding, the IMDB will not be initialized correctly.
-    3. Execute `data_generator.ipynb` Jupyter notebook. This notebook will initialize IMDB database with the old data from year 2017. Link to the dataset can be found from [Cinemagoer documentation](https://cinemagoer.readthedocs.io/en/latest/usage/ptdf.html) and you need to input the correct database credentials in the notebook. Since the data will not be modified in the database, you need to perform this step only once.
-    4. The notebook will create training, validation and test data depending on the paths you have defined in the notebook. You can decide which queries you want to use and modify the paths.
-2. Install required packages: DisCoPy, Lambeq, ANTRL4, Pennylane, etc. To speed up training we use JAX as described in [Quanthoven](https://github.com/CQCL/Quanthoven/blob/main/experiment.ipynb).
-3. Construct circuits from the queries by running `sql_to_circuit_ansatze.ipynb`. The notebook creates a bunch of diagrams in parallel. It serializes the diagrams as JSON files and stores them also as PNG images. Circuits are also stored as pickled python files since they will be accessed in the second phase.
-4. Execute any of the notebooks with name starting `circuit_learning_with_`. In the end of the notebooks you will obtain the results.
 
-Notebook execution order:
-1. In the case you want your own query set: `query_generator.ipynb`
-2. Generate data: `data_generator.ipynb`
-3. Construct circuits from the queries: `sql_to_circuit_ansatze.ipynb`
-4. Any of the following to optimize the parameters in the circuits:
-    1. `circuit_learning_with_Lambeq_SPSA_manual_with_jax.ipynb`
-    2. `circuit_learning_with_Lambeq_SPSA_QuantumTrainer_with_jax.ipynb` 
-    3. `circuit_learning_with_Pennylane_gradient.ipynb`
-    4. `circuit_learning_with_Pennylane_SPSA.ipynb`
+1. Download the dump files containing the IMDB database from [here]().
+2. Create the IMDB database with the dump files.
+3. Clone this repository and install the requirements. Note the required versions of the packages.
+4. Run the `main.py` file with the desired parameters. The possible parameter values are described in the `sql2circuits_config.json` file.
+5. Depending on the selected parameters, the following quantum machine learning training pipeline will be executed:
+    1. The training, validation and test queries are generated based on the query seed file provided.
+    2. The queries are executed on PostgreSQL database and depending on the initial configuration, either the execution time, cardinality or cost is measured.
+    3. The SQL queries are parsed into abstract syntax trees and mapped into parametrized quantum circuits.
+    4. The circuits are optimized with the selected classical algorithm. The optimization is performed iteratively: we first optimize a batch of circuits and then add more depending on the parameters we defined initially.
+    5. The results are saved in the `results` folder.
+
 
 ## Cypher 
 

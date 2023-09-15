@@ -7,10 +7,11 @@ from data_preparation.prepare import DataPreparation
 from data_preparation.database import Database
 from circuit_preparation.circuits import Circuits
 from training.utils import store_hyperparameter_opt_results
-from sql2circuits.training.data_preparation_manager import DataPreparationManager
-from sql2circuits.training.trainers.pennylane_optax import PennylaneTrainerJAX
+from training.sample_feature_preparation import SampleFeaturePreparator
+from training.pennylane_train_jax import SQL2CircuitsEstimatorPennylaneJAX
 from skopt import BayesSearchCV
 from skopt.space import Real
+import pickle
 
 this_folder = os.path.abspath(os.getcwd())
 seed_paths = ["data_preparation//query_seeds//JOB_query_seed_execution_time.json",
@@ -43,21 +44,23 @@ circuits.execute_full_transformation()
 
 optimization_method = "Pennylane"
 optimizer = "GradientDescent"
-initial_number_of_circuits = 20
+initial_number_of_circuits = 70
 number_of_circuits_to_add = 50
 total_number_of_circuits = len(data_preparator.get_training_data_labels())
 
 for i in range(initial_number_of_circuits, total_number_of_circuits, number_of_circuits_to_add):
-    sf = DataPreparationManager(run_id, data_preparator, circuits, i, optimization_method)
+    sf = SampleFeaturePreparator(run_id, data_preparator, circuits, i, optimization_method)
     params = sf.get_qml_train_symbols()
     X_train = sf.get_X_train()
     X_valid = sf.get_X_valid()
     y = sf.get_y()
 
     opt = BayesSearchCV(
-        PennylaneTrainerJAX(optimizer, params, epochs = 500), 
+        SQL2CircuitsEstimatorPennylaneJAX(optimizer, params, epochs = 500), 
             { 'learning_rate': Real(0.001, 0.1, 'uniform') }, n_iter = 3)
 
     opt.fit(X_train, y, X_valid = X_valid)
+    
+    pickle.dump(opt, open("main_pennylane_jax_" + str(i) + ".pkl", "wb"))
 
-    store_hyperparameter_opt_results("main_pennylane_jax_" + str(i), opt)
+    #store_hyperparameter_opt_results("main_pennylane_jax_" + str(i), opt)
