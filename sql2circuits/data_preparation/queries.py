@@ -22,15 +22,21 @@ class QueryGenerator:
         self.this_folder = os.path.abspath(os.getcwd())
         query_seed_file = open(self.this_folder + "//" + query_seed_file_path, "r")
         self.query_seed = json.load(query_seed_file)
-
+        self.queries = None
         self.path_for_queries = self.this_folder + "//data_preparation//queries//" + self.workload_type + "//"
-
-        final_queries = self.query_generator(max_num_of_filters = 2, max_num_of_joins = 2, max_num_of_tables = 2)
-        self.queries = self.construct_queries(final_queries)
         self.query_file = self.path_for_queries + str(self.id) + ".json"
-
-        with open(self.query_file, "w") as output:
-            json.dump(self.queries, output, indent = 4)
+        
+        if not os.path.exists(self.path_for_queries):
+            os.makedirs(self.path_for_queries)
+            print("The new directory: ", self.path_for_queries, " is created for queries.")
+        if os.path.isfile(self.query_file):
+            print("Query file already exists.")
+            self.queries = json.load(open(self.query_file, "r"))
+        else:
+            final_queries = self.query_generator(max_num_of_filters = 2, max_num_of_joins = 2, max_num_of_tables = 2)
+            self.queries = self.construct_queries(final_queries)
+            with open(self.query_file, "w") as output:
+                json.dump(self.queries, output, indent = 4)
 
     
     def get_query_file(self):

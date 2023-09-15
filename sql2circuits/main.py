@@ -5,7 +5,7 @@ from main_trainer import SQL2Circuits
 try:
     from jax.config import config
     config.update("jax_enable_x64", True)
-    config.update('jax_platform_name', 'cpu')
+    #config.update('jax_platform_name', 'cpu')
 except ModuleNotFoundError:
     pass
 
@@ -28,6 +28,6 @@ model = SQL2Circuits(run_id = 1,
                      initial_number_of_circuits = 20, 
                      number_of_circuits_to_add = 20, 
                      iterative = True,
-                     epocs = 200)
+                     epochs = 200)
 
 model.train()
