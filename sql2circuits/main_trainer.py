@@ -2,9 +2,7 @@
 
 import warnings
 import os
-#from jax import numpy as np
 import numpy
-#from jax import jit
 from circuit_preparation.circuits import Circuits
 from data_preparation.database import Database
 from data_preparation.prepare import DataPreparation
@@ -14,7 +12,6 @@ from training.trainers.lambeq_noisyopt import LambeqTrainer
 from training.trainers.pennylane_noisyopt import PennylaneTrainer
 from training.trainers.pennylane_optax import PennylaneTrainerJAX
 from training.utils import *
-#from discopy.tensor import Tensor
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
@@ -25,7 +22,18 @@ numpy.random.seed(SEED)
 
 class SQL2Circuits():
 
-    def __init__(self, run_id, classification, seed_file, qc_framework, classical_optimizer, measurement, workload_type, initial_number_of_circuits, number_of_circuits_to_add, iterative):
+    def __init__(self, 
+                 run_id, 
+                 classification, 
+                 seed_file, 
+                 qc_framework, 
+                 classical_optimizer, 
+                 measurement, 
+                 workload_type, 
+                 initial_number_of_circuits, 
+                 number_of_circuits_to_add, 
+                 iterative,
+                 epochs):
 
         print("The selected configuration is: ")
         print("Run id: ", run_id)
@@ -38,6 +46,7 @@ class SQL2Circuits():
         print("Number of circuits to add: ", number_of_circuits_to_add)
         print("Iterative: ", iterative)
         print("Classification: ", classification)
+        print("Epochs: ", epochs)
 
         self.run_id = run_id
         self.classification = classification
@@ -51,6 +60,7 @@ class SQL2Circuits():
         self.iterative = iterative
         self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + workload_type
         self.result = None
+        self.epochs = epochs
         
         database = Database("IMDB")
         generator = QueryGenerator(self.run_id, workload_type = self.workload_type, database = "IMDB", query_seed_file_path = self.seed_file)
@@ -81,21 +91,21 @@ class SQL2Circuits():
             self.iterative_train_optax()
         
 
-    def iterative_train_noisyopt(self, a = 0.1, c = 0.1, epochs = 500, hyperparameter_file = None):
+    def iterative_train_noisyopt(self, a = 0.1, c = 0.1, hyperparameter_file = None):
         for i in range(self.initial_number_of_circuits, 
                        self.total_number_of_circuits + self.number_of_circuits_to_add, 
                        self.number_of_circuits_to_add):
             if i > self.total_number_of_circuits:
                 i = self.total_number_of_circuits
             hyperparameter_file = "training//hyperparameter_results//" + str(self.run_id) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
-            self.train_noisyopt(i, a, c, epochs, hyperparameter_file)
+            self.train_noisyopt(i, a, c, hyperparameter_file)
 
 
-    def single_train_noisyopt(self, a = 0.1, c = 0.1, epochs = 500, hyperparameter_file = None):
-        self.train_noisyopt(self.total_number_of_circuits, a, c, epochs, hyperparameter_file)
+    def single_train_noisyopt(self, a = 0.1, c = 0.1, hyperparameter_file = None):
+        self.train_noisyopt(self.total_number_of_circuits, a, c, hyperparameter_file)
 
 
-    def train_noisyopt(self, number_of_selected_circuits, a = 0.1, c = 0.1, epochs = 500, hyperparameter_file = None):
+    def train_noisyopt(self, number_of_selected_circuits, a = 0.1, c = 0.1, hyperparameter_file = None):
         if hyperparameter_file is not None:
             # "training//results//" + str(run_id) + "//" + str(i) + "_" + str(run_id) + "_cv_results_.json"
             with open(hyperparameter_file, "r") as f:
@@ -115,7 +125,7 @@ class SQL2Circuits():
                                 classification = self.classification,
                                 a = a,
                                 c = c,
-                                epochs = epochs,
+                                epochs = self.epochs,
                                 qc_framework = self.qc_framework,
                                 classical_optimizer = self.classical_optimizer,
                                 measurement = self.measurement)
@@ -128,7 +138,7 @@ class SQL2Circuits():
                                 classification = self.classification,
                                 a = a,
                                 c = c,
-                                epochs = epochs,
+                                epochs = self.epochs,
                                 qc_framework = self.qc_framework,
                                 classical_optimizer = self.classical_optimizer,
                                 measurement = self.measurement)
@@ -142,15 +152,12 @@ class SQL2Circuits():
         X_valid = sf.get_X_valid()
         y = sf.get_y()
 
-        trainer = PennylaneTrainerJAX(self.identifier, self.classical_optimizer, params, epochs = 500)
+        trainer = PennylaneTrainerJAX(self.identifier, self.classical_optimizer, params, epochs = self.epochs)
 
         self.result = trainer.train(X_train, y, X_valid = X_valid)
         
         with open(self.results_folder + str(number_of_circuits) + "_optax_results_.pkl", "wb") as f:
             pickle.dump(self.result, f)
-
-        #store_to_json(self.result, self.results_folder + str(number_of_circuits) + "_optax_results_.json")
-        #store_hyperparameter_opt_results("main_pennylane_jax_" + str(i), opt)
 
     def iterative_train_optax(self):
         for i in range(self.initial_number_of_circuits, 
