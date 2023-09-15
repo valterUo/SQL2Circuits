@@ -145,7 +145,6 @@ class SQL2Circuits():
 
         self.result = trainer.train(X_train, y, X_valid = X_valid)
         
-        # Store the results to pickled file
         with open(self.results_folder + str(number_of_circuits) + "_optax_results_.pkl", "wb") as f:
             pickle.dump(self.result, f)
 
