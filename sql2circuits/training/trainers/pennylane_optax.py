@@ -33,7 +33,7 @@ numpy.random.seed(SEED)
 
 class PennylaneTrainerJAX(BaseEstimator):
 
-    def __init__(self, identifier, optimizer, params, stepsize = 0.01, learning_rate = 0.01, epochs = 200, classification = 2):
+    def __init__(self, identifier, optimizer, params, stepsize = 0.01, learning_rate = 0.1, epochs = 200, classification = 2):
         self.identifier = identifier
         self.stepsize = stepsize
         self.optimizer = optimizer
