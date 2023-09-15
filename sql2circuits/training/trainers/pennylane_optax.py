@@ -52,6 +52,9 @@ class PennylaneTrainerJAX(BaseEstimator):
             print("Parameters loaded from file")
         else:
             print("No parameters file found")
+            if not os.path.exists(this_folder + "/training/parameters/"):
+                os.makedirs(this_folder + "/training/parameters/")
+            np.save(this_folder + "/training/parameters/" + self.identifier + ".npy", self.parameters)
 
 
 
