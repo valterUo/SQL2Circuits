@@ -87,6 +87,7 @@ class SQL2Circuits():
                        self.number_of_circuits_to_add):
             if i > self.total_number_of_circuits:
                 i = self.total_number_of_circuits
+            hyperparameter_file = "training//hyperparameter_results//" + str(self.run_id) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
             self.train_noisyopt(i, a, c, epochs, hyperparameter_file)
 
 

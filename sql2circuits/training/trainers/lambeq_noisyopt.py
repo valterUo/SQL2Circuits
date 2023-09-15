@@ -90,8 +90,8 @@ class LambeqTrainer(BaseEstimator):
 
         costs_accuracies = CostAccuracy()
 
-        train_cost_fn = jax.jit(make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train"))
-        dev_cost_fn = jax.jit(make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev"))
+        train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
+        dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
         callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.stats_iter_file)
         

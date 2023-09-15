@@ -62,25 +62,25 @@ def post_selection(circuit_samples, n_qubits, post_selection):
 
 
 def predict_circuit(circuit, params, n_qubits, classification):
-        try:
-            measurement = circuit(params)
-            post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
-            post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
-            counts = collections.Counter(post_selected_samples)
-            if len(post_selected_samples) == 0:
-                return [1e-9]*(2**classification)
-            try:
-                predicted = counts.most_common(1)[0][0]
-                binary_string = ''.join(str(bit) for bit in predicted[::-1])
-                binary_int = int(binary_string, 2)
-                result = [1e-9]*2**classification
-                result[binary_int] = 1
-                return result
-            except:
-                return [1e-9]*(2**classification)
-        except Exception as e:
-            print("Error", e)
+    try:
+        measurement = circuit(params)
+        post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
+        post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+        counts = collections.Counter(post_selected_samples)
+        if len(post_selected_samples) == 0:
             return [1e-9]*(2**classification)
+        try:
+            predicted = counts.most_common(1)[0][0]
+            binary_string = ''.join(str(bit) for bit in predicted[::-1])
+            binary_int = int(binary_string, 2)
+            result = [1e-9]*2**classification
+            result[binary_int] = 1
+            return result
+        except:
+            return [1e-9]*(2**classification)
+    except Exception as e:
+        print("Error", e)
+        return [1e-9]*(2**classification)
 
 
 def make_pennylane_pred_fn(circuits, parameters, classification):
