@@ -25,9 +25,9 @@ model = SQL2Circuits(run_id = 1,
                      classical_optimizer = classical_optimizer, 
                      measurement = measurement, 
                      workload_type = workload_type, 
-                     initial_number_of_circuits = 20, 
-                     number_of_circuits_to_add = 20, 
+                     initial_number_of_circuits = 25, 
+                     number_of_circuits_to_add = 25, 
                      iterative = True,
-                     epochs = 200)
+                     epochs = 150)
 
 model.train()
