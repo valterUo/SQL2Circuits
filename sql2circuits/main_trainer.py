@@ -7,6 +7,7 @@ from circuit_preparation.circuits import Circuits
 from data_preparation.database import Database
 from data_preparation.prepare import DataPreparation
 from data_preparation.queries import QueryGenerator
+from evaluation.evaluation import Evaluation
 from training.data_preparation_manager import DataPreparationManager
 from training.trainers.lambeq_noisyopt import LambeqTrainer
 from training.trainers.pennylane_noisyopt import PennylaneTrainer
@@ -33,7 +34,8 @@ class SQL2Circuits():
                  initial_number_of_circuits, 
                  number_of_circuits_to_add, 
                  iterative,
-                 epochs):
+                 epochs,
+                 learning_rate = None):
 
         print("The selected configuration is: ")
         print("Run id: ", run_id)
@@ -45,8 +47,9 @@ class SQL2Circuits():
         print("Initial number of circuits: ", initial_number_of_circuits)
         print("Number of circuits to add: ", number_of_circuits_to_add)
         print("Iterative: ", iterative)
-        print("Classification: ", classification)
+        print("Classification: ", 2**classification)
         print("Epochs: ", epochs)
+        print("Learning rate: ", learning_rate)
 
         self.run_id = run_id
         self.classification = classification
@@ -61,6 +64,7 @@ class SQL2Circuits():
         self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add)
         self.result = None
         self.epochs = epochs
+        self.learning_rate = learning_rate
         
         database = Database("IMDB")
         generator = QueryGenerator(self.run_id, workload_type = self.workload_type, database = "IMDB", query_seed_file_path = self.seed_file)
@@ -77,6 +81,22 @@ class SQL2Circuits():
         if not os.path.exists(self.results_folder):
             os.makedirs(self.results_folder)
             print("The new directory: ", self.results_folder, " is created for results.")
+
+        info = {
+            "run_id": self.run_id,
+            "seed_file": self.seed_file,
+            "qc_framework": self.qc_framework,
+            "classical_optimizer": self.classical_optimizer,
+            "measurement": self.measurement,
+            "workload_type": self.workload_type,
+            "initial_number_of_circuits": self.initial_number_of_circuits,
+            "number_of_circuits_to_add": self.number_of_circuits_to_add,
+            "iterative": self.iterative,
+            "classification": 2**self.classification,
+            "epochs": self.epochs,
+            "learning_rate": self.learning_rate
+        }
+        json.dump(info, open(self.results_folder + "training_stats.json", "w"), indent=4)
 
         self.circuits = Circuits(run_id, query_file, output_folder, self.classification, write_cfg_to_file = True, write_pregroup_to_file=True, generate_circuit_png_diagrams = True)
         self.circuits.execute_full_transformation()
@@ -116,7 +136,7 @@ class SQL2Circuits():
         sf = DataPreparationManager(self.run_id, self.data_preparator, self.circuits, number_of_selected_circuits, self.qc_framework)
         X_train = sf.get_X_train()
         X_valid = sf.get_X_valid()
-        y = sf.get_y()
+        y = sf.get_training_labels()
 
         if self.qc_framework == "lambeq":
             trainer = LambeqTrainer(self.run_id,
@@ -149,15 +169,19 @@ class SQL2Circuits():
         sf = DataPreparationManager(self.run_id, self.data_preparator, self.circuits, number_of_circuits, self.qc_framework)
         params = sf.get_qml_train_symbols()
         X_train = sf.get_X_train()
-        X_valid = sf.get_X_valid()
-        y = sf.get_y()
+        y = sf.get_training_labels()
+        validation_circuits = sf.get_X_valid()
+        validation_labels = sf.get_validation_labels()
+        test_circuits = sf.get_X_test()
+        test_labels = sf.get_test_labels()
+        trainer = PennylaneTrainerJAX(self.identifier, self.classical_optimizer, params, self.learning_rate, self.epochs, self.classification)
+        self.result = trainer.train(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels)
+        evaluator = Evaluation(self.run_id, self.identifier, self.result, self.circuits, sf)
+        evaluator.evaluate_pennylane_optax_on_test_sett(number_of_circuits, test_circuits, test_labels)
 
-        trainer = PennylaneTrainerJAX(self.identifier, self.classical_optimizer, params, epochs = self.epochs)
-
-        self.result = trainer.train(X_train, y, X_valid = X_valid)
-        
         with open(self.results_folder + str(number_of_circuits) + "_optax_results_.pkl", "wb") as f:
             pickle.dump(self.result, f)
+
 
     def iterative_train_optax(self):
         for i in range(self.initial_number_of_circuits, 
