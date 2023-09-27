@@ -126,7 +126,6 @@ class SQL2Circuits():
                                 a = a,
                                 c = c,
                                 epochs = self.epochs,
-                                qc_framework = self.qc_framework,
                                 classical_optimizer = self.classical_optimizer,
                                 measurement = self.measurement)
             self.result = trainer.fit_with_lambeq_noisyopt(X_train, y, X_valid = X_valid, save_parameters = True)
@@ -139,7 +138,6 @@ class SQL2Circuits():
                                 a = a,
                                 c = c,
                                 epochs = self.epochs,
-                                qc_framework = self.qc_framework,
                                 classical_optimizer = self.classical_optimizer,
                                 measurement = self.measurement)
             self.result = trainer.fit_with_pennylane_noisyopt(X_train, y, X_valid = X_valid, save_parameters = True)

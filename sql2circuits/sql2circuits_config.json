@@ -12,7 +12,7 @@
       "pennylane"
     ],
     "classical_optimizers": [
-      "noisyopt_SPSA",
+      "noisyopt",
       "optax",
       "pennylane_SPSA",
       "pennylane_gradient_descent"
