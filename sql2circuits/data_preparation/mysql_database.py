@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import json
 import re
 try:
     import mysql.connector
@@ -8,7 +7,7 @@ except ModuleNotFoundError:
     print("mysql-connector-python not found. Please install it with 'pip install mysql-connector-python' and try again.")
 import os
 
-class Database:
+class MySQLDatabase:
     """
     A class representing a MySQL database. This class provides methods for generating data for quantum computing
     experiments, specifically for the purpose of testing quantum algorithms for database query languages. The class
@@ -41,6 +40,22 @@ class Database:
                                                          host=self.host, 
                                                          port=self.port, 
                                                          database=self.mysql_db_name)
+        
+    def supports_cardinality_estimation(self):
+        return True
+    
+    def supports_cost_estimation(self):
+        return False
+    
+    def supports_latency_estimation(self):
+        return False
+    
+    def select_estimations_numbers(self, tuples):
+        max_first_element = max(t[0] for t in tuples)
+        matching_tuples = [t for t in tuples if t[0] == max_first_element]
+        if not matching_tuples:
+            print("No cardinality estimation found?")
+        return [t[9] for t in matching_tuples]
 
 
     def get_cardinality_estimation(self, query):
@@ -48,7 +63,9 @@ class Database:
         try:
             cursor.execute("EXPLAIN " + query)
             res = cursor.fetchall()
-            cardinality_estimation = int(re.findall("rows=(\d+)", res[0][9])[0])
+            #print(res)
+            cardinality_estimation = self.select_estimations_numbers(res)
+            cardinality_estimation = [x for x in cardinality_estimation if x is not None]
             return cardinality_estimation
 
         except (Exception, mysql.connector.Error) as error:
