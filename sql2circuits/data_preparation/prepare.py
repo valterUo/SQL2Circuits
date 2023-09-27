@@ -50,15 +50,6 @@ class DataPreparation:
     def get_validation_data(self):
         return self.validation_data
     
-    def get_training_data_list(self):
-        return self.training_data_list
-    
-    def get_test_data_list(self):
-        return self.test_data_list
-    
-    def get_validation_data_list(self):
-        return self.validation_data_list
-    
     def get_training_data_labels(self):
         return self.training_data_labels
     

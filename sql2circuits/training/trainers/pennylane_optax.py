@@ -17,8 +17,6 @@ except ModuleNotFoundError:
     except ModuleNotFoundError:
         import numpy as np
 
-
-
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
 os.environ['TOKENIZERS_PARALLELISM'] = 'True'
@@ -33,9 +31,8 @@ numpy.random.seed(SEED)
 
 class PennylaneTrainerJAX(BaseEstimator):
 
-    def __init__(self, identifier, optimizer, params, stepsize = 0.01, learning_rate = 0.1, epochs = 200, classification = 2):
+    def __init__(self, identifier, optimizer, params, learning_rate, epochs, classification):
         self.identifier = identifier
-        self.stepsize = stepsize
         self.optimizer = optimizer
         self.params = params
         self.learning_rate = learning_rate
@@ -59,13 +56,18 @@ class PennylaneTrainerJAX(BaseEstimator):
 
 
     def train(self, X, y, **kwargs):
-        self.training_circuits = [item for sublist in X for item in sublist]
+        self.training_circuits = X #[item for sublist in X for item in sublist]
         print("Number of training circuits: ", len(self.training_circuits))
+        validation_circuits = kwargs.get("validation_circuits", None)
+        print("Number of validation circuits: ", len(validation_circuits))
+        validation_labels = kwargs.get("validation_labels", None)
 
         pred_fn = make_pennylane_pred_fn_for_gradient_descent(self.training_circuits)
         cost_function = make_pennylane_cost_fn(pred_fn, y, self.loss_function)
         #cost_function = jax.checkpoint(cost_function)
         #cost_function = jax.jit(cost_function)
+
+        valid_pred_fn = make_pennylane_pred_fn_for_gradient_descent(validation_circuits)
 
         self.opt = optax.adam(self.learning_rate)
         opt_state = self.opt.init(self.parameters)
@@ -77,13 +79,23 @@ class PennylaneTrainerJAX(BaseEstimator):
             self.parameters = optax.apply_updates(self.parameters, updates)
             
             if i % 10 == 0:
+                training_acc = self.accuracy(pred_fn(self.parameters), y)
+                valid_acc = self.accuracy(valid_pred_fn(self.parameters), validation_labels)
+                
                 print(f"Step {i}, Cost: {cost}")
-                #print(f"Step {i}")
-                print("Accuracy: ", self.accuracy(pred_fn(self.parameters), y))
-        
-        # Save the parameters
-        np.save(this_folder + "/training/parameters/" + self.identifier + ".npy", self.parameters)
+                print("Accuracy: ", training_acc)
+                print("Validation accuracy: ", valid_acc)
 
+                log_file = this_folder + "//training//results//" + self.identifier + "//" + self.identifier + "_accuracy.json"
+                if not os.path.isfile(log_file):
+                    with open(log_file, "w") as f:
+                        json.dump({"results": []}, f, indent=4)
+                with open(log_file, "r") as f:
+                    file = json.load(f)
+                    file["results"].append({ "step": i, "accuracy": training_acc, "validation_accuracy": valid_acc })
+                    json.dump(file, open(log_file, "w"), indent=4)
+
+        np.save(this_folder + "//training//parameters//" + self.identifier + ".npy", self.parameters)
         return self.parameters
 
 
@@ -93,7 +105,7 @@ class PennylaneTrainerJAX(BaseEstimator):
 
 
     def score(self, X, y):
-        circuits = [item for sublist in X for item in sublist]
+        circuits = X #[item for sublist in X for item in sublist]
         accepted_circuits, y_new = select_pennylane_circuits(self.training_circuits, circuits, len(self.training_circuits), y)
         predict_fun_for_score = make_pennylane_pred_fn_for_gradient_descent(accepted_circuits)
         predictions = predict_fun_for_score(self.parameters)

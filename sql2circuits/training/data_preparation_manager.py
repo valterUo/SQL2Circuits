@@ -45,34 +45,30 @@ class DataPreparationManager:
             self.current_test_circuits = select_circuits(self.current_training_circuits, test_circuits, number_of_circuits)
 
         # Construct the data and labels for the training, validation and test circuits
-        training_circuits_X, training_labels_y = construct_data_and_labels(self.current_training_circuits, training_classes)
-        validation_circuits_X, validation_labels_y = construct_data_and_labels(self.current_validation_circuits, validation_classes)
+        self.training_circuits_X, self.training_labels_y = construct_data_and_labels(self.current_training_circuits, training_classes)
+        self.validation_circuits_X, self.validation_labels_y = construct_data_and_labels(self.current_validation_circuits, validation_classes)
         self.test_circuits_X, self.test_labels_y = construct_data_and_labels(self.current_test_circuits, test_classes)
 
-        self.X_train = [[circuit] for circuit in training_circuits_X]
-        self.X_valid = list(zip(validation_circuits_X, validation_labels_y))
-        self.y = training_labels_y
+        #self.X_train = [[circuit] for circuit in self.training_circuits_X]
+        #self.X_valid = list(zip(self.validation_circuits_X, self.validation_labels_y))
 
     def get_X_train(self):
-        return self.X_train
-    
-    def get_X_valid(self):
-        return self.X_valid
-    
-    def get_y(self):
-        return self.y
+        return self.training_circuits_X
     
     def get_training_labels(self):
         return self.training_labels_y
     
+    def get_X_valid(self):
+        return self.validation_circuits_X
+    
     def get_validation_labels(self):
         return self.validation_labels_y
     
-    def get_test_labels_y(self):
-        return self.test_labels_y
-    
-    def get_test_circuits(self):
+    def get_X_test(self):
         return self.test_circuits_X
+    
+    def get_test_labels(self):
+        return self.test_labels_y
     
     def save_stats(self):
         n_circs = len(self.current_training_circuits)

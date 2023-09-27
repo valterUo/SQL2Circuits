@@ -17,17 +17,20 @@ qc_framework = configurations["qc_frameworks"][0]
 classical_optimizer = configurations["classical_optimizers"][0]
 measurement = configurations["measurements"][0]
 workload_type = configurations["workload_types"][1]
+if classical_optimizer == "optax":
+    learning_rate = 0.0005
 
-model = SQL2Circuits(run_id = 1,
-                     classification = 2,
+model = SQL2Circuits(run_id = 3,
+                     classification = 3,
                      seed_file = seed_file, 
                      qc_framework = qc_framework, 
                      classical_optimizer = classical_optimizer, 
                      measurement = measurement, 
                      workload_type = workload_type, 
-                     initial_number_of_circuits = 20, 
-                     number_of_circuits_to_add = 20, 
+                     initial_number_of_circuits = 10, 
+                     number_of_circuits_to_add = 10, 
                      iterative = True,
-                     epochs = 600)
+                     epochs = 100,
+                     learning_rate=learning_rate)
 
 model.train()

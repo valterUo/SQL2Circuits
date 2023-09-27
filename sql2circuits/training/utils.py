@@ -257,6 +257,7 @@ def multi_class_acc(y_hat, y):
         print("y_hat: ", len(y_hat), "y: ", len(y))
         raise Exception("Length of predictions and labels must be equal")
     if len(y) == 0 or len(y_hat) == 0:
+        print("y", y, " y_hat", y_hat)
         return 0
     for pair in zip(y_hat, y):
         y_meas = np.array(pair[0]).flatten()
