@@ -58,19 +58,16 @@ class PennylaneTrainerJAX(BaseEstimator):
     def train(self, X, y, **kwargs):
         self.training_circuits = X #[item for sublist in X for item in sublist]
         print("Number of training circuits: ", len(self.training_circuits))
-        self.validation_circuits = kwargs.get("validation_circuits", None)
-        print("Number of validation circuits: ", len(self.validation_circuits))
-        self.validation_labels = kwargs.get("validation_labels", None)
-
-        print("Validation circuits: ", self.validation_circuits)
-        print("Validation labels: ", self.validation_labels)
+        validation_circuits = kwargs.get("validation_circuits", None)
+        print("Number of validation circuits: ", len(validation_circuits))
+        validation_labels = kwargs.get("validation_labels", None)
 
         pred_fn = make_pennylane_pred_fn_for_gradient_descent(self.training_circuits)
         cost_function = make_pennylane_cost_fn(pred_fn, y, self.loss_function)
         #cost_function = jax.checkpoint(cost_function)
         #cost_function = jax.jit(cost_function)
 
-        valid_pred_fn = make_pennylane_pred_fn_for_gradient_descent(self.validation_circuits)
+        valid_pred_fn = make_pennylane_pred_fn_for_gradient_descent(validation_circuits)
 
         self.opt = optax.adam(self.learning_rate)
         opt_state = self.opt.init(self.parameters)
@@ -83,7 +80,7 @@ class PennylaneTrainerJAX(BaseEstimator):
             
             if i % 10 == 0:
                 training_acc = self.accuracy(pred_fn(self.parameters), y)
-                valid_acc = self.accuracy(valid_pred_fn(self.parameters), self.validation_labels)
+                valid_acc = self.accuracy(valid_pred_fn(self.parameters), validation_labels)
                 
                 print(f"Step {i}, Cost: {cost}")
                 print("Accuracy: ", training_acc)

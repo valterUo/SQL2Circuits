@@ -94,7 +94,8 @@ class SQL2Circuits():
             "iterative": self.iterative,
             "classification": 2**self.classification,
             "epochs": self.epochs,
-            "learning_rate": self.learning_rate
+            "learning_rate": self.learning_rate,
+            "classes": ' '.join(str(x) for x in self.data_preparator.get_classes())
         }
         json.dump(info, open(self.results_folder + "training_stats.json", "w"), indent=4)
 

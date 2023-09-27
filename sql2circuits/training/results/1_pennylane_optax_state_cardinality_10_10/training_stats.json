@@ -1,14 +1,14 @@
 {
-    "run_id": 3,
+    "run_id": 1,
     "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax",
     "measurement": "state",
     "workload_type": "cardinality",
     "initial_number_of_circuits": 10,
-    "number_of_circuits_to_add": 20,
+    "number_of_circuits_to_add": 10,
     "iterative": true,
-    "classification": 8,
-    "epochs": 150,
-    "learning_rate": 0.1
+    "classification": 4,
+    "epochs": 100,
+    "learning_rate": 0.05
 }
