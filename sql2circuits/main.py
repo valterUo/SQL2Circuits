@@ -18,10 +18,10 @@ classical_optimizer = configurations["classical_optimizers"][1]
 measurement = configurations["measurements"][0]
 workload_type = configurations["workload_types"][1]
 if classical_optimizer == "optax":
-    learning_rate = 0.1
+    learning_rate = 0.01
 
-model = SQL2Circuits(run_id = 3,
-                     classification = 3,
+model = SQL2Circuits(run_id = 1,
+                     classification = 2,
                      seed_file = seed_file, 
                      qc_framework = qc_framework, 
                      classical_optimizer = classical_optimizer, 
