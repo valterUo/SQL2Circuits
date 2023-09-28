@@ -42,6 +42,15 @@ class Database:
     def get_name(self):
         return self.name
     
+    def supports_cardinality_estimation(self):
+        return True
+    
+    def supports_cost_estimation(self):
+        return False
+    
+    def supports_latency_estimation(self):
+        return False
+    
     
     def generate_data(self, id, queries, workload, statement_timeout = 20000):
         connection = None
@@ -194,6 +203,7 @@ class Database:
                     connection.close()
                     print("PostgreSQL connection is closed")
 
+
     def get_cardinality_estimation(self, query):
         connection = None
         try:
@@ -212,6 +222,31 @@ class Database:
             res = cursor.fetchall()
             cardinality_estimation = int(re.findall("rows=(\d+)", res[0][0])[0])
             return cardinality_estimation
+
+        except (Exception, psycopg2.Error) as error:
+            print("Error while fetching data from PostgreSQL", error)
+            print(query)
+
+
+    def get_cost_estimation(self, query):
+        connection = None
+        try:
+            connection = psycopg2.connect(user=self.pg_user, 
+                                        password=self.pg_pw, 
+                                        host=self.host, 
+                                        port=self.port, 
+                                        database=self.pg_db_name)
+            cursor = connection.cursor()
+        except (Exception, psycopg2.Error) as error:
+            print("Error while fetching data from PostgreSQL", error)
+
+        try:
+            cursor = connection.cursor()
+            cursor.execute("EXPLAIN " + query)
+            res = cursor.fetchall()
+            cost_estimation = float(re.findall("cost=(\d+.\d+)", res[0][0])[0])
+            print(cost_estimation)
+            return cost_estimation
 
         except (Exception, psycopg2.Error) as error:
             print("Error while fetching data from PostgreSQL", error)

@@ -13,12 +13,12 @@ this_folder = os.path.abspath(os.getcwd())
 configurations = json.load(open("sql2circuits_config.json", "r"))
 
 seed_file = configurations["seed_paths"][1]
-qc_framework = configurations["qc_frameworks"][1]
-classical_optimizer = configurations["classical_optimizers"][1]
+qc_framework = configurations["qc_frameworks"][0]
+classical_optimizer = configurations["classical_optimizers"][0]
 measurement = configurations["measurements"][0]
 workload_type = configurations["workload_types"][1]
 if classical_optimizer == "optax":
-    learning_rate = 0.01
+    learning_rate = 0.0005
 
 model = SQL2Circuits(run_id = 1,
                      classification = 2,
@@ -28,9 +28,9 @@ model = SQL2Circuits(run_id = 1,
                      measurement = measurement, 
                      workload_type = workload_type, 
                      initial_number_of_circuits = 10, 
-                     number_of_circuits_to_add = 20, 
+                     number_of_circuits_to_add = 10, 
                      iterative = True,
-                     epochs = 150,
+                     epochs = 100,
                      learning_rate=learning_rate)
 
 model.train()

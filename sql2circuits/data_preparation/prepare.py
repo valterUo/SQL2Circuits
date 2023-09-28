@@ -23,6 +23,7 @@ class DataPreparation:
         print("Number of test queries is ", stats["number_of_test_queries"])
         print("Number of validation queries is ", stats["number_of_validation_queries"])
         print(workload_type)
+        
         self.data_file = self.database.generate_data(id, queries, workload_type)
         print("Data file is ", self.data_file)
         self.data = dict()
@@ -49,15 +50,6 @@ class DataPreparation:
     
     def get_validation_data(self):
         return self.validation_data
-    
-    def get_training_data_list(self):
-        return self.training_data_list
-    
-    def get_test_data_list(self):
-        return self.test_data_list
-    
-    def get_validation_data_list(self):
-        return self.validation_data_list
     
     def get_training_data_labels(self):
         return self.training_data_labels

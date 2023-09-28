@@ -28,7 +28,6 @@ class PennylaneTrainer(BaseEstimator):
                 circuits,
                 workload_type, 
                 classification,
-                qc_framework,
                 classical_optimizer,
                 measurement,
                 a = 0.1, 
@@ -49,7 +48,6 @@ class PennylaneTrainer(BaseEstimator):
         self.training_circuits = self.circuits.get_qml_training_circuits()
         self.parameters = []
         self.executions = 0
-        self.qc_framework = qc_framework
         self.classical_optimizer = classical_optimizer
         self.measurement = measurement
 
