@@ -61,7 +61,7 @@ class SQL2Circuits():
         self.initial_number_of_circuits = initial_number_of_circuits
         self.number_of_circuits_to_add = number_of_circuits_to_add
         self.iterative = iterative
-        self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add)
+        self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
         self.result = None
         self.epochs = epochs
         self.learning_rate = learning_rate
