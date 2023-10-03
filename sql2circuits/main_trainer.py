@@ -8,6 +8,7 @@ from data_preparation.database import Database
 from data_preparation.prepare import DataPreparation
 from data_preparation.queries import QueryGenerator
 from evaluation.evaluation import Evaluation
+from training.trainers.lambeq_optax import LambeqTrainerJAX
 from training.data_preparation_manager import DataPreparationManager
 from training.trainers.lambeq_noisyopt import LambeqTrainer
 from training.trainers.pennylane_noisyopt import PennylaneTrainer
@@ -166,17 +167,35 @@ class SQL2Circuits():
 
     def train_optax(self, number_of_circuits):
         sf = DataPreparationManager(self.run_id, self.data_preparator, self.circuits, number_of_circuits, self.qc_framework)
-        params = sf.get_qml_train_symbols()
         X_train = sf.get_X_train()
         y = sf.get_training_labels()
         validation_circuits = sf.get_X_valid()
         validation_labels = sf.get_validation_labels()
         test_circuits = sf.get_X_test()
         test_labels = sf.get_test_labels()
-        trainer = PennylaneTrainerJAX(self.identifier, self.classical_optimizer, params, self.learning_rate, self.epochs, self.classification)
-        self.result = trainer.train(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels)
-        evaluator = Evaluation(self.run_id, self.identifier, self.result, self.circuits, sf)
-        evaluator.evaluate_pennylane_optax_on_test_sett(number_of_circuits, test_circuits, test_labels)
+        
+        if self.qc_framework == "pennylane":
+            params = sf.get_qml_train_symbols()
+            trainer = PennylaneTrainerJAX(self.identifier, 
+                                          self.classical_optimizer, 
+                                          params, 
+                                          self.learning_rate, 
+                                          self.epochs, self.classification)
+            self.result = trainer.train(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels)
+            evaluator = Evaluation(self.run_id, self.identifier, self.result, self.circuits, sf)
+            evaluator.evaluate_pennylane_optax_on_test_sett(number_of_circuits, test_labels)
+        elif self.qc_framework == "lambeq":
+            params = sf.get_lambeq_symbols()
+            trainer = LambeqTrainerJAX(self.identifier, 
+                                       self.classical_optimizer, 
+                                       params, 
+                                       self.learning_rate, 
+                                       self.epochs, 
+                                       self.classification)
+            self.result = trainer.train(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels)
+            evaluator = Evaluation(self.run_id, self.identifier, self.result, self.circuits, sf)
+            evaluator.evaluate_lambeq_on_test_set(number_of_circuits, test_circuits, test_labels)
+            
 
         with open(self.results_folder + str(number_of_circuits) + "_optax_results_.pkl", "wb") as f:
             pickle.dump(self.result, f)
