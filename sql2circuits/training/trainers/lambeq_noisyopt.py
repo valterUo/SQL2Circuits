@@ -27,8 +27,9 @@ class LambeqTrainer(BaseEstimator):
                 classification,
                 classical_optimizer,
                 measurement,
-                a = 0.1, 
-                c = 0.1, 
+                a, 
+                c,
+                identifier, 
                 epochs = 500,
                 plot_results = True):
         self.id = id
@@ -45,17 +46,13 @@ class LambeqTrainer(BaseEstimator):
         self.parameters = []
         self.classical_optimizer = classical_optimizer
         self.measurement = measurement
+        self.identifier = identifier
 
         if classification == 1:
             self.loss_function = bin_class_loss
             self.accuracy = bin_class_acc
-        
-        if not os.path.exists("training//results//" + str(self.id)):
-            os.makedirs("training//results//" + str(self.id))
 
-        self.result_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_result.json"
-        self.stats_iter_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_stats_iteration_level.json"
-        self.hyperparameters_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_hyperparameters.json"
+        self.hyperparameters_file = "training//results//" + str(self.identifier) + "//" + "hyperparameters.json"
 
         hyperparameters = {
                 "id": self.id,
@@ -98,14 +95,15 @@ class LambeqTrainer(BaseEstimator):
         train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
         dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
-        callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.stats_iter_file)
+        callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.identifier)
         
         self.result = minimizeSPSA(train_cost_fn,
                                     x0 = init_params_spsa,
                                     a = self.a,
                                     c = self.c,
                                     niter = self.epochs,
-                                    callback = callback_fn)
+                                    callback = callback_fn,
+                                    paired=False)
         
         print("Store parameters: ", len(parameters), len(self.result.x))
         old_params = dict(zip(parameters, self.result.x))

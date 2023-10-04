@@ -38,6 +38,7 @@ class DataPreparationManager:
 
         # Select the first circuits
         self.current_training_circuits = dict(itertools.islice(training_circuits.items(), number_of_circuits))
+        print("Number of training circuits is ", len(self.current_training_circuits))
         if qc_framework == "pennylane":
             self.current_validation_circuits = select_pennylane_circuits(self.current_training_circuits, validation_circuits, number_of_circuits)
             self.current_test_circuits = select_pennylane_circuits(self.current_training_circuits, test_circuits, number_of_circuits)

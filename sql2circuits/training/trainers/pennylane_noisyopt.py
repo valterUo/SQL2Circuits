@@ -30,8 +30,8 @@ class PennylaneTrainer(BaseEstimator):
                 classification,
                 classical_optimizer,
                 measurement,
-                a = 0.1, 
-                c = 0.1, 
+                a, 
+                c, 
                 epochs = 500,
                 plot_results = True):
         self.identifier = identifier
@@ -112,7 +112,8 @@ class PennylaneTrainer(BaseEstimator):
                                    a = self.a,
                                    c = self.c,
                                    niter = self.epochs,
-                                   callback = callback_fn)
+                                   callback = callback_fn,
+                                   paired=False)
         
         print("Store parameters: ", len(parameters), len(self.result.x))
         old_params = dict(zip(parameters, self.result.x))

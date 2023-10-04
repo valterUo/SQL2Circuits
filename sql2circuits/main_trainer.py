@@ -115,28 +115,30 @@ class SQL2Circuits():
             self.iterative_train_optax()
         
 
-    def iterative_train_noisyopt(self, hyperparameter_file = None):
+    def iterative_train_noisyopt(self, a = 0.053, c = 0.00185, hyperparameter_file = None):
         for i in range(self.initial_number_of_circuits, 
                        self.total_number_of_circuits + self.number_of_circuits_to_add, 
                        self.number_of_circuits_to_add):
             if i > self.total_number_of_circuits:
                 i = self.total_number_of_circuits
-            hyperparameter_file = "training//hyperparameter_results//" + str(self.run_id) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
-            self.train_noisyopt(i, hyperparameter_file)
+            hyperparameter_file = "training//hyperparameter_results//" + str(self.identifier) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
+            self.train_noisyopt(i, a, c, hyperparameter_file)
 
 
-    def single_train_noisyopt(self, hyperparameter_file = None):
-        self.train_noisyopt(self.total_number_of_circuits, hyperparameter_file)
+    def single_train_noisyopt(self, a, c, hyperparameter_file = None):
+        self.train_noisyopt(self.total_number_of_circuits, a, c, hyperparameter_file)
 
 
-    def train_noisyopt(self, number_of_selected_circuits, hyperparameter_file = None):
-        # If the hyperparameter file exists, check with os
-        if os.path.exists(hyperparameter_file):
+    def train_noisyopt(self, number_of_selected_circuits, a, c, hyperparameter_file = None):
+        if hyperparameter_file is not None:
             # "training//results//" + str(run_id) + "//" + str(i) + "_" + str(run_id) + "_cv_results_.json"
-            with open(hyperparameter_file, "r") as f:
-                param_file = json.load(f)
-                self.a = param_file["best_params"]["a"]
-                self.c = param_file["best_params"]["c"]
+            if os.path.exists(hyperparameter_file):
+                with open(hyperparameter_file, "r") as f:
+                    param_file = json.load(f)
+                    a = param_file["best_params"]["a"]
+                    c = param_file["best_params"]["c"]
+            else:
+                print("The hyperparameter file does not exist. The default values are used.")
 
         sf = DataPreparationManager(self.run_id, self.data_preparator, self.circuits, number_of_selected_circuits, self.qc_framework)
         X_train = sf.get_X_train()
