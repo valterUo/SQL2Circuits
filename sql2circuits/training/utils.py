@@ -249,6 +249,7 @@ def bin_class_loss(y_hat, y):
 
 
 def multi_class_acc(y_hat, y):
+    print("y_hat: ", y_hat, "y: ", y)
     total_acc = 0
     if len(y_hat) != len(y):
         print("y_hat: ", len(y_hat), "y: ", len(y))
@@ -259,7 +260,11 @@ def multi_class_acc(y_hat, y):
     for pair in zip(y_hat, y):
         y_meas = np.array(pair[0]).flatten()
         max_index = np.argmax(y_meas)
-        total_acc += int(int(pair[1][max_index]) == 1)
+        print("Max index:", max_index)
+        value = int(int(pair[1][max_index]) == 1)
+        total_acc += value
+        print("Total: ", total_acc)
+    print("y len: ", len(y))
     return total_acc / len(y)
 
 

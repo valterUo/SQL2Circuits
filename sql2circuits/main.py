@@ -17,6 +17,7 @@ qc_framework = configurations["qc_frameworks"][1]
 classical_optimizer = configurations["classical_optimizers"][1]
 measurement = configurations["measurements"][0]
 workload_type = configurations["workload_types"][1]
+learning_rate = None
 if classical_optimizer == "optax":
     learning_rate = 0.05
 

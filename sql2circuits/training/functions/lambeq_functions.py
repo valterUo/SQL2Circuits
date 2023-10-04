@@ -14,6 +14,11 @@ Tensor.np = np
 #from pytket.extensions.qulacs import QulacsBackend
 #from pytket.extensions.cirq import CirqStateSampleBackend
 
+def cross_entropy(predictions, targets):
+    N = predictions.shape[0]
+    ce = -np.sum(targets*np.log(predictions+1e-9))/N
+    return ce
+
 def predict_circuit(circuit_fn, params):
     output = Circuit.eval(*circuit_fn(*params))
     predictions = np.abs(output.array) + 1e-9
@@ -53,8 +58,9 @@ def make_lambeq_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies 
     
     def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
-        cost = loss_fn(predictions, labels)
-        #accuracy = accuracy_fn(predictions, labels)
+        #cost = loss_fn(predictions, labels)
+        cost = cross_entropy(np.array(predictions), np.array(labels))
+        accuracy = accuracy_fn(predictions, labels)
         if costs_accuracies is not None and type is not None:
             costs_accuracies.add_cost(cost, type)
             costs_accuracies.add_accuracy(accuracy, type)

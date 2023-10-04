@@ -69,10 +69,7 @@ def read_parameters(id, circuits, all_params = None):
     if type(get_element(circuits, 0)) == Circuit:
         syms = get_symbols(circuits)
     else:
-        for circ in circuits:
-            for symbols in circ.get_param_symbols():
-                for sym in symbols:
-                    syms.add(sym)
+        syms = set(all_params.keys())
     new_params = sorted(syms, key = default_sort_key)
     stored_parameters = "training//checkpoints//" + str(id) + ".npz"
     if os.path.exists(stored_parameters):
@@ -95,7 +92,7 @@ def read_parameters(id, circuits, all_params = None):
     else:
         print("Initializing new parameters")
         parameters = new_params
-        print(len(all_params))
-        init_params_spsa = np.array(rng.random(len(all_params)))
+        print(len(parameters))
+        init_params_spsa = np.array(rng.random(len(parameters)))
         
     return parameters, init_params_spsa

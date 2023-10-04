@@ -70,19 +70,24 @@ class LambeqTrainer(BaseEstimator):
         store_and_log(0, hyperparameters, self.hyperparameters_file)
     
 
-    def fit_with_lambeq_noisyopt(self, X, y, X_valid, save_parameters = True):
-        self.training_circuits = [data[0] for data in X]
+    def fit_with_lambeq_noisyopt(self, X, y, **kwargs):
+        self.training_circuits = X
         training_data_labels = y
 
-        validation_circuits = [data[0] for data in X_valid]
-        validation_data_labels = [data[1] for data in X_valid]
+        print("Number of training circuits: ", len(self.training_circuits))
+        validation_circuits = kwargs.get("validation_circuits", None)
+        print("Number of validation circuits: ", len(validation_circuits))
+        validation_labels = kwargs.get("validation_labels", None)
 
         current_validation_circuits = select_circuits(self.training_circuits, validation_circuits, len(self.training_circuits))
         current_validation_labels = []
         for circuit in current_validation_circuits:
-            current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
+            current_validation_labels.append(validation_labels[validation_circuits.index(circuit)])
 
         parameters, init_params_spsa = read_parameters(self.id, self.training_circuits)
+        
+        if self.measurement == "sample":
+            raise Exception("Lambeq supports currently only state measurement.")
 
         train_pred_fn = make_lambeq_pred_fn(self.training_circuits, parameters, self.classification)
         val_pred_fn = make_lambeq_pred_fn(current_validation_circuits, parameters, self.classification)
@@ -102,10 +107,9 @@ class LambeqTrainer(BaseEstimator):
                                     niter = self.epochs,
                                     callback = callback_fn)
         
-        if save_parameters:
-            print("Store parameters: ", len(parameters), len(self.result.x))
-            old_params = dict(zip(parameters, self.result.x))
-            self.store_parameters(old_params)
+        print("Store parameters: ", len(parameters), len(self.result.x))
+        old_params = dict(zip(parameters, self.result.x))
+        self.store_parameters(old_params)
 
         if self.plot_results:    
             visualize_result(0, costs_accuracies)
