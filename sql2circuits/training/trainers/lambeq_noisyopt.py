@@ -27,8 +27,9 @@ class LambeqTrainer(BaseEstimator):
                 classification,
                 classical_optimizer,
                 measurement,
-                a = 0.1, 
-                c = 0.1, 
+                a, 
+                c,
+                identifier, 
                 epochs = 500,
                 plot_results = True):
         self.id = id
@@ -45,17 +46,13 @@ class LambeqTrainer(BaseEstimator):
         self.parameters = []
         self.classical_optimizer = classical_optimizer
         self.measurement = measurement
+        self.identifier = identifier
 
         if classification == 1:
             self.loss_function = bin_class_loss
             self.accuracy = bin_class_acc
-        
-        if not os.path.exists("training//results//" + str(self.id)):
-            os.makedirs("training//results//" + str(self.id))
 
-        self.result_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_result.json"
-        self.stats_iter_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_stats_iteration_level.json"
-        self.hyperparameters_file = "training//results//" + str(self.id) + "//" + str(self.id) + "_hyperparameters.json"
+        self.hyperparameters_file = "training//results//" + str(self.identifier) + "//" + "hyperparameters.json"
 
         hyperparameters = {
                 "id": self.id,
@@ -70,20 +67,16 @@ class LambeqTrainer(BaseEstimator):
         store_and_log(0, hyperparameters, self.hyperparameters_file)
     
 
-    def fit_with_lambeq_noisyopt(self, X, y, X_valid, save_parameters = True):
-        self.training_circuits = [data[0] for data in X]
+    def fit_with_lambeq_noisyopt(self, X, y, validation_circuits, validation_labels, save_parameters = True):
+        self.training_circuits = X
         training_data_labels = y
-
-        validation_circuits = [data[0] for data in X_valid]
-        validation_data_labels = [data[1] for data in X_valid]
 
         current_validation_circuits = select_circuits(self.training_circuits, validation_circuits, len(self.training_circuits))
         current_validation_labels = []
         for circuit in current_validation_circuits:
-            current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
+            current_validation_labels.append(validation_labels[validation_circuits.index(circuit)])
 
         parameters, init_params_spsa = read_parameters(self.id, self.training_circuits)
-
         train_pred_fn = make_lambeq_pred_fn(self.training_circuits, parameters, self.classification)
         val_pred_fn = make_lambeq_pred_fn(current_validation_circuits, parameters, self.classification)
         #test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
@@ -93,14 +86,15 @@ class LambeqTrainer(BaseEstimator):
         train_cost_fn = make_lambeq_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
         dev_cost_fn = make_lambeq_cost_fn(val_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
 
-        callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.stats_iter_file)
+        callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.identifier)
         
         self.result = minimizeSPSA(train_cost_fn,
                                     x0 = init_params_spsa,
                                     a = self.a,
                                     c = self.c,
                                     niter = self.epochs,
-                                    callback = callback_fn)
+                                    callback = callback_fn,
+                                    paired=False)
         
         if save_parameters:
             print("Store parameters: ", len(parameters), len(self.result.x))

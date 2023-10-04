@@ -1,3 +1,4 @@
+import json
 import os
 import numpy as np
 from sympy import default_sort_key
@@ -5,12 +6,13 @@ from discopy.quantum.circuit import Circuit
 
 from training.utils import get_element, get_symbols, store_and_log, visualize_result_noisyopt
 
+this_folder = os.path.abspath(os.getcwd())
 SEED = 0
 rng = np.random.default_rng(SEED)
 np.random.seed(SEED)
 
 
-def make_callback_fn(dev_cost_fn, costs_accuracies, stats_iter_file):
+def make_callback_fn(dev_cost_fn, costs_accuracies, identifier):
     def callback_fn(xk):
         #print(xk)
         valid_loss = dev_cost_fn(xk)
@@ -25,7 +27,14 @@ def make_callback_fn(dev_cost_fn, costs_accuracies, stats_iter_file):
                         "train/acc": train_acc, 
                         "valid/loss": valid_loss, 
                         "valid/acc": valid_acc}
-            store_and_log(0, stats_data, stats_iter_file)
+            log_file = this_folder + "//training//results//" + identifier + "//" + identifier + "_accuracy.json"
+            if not os.path.isfile(log_file):
+                with open(log_file, "w") as f:
+                    json.dump({"results": []}, f, indent=4)
+            with open(log_file, "r") as f:
+                file = json.load(f)
+                file["results"].append(stats_data)
+                json.dump(file, open(log_file, "w"), indent=4)
         return valid_loss
     return callback_fn
 
@@ -62,7 +71,7 @@ def visualize_result(id, i, costs_accuracies):
     visualize_result_noisyopt(train_costs, train_accs, dev_costs, dev_accs, figure_path)
 
 
-def read_parameters(id, circuits, all_params = None):
+def read_parameters(id, circuits):
     syms = set()
     parameters = []
     init_params_spsa = []
@@ -93,9 +102,8 @@ def read_parameters(id, circuits, all_params = None):
                     values.append(rng.random())
             init_params_spsa = values
     else:
-        print("Initializing new parameters")
+        print("Initializing new parameters: ", len(new_params))
         parameters = new_params
-        print(len(all_params))
-        init_params_spsa = np.array(rng.random(len(all_params)))
+        init_params_spsa = np.array(rng.random(len(new_params)))
         
     return parameters, init_params_spsa

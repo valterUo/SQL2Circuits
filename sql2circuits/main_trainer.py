@@ -112,32 +112,37 @@ class SQL2Circuits():
             self.iterative_train_optax()
         
 
-    def iterative_train_noisyopt(self, a = 0.1, c = 0.1, hyperparameter_file = None):
+    def iterative_train_noisyopt(self, a = 0.053, c = 0.00185, hyperparameter_file = None):
         for i in range(self.initial_number_of_circuits, 
                        self.total_number_of_circuits + self.number_of_circuits_to_add, 
                        self.number_of_circuits_to_add):
             if i > self.total_number_of_circuits:
                 i = self.total_number_of_circuits
-            hyperparameter_file = "training//hyperparameter_results//" + str(self.run_id) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
+            hyperparameter_file = "training//hyperparameter_results//" + str(self.identifier) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
             self.train_noisyopt(i, a, c, hyperparameter_file)
 
 
-    def single_train_noisyopt(self, a = 0.1, c = 0.1, hyperparameter_file = None):
+    def single_train_noisyopt(self, a, c, hyperparameter_file = None):
         self.train_noisyopt(self.total_number_of_circuits, a, c, hyperparameter_file)
 
 
-    def train_noisyopt(self, number_of_selected_circuits, a = 0.1, c = 0.1, hyperparameter_file = None):
+    def train_noisyopt(self, number_of_selected_circuits, a, c, hyperparameter_file = None):
         if hyperparameter_file is not None:
             # "training//results//" + str(run_id) + "//" + str(i) + "_" + str(run_id) + "_cv_results_.json"
-            with open(hyperparameter_file, "r") as f:
-                param_file = json.load(f)
-                a = param_file["best_params"]["a"]
-                c = param_file["best_params"]["c"]
+            if os.path.exists(hyperparameter_file):
+                with open(hyperparameter_file, "r") as f:
+                    param_file = json.load(f)
+                    a = param_file["best_params"]["a"]
+                    c = param_file["best_params"]["c"]
+            else:
+                print("The hyperparameter file does not exist. The default values are used.")
 
         sf = DataPreparationManager(self.run_id, self.data_preparator, self.circuits, number_of_selected_circuits, self.qc_framework)
         X_train = sf.get_X_train()
-        X_valid = sf.get_X_valid()
         y = sf.get_training_labels()
+        validation_circuits = sf.get_X_valid()
+        validation_labels = sf.get_validation_labels()
+        
 
         if self.qc_framework == "lambeq":
             trainer = LambeqTrainer(self.run_id,
@@ -148,8 +153,9 @@ class SQL2Circuits():
                                 c = c,
                                 epochs = self.epochs,
                                 classical_optimizer = self.classical_optimizer,
-                                measurement = self.measurement)
-            self.result = trainer.fit_with_lambeq_noisyopt(X_train, y, X_valid = X_valid, save_parameters = True)
+                                measurement = self.measurement,
+                                identifier = self.identifier)
+            self.result = trainer.fit_with_lambeq_noisyopt(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels, save_parameters = True)
 
         elif self.qc_framework == "pennylane":
             trainer = PennylaneTrainer(self.run_id,
@@ -161,7 +167,7 @@ class SQL2Circuits():
                                 epochs = self.epochs,
                                 classical_optimizer = self.classical_optimizer,
                                 measurement = self.measurement)
-            self.result = trainer.fit_with_pennylane_noisyopt(X_train, y, X_valid = X_valid, save_parameters = True)
+            self.result = trainer.fit_with_pennylane_noisyopt(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels, save_parameters = True)
 
 
     def train_optax(self, number_of_circuits):

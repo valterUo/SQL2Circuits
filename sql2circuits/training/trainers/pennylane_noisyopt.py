@@ -30,8 +30,8 @@ class PennylaneTrainer(BaseEstimator):
                 classification,
                 classical_optimizer,
                 measurement,
-                a = 0.1, 
-                c = 0.1, 
+                a, 
+                c, 
                 epochs = 500,
                 plot_results = True):
         self.id = id
@@ -75,19 +75,16 @@ class PennylaneTrainer(BaseEstimator):
         store_and_log(self.executions, hyperparameters, self.hyperparameters_file)
 
 
-    def fit_with_pennylane_noisyopt(self, X, y, X_valid, save_parameters = True):
+    def fit_with_pennylane_noisyopt(self, X, y, validation_circuits, validation_labels, save_parameters = True):
         costs_accuracies = CostAccuracy()
         self.executions += 1
-        self.training_circuits = [data[0] for data in X]
+        self.training_circuits = X
         training_data_labels = y
-
-        validation_circuits = [data[0] for data in X_valid]
-        validation_data_labels = [data[1] for data in X_valid]
 
         current_validation_circuits = select_pennylane_circuits(self.training_circuits, validation_circuits, len(self.training_circuits))
         current_validation_labels = []
         for circuit in current_validation_circuits:
-            current_validation_labels.append(validation_data_labels[validation_circuits.index(circuit)])
+            current_validation_labels.append(validation_labels[validation_circuits.index(circuit)])
 
         parameters, init_params_spsa = read_parameters(self.training_circuits, self.circuits.get_qml_train_symbols())
 
@@ -107,7 +104,8 @@ class PennylaneTrainer(BaseEstimator):
                                    a = self.a,
                                    c = self.c,
                                    niter = self.epochs,
-                                   callback = callback_fn)
+                                   callback = callback_fn,
+                                   paired=False)
         
         if save_parameters:
             print("Store parameters: ", len(parameters), len(self.result.x))
