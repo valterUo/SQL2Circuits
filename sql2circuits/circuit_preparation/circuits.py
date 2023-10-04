@@ -4,6 +4,7 @@ import os
 import json
 import pickle
 from circuit_preparation.diagrams.diagram_generators import *
+from training.utils import get_symbols
 from training.functions.pennylane_functions import transform_into_pennylane_circuits
 
 
@@ -110,6 +111,8 @@ class Circuits:
                     self.training_circuits = self.circuit_diagrams["training"]
                     self.test_circuits = self.circuit_diagrams["test"]
                     self.validation_circuits = self.circuit_diagrams["validation"]
+            circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
+            circuit.draw()
                 
 
     def generate_pennylane_circuits(self):
@@ -232,3 +235,6 @@ class Circuits:
     
     def get_qml_test_symbols(self):
         return self.qml_test_symbols
+    
+    def get_lambeq_symbols(self):
+        return get_symbols(list(self.training_circuits.values()) + list(self.validation_circuits.values()) + list(self.test_circuits.values()))

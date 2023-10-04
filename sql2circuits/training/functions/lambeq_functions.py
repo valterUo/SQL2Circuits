@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
-#from jax import numpy as np
+try:
+    from jax import numpy as np
+except ModuleNotFoundError:
+    import numpy as np
 import multiprocessing
-import numpy as np
 from discopy.quantum import Circuit
 
 def predict_circuit(circuit_fn, params):
@@ -46,7 +48,7 @@ def make_lambeq_cost_fn(pred_fn, labels, loss_fn, accuracy_fn, costs_accuracies 
     def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
         cost = loss_fn(predictions, labels)
-        accuracy = accuracy_fn(predictions, labels)
+        #accuracy = accuracy_fn(predictions, labels)
         if costs_accuracies is not None and type is not None:
             costs_accuracies.add_cost(cost, type)
             costs_accuracies.add_accuracy(accuracy, type)

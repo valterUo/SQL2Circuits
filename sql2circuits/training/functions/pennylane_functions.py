@@ -48,7 +48,8 @@ def transform_into_pennylane_circuits(circuits, classification = 2, interface = 
 
         # Produces a dictionary like {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0} 
         # where the wires 0 and 1 are the classifying wires
-        post_selection = dict([(i, 0) for i in range(classification, n_qubits)])
+        #post_selection = dict([(i, 0) for i in range(classification, n_qubits)])
+        post_selection = dict([(i, 0) for i in range(0, n_qubits - classification)])
         qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection, interface, diff_method)
 
     return qml_circuits, full_symbol_to_index

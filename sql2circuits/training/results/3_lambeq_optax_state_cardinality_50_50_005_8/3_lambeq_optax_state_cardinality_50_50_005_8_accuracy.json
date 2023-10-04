@@ -1,0 +1,29 @@
+{
+    "results": [
+        {
+            "step": 0,
+            "accuracy": 0.32,
+            "validation_accuracy": 0.14
+        },
+        {
+            "step": 10,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.08
+        },
+        {
+            "step": 20,
+            "accuracy": 0.3,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 30,
+            "accuracy": 0.36,
+            "validation_accuracy": 0.12
+        },
+        {
+            "step": 40,
+            "accuracy": 0.34,
+            "validation_accuracy": 0.1
+        }
+    ]
+}

@@ -77,11 +77,14 @@ class PennylaneCircuit:
     
 
     def eval_qml_circuit_with_post_selection(self, circ_params):
-        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev, interface = self.interface, diff_method = self.diff_method)
+        circuit = qml.QNode(self.qml_circuit_with_state_meas, 
+                            self.dev, 
+                            interface = self.interface, 
+                            diff_method = self.diff_method)
         states = circuit(circ_params)
         post_selected_states = states[self.valid_states]
-        post_states = np.array([np.linalg.norm(x)**2 for x in post_selected_states], dtype=np.float32)
-        sum = np.sum(post_states, axis=0)
+        post_states = np.array([np.abs(x)**2 for x in post_selected_states], dtype=np.float32)
+        sum = np.sum(post_states)
         result = post_states / sum
         return result
 
