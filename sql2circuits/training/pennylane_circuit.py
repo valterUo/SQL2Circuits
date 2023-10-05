@@ -17,7 +17,6 @@ except ModuleNotFoundError:
         import numpy as np
         
 import pennylane as qml
-from itertools import product
 
 # This avoids TracerArrayConversionError from jax
 #from discopy.tensor import Tensor
@@ -25,7 +24,7 @@ from itertools import product
 
 class PennylaneCircuit:
 
-    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection, interface, diff_method) -> None:
+    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, valid_states, interface, diff_method) -> None:
         self.ops = ops
         self.params = params
         self.pennylane_wires = pennylane_wires
@@ -36,24 +35,10 @@ class PennylaneCircuit:
         self.param_symbols = param_symbols
         self.symbol_to_index = symbol_to_index
         self.symbols = symbols
-        self.post_selection = post_selection
         self.interface = interface
         self.diff_method = diff_method
-        self.valid_states = np.array(self.get_valid_states())
-
-
-    def get_valid_states(self):
-        keep_indices = []
-        fixed = ['0' if self.post_selection.get(i, 0) == 0 else
-                 '1' for i in range(self.n_qubits)]
-        open_wires = set(range(self.n_qubits)) - self.post_selection.keys()
-        permutations = [''.join(s) for s in product('01', repeat=len(open_wires))]
-        for perm in permutations:
-            new = fixed.copy()
-            for i, open in enumerate(open_wires):
-                new[open] = perm[i]
-            keep_indices.append(int(''.join(new), 2))
-        return keep_indices
+        self.valid_states = valid_states
+        #print(self.post_selection)
     
 
     def qml_circuit(self, circ_params):
@@ -77,11 +62,17 @@ class PennylaneCircuit:
     
 
     def eval_qml_circuit_with_post_selection(self, circ_params):
-        circuit = qml.QNode(self.qml_circuit_with_state_meas, self.dev, interface = self.interface, diff_method = self.diff_method)
+        circuit = qml.QNode(self.qml_circuit_with_state_meas, 
+                            self.dev, 
+                            interface = self.interface, 
+                            diff_method = self.diff_method)
+        #fig, ax = qml.draw_mpl(circuit)(circ_params)
+        #fig.savefig("test" + str(self.__hash__) + ".png")
+        #raise Exception
         states = circuit(circ_params)
-        post_selected_states = states[self.valid_states]
-        post_states = np.array([np.linalg.norm(x)**2 for x in post_selected_states], dtype=np.float32)
-        sum = np.sum(post_states, axis=0)
+        post_selected_states = np.array(states)[self.valid_states]
+        post_states = np.array([np.abs(x)**2 for x in post_selected_states], dtype=np.float32)
+        sum = np.sum(post_states)
         result = post_states / sum
         return result
 

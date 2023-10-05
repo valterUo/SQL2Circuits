@@ -13,6 +13,7 @@ except ModuleNotFoundError:
 from discopy.quantum.pennylane import to_pennylane
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
+from itertools import product
 from discopy.quantum.pennylane import to_pennylane
 
 from training.pennylane_circuit import PennylaneCircuit
@@ -23,9 +24,22 @@ try:
     Tensor.np = np
 except:
     pass
+
+def get_valid_states(n_qubits, post_selection):
+    keep_indices = []
+    fixed = ['0' if post_selection.get(i, 0) == 0 else
+                '1' for i in range(n_qubits)]
+    open_wires = set(range(n_qubits)) - post_selection.keys()
+    permutations = [''.join(s) for s in product('01', repeat=len(open_wires))]
+    for perm in permutations:
+        new = fixed.copy()
+        for i, open in enumerate(open_wires):
+            new[open] = perm[i]
+        keep_indices.append(int(''.join(new), 2))
+    return keep_indices
     
 
-def transform_into_pennylane_circuits(circuits, classification = 2, interface = 'best', diff_method = 'best'):
+def transform_into_pennylane_circuits(circuits, classification, interface = 'best', diff_method = 'best'):
     qml_circuits = {}
     symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key = default_sort_key))
@@ -49,7 +63,17 @@ def transform_into_pennylane_circuits(circuits, classification = 2, interface = 
         # Produces a dictionary like {2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0} 
         # where the wires 0 and 1 are the classifying wires
         post_selection = dict([(i, 0) for i in range(classification, n_qubits)])
-        qml_circuits[circ_key] = PennylaneCircuit(ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, post_selection, interface, diff_method)
+        valid_states = np.array(get_valid_states(n_qubits, post_selection))
+        qml_circuits[circ_key] = PennylaneCircuit(ops, 
+                                                  params, 
+                                                  pennylane_wires, 
+                                                  n_qubits, 
+                                                  param_symbols, 
+                                                  symbol_to_index, 
+                                                  symbols, 
+                                                  valid_states, 
+                                                  interface, 
+                                                  diff_method)
 
     return qml_circuits, full_symbol_to_index
 
@@ -125,12 +149,18 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
 
     return predict_parallel
 
+def cross_entropy(predictions, targets):
+    N = predictions.shape[0]
+    ce = -np.sum(targets*np.log(predictions+1e-9))/N
+    return ce
+
 
 def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn = None, costs_accuracies = None, type = None):
     
     def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
-        cost = loss_fn(predictions, labels)
+        #cost = loss_fn(predictions, labels)
+        cost = cross_entropy(np.array(predictions), np.array(labels))
         if costs_accuracies is not None and type is not None:
             accuracy = accuracy_fn(predictions, labels)
             costs_accuracies.add_cost(cost, type)

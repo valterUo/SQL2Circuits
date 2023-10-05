@@ -1,0 +1,229 @@
+{
+    "0": [
+        {
+            "id": 3,
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": 3,
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": 3,
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": 3,
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": 3,
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.1,
+            "c": 0.1,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": "3",
+            "a": 0.05,
+            "c": 0.03,
+            "epochs": 150,
+            "classification": 8,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        }
+    ]
+}

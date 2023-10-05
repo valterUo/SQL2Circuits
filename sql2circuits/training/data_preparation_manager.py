@@ -24,6 +24,7 @@ class DataPreparationManager:
         training_circuits = circuits.get_training_circuits()
         validation_circuits = circuits.get_validation_circuits()
         test_circuits = circuits.get_test_circuits()
+        self.lambeq_symbols = circuits.get_lambeq_symbols()
 
         if qc_framework == "pennylane":
             circuits.generate_pennylane_circuits()
@@ -37,6 +38,7 @@ class DataPreparationManager:
 
         # Select the first circuits
         self.current_training_circuits = dict(itertools.islice(training_circuits.items(), number_of_circuits))
+        print("Number of training circuits is ", len(self.current_training_circuits))
         if qc_framework == "pennylane":
             self.current_validation_circuits = select_pennylane_circuits(self.current_training_circuits, validation_circuits, number_of_circuits)
             self.current_test_circuits = select_pennylane_circuits(self.current_training_circuits, test_circuits, number_of_circuits)
@@ -82,3 +84,6 @@ class DataPreparationManager:
 
     def get_qml_train_symbols(self):
         return self.qml_train_symbols
+    
+    def get_lambeq_symbols(self):
+        return self.lambeq_symbols

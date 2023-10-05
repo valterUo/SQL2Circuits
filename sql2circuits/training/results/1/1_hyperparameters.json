@@ -1,0 +1,22 @@
+{
+    "0": [
+        {
+            "id": 1,
+            "a": 0.053143320078719525,
+            "c": 0.06764034293680367,
+            "epochs": 600,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        },
+        {
+            "id": 1,
+            "a": 0.053143320078719525,
+            "c": 0.06764034293680367,
+            "epochs": 600,
+            "classification": 4,
+            "workload": "cardinality",
+            "optimization_medthod": "noisyopt"
+        }
+    ]
+}

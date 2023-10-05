@@ -1,7 +1,11 @@
 {
     "seed_paths": [
-      "data_preparation//query_seeds//JOB_query_seed_execution_time.json",
-      "data_preparation//query_seeds//JOB_query_seed_cardinality.json"
+      "data_preparation//query_seeds//JOB_query_seed_latency_cost_small.json",
+      "data_preparation//query_seeds//JOB_query_seed_cardinality_small.json",
+      "data_preparation//query_seeds//JOB_query_seed_latency_cost_big.json",
+      "data_preparation//query_seeds//JOB_query_seed_cardinality_big.json",
+      "data_preparation//query_seeds//JOB_query_seed_cardinality_tiny.json",
+      "data_preparation//query_seeds//JOB_query_seed_latency_cost_tiny.json"
     ],
     "workload_types": [
       "execution_time",
@@ -12,7 +16,7 @@
       "pennylane"
     ],
     "classical_optimizers": [
-      "noisyopt_SPSA",
+      "noisyopt",
       "optax",
       "pennylane_SPSA",
       "pennylane_gradient_descent"

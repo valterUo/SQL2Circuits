@@ -14,9 +14,6 @@ except ModuleNotFoundError:
     except ModuleNotFoundError:
         import numpy as np
 
-
-from utils.custom_json_encoder import CustomEncoder
-
 np.set_printoptions(threshold=sys.maxsize)
 i = 0
 
@@ -46,9 +43,9 @@ def construct_data_and_labels(circuits, labels):
     circuits_l = []
     data_labels_l = []
     for key in circuits:
-        if key in labels:
+        if str(key) in labels:
             circuits_l.append(circuits[key])
-            data_labels_l.append(labels[key])
+            data_labels_l.append(labels[str(key)])
     return circuits_l, data_labels_l
 
 
@@ -241,17 +238,21 @@ def create_labeled_test_validation_classes(data, classes, workload):
 
 def bin_class_acc(y_hat, y):
     y_hat = np.array(y_hat)
+    # If yhat shape is (10, 2, 2) make it to (10, 2)
+
     y = np.array(y)
     return (np.sum(np.round(y_hat) == y) / len(y)) / 2
 
 
 def bin_class_loss(y_hat, y):
+    #print("y_hat", y_hat, "y", y)
     y_hat = np.array(y_hat)
     y = np.array(y)
     return -np.sum(y * np.log(y_hat)) / len(y)
 
 
 def multi_class_acc(y_hat, y):
+    print("y_hat: ", y_hat, "y: ", y)
     total_acc = 0
     if len(y_hat) != len(y):
         print("y_hat: ", len(y_hat), "y: ", len(y))
@@ -262,12 +263,17 @@ def multi_class_acc(y_hat, y):
     for pair in zip(y_hat, y):
         y_meas = np.array(pair[0]).flatten()
         max_index = np.argmax(y_meas)
-        total_acc += int(int(pair[1][max_index]) == 1)
+        print("Max index:", max_index)
+        value = int(int(pair[1][max_index]) == 1)
+        total_acc += value
+        print("Total: ", total_acc)
+    print("y len: ", len(y))
     return total_acc / len(y)
 
 
 def multi_class_loss(y_hat, y):
     total_loss = 0
+    print("y_hat", y_hat, "y", y)
     if len(y_hat) != len(y):
         print("y_hat: ", len(y_hat), "y: ", len(y))
         raise Exception("Length of predictions and labels must be equal")
@@ -319,6 +325,7 @@ def store_and_log(execution, data, file):
         with open(file, 'w') as f:
             json.dump({ execution : [ current_data ]}, f, indent = 4)
 
+
 def store_hyperparameter_opt_results(run_id, opt):
     results = dict(opt.cv_results_)
     for key, value in results.items():
@@ -341,9 +348,3 @@ def store_hyperparameter_opt_results(run_id, opt):
             # Store results as pickle
             with open("training//results//" + str(run_id) + "_cv_results.pickle", "wb") as f:
                 pickle.dump(results, f)
-
-
-def store_to_json(result, filename):
-    json_str = json.dumps(result, cls=CustomEncoder)
-    with open(filename, "w") as f:
-        f.write(json_str)

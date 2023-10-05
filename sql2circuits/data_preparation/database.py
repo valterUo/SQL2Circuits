@@ -42,6 +42,15 @@ class Database:
     def get_name(self):
         return self.name
     
+    def supports_cardinality_estimation(self):
+        return True
+    
+    def supports_cost_estimation(self):
+        return False
+    
+    def supports_latency_estimation(self):
+        return False
+    
     
     def generate_data(self, id, queries, workload, statement_timeout = 20000):
         connection = None
@@ -193,6 +202,7 @@ class Database:
                     cursor.close()
                     connection.close()
                     print("PostgreSQL connection is closed")
+
 
     def get_cardinality_estimation(self, query):
         connection = None

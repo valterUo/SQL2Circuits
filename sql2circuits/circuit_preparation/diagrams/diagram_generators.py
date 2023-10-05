@@ -119,7 +119,7 @@ def create_circuit_ansatz(pregroup_diagrams,
             width = circuit_diagram.width()
             height = circuit_diagram.depth()
             dim = 3*max(width, height)
-            circuit_diagram.draw(figsize=(dim, dim), path = key + ".png")
+            circuit_diagram.draw(figsize=(dim, dim), path = str(key) + ".png")
 
         if generate_circuit_json_diagrams:
             with open(key + ".json", 'w') as outfile:
