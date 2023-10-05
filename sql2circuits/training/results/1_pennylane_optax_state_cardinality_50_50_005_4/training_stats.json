@@ -1,6 +1,6 @@
 {
-    "run_id": 3,
-    "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality.json",
+    "run_id": 1,
+    "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality_big.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax",
     "measurement": "state",
@@ -8,8 +8,8 @@
     "initial_number_of_circuits": 50,
     "number_of_circuits_to_add": 50,
     "iterative": true,
-    "classification": 8,
+    "classification": 4,
     "epochs": 150,
     "learning_rate": 0.05,
-    "classes": "(0, 0) (0, 0) (0, 4829) (5536, 29757) (33181, 143849) (150166, 577460) (635188, 1572370) (1626450, 102540525)"
+    "classes": "(0, 0) (0, 29757) (29757, 562860) (562860, 102555254)"
 }

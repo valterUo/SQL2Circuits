@@ -11,19 +11,21 @@ this_folder = os.path.abspath(os.getcwd())
 
 class Evaluation:
 
-    def __init__(self, run_id, identifier, result_params, test_circuits, test_labels) -> None:
+    def __init__(self, run_id, identifier, result_params, test_circuits, test_labels, test_params) -> None:
         self.run_id = run_id
         self.identifier = identifier
         self.result_params = result_params
         self.test_circuits = test_circuits
         self.test_labels = test_labels
+        self.params = test_params
         self.test_result_file = "training//results//" + str(self.run_id) + "//" + str(self.run_id) + "_test_results.json"
         self.loss_function = multi_class_loss
         self.accuracy = multi_class_acc
 
     
     def evaluate_lambeq_on_test_set(self, iteration):
-        test_pred_fn = make_lambeq_pred_fn(self.test_circuits)
+        
+        test_pred_fn = make_lambeq_pred_fn(self.test_circuits, self.params)
         costs_accuracies = CostAccuracy()
         test_cost_fn = make_lambeq_cost_fn(test_pred_fn, self.test_labels, self.loss_function, self.accuracy, costs_accuracies, "test")
         test_cost_fn(self.result_params.x) # type: ignore

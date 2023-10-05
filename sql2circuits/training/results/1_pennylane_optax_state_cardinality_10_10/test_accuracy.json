@@ -179,6 +179,11 @@
             "step": 360,
             "test_accuracy": 0.34814814814814815,
             "number_of_test_circuits": 135
+        },
+        {
+            "step": 370,
+            "test_accuracy": 0.3925925925925926,
+            "number_of_test_circuits": 135
         }
     ]
 }

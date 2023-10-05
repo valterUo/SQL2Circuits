@@ -147,6 +147,7 @@ class SQL2Circuits():
         validation_labels = sf.get_validation_labels()
         test_circuits = sf.get_X_test()
         test_labels = sf.get_test_labels()
+        params = sf.get_lambeq_symbols()
 
         if self.qc_framework == "lambeq":
             trainer = LambeqTrainer(self.run_id,
@@ -163,7 +164,7 @@ class SQL2Circuits():
                                                            validation_circuits = validation_circuits, 
                                                            validation_labels = validation_labels, 
                                                            save_parameters = True)
-            evaluator = Evaluation(self.run_id, self.identifier, self.result, test_circuits, test_labels)
+            evaluator = Evaluation(self.run_id, self.identifier, self.result, test_circuits, test_labels, params)
             evaluator.evaluate_lambeq_on_test_set(number_of_selected_circuits)
 
         elif self.qc_framework == "pennylane":

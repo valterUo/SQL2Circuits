@@ -1,0 +1,69 @@
+{
+    "results": [
+        {
+            "step": 0,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 10,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 20,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 30,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 40,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 50,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 60,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 70,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 80,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 90,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 100,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 110,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        },
+        {
+            "step": 120,
+            "accuracy": 0.0,
+            "validation_accuracy": 0
+        }
+    ]
+}
