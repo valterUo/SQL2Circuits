@@ -1854,6 +1854,86 @@
             "step": 0,
             "accuracy": 0.4763157894736842,
             "validation_accuracy": 0.12698412698412698
+        },
+        {
+            "step": 10,
+            "accuracy": 0.5263157894736842,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 20,
+            "accuracy": 0.5368421052631579,
+            "validation_accuracy": 0.11904761904761904
+        },
+        {
+            "step": 30,
+            "accuracy": 0.5526315789473685,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 40,
+            "accuracy": 0.5447368421052632,
+            "validation_accuracy": 0.11904761904761904
+        },
+        {
+            "step": 50,
+            "accuracy": 0.55,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 60,
+            "accuracy": 0.5552631578947368,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 70,
+            "accuracy": 0.5526315789473685,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 80,
+            "accuracy": 0.5526315789473685,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 90,
+            "accuracy": 0.5526315789473685,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 0,
+            "accuracy": 0.49870801033591733,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 10,
+            "accuracy": 0.5167958656330749,
+            "validation_accuracy": 0.15079365079365079
+        },
+        {
+            "step": 20,
+            "accuracy": 0.5271317829457365,
+            "validation_accuracy": 0.1111111111111111
+        },
+        {
+            "step": 30,
+            "accuracy": 0.5400516795865633,
+            "validation_accuracy": 0.09523809523809523
+        },
+        {
+            "step": 40,
+            "accuracy": 0.5555555555555556,
+            "validation_accuracy": 0.14285714285714285
+        },
+        {
+            "step": 50,
+            "accuracy": 0.5503875968992248,
+            "validation_accuracy": 0.15873015873015872
+        },
+        {
+            "step": 60,
+            "accuracy": 0.5555555555555556,
+            "validation_accuracy": 0.14285714285714285
         }
     ]
 }

@@ -28,6 +28,7 @@ class DataPreparationManager:
 
         if qc_framework == "pennylane":
             circuits.generate_pennylane_circuits()
+            circuits.select_qml_circuits_with_data_point(training_data, validation_data, test_data)
             training_circuits = circuits.get_qml_training_circuits()
             validation_circuits = circuits.get_qml_validation_circuits()
             test_circuits = circuits.get_qml_test_circuits()

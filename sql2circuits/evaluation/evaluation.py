@@ -11,7 +11,7 @@ this_folder = os.path.abspath(os.getcwd())
 
 class Evaluation:
 
-    def __init__(self, run_id, identifier, result_params, test_circuits, test_labels, test_params) -> None:
+    def __init__(self, run_id, identifier, result_params, test_circuits, test_labels, test_params = None) -> None:
         self.run_id = run_id
         self.identifier = identifier
         self.result_params = result_params
