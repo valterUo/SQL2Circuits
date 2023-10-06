@@ -52,7 +52,7 @@ class LambeqTrainer(BaseEstimator):
             self.loss_function = bin_class_loss
             self.accuracy = bin_class_acc
 
-        self.hyperparameters_file = "training//results//" + str(self.identifier) + "//" + "hyperparameters.json"
+        hyperparameters_file = "training//results//" + str(self.identifier) + "//" + "hyperparameters.json"
 
         hyperparameters = {
                 "id": self.id,
@@ -64,7 +64,8 @@ class LambeqTrainer(BaseEstimator):
                 "optimization_medthod": self.classical_optimizer
             }
         
-        store_and_log(0, hyperparameters, self.hyperparameters_file)
+        with open(hyperparameters_file, "w") as f:
+                json.dump(hyperparameters, f, indent=4)
     
 
     def fit_with_lambeq_noisyopt(self, X, y, **kwargs):
@@ -86,9 +87,9 @@ class LambeqTrainer(BaseEstimator):
         if self.measurement == "sample":
             raise Exception("Lambeq supports currently only state measurement.")
 
-        train_pred_fn = make_lambeq_pred_fn(self.training_circuits, parameters, self.classification)
-        val_pred_fn = make_lambeq_pred_fn(current_validation_circuits, parameters, self.classification)
-        #test_pred_fn = self.make_pred_fn(test_circuits, self.parameters, self.classification)
+        train_pred_fn = make_lambeq_pred_fn(self.training_circuits, parameters)
+        val_pred_fn = make_lambeq_pred_fn(current_validation_circuits, parameters)
+        #test_pred_fn = self.make_pred_fn(test_circuits, self.parameters)
 
         costs_accuracies = CostAccuracy()
 

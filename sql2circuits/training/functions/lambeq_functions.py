@@ -18,7 +18,7 @@ def predict_circuit(circuit_fn, params):
     ratio = predictions / predictions.sum()
     return ratio
 
-def make_lambeq_pred_fn(circuits, parameters, classification):
+def make_lambeq_pred_fn(circuits, parameters):
 
     circuit_fns = [circuit.lambdify(*parameters) for circuit in circuits]
 

@@ -59,7 +59,7 @@ class LambeqTrainerJAX(BaseEstimator):
         print("Number of validation circuits: ", len(validation_circuits))
         validation_labels = kwargs.get("validation_labels", None)
 
-        pred_fn = make_lambeq_pred_fn(self.training_circuits, self.params, self.classification)
+        pred_fn = make_lambeq_pred_fn(self.training_circuits, self.params)
         cost_function = make_lambeq_cost_fn(pred_fn, y, self.loss_function, self.accuracy)
         #cost_function = jax.checkpoint(cost_function)
         #cost_function = jax.jit(cost_function)

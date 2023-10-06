@@ -113,21 +113,37 @@ class Circuits:
                     self.validation_circuits = self.circuit_diagrams["validation"]
             circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
             circuit.draw()
+        self.all_circuits = dict()
+        self.all_circuits.update(self.training_circuits)
+        self.all_circuits.update(self.test_circuits)
+        self.all_circuits.update(self.validation_circuits)
                 
 
     def generate_pennylane_circuits(self):
-        self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits, 
-                                                                                               self.classification, 
-                                                                                               interface = self.interface, 
-                                                                                               diff_method = self.diff_method)
-        self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits, 
-                                                                                          self.classification, 
-                                                                                          interface = self.interface, 
-                                                                                          diff_method = self.diff_method)
-        self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits, 
-                                                                                               self.classification, 
-                                                                                               interface = self.interface, 
-                                                                                               diff_method = self.diff_method)
+        # Combine all circuits into a single dict
+        self.all_qml_circuits, self.qml_symbols = transform_into_pennylane_circuits(self.all_circuits,
+                                                                                        self.classification,
+                                                                                        interface = self.interface,
+                                                                                        diff_method = self.diff_method)
+        
+        # Split the circuits into training, validation and test sets with respect to the keys appearing in dictionaries self.training_circuits, self.test_circuits and self.validation_circuits
+        self.qml_training_circuits = {k: self.all_qml_circuits[k] for k in self.training_circuits}
+        self.qml_test_circuits = {k: self.all_qml_circuits[k] for k in self.test_circuits}
+        self.qml_validation_circuits = {k: self.all_qml_circuits[k] for k in self.validation_circuits}
+
+
+        #self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits, 
+        #                                                                                       self.classification, 
+        #                                                                                       interface = self.interface, 
+        #                                                                                       diff_method = self.diff_method)
+        #self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits, 
+        #                                                                                  self.classification, 
+        #                                                                                  interface = self.interface, 
+        #                                                                                  diff_method = self.diff_method)
+        #self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits, 
+        #                                                                                       self.classification, 
+        #                                                                                       interface = self.interface, 
+        #                                                                                       diff_method = self.diff_method)
 
 
     def generate_cfg_diagrams(self):
@@ -209,6 +225,14 @@ class Circuits:
         self.validation_circuits = {k: v for k, v in self.validation_circuits.items() if str(k) in validation_data}
         self.test_circuits = {k: v for k, v in self.test_circuits.items() if str(k) in test_data}
 
+    def select_qml_circuits_with_data_point(self, training_data, validation_data, test_data):
+        # Because we did not get a data point for each query (limited excution time), 
+        # we need to remove the circuits that do not have a data point
+        # Select all those circuits whose key is in the training_data dictionary
+        self.qml_training_circuits = {k: v for k, v in self.qml_training_circuits.items() if str(k) in training_data}
+        self.qml_validation_circuits = {k: v for k, v in self.qml_validation_circuits.items() if str(k) in validation_data}
+        self.qml_test_circuits = {k: v for k, v in self.qml_test_circuits.items() if str(k) in test_data}
+
     def get_training_circuits(self):
         return self.training_circuits
     
@@ -228,13 +252,16 @@ class Circuits:
         return self.qml_test_circuits
     
     def get_qml_train_symbols(self):
-        return self.qml_train_symbols
+        return self.qml_symbols
     
     def get_qml_val_symbols(self):
         return self.qml_val_symbols
     
     def get_qml_test_symbols(self):
         return self.qml_test_symbols
+    
+    def get_qml_symbols(self):
+        return self.qml_symbols
     
     def get_lambeq_symbols(self):
         return get_symbols(list(self.training_circuits.values()) + list(self.validation_circuits.values()) + list(self.test_circuits.values()))

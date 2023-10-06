@@ -54,7 +54,6 @@ class PennylaneTrainerJAX(BaseEstimator):
             np.save(this_folder + "/training/parameters/" + self.identifier + ".npy", self.parameters)
 
 
-
     def train(self, X, y, **kwargs):
         self.training_circuits = X #[item for sublist in X for item in sublist]
         print("Number of training circuits: ", len(self.training_circuits))
