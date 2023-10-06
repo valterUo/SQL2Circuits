@@ -64,6 +64,16 @@
             "step": 120,
             "accuracy": 0.32,
             "validation_accuracy": 0.16
+        },
+        {
+            "step": 130,
+            "accuracy": 0.24,
+            "validation_accuracy": 0.14
+        },
+        {
+            "step": 140,
+            "accuracy": 0.3,
+            "validation_accuracy": 0.08
         }
     ]
 }
