@@ -1934,6 +1934,21 @@
             "step": 60,
             "accuracy": 0.5555555555555556,
             "validation_accuracy": 0.14285714285714285
+        },
+        {
+            "step": 70,
+            "accuracy": 0.5478036175710594,
+            "validation_accuracy": 0.14285714285714285
+        },
+        {
+            "step": 80,
+            "accuracy": 0.5503875968992248,
+            "validation_accuracy": 0.12698412698412698
+        },
+        {
+            "step": 90,
+            "accuracy": 0.5478036175710594,
+            "validation_accuracy": 0.14285714285714285
         }
     ]
 }
