@@ -263,5 +263,8 @@ class Circuits:
     def get_qml_symbols(self):
         return self.qml_symbols
     
+    def get_all_qml_circuits(self):
+        return self.all_qml_circuits
+    
     def get_lambeq_symbols(self):
         return get_symbols(list(self.training_circuits.values()) + list(self.validation_circuits.values()) + list(self.test_circuits.values()))

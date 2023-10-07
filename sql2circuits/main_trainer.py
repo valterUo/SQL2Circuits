@@ -195,6 +195,7 @@ class SQL2Circuits():
         validation_labels = sf.get_validation_labels()
         test_circuits = sf.get_X_test()
         test_labels = sf.get_test_labels()
+        params = sf.get_lambeq_symbols()
         
         if self.qc_framework == "pennylane":
             params = sf.get_qml_train_symbols()
@@ -216,7 +217,7 @@ class SQL2Circuits():
                                        self.epochs, 
                                        self.classification)
             self.result = trainer.train(X_train, y, validation_circuits = validation_circuits, validation_labels = validation_labels)
-            evaluator = Evaluation(self.run_id, self.identifier, self.result, test_circuits, test_labels)
+            evaluator = Evaluation(self.run_id, self.identifier, self.result, test_circuits, test_labels, params)
             evaluator.evaluate_lambeq_on_test_set(number_of_circuits)
         with open(self.results_folder + str(number_of_circuits) + "_optax_results_.pkl", "wb") as f:
             pickle.dump(self.result, f)
