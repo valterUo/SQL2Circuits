@@ -102,21 +102,26 @@ class Circuits:
         if os.path.isfile(self.output_folder + "//circuit_diagrams_" + str(self.id) + ".pickle"):
             with open(self.output_folder + "//circuit_diagrams_" + str(self.id) + ".pickle", 'rb') as outfile:
                     self.circuit_diagrams = pickle.load(outfile)
-                    #for queryset in self.circuit_diagrams:
-                    #    for k, circuit_diagram in self.circuit_diagrams[queryset].items():
-                    #        width = circuit_diagram.width()
-                    #        height = circuit_diagram.depth()
-                    #        dim = 3*max(width, height)
-                    #        circuit_diagram.draw(figsize=(dim, dim), path = str(k) + ".png")
                     self.training_circuits = self.circuit_diagrams["training"]
                     self.test_circuits = self.circuit_diagrams["test"]
                     self.validation_circuits = self.circuit_diagrams["validation"]
-            circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
-            circuit.draw()
-        self.all_circuits = dict()
-        self.all_circuits.update(self.training_circuits)
-        self.all_circuits.update(self.test_circuits)
-        self.all_circuits.update(self.validation_circuits)
+                    self.all_circuits = dict()
+                    self.all_circuits.update(self.training_circuits)
+                    self.all_circuits.update(self.test_circuits)
+                    self.all_circuits.update(self.validation_circuits)
+
+                    # Draw the first circuit for demonstration and debugging purposes
+                    circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
+                    circuit.draw()
+
+                    draw_png = False
+                    if draw_png:
+                        for queryset in self.circuit_diagrams:
+                            for k, circuit_diagram in self.circuit_diagrams[queryset].items():
+                                width = circuit_diagram.width()
+                                height = circuit_diagram.depth()
+                                dim = 3*max(width, height)
+                                circuit_diagram.draw(figsize=(dim, dim), path = str(k) + ".png")
                 
 
     def generate_pennylane_circuits(self):

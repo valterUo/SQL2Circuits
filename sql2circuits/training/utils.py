@@ -185,18 +185,28 @@ def create_labeled_training_classes(data, classification, workload):
         sorted_data = sorted(data, key=lambda d: d["time"])
     elif workload == "cardinality" or workload == "C":
         if type(data) != list:
-            data = data = [{"id": k, "cardinality": v} for k, v in data.items()]
+            data = [{"id": k, "cardinality": v} for k, v in data.items()]
         sorted_data = sorted(data, key=lambda d: d["cardinality"])
+    elif workload == "cost" or workload == "CO":
+        if type(data) != list:
+            data = [{"id": k, "cost": v} for k, v in data.items()]
+        sorted_data = sorted(data, key=lambda d: d["cost"])
     chunk_size = math.ceil(len(sorted_data)/(2**classification))
     for i, clas in enumerate(chunks(sorted_data, chunk_size)):
         if workload == "execution_time":
             classes.append((clas[0]["time"], clas[-1]["time"]))
         elif workload == "cardinality":
             classes.append((clas[0]["cardinality"], clas[-1]["cardinality"]))
+        elif workload == "cost":
+            classes.append((clas[0]["cost"], clas[-1]["cost"]))
         label = [0]*(2**classification)
         label[i] = 1
         for elem in clas:
             labeled_data[elem["id"]] = label
+    print("Classes: ", classes)
+    print("Number of classes: ", len(classes))
+    print("Number of labeled data: ", len(labeled_data))
+    print("Data: ", labeled_data)
     return labeled_data, classes
 
 

@@ -70,6 +70,8 @@ class Database:
             file_name = self.genereta_data_execution_time(id, queries, connection)
         elif workload == "C" or workload == "cardinality":
             file_name = self.genereta_data_cardinality(id, queries, connection)
+        elif workload == "CO" or workload == "cost":
+            file_name = self.generate_data_cost(id, queries, connection)
         else:
             print("Unknown workload type!")
         
@@ -151,6 +153,42 @@ class Database:
             json.dump(result, outfile)
         
         return file_name
+    
+
+    def generate_data_cost(self, id, queries, connection):
+            result = dict()
+            cursor = None
+            file_name = self.this_folder + "//data_preparation//data//cost//" + str(id) + "_data.json"
+            if os.path.isfile(file_name):
+                if connection:
+                    connection.close()
+                return file_name
+            
+            for query_set in queries:
+                data = dict()
+                for query in queries[query_set]:
+                    try:
+                        cursor = connection.cursor()
+                        cursor.execute("EXPLAIN ANALYZE " + query['query'])
+                        res = cursor.fetchall()
+                        cost = float(re.findall("cost=(\d+\.\d+)", res[0][0])[0])
+                        print(cost)
+                        data[query['id']] = cost
+
+                    except (Exception, psycopg2.Error) as error:
+                        print("Error while fetching data from PostgreSQL", error)
+                        print(query)
+                result[query_set] = data
+
+            if connection and cursor:
+                cursor.close()
+                connection.close()
+                print("PostgreSQL connection is closed")
+                
+            with open(file_name, 'w') as outfile:
+                json.dump(result, outfile)
+            
+            return file_name
 
 
     def create_indices(self):
