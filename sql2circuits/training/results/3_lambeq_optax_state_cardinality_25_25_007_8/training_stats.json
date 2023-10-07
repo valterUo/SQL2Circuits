@@ -1,5 +1,5 @@
 {
-    "run_id": 1,
+    "run_id": 3,
     "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality_big.json",
     "qc_framework": "lambeq",
     "classical_optimizer": "optax",
@@ -8,15 +8,8 @@
     "initial_number_of_circuits": 25,
     "number_of_circuits_to_add": 25,
     "iterative": true,
-<<<<<<<< HEAD:sql2circuits/training/results/3_lambeq_optax_state_cardinality_25_25_007_8/training_stats.json
     "classification": 8,
     "epochs": 500,
     "learning_rate": 0.07,
     "classes": "(0, 0) (0, 0) (0, 4829) (5536, 29757) (33181, 143849) (150166, 577460) (635188, 1572370) (1626450, 102540525)"
-========
-    "classification": 4,
-    "epochs": 500,
-    "learning_rate": 0.07,
-    "classes": "(0, 0) (0, 29757) (29757, 562860) (562860, 102555254)"
->>>>>>>> 9c4f6fb61001cf69e404c98e1d3ad964b13c8bac:sql2circuits/training/results/1_pennylane_optax_state_cardinality_25_25_007_4/training_stats.json
 }

@@ -1,0 +1,114 @@
+{
+    "results": [
+        {
+            "step": 0,
+            "accuracy": 0.0,
+            "validation_accuracy": 0.0
+        },
+        {
+            "step": 10,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.2
+        },
+        {
+            "step": 20,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 30,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.15
+        },
+        {
+            "step": 40,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.05
+        },
+        {
+            "step": 50,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.15
+        },
+        {
+            "step": 60,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 70,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.2
+        },
+        {
+            "step": 80,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.2
+        },
+        {
+            "step": 90,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 100,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 110,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.15
+        },
+        {
+            "step": 120,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 130,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.05
+        },
+        {
+            "step": 140,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.15
+        },
+        {
+            "step": 150,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 160,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.05
+        },
+        {
+            "step": 170,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 180,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 190,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 200,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 210,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.15
+        }
+    ]
+}

@@ -9,7 +9,8 @@ from discopy.quantum import Circuit
 
 def cross_entropy(predictions, targets):
     N = predictions.shape[0]
-    ce = -np.sum(targets*np.log(predictions+1e-9))/N
+    preds = np.array([pred.flatten() for pred in predictions])
+    ce = -np.sum(targets*np.log(preds+1e-9))/N
     return ce
 
 def predict_circuit(circuit_fn, params):

@@ -64,7 +64,7 @@ class LambeqTrainerJAX(BaseEstimator):
         #cost_function = jax.checkpoint(cost_function)
         #cost_function = jax.jit(cost_function)
         
-        valid_pred_fn = make_lambeq_pred_fn(validation_circuits, self.params, self.classification)
+        valid_pred_fn = make_lambeq_pred_fn(validation_circuits, self.params)
 
         self.opt = optax.adam(self.learning_rate)
         opt_state = self.opt.init(self.parameters)

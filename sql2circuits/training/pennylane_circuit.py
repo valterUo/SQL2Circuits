@@ -60,6 +60,25 @@ class PennylaneCircuit:
                 op(wires = wires)
         return qml.state()
     
+    def qml_circuit_with_density_matrix_meas(self, circ_params):
+        for op, param, wires in zip(self.ops, self.param_symbols, self.pennylane_wires):
+            if len(param) > 0:
+                param = param[0]
+                op(circ_params[self.symbol_to_index[param]], wires = wires)
+            else:
+                op(wires = wires)
+        return qml.density_matrix(wires=range(self.n_qubits))
+    
+    
+    def qml_circuit_with_probs_meas(self, circ_params):
+        for op, param, wires in zip(self.ops, self.param_symbols, self.pennylane_wires):
+            if len(param) > 0:
+                param = param[0]
+                op(circ_params[self.symbol_to_index[param]], wires = wires)
+            else:
+                op(wires = wires)
+        return qml.probs(wires = range(self.n_qubits))
+    
 
     def eval_qml_circuit_with_post_selection(self, circ_params):
         circuit = qml.QNode(self.qml_circuit_with_state_meas, 
@@ -77,13 +96,23 @@ class PennylaneCircuit:
         return result
 
 
-    def get_QNode(self):
+    def get_QNode_with_sample(self):
         return qml.QNode(self.qml_circuit, self.dev)
     
-
+    def get_QNode_with_state(self):
+        return qml.QNode(self.qml_circuit_with_state_meas, self.dev)
+    
+    def get_QNode_with_density_matrix(self):
+        return qml.QNode(self.qml_circuit_with_density_matrix_meas, self.dev)
+    
+    def get_QNode_with_probs(self):
+        return qml.QNode(self.qml_circuit_with_probs_meas, self.dev)
+    
     def get_n_qubits(self):
         return self.n_qubits
     
-
     def get_param_symbols(self):
         return self.param_symbols
+    
+    def get_valid_states(self):
+        return self.valid_states
