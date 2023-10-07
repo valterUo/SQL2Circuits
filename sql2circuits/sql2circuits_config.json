@@ -9,7 +9,8 @@
     ],
     "workload_types": [
       "execution_time",
-      "cardinality"
+      "cardinality",
+      "cost"
     ],
     "qc_frameworks": [
       "lambeq",
