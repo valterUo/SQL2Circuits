@@ -52,9 +52,6 @@ class DataPreparationManager:
         self.validation_circuits_X, self.validation_labels_y = construct_data_and_labels(self.current_validation_circuits, validation_classes)
         self.test_circuits_X, self.test_labels_y = construct_data_and_labels(self.current_test_circuits, test_classes)
 
-        #self.X_train = [[circuit] for circuit in self.training_circuits_X]
-        #self.X_valid = list(zip(self.validation_circuits_X, self.validation_labels_y))
-
     def get_X_train(self):
         return self.training_circuits_X
     

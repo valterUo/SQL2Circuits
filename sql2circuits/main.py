@@ -31,7 +31,7 @@ model = SQL2Circuits(run_id = 5,
                      initial_number_of_circuits = 25, 
                      number_of_circuits_to_add = 25,
                      iterative = True,
-                     epochs = 500,
+                     epochs = 100,
                      learning_rate=learning_rate)
 
 model.train()

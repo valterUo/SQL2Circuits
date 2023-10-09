@@ -9,7 +9,7 @@
     "number_of_circuits_to_add": 25,
     "iterative": true,
     "classification": 2,
-    "epochs": 500,
+    "epochs": 100,
     "learning_rate": 0.07,
     "classes": "(0.0, 83723.14) (83735.13, 1425540.85)"
 }
