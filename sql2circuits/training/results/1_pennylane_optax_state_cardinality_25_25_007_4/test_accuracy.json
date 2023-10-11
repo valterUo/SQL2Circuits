@@ -1,0 +1,29 @@
+{
+    "results": [
+        {
+            "step": 25,
+            "test_accuracy": 0.28,
+            "number_of_test_circuits": 25
+        },
+        {
+            "step": 50,
+            "test_accuracy": 0.34,
+            "number_of_test_circuits": 50
+        },
+        {
+            "step": 75,
+            "test_accuracy": 0.3333333333333333,
+            "number_of_test_circuits": 75
+        },
+        {
+            "step": 100,
+            "test_accuracy": 0.29,
+            "number_of_test_circuits": 100
+        },
+        {
+            "step": 125,
+            "test_accuracy": 0.2982456140350877,
+            "number_of_test_circuits": 114
+        }
+    ]
+}

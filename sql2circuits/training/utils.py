@@ -46,6 +46,9 @@ def construct_data_and_labels(circuits, labels):
         if str(key) in labels:
             circuits_l.append(circuits[key])
             data_labels_l.append(labels[str(key)])
+        elif key in labels:
+            circuits_l.append(circuits[key])
+            data_labels_l.append(labels[key])
     return circuits_l, data_labels_l
 
 
@@ -224,12 +227,18 @@ def create_labeled_test_validation_classes(data, classes, workload):
         if type(data) != list:
             data = data = [{"id": k, "cardinality": v} for k, v in data.items()]
         sorted_data = sorted(data, key=lambda d: d["cardinality"])
+    elif workload == "cost":
+        if type(data) != list:
+            data = [{"id": k, "cost": v} for k, v in data.items()]
+        sorted_data = sorted(data, key=lambda d: d["cost"])
     
     for elem in sorted_data:
         if workload == "execution_time":
             data_value = float(elem["time"])
         elif workload == "cardinality":
             data_value = float(elem["cardinality"])
+        elif workload == "cost":
+            data_value = float(elem["cost"])
         
         index = None
         for i, clas in enumerate(classes):
