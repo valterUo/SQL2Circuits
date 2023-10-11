@@ -109,6 +109,51 @@
             "step": 210,
             "accuracy": 0.15,
             "validation_accuracy": 0.15
+        },
+        {
+            "step": 220,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.2
+        },
+        {
+            "step": 230,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 240,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.05
+        },
+        {
+            "step": 250,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.2
+        },
+        {
+            "step": 260,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.15
+        },
+        {
+            "step": 270,
+            "accuracy": 0.2,
+            "validation_accuracy": 0.15
+        },
+        {
+            "step": 280,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 290,
+            "accuracy": 0.25,
+            "validation_accuracy": 0.1
+        },
+        {
+            "step": 300,
+            "accuracy": 0.15,
+            "validation_accuracy": 0.15
         }
     ]
 }

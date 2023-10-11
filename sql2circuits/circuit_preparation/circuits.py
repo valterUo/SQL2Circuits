@@ -46,6 +46,7 @@ class Circuits:
                  query_file_path, 
                  output_folder,
                  classification,
+                 measurement,
                  interface = 'auto',
                  diff_method = 'best',
                  write_cfg_to_file = False, 
@@ -67,6 +68,7 @@ class Circuits:
         self.write_cfg_to_file = write_cfg_to_file
         self.write_pregroup_to_file = write_pregroup_to_file
         self.generate_circuit_json_diagrams = generate_circuit_json_diagrams
+        self.measurement = measurement
         self.interface = interface
         self.diff_method = diff_method
 
@@ -128,6 +130,7 @@ class Circuits:
         # Combine all circuits into a single dict
         self.all_qml_circuits, self.qml_symbols = transform_into_pennylane_circuits(self.all_circuits,
                                                                                         self.classification,
+                                                                                        self.measurement,
                                                                                         interface = self.interface,
                                                                                         diff_method = self.diff_method)
         

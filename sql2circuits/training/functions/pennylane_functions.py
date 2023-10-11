@@ -39,7 +39,7 @@ def get_valid_states(n_qubits, post_selection):
     return keep_indices
     
 
-def transform_into_pennylane_circuits(circuits, classification, interface = 'best', diff_method = 'best'):
+def transform_into_pennylane_circuits(circuits, classification, measurement, interface = 'best', diff_method = 'best'):
     qml_circuits = {}
     symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key = default_sort_key))
@@ -71,7 +71,8 @@ def transform_into_pennylane_circuits(circuits, classification, interface = 'bes
                                                   param_symbols, 
                                                   symbol_to_index, 
                                                   symbols, 
-                                                  valid_states, 
+                                                  valid_states,
+                                                  measurement,
                                                   interface, 
                                                   diff_method)
 
@@ -86,24 +87,22 @@ def post_selection(circuit_samples, n_qubits, post_selection):
 
 
 def predict_circuit(circuit, params, n_qubits, classification):
+    measurement = circuit(params)
+    post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
+    post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+    counts = collections.Counter(post_selected_samples)
+    if len(post_selected_samples) == 0:
+        return [1e-9]*(2**classification)
     try:
-        measurement = circuit(params)
-        post_selected_samples = post_selection(np.array(measurement), n_qubits, classification)
-        post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
-        counts = collections.Counter(post_selected_samples)
-        if len(post_selected_samples) == 0:
-            return [1e-9]*(2**classification)
-        try:
-            predicted = counts.most_common(1)[0][0]
-            binary_string = ''.join(str(bit) for bit in predicted[::-1])
-            binary_int = int(binary_string, 2)
-            result = [1e-9]*2**classification
-            result[binary_int] = 1
-            return result
-        except:
-            return [1e-9]*(2**classification)
+        predicted = counts.most_common(1)[0][0]
+        binary_string = ''.join(str(bit) for bit in predicted[::-1])
+        binary_int = int(binary_string, 2)
+        result = [1e-9]*2**classification
+        result[binary_int] = 1
+        print(result)
+        return result
     except Exception as e:
-        print("Error", e)
+        print("Error in prediction circuit 1", e)
         return [1e-9]*(2**classification)
 
 
@@ -112,7 +111,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
     def predict(params):
         predictions = []
         for pennylane_circuit in circuits:
-            circuit = pennylane_circuit.get_QNode()
+            circuit = pennylane_circuit.get_QNode_with_sample()
             n_qubits = pennylane_circuit.get_n_qubits()
             post_selected_samples = []
             measurement = circuit(params)
@@ -120,7 +119,8 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
             post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
             counts = collections.Counter(post_selected_samples)
             if len(post_selected_samples) == 0:
-                predictions.append([1] + [1e-9]*(2**classification - 1))
+                print("No samples")
+                predictions.append([1e-9]*(2**classification))
                 continue
             try:
                 predicted = counts.most_common(1)[0][0]
@@ -129,13 +129,14 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
                 result = [1e-9]*2**classification
                 result[binary_int] = 1
                 predictions.append(result)
-            except:
-                predictions.append([1] + [1e-9]*(2**classification - 1))
+            except Exception as e:
+                print("Error in prediction circuit 1", e)
+                return [1e-9]*(2**classification)
         return predictions
     
 
     def predict_parallel(params):
-        args = [(circuit.get_QNode(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
+        args = [(circuit.get_QNode_with_sample(), params, circuit.get_n_qubits(), classification) for circuit in circuits]
         results = []
         queue = multiprocessing.Queue()
         with multiprocessing.Pool(processes=8) as pool:
@@ -147,7 +148,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
             results.append(queue.get())
         return results
 
-    return predict_parallel
+    return predict
 
 def cross_entropy(predictions, targets):
     N = predictions.shape[0]
@@ -160,6 +161,8 @@ def make_pennylane_cost_fn(pred_fn, labels, loss_fn, accuracy_fn = None, costs_a
     def cost_fn(params, **kwargs):
         predictions = pred_fn(params)
         #cost = loss_fn(predictions, labels)
+        #print("Predictions: ", predictions)
+        #print("Labels: ", labels)
         cost = cross_entropy(np.array(predictions), np.array(labels))
         if costs_accuracies is not None and type is not None:
             accuracy = accuracy_fn(predictions, labels)

@@ -203,10 +203,10 @@ def create_labeled_training_classes(data, classification, workload):
         label[i] = 1
         for elem in clas:
             labeled_data[elem["id"]] = label
-    print("Classes: ", classes)
-    print("Number of classes: ", len(classes))
-    print("Number of labeled data: ", len(labeled_data))
-    print("Data: ", labeled_data)
+    #print("Classes: ", classes)
+    #print("Number of classes: ", len(classes))
+    #print("Number of labeled data: ", len(labeled_data))
+    #print("Data: ", labeled_data)
     return labeled_data, classes
 
 
