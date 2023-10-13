@@ -27,6 +27,7 @@ def make_callback_fn(dev_cost_fn, costs_accuracies, identifier):
                         "train/acc": train_acc, 
                         "valid/loss": valid_loss, 
                         "valid/acc": valid_acc}
+            print(stats_data)
             log_file = this_folder + "//training//results//" + identifier + "//" + identifier + "_accuracy.json"
             if not os.path.isfile(log_file):
                 with open(log_file, "w") as f:
@@ -71,14 +72,14 @@ def visualize_result(id, i, costs_accuracies):
     visualize_result_noisyopt(train_costs, train_accs, dev_costs, dev_accs, figure_path)
 
 
-def read_parameters(id, circuits):
+def read_parameters(id, circuits, qml_params = None):
     syms = set()
     parameters = []
     init_params_spsa = []
     if type(get_element(circuits, 0)) == Circuit:
         syms = get_symbols(circuits)
-    else:
-        syms = set(all_params.keys())
+    elif qml_params is not None:
+        syms = qml_params
     new_params = sorted(syms, key = default_sort_key)
     stored_parameters = "training//checkpoints//" + str(id) + ".npz"
     if os.path.exists(stored_parameters):

@@ -58,9 +58,7 @@ class PennylaneTrainer(BaseEstimator):
         if not os.path.exists("training//results//" + str(self.identifier)):
             os.makedirs("training//results//" + str(self.identifier))
 
-        self.result_file = "training//results//" + str(self.identifier) + "//" + str(self.identifier) + "_result.json"
-        self.stats_iter_file = "training//results//" + str(self.identifier) + "//" + str(self.identifier) + "_stats_iteration_level.json"
-        self.hyperparameters_file = "training//results//" + str(self.identifier) + "//" + str(self.identifier) + "_hyperparameters.json"
+        hyperparameters_file = "training//results//" + str(self.identifier) + "//" + "hyperparameters.json"
 
         hyperparameters = {
                 "id": str(self.identifier),
@@ -72,7 +70,8 @@ class PennylaneTrainer(BaseEstimator):
                 "optimization_medthod": self.classical_optimizer
             }
         
-        store_and_log(self.executions, hyperparameters, self.hyperparameters_file)
+        with open(hyperparameters_file, "w") as f:
+                json.dump(hyperparameters, f, indent=4)
 
 
     def fit_with_pennylane_noisyopt(self, X, y, **kwargs):
@@ -85,13 +84,14 @@ class PennylaneTrainer(BaseEstimator):
         validation_circuits = kwargs.get("validation_circuits", None)
         print("Number of validation circuits: ", len(validation_circuits))
         validation_labels = kwargs.get("validation_labels", None)
+        qml_params = kwargs.get("qml_params", None)
 
         current_validation_circuits = select_pennylane_circuits(self.training_circuits, validation_circuits, len(self.training_circuits))
         current_validation_labels = []
         for circuit in current_validation_circuits:
             current_validation_labels.append(validation_labels[validation_circuits.index(circuit)])
 
-        parameters, init_params_spsa = read_parameters(self.identifier, self.training_circuits, self.circuits.get_qml_train_symbols())
+        parameters, init_params_spsa = read_parameters(self.identifier, self.training_circuits, qml_params)
         train_pred_fn = None
         dev_pred_fn =  None
         
@@ -105,7 +105,7 @@ class PennylaneTrainer(BaseEstimator):
         train_cost_fn = make_pennylane_cost_fn(train_pred_fn, training_data_labels, self.loss_function, self.accuracy, costs_accuracies, "train")
         dev_cost_fn = make_pennylane_cost_fn(dev_pred_fn, current_validation_labels, self.loss_function, self.accuracy, costs_accuracies, "dev")
             
-        callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, self.stats_iter_file)
+        callback_fn = make_callback_fn(dev_cost_fn, costs_accuracies, str(self.identifier))
         
         self.result = minimizeSPSA(train_cost_fn,
                                    x0 = init_params_spsa,
@@ -115,9 +115,8 @@ class PennylaneTrainer(BaseEstimator):
                                    callback = callback_fn,
                                    paired=False)
         
-        print("Store parameters: ", len(parameters), len(self.result.x))
         old_params = dict(zip(parameters, self.result.x))
-        store_parameters(old_params)
+        store_parameters(self.identifier, old_params)
 
         return self.result
 

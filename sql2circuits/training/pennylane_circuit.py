@@ -24,17 +24,22 @@ import pennylane as qml
 
 class PennylaneCircuit:
 
-    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, valid_states, interface, diff_method) -> None:
+    def __init__(self, ops, params, pennylane_wires, n_qubits, param_symbols, symbol_to_index, symbols, valid_states, measurement, interface, diff_method) -> None:
         self.ops = ops
         self.params = params
         self.pennylane_wires = pennylane_wires
         self.n_qubits = n_qubits
-        self.dev = qml.device("default.qubit", 
-                              wires=range(n_qubits)) #,
-                              #shots=10000)
+        if measurement == "state":
+            self.dev = qml.device("default.qubit", 
+                              wires=range(n_qubits))
+        elif measurement == "sample":
+            self.dev = qml.device("default.qubit", 
+                              wires=range(n_qubits), 
+                              shots=100000)
         self.param_symbols = param_symbols
         self.symbol_to_index = symbol_to_index
         self.symbols = symbols
+        self.measurement = measurement
         self.interface = interface
         self.diff_method = diff_method
         self.valid_states = valid_states
