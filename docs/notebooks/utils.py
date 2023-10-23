@@ -130,6 +130,7 @@ def normalise(predictions):
 def create_labeled_training_classes(data, classification, workload):
     labeled_data = {}
     classes = []
+    stats = []
     if workload == "execution_time":
         sorted_data = sorted(data, key=lambda d: d["time"])
     elif workload == "cardinality":
@@ -148,6 +149,46 @@ def create_labeled_training_classes(data, classification, workload):
             stats.append((clas[0]["cardinality"], clas[-1]["cardinality"]))
         for elem in clas:
             labeled_data[elem["name"]] = label
+    return labeled_data, classes
+
+def create_labeled_training_classes_new(data, classification):
+    labeled_data = {}
+    classes = []
+
+    sorted_data = sorted(data, key=lambda d: d["time"])
+
+    # classes.append((0, 2000))
+    # classes.append((2000, 14251.7399))
+    # for i, clas in enumerate(sorted_data):
+                
+    #     label = [0, 0]
+
+    #     if clas["time"]>=2000:
+    #         label[1] = 1
+    #     else: label[0] = 1
+        
+    #     labeled_data[clas["name"]] = label
+
+    classes.append((0, 2000))
+    classes.append((4000, 7200))
+    classes.append((7200, 11000))
+    classes.append((11000, 14251.7399))
+    for i, clas in enumerate(sorted_data):
+                
+        label = [0, 0, 0, 0]
+
+        if clas["time"]<=2000:
+            label[0] = 1
+        elif 4000 < clas["time"] < 7200: 
+            label[1] = 1
+        elif 7200 < clas["time"] < 11000: 
+            label[2] = 1
+        elif 11000 < clas["time"] < 14251.7399: 
+            label[3] = 1
+        
+        labeled_data[clas["name"]] = label
+
+
     return labeled_data, classes
 
 
@@ -245,30 +286,23 @@ def transform_into_pennylane_circuits(circuits):
 
     for circ_key in circuits:
         circuit = circuits[circ_key]
-        #n_qubits = circuit.width()
-        pennylane_circuit = to_pennylane(circuit)
-        params = pennylane_circuit.params
-        pennylane_wires = pennylane_circuit.wires
-        n_qubits = pennylane_circuit.n_qubits
-        #dev = qml.device(dev_name, wires=n_qubits, shots=nshot)
-        ops = pennylane_circuit.ops
-        param_symbols = [[sym[0].as_ordered_factors()[2]] if len(sym) > 0 else [] for sym in params]
-        symbol_to_index = {}
 
+        pennylane_circuit = to_pennylane(circuit)
+        params = pennylane_circuit._params
+
+        ops = pennylane_circuit._ops
+        param_symbols = [[sym[0].as_ordered_factors()[0]] if len(sym) > 0 else [] for sym in params]
+        pennylane_wires = pennylane_circuit._wires
+
+        circuit_elements = list(zip(ops, param_symbols, pennylane_wires))
+        circuit_elements.reverse()
+
+        symbol_to_index = {}
+        symbols = [str(x) for x in symbols]
         for sym in param_symbols:
             if len(sym) > 0:
-                symbol_to_index[sym[0]] = symbols.index(sym[0])
+                symbol_to_index[sym[0]] = symbols.index(str(sym[0]))
 
-        #@qml.qnode(dev)
-        def qml_circuit(circ_params):
-            for op, param, wires in zip(ops, param_symbols, pennylane_wires):
-                if len(param) > 0:
-                    param = param[0]
-                    op(circ_params[symbol_to_index[param]], wires = wires)
-                else:
-                    op(wires = wires)
-            return qml.sample()
-
-        qml_circuits[circ_key] = { "circuit_fun": qml_circuit, "n_qubits": n_qubits }
+        qml_circuits[circ_key] = { "circuit_elements": circuit_elements, "symbol_to_index": symbol_to_index, "n_qubits": pennylane_circuit._n_qubits }
 
     return qml_circuits, symbols

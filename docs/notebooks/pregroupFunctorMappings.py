@@ -1,4 +1,6 @@
-from discopy.rigid import Diagram, Cup, Cap, Id, Ty, Box
+#from discopy.rigid import Diagram, Cup, Cap, Id, Ty, Box, Ob
+from discopy.grammar.pregroup import Box, Ty, Id, Ob, Cup, Cap, Diagram
+
 import json
 
 n, s = Ty('n'), Ty('s')
@@ -13,9 +15,18 @@ def count_boxes(diagram, box_name):
         for box in boxes:
             if box.name == box_name:
                 i.append(box_name)
-    
+
     for elem in diagram:
-        elem.fmap(lambda x : fun(x.boxes, box_name, i))
+
+        list_of_boxes_and_offsets = elem.boxes_and_offsets
+        list_of_boxes = []
+        
+        for e in list_of_boxes_and_offsets:
+            list_of_boxes.append(e[0])
+
+        a = map(lambda x : fun(x, box_name, i), list_of_boxes)
+        list(a)
+
     return len(i)
 
 
@@ -147,4 +158,5 @@ def arrow_mapping(box, num_of_result_columns, num_of_tables):
             result = Box(box.name, n @ n.l, Ty())
         else:
             result = Box(name, n, Ty())
+    #print(name, ' will be mapped to ', result)
     return result
