@@ -66,8 +66,8 @@ class SQL2Circuits():
         self.result = None
         self.epochs = epochs
         self.learning_rate = learning_rate
-        self.a = 0.05
-        self.c = 0.03
+        self.a = 0.053
+        self.c = 0.00185
         
         database = Database("IMDB")
         generator = QueryGenerator(self.run_id, workload_type = self.workload_type, database = "IMDB", query_seed_file_path = self.seed_file)
@@ -102,7 +102,14 @@ class SQL2Circuits():
         }
         json.dump(info, open(self.results_folder + "training_stats.json", "w"), indent=4)
 
-        self.circuits = Circuits(run_id, query_file, output_folder, self.classification, write_cfg_to_file = True, write_pregroup_to_file=True, generate_circuit_png_diagrams = True)
+        self.circuits = Circuits(run_id, 
+                                 query_file, 
+                                 output_folder, 
+                                 self.classification, 
+                                 self.measurement, 
+                                 write_cfg_to_file = True, 
+                                 write_pregroup_to_file=True, 
+                                 generate_circuit_png_diagrams = True)
         self.circuits.execute_full_transformation()
 
 
@@ -111,7 +118,7 @@ class SQL2Circuits():
             self.iterative_train_noisyopt()
         elif not self.iterative and self.classical_optimizer == "noisyopt":
             self.single_train_noisyopt()
-        elif self.iterative and self.classical_optimizer == "optax":
+        elif self.iterative and "optax" in self.classical_optimizer:
             self.iterative_train_optax()
         
 
@@ -122,14 +129,14 @@ class SQL2Circuits():
             if i > self.total_number_of_circuits:
                 i = self.total_number_of_circuits
             hyperparameter_file = "training//hyperparameter_results//" + str(self.identifier) + "//" + str(i) + "_" + str(self.run_id) + "_cv_results_.json"
-            self.train_noisyopt(i, a, c, hyperparameter_file)
+            self.train_noisyopt(i, hyperparameter_file)
 
 
     def single_train_noisyopt(self, a, c, hyperparameter_file = None):
-        self.train_noisyopt(self.total_number_of_circuits, a, c, hyperparameter_file)
+        self.train_noisyopt(self.total_number_of_circuits, hyperparameter_file)
 
 
-    def train_noisyopt(self, number_of_selected_circuits, a, c, hyperparameter_file = None):
+    def train_noisyopt(self, number_of_selected_circuits, hyperparameter_file = None):
         if hyperparameter_file is not None:
             # "training//results//" + str(run_id) + "//" + str(i) + "_" + str(run_id) + "_cv_results_.json"
             if os.path.exists(hyperparameter_file):
@@ -150,7 +157,7 @@ class SQL2Circuits():
         params = sf.get_lambeq_symbols()
 
         if self.qc_framework == "lambeq":
-            trainer = LambeqTrainer(self.run_id,
+            trainer = LambeqTrainer(self.identifier,
                                 circuits = self.circuits,
                                 workload_type = self.workload_type,
                                 classification = self.classification,
@@ -168,7 +175,7 @@ class SQL2Circuits():
             evaluator.evaluate_lambeq_on_test_set(number_of_selected_circuits)
 
         elif self.qc_framework == "pennylane":
-            trainer = PennylaneTrainer(self.run_id,
+            trainer = PennylaneTrainer(self.identifier,
                                 circuits = self.circuits,
                                 workload_type = self.workload_type,
                                 classification = self.classification,
@@ -177,13 +184,15 @@ class SQL2Circuits():
                                 epochs = self.epochs,
                                 classical_optimizer = self.classical_optimizer,
                                 measurement = self.measurement)
+            qml_params = sf.get_qml_train_symbols()
             self.result = trainer.fit_with_pennylane_noisyopt(X_train, 
                                                               y, 
                                                               validation_circuits = validation_circuits,
-                                                              validation_labels = validation_labels, 
+                                                              validation_labels = validation_labels,
+                                                              qml_params = qml_params, 
                                                               save_parameters = True)
             evaluator = Evaluation(self.run_id, self.identifier, self.result, test_circuits, test_labels)
-            evaluator.evaluate_pennylane_optax_on_test_set(number_of_selected_circuits)
+            evaluator.evaluate_pennylane_on_test_set(number_of_selected_circuits)
         return self.result
 
 

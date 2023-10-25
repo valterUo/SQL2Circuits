@@ -1,0 +1,44 @@
+{
+    "results": [
+        {
+            "step": 25,
+            "test_accuracy": 0.04,
+            "number_of_test_circuits": 25
+        },
+        {
+            "step": 50,
+            "test_accuracy": 0.16,
+            "number_of_test_circuits": 50
+        },
+        {
+            "step": 75,
+            "test_accuracy": 0.12,
+            "number_of_test_circuits": 75
+        },
+        {
+            "step": 100,
+            "test_accuracy": 0.08,
+            "number_of_test_circuits": 100
+        },
+        {
+            "step": 125,
+            "test_accuracy": 0.06140350877192982,
+            "number_of_test_circuits": 114
+        },
+        {
+            "step": 150,
+            "test_accuracy": 0.07017543859649122,
+            "number_of_test_circuits": 114
+        },
+        {
+            "step": 175,
+            "test_accuracy": 0.07017543859649122,
+            "number_of_test_circuits": 114
+        },
+        {
+            "step": 200,
+            "test_accuracy": 0.058823529411764705,
+            "number_of_test_circuits": 119
+        }
+    ]
+}

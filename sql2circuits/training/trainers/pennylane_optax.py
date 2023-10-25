@@ -7,15 +7,15 @@ from training.functions.pennylane_functions import *
 from training.utils import *
 from sklearn.base import BaseEstimator
 
-try:
-    from jax import numpy as np
-    import jax
-    import optax
-except ModuleNotFoundError:
-    try:
-        from pennylane import numpy as np
-    except ModuleNotFoundError:
-        import numpy as np
+#try:
+from jax import numpy as np
+import jax
+import optax
+#except ModuleNotFoundError:
+#    try:
+#        from pennylane import numpy as np
+#    except ModuleNotFoundError:
+#        import numpy as np
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
@@ -68,14 +68,29 @@ class PennylaneTrainerJAX(BaseEstimator):
 
         valid_pred_fn = make_pennylane_pred_fn_for_gradient_descent(validation_circuits)
 
-        self.opt = optax.adam(self.learning_rate)
+        if self.optimizer == "optax_adam":
+            self.opt = optax.adam(self.learning_rate)
+        elif self.optimizer == "optax_sgd":
+            self.opt = optax.sgd(self.learning_rate)
+        elif self.optimizer == "optax_rmsprop":
+            self.opt = optax.rmsprop(self.learning_rate)
+        elif self.optimizer == "optax_adagrad":
+            self.opt = optax.adagrad(self.learning_rate)
+        elif self.optimizer == "optax_adamw":
+            self.opt = optax.adamw(self.learning_rate)
+            
         opt_state = self.opt.init(self.parameters)
 
         for i in range(self.epochs):
-            cost, grad_circuit = jax.value_and_grad(cost_function)(self.parameters)
-            #grad_circuit = jax.grad(cost_function)(self.parameters)
-            updates, opt_state = self.opt.update(grad_circuit, opt_state)
-            self.parameters = optax.apply_updates(self.parameters, updates)
+            if self.optimizer == "optax_adamw":
+                cost, grad_circuit = jax.value_and_grad(cost_function)(self.parameters)
+                updates, opt_state = self.opt.update(grad_circuit, opt_state, self.parameters)
+                self.parameters = optax.apply_updates(self.parameters, updates)
+            else:
+                cost, grad_circuit = jax.value_and_grad(cost_function)(self.parameters)
+                #grad_circuit = jax.grad(cost_function)(self.parameters)
+                updates, opt_state = self.opt.update(grad_circuit, opt_state, self.parameters)
+                self.parameters = optax.apply_updates(self.parameters, updates)
             
             if i % 10 == 0:
                 training_acc = self.accuracy(pred_fn(self.parameters), y)

@@ -6,7 +6,7 @@ import json
 import os
 import pickle
 from pathlib import Path
-from discopy import Ty, Functor
+from discopy.grammar.pregroup import Ty, Functor
 from discopy.utils import dumps, loads
 from lambeq import IQPAnsatz
 from flipped_IQPansatz import IQPAnsatzFlipped
@@ -27,7 +27,7 @@ def create_CFG_diagrams(queries, output_folder_name):
     for count, query in enumerate(queries):
         print("Process: ", count, " out of ", len(queries))
         base_name = Path(query).stem
-        output = this_folder + "\\" + output_folder_name + "\\" + base_name
+        output = output_folder_name + "/" + base_name
         try:
             input_stream = FileStream(query)
             lexer = SQLiteLexer(input_stream)
@@ -37,8 +37,8 @@ def create_CFG_diagrams(queries, output_folder_name):
             walker = ParseTreeWalker()
             listener = SQLiteParserListener(parser)
             walker.walk(listener, tree)
-            diagram = listener.get_final_diagram().dagger()
-            width = diagram.width()
+            diagram = listener.get_final_diagram()
+            width = diagram.width
             height = diagram.depth()
             dim = 3*max(width, height)
             diagram.draw(figsize=(dim, dim), path = output + ".png")
@@ -56,7 +56,8 @@ def create_pregroup_grammar_diagrams(cfg_diagrams, pregroup_folder_name):
         f = open(serialized_diagram, "r")
         data = f.read()
         diagram = loads(data)
-        output = this_folder + "\\" + pregroup_folder_name + "\\" + base_name
+        #print(diagram)
+        output = pregroup_folder_name + "/" + base_name
         
         num_of_result_columns = count_boxes(diagram, "result-column")
         num_of_result_columns += count_boxes(diagram, "result-column-with-alias")
@@ -68,8 +69,9 @@ def create_pregroup_grammar_diagrams(cfg_diagrams, pregroup_folder_name):
         
         try:
             pregroup_diagram = Rewriter(diagram)
-            width = diagram.width()
-            height = diagram.depth()
+            width = diagram.width
+            #height = diagram.depth()
+            height = 2*width
             dim = 3*max(width, height)
             pregroup_diagram.draw(figsize=(dim, dim), path = output + ".png")
 
@@ -86,13 +88,13 @@ def remove_cups_and_simplify(pregroup_diagrams, cup_removed_pregroup_folder_name
         f = open(serialized_diagram, "r")
         data = f.read()
         pregroup_diagram = loads(data)
-        output = this_folder + "\\" + cup_removed_pregroup_folder_name + "\\" + base_name
+        output = cup_removed_pregroup_folder_name + "/" + base_name
         
         try:
             cupless_pregroup_diagram = cup_removal_functor(pregroup_diagram.normal_form()).normal_form()
             cupless_pregroup_diagram = cup_removal_functor2(cupless_pregroup_diagram).normal_form()
-            width = cupless_pregroup_diagram.width()
-            height = cupless_pregroup_diagram.depth()
+            width = cupless_pregroup_diagram.width
+            height = 2*width #cupless_pregroup_diagram.depth()
             dim = 2*max(width, height)
             cupless_pregroup_diagram.draw(figsize=(dim, dim), path = output + ".png")
 
@@ -110,18 +112,18 @@ def create_circuit_ansatz(pregroup_diagrams, circuit_folder, classification, lay
         f = open(serialized_diagram, "r")
         data = f.read()
         cupless_pregroup_diagram = loads(data)
-        output_folder = this_folder + "\\" + circuit_folder + "\\" + base_name
+        output_folder = circuit_folder + "/" + base_name
         
-        #try:
-        circuit_diagram = ansatz(cupless_pregroup_diagram)
-        width = circuit_diagram.width()
-        height = circuit_diagram.depth()
-        dim = 3*max(width, height)
-        circuit_diagram.draw(figsize=(dim, dim), path = output_folder + ".png")
+        try:
+            circuit_diagram = ansatz(cupless_pregroup_diagram)
+            width = circuit_diagram.width
+            height = circuit_diagram.depth()
+            dim = 3*max(width, height)
+            circuit_diagram.draw(figsize=(dim, dim), path = output_folder + ".png")
 
-        with open(output_folder + ".json", 'w') as outfile:
-            json.dump(json.loads(dumps(cupless_pregroup_diagram)), outfile)
-        with open(output_folder + ".p", "wb") as outfile:
-            pickle.dump(circuit_diagram, outfile)
-        #except:
-        #    print("Query: ", base_name, " failed to transform into a circuit.") 
+            with open(output_folder + ".json", 'w') as outfile:
+                json.dump(json.loads(dumps(cupless_pregroup_diagram)), outfile)
+            with open(output_folder + ".p", "wb") as outfile:
+                pickle.dump(circuit_diagram, outfile)
+        except:
+           print("Query: ", base_name, " failed to transform into a circuit.") 

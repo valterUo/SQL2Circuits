@@ -18,9 +18,13 @@
     ],
     "classical_optimizers": [
       "noisyopt",
-      "optax",
+      "optax_adam",
       "pennylane_SPSA",
-      "pennylane_gradient_descent"
+      "pennylane_gradient_descent",
+      "optax_adamw",
+      "optax_rmsprop",
+      "optax_sgd",
+      "optax_adagrad"
     ],
     "measurements": [
       "state",

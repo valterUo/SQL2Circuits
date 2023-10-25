@@ -1,4 +1,4 @@
-from discopy import Ty, Box
+from discopy.grammar.pregroup import Ty, Box
 
 class Tree():
     
