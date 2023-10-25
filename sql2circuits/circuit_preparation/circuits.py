@@ -59,7 +59,7 @@ class Circuits:
         self.query_file_path = query_file_path
         self.output_folder = output_folder
         self.classification = classification
-        self.layers = 1
+        self.layers = 2
         self.single_qubit_params = 3
         self.n_wire_count = 1
         self.generate_pregroup_png_diagrams = generate_pregroup_png_diagrams
@@ -75,6 +75,8 @@ class Circuits:
         self.training_circuits = None
         self.validation_circuits = None
         self.test_circuits = None
+        self.all_qml_circuits = None 
+        self.qml_symbols = None
         self.qml_training_circuits = None
         self.qml_validation_circuits = None
         self.qml_test_circuits = None
@@ -90,6 +92,7 @@ class Circuits:
         self.pregroup_diagrams = dict()
         self.capless_pregroup_diagrams = dict()
         self.circuit_diagrams = dict()
+        self.all_circuits = dict()
 
         # Check if the files exist load them from the disk
         if os.path.isfile(self.output_folder + "//cfg_diagrams_" + str(self.id) + ".json"):
@@ -107,7 +110,6 @@ class Circuits:
                     self.training_circuits = self.circuit_diagrams["training"]
                     self.test_circuits = self.circuit_diagrams["test"]
                     self.validation_circuits = self.circuit_diagrams["validation"]
-                    self.all_circuits = dict()
                     self.all_circuits.update(self.training_circuits)
                     self.all_circuits.update(self.test_circuits)
                     self.all_circuits.update(self.validation_circuits)
@@ -116,42 +118,34 @@ class Circuits:
                     circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
                     circuit.draw()
 
-                    draw_png = False
+                    draw_png, number_of_figures = False, 10
                     if draw_png:
                         for queryset in self.circuit_diagrams:
-                            for k, circuit_diagram in self.circuit_diagrams[queryset].items():
-                                width = circuit_diagram.width()
-                                height = circuit_diagram.depth()
-                                dim = 3*max(width, height)
-                                circuit_diagram.draw(figsize=(dim, dim), path = str(k) + ".png")
+                            if number_of_figures > 0:
+                                for k, circuit_diagram in self.circuit_diagrams[queryset].items():
+                                    width = circuit_diagram.width
+                                    height = 2*width
+                                    dim = 3*max(width, height)
+                                    if number_of_figures > 0:
+                                        circuit_diagram.draw(figsize=(dim, dim), path = str(k) + ".png")
+                                        number_of_figures -= 1
+                                    else:
+                                        break
+                        
                 
 
     def generate_pennylane_circuits(self):
         # Combine all circuits into a single dict
         self.all_qml_circuits, self.qml_symbols = transform_into_pennylane_circuits(self.all_circuits,
-                                                                                        self.classification,
-                                                                                        self.measurement,
-                                                                                        interface = self.interface,
-                                                                                        diff_method = self.diff_method)
+                                                                                    self.classification,
+                                                                                    self.measurement,
+                                                                                    interface = self.interface,
+                                                                                    diff_method = self.diff_method)
         
         # Split the circuits into training, validation and test sets with respect to the keys appearing in dictionaries self.training_circuits, self.test_circuits and self.validation_circuits
         self.qml_training_circuits = {k: self.all_qml_circuits[k] for k in self.training_circuits}
         self.qml_test_circuits = {k: self.all_qml_circuits[k] for k in self.test_circuits}
         self.qml_validation_circuits = {k: self.all_qml_circuits[k] for k in self.validation_circuits}
-
-
-        #self.qml_training_circuits, self.qml_train_symbols = transform_into_pennylane_circuits(self.training_circuits, 
-        #                                                                                       self.classification, 
-        #                                                                                       interface = self.interface, 
-        #                                                                                       diff_method = self.diff_method)
-        #self.qml_test_circuits, self.qml_test_symbols = transform_into_pennylane_circuits(self.test_circuits, 
-        #                                                                                  self.classification, 
-        #                                                                                  interface = self.interface, 
-        #                                                                                  diff_method = self.diff_method)
-        #self.qml_validation_circuits, self.qml_val_symbols = transform_into_pennylane_circuits(self.validation_circuits, 
-        #                                                                                       self.classification, 
-        #                                                                                       interface = self.interface, 
-        #                                                                                       diff_method = self.diff_method)
 
 
     def generate_cfg_diagrams(self):
@@ -208,9 +202,16 @@ class Circuits:
         self.generate_pregroup_diagrams()
         self.generate_capless_pregroup_diagrams()
         self.genereate_circuit_diagrams()
-        #self.training_circuits = self.circuit_diagrams["training"]
-        #self.test_circuits = self.circuit_diagrams["test"]
-        #self.validation_circuits = self.circuit_diagrams["validation"]
+        if self.training_circuits == None:
+            self.training_circuits = self.circuit_diagrams["training"]
+        if self.test_circuits == None:
+            self.test_circuits = self.circuit_diagrams["test"]
+        if self.validation_circuits == None:
+            self.validation_circuits = self.circuit_diagrams["validation"]
+        if len(self.all_circuits) == 0:
+            self.all_circuits.update(self.training_circuits)
+            self.all_circuits.update(self.test_circuits)
+            self.all_circuits.update(self.validation_circuits)
 
 
     def get_cfg_diagrams(self):

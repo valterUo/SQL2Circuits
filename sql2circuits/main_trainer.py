@@ -108,7 +108,9 @@ class SQL2Circuits():
                                  self.classification, 
                                  self.measurement, 
                                  write_cfg_to_file = True, 
-                                 write_pregroup_to_file=True, 
+                                 write_pregroup_to_file=True,
+                                 generate_cfg_png_diagrams = True,
+                                 generate_pregroup_png_diagrams = True,
                                  generate_circuit_png_diagrams = True)
         self.circuits.execute_full_transformation()
 

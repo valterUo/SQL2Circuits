@@ -1,6 +1,6 @@
 import json
 import os
-from discopy.rigid import Diagram, Cap, Id, Ty, Box
+from discopy.grammar.pregroup import Box, Ty, Id, Ob, Cup, Cap, Diagram
 
 n, s = Ty('n'), Ty('s')
 
@@ -18,7 +18,14 @@ def count_boxes(diagram, box_name):
                 i.append(box_name)
     
     for elem in diagram:
-        elem.fmap(lambda x : fun(x.boxes, box_name, i))
+        list_of_boxes_and_offsets = elem.boxes_and_offsets
+        list_of_boxes = []
+
+        for e in list_of_boxes_and_offsets:
+            list_of_boxes.append(e[0])
+
+        a = map(lambda x : fun(x, box_name, i), list_of_boxes)
+        list(a)
     return len(i)
 
 

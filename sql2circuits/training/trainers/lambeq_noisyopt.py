@@ -21,15 +21,14 @@ this_folder = os.path.abspath(os.getcwd())
 class LambeqTrainer(BaseEstimator):
 
     def __init__(self, 
-                id,
+                identifier,
                 circuits,
                 workload_type, 
                 classification,
                 classical_optimizer,
                 measurement,
                 a, 
-                c,
-                identifier, 
+                c, 
                 epochs = 500,
                 plot_results = True):
         self.id = id
@@ -55,7 +54,7 @@ class LambeqTrainer(BaseEstimator):
         hyperparameters_file = "training//results//" + str(self.identifier) + "//" + "hyperparameters.json"
 
         hyperparameters = {
-                "id": self.id,
+                "id": self.identifier,
                 "a": a,
                 "c": c,
                 "epochs": self.epochs,

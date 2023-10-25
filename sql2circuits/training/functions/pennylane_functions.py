@@ -2,6 +2,7 @@
 
 import collections
 import multiprocessing
+import pennylane as qml
 try:
     from jax import numpy as np
 except ModuleNotFoundError:
@@ -14,7 +15,6 @@ from discopy.quantum.pennylane import to_pennylane
 from sympy.core.symbol import Symbol
 from sympy import default_sort_key
 from itertools import product
-from discopy.quantum.pennylane import to_pennylane
 
 from training.pennylane_circuit import PennylaneCircuit
 
@@ -53,6 +53,7 @@ def transform_into_pennylane_circuits(circuits, classification, measurement, int
         pennylane_wires = pennylane_circuit._wires
         n_qubits = pennylane_circuit._n_qubits
         param_symbols = [[sym[0].as_ordered_factors()[1]] if len(sym) > 0 else [] for sym in params]
+        print("Param symbols: ", param_symbols)
         symbol_to_index = {}
 
         for sym in param_symbols:
@@ -75,6 +76,12 @@ def transform_into_pennylane_circuits(circuits, classification, measurement, int
                                                   measurement,
                                                   interface, 
                                                   diff_method)
+        
+        # This is for debugging
+        #qnode = qml_circuits[circ_key].get_QNode_with_state()
+        #fig, ax = qml.draw_mpl(qnode)([0]*len(symbols))
+        #fig.savefig("test.png")
+        #raise Exception
 
     return qml_circuits, full_symbol_to_index
 
