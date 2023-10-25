@@ -18,16 +18,26 @@ __all__ = ['CircuitAnsatz', 'IQPAnsatz']
 from collections.abc import Mapping
 from typing import Any, Callable, Optional
 
-from discopy.quantum.circuit import (Circuit, Discard, Functor, Id, qubit)
-from discopy.quantum.gates import Bra, Ket, Rx, Rz
-from discopy.rigid import Box, Diagram, Ty
+from discopy.grammar.pregroup import Box, Category, Diagram, Ty
+from discopy.quantum import (
+    Bra,
+    Circuit,
+    CRz,
+    Discard,
+    H,
+    Id,
+    Ket,
+    qubit,
+    Rx, Ry, Rz
+)
+from discopy.quantum.circuit import Functor
 import numpy as np
 
 import random
 from itertools import takewhile, chain
 
 from discopy import messages, monoidal, rigid, tensor
-from discopy.cat import AxiomError
+from discopy.utils import AxiomError
 from discopy.tensor import Dim, Tensor
 from math import pi
 from functools import reduce, partial
@@ -53,16 +63,18 @@ class FlippedIQPansatz(Circuit):
         
         if n_qubits == 1:
             circuit = Rx(params[0]) >> Rz(params[1]) >> Rx(params[2])
-        elif len(Tensor.np.shape(params)) != 2\
-                or Tensor.np.shape(params)[1] != n_qubits - 1:
+        elif len(np.shape(params)) != 2\
+                or np.shape(params)[1] != n_qubits - 1:
             raise ValueError(
                 "Expected params of shape (depth, {})".format(n_qubits - 1))
         else:
-            depth = Tensor.np.shape(params)[0]
+            depth = np.shape(params)[0]
             circuit = Id(n_qubits).then(*(
                 layer(params[i]) for i in range(depth)))
-        super().__init__(
-            circuit.dom, circuit.cod, circuit.boxes, circuit.offsets)
+        # super().__init__(
+        #     circuit.dom, circuit.cod, circuit.boxes, circuit.offsets)
+
+        super().__init__(circuit.inside, circuit.dom, circuit.cod)
 
         
         
@@ -98,26 +110,28 @@ class IQPAnsatzFlipped(CircuitAnsatz):
                  ob_map: Mapping[Ty, int],
                  n_layers: int,
                  n_single_qubit_params: int = 3,
-                 discard: bool = False,
-                 special_cases: Optional[Callable[[_ArMapT], _ArMapT]] = None):
+                 discard: bool = False):
         
         super().__init__(ob_map=ob_map, n_layers=n_layers,
-                         n_single_qubit_params=n_single_qubit_params)
-
-        if special_cases is None:
-            special_cases = self._special_cases
+                         n_single_qubit_params=n_single_qubit_params, circuit = self.circuit)
 
         self.n_layers = n_layers
         self.n_single_qubit_params = n_single_qubit_params
         self.discard = discard
-        self.functor = Functor(ob=self.ob_map,
-                               ar=special_cases(self._ar))
+        
+    def params_shape(self, n_qubits: int) -> tuple[int, ...]:
+        return (self.n_layers, n_qubits-1)
+
+    def circuit(self, n_qubits: int, params: np.ndarray) -> Circuit:
+        circuit = FlippedIQPansatz(n_qubits, params)
+        return circuit    
 
     def _ar(self, box: Box) -> Circuit:
         label = self._summarise_box(box)
-        dom, cod = self._ob(box.dom), self._ob(box.cod)
+        dom, cod = self.ob_size(box.dom), self.ob_size(box.cod)
         
         n_qubits = max(dom, cod)
+        #print(n_qubits)
         n_layers = self.n_layers
         n_1qubit_params = self.n_single_qubit_params
         circuit = None
