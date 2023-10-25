@@ -1,4 +1,3 @@
-covalent==0.220.0
 discopy==0.5.1.2
 jax==0.4.13
 lambeq==0.2.1
