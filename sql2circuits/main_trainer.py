@@ -26,7 +26,8 @@ class SQL2Circuits():
 
     def __init__(self, 
                  run_id, 
-                 classification, 
+                 classification,
+                 circuit_architecture,
                  seed_file, 
                  qc_framework, 
                  classical_optimizer, 
@@ -62,12 +63,13 @@ class SQL2Circuits():
         self.initial_number_of_circuits = initial_number_of_circuits
         self.number_of_circuits_to_add = number_of_circuits_to_add
         self.iterative = iterative
-        self.identifier = str(run_id) + "_" + qc_framework + "_optax_" + measurement + "_" + workload_type + "_" + str(25) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
+        self.identifier = str(run_id) + "_" + qc_framework + "_optax_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
         self.result = None
         self.epochs = epochs
         self.learning_rate = learning_rate
         self.a = 0.053
         self.c = 0.00185
+        self.circuit_architecture = circuit_architecture
         
         database = Database("IMDB")
         generator = QueryGenerator(self.run_id, workload_type = self.workload_type, database = "IMDB", query_seed_file_path = self.seed_file)
@@ -106,9 +108,12 @@ class SQL2Circuits():
                                  query_file, 
                                  output_folder, 
                                  self.classification, 
-                                 self.measurement, 
+                                 self.measurement,
+                                 self.circuit_architecture,
                                  write_cfg_to_file = True, 
-                                 write_pregroup_to_file=True, 
+                                 write_pregroup_to_file=True,
+                                 generate_cfg_png_diagrams = True,
+                                 generate_pregroup_png_diagrams = True,
                                  generate_circuit_png_diagrams = True)
         self.circuits.execute_full_transformation()
 
@@ -122,7 +127,7 @@ class SQL2Circuits():
             self.iterative_train_optax()
         
 
-    def iterative_train_noisyopt(self, a = 0.053, c = 0.00185, hyperparameter_file = None):
+    def iterative_train_noisyopt(self, hyperparameter_file = None):
         for i in range(self.initial_number_of_circuits, 
                        self.total_number_of_circuits + self.number_of_circuits_to_add, 
                        self.number_of_circuits_to_add):
@@ -132,7 +137,7 @@ class SQL2Circuits():
             self.train_noisyopt(i, hyperparameter_file)
 
 
-    def single_train_noisyopt(self, a, c, hyperparameter_file = None):
+    def single_train_noisyopt(self, hyperparameter_file = None):
         self.train_noisyopt(self.total_number_of_circuits, hyperparameter_file)
 
 
@@ -142,8 +147,8 @@ class SQL2Circuits():
             if os.path.exists(hyperparameter_file):
                 with open(hyperparameter_file, "r") as f:
                     param_file = json.load(f)
-                    a = param_file["best_params"]["a"]
-                    c = param_file["best_params"]["c"]
+                    self.a = param_file["best_params"]["a"]
+                    self.c = param_file["best_params"]["c"]
             else:
                 print("The hyperparameter file does not exist. The default values are used.")
 

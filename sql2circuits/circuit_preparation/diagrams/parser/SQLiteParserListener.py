@@ -1,6 +1,6 @@
 # Generated from C:\Users\valte\Desktop\quantum-computing-for-database-query-languages\SQLiteParser.g4 by ANTLR 4.9.3
 from antlr4 import *
-from discopy import Ty, Box, Word
+from discopy.grammar.pregroup import Box, Ty, Word
 from antlr4.tree.Tree import TerminalNodeImpl
 from circuit_preparation.diagrams.parser.tree import Tree
 
