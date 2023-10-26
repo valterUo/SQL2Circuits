@@ -25,7 +25,7 @@ class DataPreparation:
         print(workload_type)
         
         self.data_file = self.database.generate_data(id, queries, workload_type)
-        print("Data file is ", self.data_file)
+        #print("Data file is ", self.data_file)
         self.data = dict()
         with open(self.data_file) as json_file:
             self.data = json.load(json_file)

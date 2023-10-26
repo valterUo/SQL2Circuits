@@ -1,9 +1,0 @@
-{
-    "id": "7_lambeq_noisyopt_state_cardinality_100_100_None_8",
-    "a": 0.053,
-    "c": 0.00185,
-    "epochs": 100,
-    "classification": 8,
-    "workload": "cardinality",
-    "optimization_medthod": "noisyopt"
-}

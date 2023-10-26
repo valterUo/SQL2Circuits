@@ -29,5 +29,12 @@
     "measurements": [
       "state",
       "sample"
+    ],
+    "circuit_architectures":
+    [
+      "IQPAnsatz",
+      "Sim14Ansatz",
+      "Sim15Ansatz",
+      "StronglyEntanglingAnsatz"
     ]
   }

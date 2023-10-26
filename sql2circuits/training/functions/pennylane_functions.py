@@ -53,7 +53,7 @@ def transform_into_pennylane_circuits(circuits, classification, measurement, int
         pennylane_wires = pennylane_circuit._wires
         n_qubits = pennylane_circuit._n_qubits
         param_symbols = [[sym[0].as_ordered_factors()[1]] if len(sym) > 0 else [] for sym in params]
-        print("Param symbols: ", param_symbols)
+        #print("Param symbols: ", param_symbols)
         symbol_to_index = {}
 
         for sym in param_symbols:

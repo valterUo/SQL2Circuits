@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import os
 import json
 import pickle
@@ -47,6 +46,7 @@ class Circuits:
                  output_folder,
                  classification,
                  measurement,
+                 circuit_architecture,
                  interface = 'auto',
                  diff_method = 'best',
                  write_cfg_to_file = False, 
@@ -59,7 +59,8 @@ class Circuits:
         self.query_file_path = query_file_path
         self.output_folder = output_folder
         self.classification = classification
-        self.layers = 2
+        self.circuit_architecture = circuit_architecture
+        self.layers = 1
         self.single_qubit_params = 3
         self.n_wire_count = 1
         self.generate_pregroup_png_diagrams = generate_pregroup_png_diagrams
@@ -133,16 +134,15 @@ class Circuits:
                                         break
                         
                 
-
     def generate_pennylane_circuits(self):
-        # Combine all circuits into a single dict
         self.all_qml_circuits, self.qml_symbols = transform_into_pennylane_circuits(self.all_circuits,
                                                                                     self.classification,
                                                                                     self.measurement,
                                                                                     interface = self.interface,
                                                                                     diff_method = self.diff_method)
         
-        # Split the circuits into training, validation and test sets with respect to the keys appearing in dictionaries self.training_circuits, self.test_circuits and self.validation_circuits
+        # Split the circuits into training, validation and test sets with respect to the keys 
+        # appearing in dictionaries self.training_circuits, self.test_circuits and self.validation_circuits
         self.qml_training_circuits = {k: self.all_qml_circuits[k] for k in self.training_circuits}
         self.qml_test_circuits = {k: self.all_qml_circuits[k] for k in self.test_circuits}
         self.qml_validation_circuits = {k: self.all_qml_circuits[k] for k in self.validation_circuits}
@@ -186,7 +186,8 @@ class Circuits:
             for queryset in self.capless_pregroup_diagrams:
                 queries = self.capless_pregroup_diagrams[queryset]
                 result = create_circuit_ansatz(queries, 
-                                                self.classification, 
+                                                self.classification,
+                                                self.circuit_architecture,
                                                 self.layers, 
                                                 self.single_qubit_params,
                                                 self.n_wire_count, 

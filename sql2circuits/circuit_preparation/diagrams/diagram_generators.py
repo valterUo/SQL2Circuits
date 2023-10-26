@@ -41,7 +41,7 @@ def create_CFG_diagrams(queries, generate_cfg_png_diagrams):
             width = diagram.width
             height = 2*width
             dim = 3*max(width, height)
-            diagram.draw(figsize=(dim, dim), path = id + ".png") # type: ignore
+            diagram.draw(figsize=(dim, dim), path = str(id) + ".png") # type: ignore
         output_dict[id] = dict(json.loads(dumps(diagram)))
 
     return output_dict
@@ -68,7 +68,7 @@ def create_pregroup_grammar_diagrams(cfg_diagrams, generate_pregroup_png_diagram
             width = diagram.width
             height = 2*width
             dim = 3*max(width, height)
-            pregroup_diagram.draw(figsize=(dim, dim), path = key + ".png") # type: ignore
+            pregroup_diagram.draw(figsize=(dim, dim), path = str(key) + ".png") # type: ignore
     return diagrams
 
 
@@ -88,24 +88,41 @@ def remove_cups_and_simplify(pregroup_diagrams, generate_pregroup_png_diagrams):
             width = cupless_pregroup_diagram.width
             height = 2*width
             dim = 2*max(width, height)
-            cupless_pregroup_diagram.draw(figsize=(dim, dim), path = key + ".png")
+            cupless_pregroup_diagram.draw(figsize=(dim, dim), path = str(key) + ".png")
     return diagrams         
                                       
     
 def create_circuit_ansatz(pregroup_diagrams,
-                          classification, 
+                          classification,
+                          circuit_architecture,
                           layers, 
                           single_qubit_params, 
                           n_wire_count, 
                           generate_circuit_png_diagrams, 
                           generate_circuit_json_diagrams):
     circuit_diagrams = dict()
+    ansatz = None
 
-    from lambeq.ansatz import IQPAnsatz
-    ansatz = IQPAnsatz({n: n_wire_count, 
-                            s: classification}, 
-                            n_layers = layers, 
-                            n_single_qubit_params = single_qubit_params)
+    from lambeq.ansatz import IQPAnsatz, Sim14Ansatz, Sim15Ansatz, StronglyEntanglingAnsatz
+    if circuit_architecture == "IQPAnsatz":
+        ansatz = IQPAnsatz()
+    elif circuit_architecture == "Sim14Ansatz":
+        ansatz = Sim14Ansatz({n: n_wire_count, 
+                                s: classification}, 
+                                n_layers = layers, 
+                                n_single_qubit_params = single_qubit_params)
+    elif circuit_architecture == "Sim15Ansatz":
+        ansatz = Sim15Ansatz({n: n_wire_count, 
+                                s: classification}, 
+                                n_layers = layers, 
+                                n_single_qubit_params = single_qubit_params)
+    elif circuit_architecture == "StronglyEntanglingAnsatz":
+        ansatz = StronglyEntanglingAnsatz({n: n_wire_count, 
+                                s: classification}, 
+                                n_layers = layers, 
+                                n_single_qubit_params = single_qubit_params)
+
+
     for count, key in enumerate(pregroup_diagrams):
         print("Process: ", count, " out of ", len(pregroup_diagrams))
         cupless_pregroup_diagram = loads(json.dumps(pregroup_diagrams[key]))
