@@ -103,7 +103,7 @@ def create_circuit_ansatz(pregroup_diagrams,
                           generate_circuit_png_diagrams, 
                           generate_circuit_json_diagrams):
     circuit_diagrams = dict()
-    #try:
+
     from circuit_preparation.diagrams.flipped_IQPansatz import IQPAnsatzFlipped
     ansatz = IQPAnsatzFlipped({n: n_wire_count, 
                             s: classification}, 
@@ -124,7 +124,5 @@ def create_circuit_ansatz(pregroup_diagrams,
         if generate_circuit_json_diagrams:
             with open(key + ".json", 'w') as outfile:
                 json.dump(json.loads(dumps(circuit_diagram)), outfile)
-    #except:
-    #    print("Failed to create circuit ansatz.")
 
     return circuit_diagrams
