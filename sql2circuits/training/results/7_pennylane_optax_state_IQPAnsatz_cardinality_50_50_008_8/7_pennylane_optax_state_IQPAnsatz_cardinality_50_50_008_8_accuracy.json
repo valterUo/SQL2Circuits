@@ -1,0 +1,9 @@
+{
+    "results": [
+        {
+            "step": 0,
+            "accuracy": 0.32,
+            "validation_accuracy": 0.1
+        }
+    ]
+}
