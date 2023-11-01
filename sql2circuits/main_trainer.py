@@ -52,6 +52,7 @@ class SQL2Circuits():
         print("Classification: ", 2**classification)
         print("Epochs: ", epochs)
         print("Learning rate: ", learning_rate)
+        print("Circuit architecture: ", circuit_architecture)
 
         self.run_id = run_id
         self.classification = classification
@@ -100,7 +101,8 @@ class SQL2Circuits():
             "classification": 2**self.classification,
             "epochs": self.epochs,
             "learning_rate": self.learning_rate,
-            "classes": ' '.join(str(x) for x in self.data_preparator.get_classes())
+            "classes": ' '.join(str(x) for x in self.data_preparator.get_classes()),
+            "circuit_architecture": self.circuit_architecture
         }
         json.dump(info, open(self.results_folder + "training_stats.json", "w"), indent=4)
 
