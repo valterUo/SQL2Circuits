@@ -17,10 +17,7 @@ classical_optimizer = configurations["classical_optimizers"][4]
 measurement = configurations["measurements"][0]
 workload_type = configurations["workload_types"][1]
 circuit_architecture = configurations["circuit_architectures"][1]
-
-learning_rate = None
-if classical_optimizer == "optax":
-    learning_rate = 0.07
+learning_rate = 0.07
 
 model = SQL2Circuits(run_id = 8,
                      classification = 3,
