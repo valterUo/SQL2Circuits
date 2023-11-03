@@ -64,7 +64,7 @@ class SQL2Circuits():
         self.initial_number_of_circuits = initial_number_of_circuits
         self.number_of_circuits_to_add = number_of_circuits_to_add
         self.iterative = iterative
-        self.identifier = str(run_id) + "_" + qc_framework + "_optax_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
+        self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
         self.result = None
         self.epochs = epochs
         self.learning_rate = learning_rate
@@ -104,7 +104,7 @@ class SQL2Circuits():
             "classes": ' '.join(str(x) for x in self.data_preparator.get_classes()),
             "circuit_architecture": self.circuit_architecture
         }
-        json.dump(info, open(self.results_folder + "training_stats.json", "w"), indent=4)
+        json.dump(info, open("training_stats.json", "w"), indent = 4)
 
         self.circuits = Circuits(run_id, 
                                  query_file, 
