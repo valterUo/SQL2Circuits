@@ -1,1 +1,0 @@
-SELECT title FROM  book WHERE price > 100;
