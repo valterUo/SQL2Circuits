@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import random
 import warnings
 import os
 import numpy
@@ -8,12 +9,14 @@ from data_preparation.database import Database
 from data_preparation.prepare import DataPreparation
 from data_preparation.queries import QueryGenerator
 from evaluation.evaluation import Evaluation
+from training.functions.pennylane_functions import make_pennylane_pred_fn
 from training.trainers.lambeq_optax import LambeqTrainerJAX
 from training.data_preparation_manager import DataPreparationManager
 from training.trainers.lambeq_noisyopt import LambeqTrainer
 from training.trainers.pennylane_noisyopt import PennylaneTrainer
 from training.trainers.pennylane_optax import PennylaneTrainerJAX
 from training.utils import *
+import pickle
 
 warnings.filterwarnings('ignore')
 this_folder = os.path.abspath(os.getcwd())
@@ -64,7 +67,7 @@ class SQL2Circuits():
         self.initial_number_of_circuits = initial_number_of_circuits
         self.number_of_circuits_to_add = number_of_circuits_to_add
         self.iterative = iterative
-        self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
+        self.identifier = "5_pennylane_optax_state_cost_25_25_007_2" #str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
         self.result = None
         self.epochs = epochs
         self.learning_rate = learning_rate
@@ -105,10 +108,12 @@ class SQL2Circuits():
             "circuit_architecture": self.circuit_architecture
         }
         json.dump(info, open("training_stats.json", "w"), indent = 4)
+        self.query_file = query_file 
+        self.output_folder = output_folder
 
-        self.circuits = Circuits(run_id, 
-                                 query_file, 
-                                 output_folder, 
+        self.circuits = Circuits(self.run_id, 
+                                 self.query_file, 
+                                 self.output_folder, 
                                  self.classification, 
                                  self.measurement,
                                  self.circuit_architecture,
@@ -248,3 +253,52 @@ class SQL2Circuits():
             if i > self.total_number_of_circuits:
                 i = self.total_number_of_circuits
             self.train_optax(i)
+    
+            
+    def evaluate_on_IQM(self):    
+        self.circuits = Circuits(self.run_id, 
+                                 self.query_file, 
+                                 self.output_folder, 
+                                 self.classification, 
+                                 "iqm",
+                                 self.circuit_architecture,
+                                 write_cfg_to_file = False, 
+                                 write_pregroup_to_file=False,
+                                 generate_cfg_png_diagrams = False,
+                                 generate_pregroup_png_diagrams = False,
+                                 generate_circuit_png_diagrams = False)
+        self.circuits.execute_full_transformation()
+        self.circuits.generate_pennylane_circuits()
+        number_of_selected_circuits = len(self.circuits.get_qml_test_circuits())
+        
+        sf = DataPreparationManager(self.run_id, 
+                                    self.data_preparator, 
+                                    self.circuits, 
+                                    number_of_selected_circuits, 
+                                    self.qc_framework)
+        test_circuits = sf.get_X_test()
+        test_labels = sf.get_test_labels()
+        params = sf.get_qml_train_symbols()
+        
+        test_pred_fn = make_pennylane_pred_fn(test_circuits, params, self.classification)
+        # Select the pickle file with the largest number of circuits in the file name
+        files = os.listdir(self.results_folder)
+        files = [f for f in files if ".pkl" in f]
+        files = sorted(files, key = lambda x: int(x.split("_")[0]))
+        file = files[-1]
+        file = file.replace(".pkl", ".json")
+        result_file = self.results_folder + file
+        optimized_params = None #numpy.random.uniform(-numpy.pi, numpy.pi, len(params))
+        with open(result_file, "rb") as f:
+            # Open optimized parameters from the json file
+            optimized_params = json.load(f)["optimized_params"]
+        test_acc = multi_class_acc(test_pred_fn(optimized_params), test_labels)
+        test_result_file = this_folder + "//training//results//IQM//test_accuracy_iqm.json"
+        if not os.path.isfile(test_result_file):
+            with open(test_result_file, "w") as f:
+                json.dump({ self.identifier: test_acc }, f, indent=4)
+        
+        
+        
+        
+        

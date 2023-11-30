@@ -60,3 +60,5 @@ class Evaluation:
             file = json.load(f)
             file["results"].append({ "step": iteration, "test_accuracy": test_acc, "number_of_test_circuits": len(self.test_circuits) })
             json.dump(file, open(test_result_file, "w"), indent=4)
+            
+    

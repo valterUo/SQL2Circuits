@@ -12,15 +12,15 @@ except ModuleNotFoundError:
 this_folder = os.path.abspath(os.getcwd())
 configurations = json.load(open("sql2circuits_config.json", "r"))
 seed_file = configurations["seed_paths"][2]
-workload_type = configurations["workload_types"][0]
+workload_type = configurations["workload_types"][2]
 qc_framework = configurations["qc_frameworks"][1]
 classical_optimizer = configurations["classical_optimizers"][4]
-measurement = configurations["measurements"][0]
-circuit_architecture = configurations["circuit_architectures"][1]
+measurement = "iqm" #configurations["measurements"][0]
+circuit_architecture = configurations["circuit_architectures"][0]
 learning_rate = 0.07
 
-model = SQL2Circuits(run_id = 8,
-                     classification = 3,
+model = SQL2Circuits(run_id = 5,
+                     classification = 1,
                      circuit_architecture = circuit_architecture,
                      seed_file = seed_file, 
                      qc_framework = qc_framework, 
@@ -33,4 +33,5 @@ model = SQL2Circuits(run_id = 8,
                      epochs = 300,
                      learning_rate=learning_rate)
 
-model.train()
+#model.train()
+model.evaluate_on_IQM()

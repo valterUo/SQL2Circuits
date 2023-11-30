@@ -89,8 +89,9 @@ def transform_into_pennylane_circuits(circuits, classification, measurement, int
 def post_selection(circuit_samples, n_qubits, post_selection):
     selected_samples = []
     post_select_array = np.array([0]*(n_qubits - post_selection))
-    selected_samples = circuit_samples[np.all(circuit_samples[:, post_selection - 1 :-1] == post_select_array, axis = 1)]
-    return selected_samples[:, :post_selection].tolist()
+    selected_samples = circuit_samples[np.all(circuit_samples[:, post_selection:] == post_select_array, axis = 1)]
+    selected_samples = selected_samples[:, :post_selection].tolist()
+    return selected_samples
 
 
 def predict_circuit(circuit, params, n_qubits, classification):
@@ -125,6 +126,7 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
             post_selected_samples = post_selection(measurement, n_qubits, classification)
             post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
             counts = collections.Counter(post_selected_samples)
+            print(counts)
             if len(post_selected_samples) == 0:
                 print("No samples")
                 predictions.append([1e-9]*(2**classification))

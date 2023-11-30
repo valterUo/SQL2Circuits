@@ -116,8 +116,8 @@ class Circuits:
                     self.all_circuits.update(self.validation_circuits)
 
                     # Draw the first circuit for demonstration and debugging purposes
-                    circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
-                    circuit.draw()
+                    #circuit = self.training_circuits[list(self.training_circuits.keys())[0]]
+                    #circuit.draw()
 
                     draw_png, number_of_figures = False, 10
                     if draw_png:

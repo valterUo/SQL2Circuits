@@ -36,6 +36,14 @@ class PennylaneCircuit:
             self.dev = qml.device("default.qubit", 
                               wires=range(n_qubits), 
                               shots=100000)
+        elif measurement == "iqm":
+            from iqm.qiskit_iqm import IQMProvider
+            from iqm.qiskit_iqm import IQMFakeApollo
+            
+            #provider = IQMProvider("https://qc.vtt.fi/leena/cocos")
+            backend = IQMFakeApollo() #provider.get_backend()
+            self.dev = qml.device('qiskit.remote', wires=range(n_qubits), backend=backend, shots=10000)
+            print(self.dev.capabilities())
         self.param_symbols = param_symbols
         self.symbol_to_index = symbol_to_index
         self.symbols = symbols
