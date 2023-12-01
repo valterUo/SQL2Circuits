@@ -9,7 +9,7 @@ from data_preparation.database import Database
 from data_preparation.prepare import DataPreparation
 from data_preparation.queries import QueryGenerator
 from evaluation.evaluation import Evaluation
-from training.functions.pennylane_functions import make_pennylane_pred_fn
+from training.functions.pennylane_functions import make_pennylane_pred_fn, make_pennylane_pred_fn_for_gradient_descent
 from training.trainers.lambeq_optax import LambeqTrainerJAX
 from training.data_preparation_manager import DataPreparationManager
 from training.trainers.lambeq_noisyopt import LambeqTrainer
@@ -28,7 +28,7 @@ numpy.random.seed(SEED)
 class SQL2Circuits():
 
     def __init__(self, 
-                 run_id, 
+                 run_id,
                  classification,
                  circuit_architecture,
                  seed_file, 
@@ -40,7 +40,8 @@ class SQL2Circuits():
                  number_of_circuits_to_add, 
                  iterative,
                  epochs,
-                 learning_rate = None):
+                 learning_rate = None,
+                 identifier = None):
 
         print("The selected configuration is: ")
         print("Run id: ", run_id)
@@ -67,7 +68,10 @@ class SQL2Circuits():
         self.initial_number_of_circuits = initial_number_of_circuits
         self.number_of_circuits_to_add = number_of_circuits_to_add
         self.iterative = iterative
-        self.identifier = "5_pennylane_optax_state_cost_25_25_007_2" #str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
+        if identifier is None:
+            self.identifier = str(run_id) + "_" + qc_framework + "_" + classical_optimizer + "_" + measurement + "_" + circuit_architecture + "_" + workload_type + "_" + str(initial_number_of_circuits) + "_" + str(number_of_circuits_to_add) + "_" + str(learning_rate).replace(".", "") + "_" + str(2**classification)
+        else:
+            self.identifier = identifier
         self.result = None
         self.epochs = epochs
         self.learning_rate = learning_rate
@@ -260,43 +264,71 @@ class SQL2Circuits():
                                  self.query_file, 
                                  self.output_folder, 
                                  self.classification, 
-                                 "iqm",
-                                 self.circuit_architecture,
-                                 write_cfg_to_file = False, 
-                                 write_pregroup_to_file=False,
-                                 generate_cfg_png_diagrams = False,
-                                 generate_pregroup_png_diagrams = False,
-                                 generate_circuit_png_diagrams = False)
+                                 "state",
+                                 self.circuit_architecture)
         self.circuits.execute_full_transformation()
-        self.circuits.generate_pennylane_circuits()
-        number_of_selected_circuits = len(self.circuits.get_qml_test_circuits())
+        #self.circuits.generate_pennylane_circuits()
         
         sf = DataPreparationManager(self.run_id, 
                                     self.data_preparator, 
                                     self.circuits, 
-                                    number_of_selected_circuits, 
+                                    "all", 
                                     self.qc_framework)
+        train_circuits = sf.get_X_train()
+        train_labels = sf.get_training_labels()
+        
+        valid_circuits = sf.get_X_valid()
+        valid_labels = sf.get_validation_labels()
+        
         test_circuits = sf.get_X_test()
         test_labels = sf.get_test_labels()
-        params = sf.get_qml_train_symbols()
         
-        test_pred_fn = make_pennylane_pred_fn(test_circuits, params, self.classification)
-        # Select the pickle file with the largest number of circuits in the file name
-        files = os.listdir(self.results_folder)
-        files = [f for f in files if ".pkl" in f]
-        files = sorted(files, key = lambda x: int(x.split("_")[0]))
-        file = files[-1]
-        file = file.replace(".pkl", ".json")
-        result_file = self.results_folder + file
-        optimized_params = None #numpy.random.uniform(-numpy.pi, numpy.pi, len(params))
+        params = sf.get_qml_train_symbols()
+        print("Number of parameters: ", len(params))
+        
+        #train_pred_fn = make_pennylane_pred_fn(train_circuits, params, self.classification)
+        #valid_pred_fn = make_pennylane_pred_fn(valid_circuits, params, self.classification)
+        #test_pred_fn = make_pennylane_pred_fn(test_circuits, params, self.classification)
+        
+        train_pred_fn = make_pennylane_pred_fn_for_gradient_descent(train_circuits)
+        valid_pred_fn = make_pennylane_pred_fn_for_gradient_descent(valid_circuits)
+        test_pred_fn = make_pennylane_pred_fn_for_gradient_descent(test_circuits)
+        
+        result_file = self.results_folder + "optimized_params.json"
+        optimized_params = None
         with open(result_file, "rb") as f:
-            # Open optimized parameters from the json file
-            optimized_params = json.load(f)["optimized_params"]
-        test_acc = multi_class_acc(test_pred_fn(optimized_params), test_labels)
-        test_result_file = this_folder + "//training//results//IQM//test_accuracy_iqm.json"
-        if not os.path.isfile(test_result_file):
+            optimized_params = json.load(f)
+        print("Number of optimized parameters: ", len(optimized_params))
+        for case in ["train", "valid", "test"]:
+            if case == "train":
+                pred_fn = train_pred_fn
+                labels = train_labels
+            elif case == "valid":
+                pred_fn = valid_pred_fn
+                labels = valid_labels
+            else:
+                pred_fn = test_pred_fn
+                labels = test_labels
+            pred = pred_fn(optimized_params)
+            print("Predictions: ", pred)
+            acc = multi_class_acc(pred, labels)
+            test_result_file = this_folder + "//training//results//IQM//accuracy_iqm.json"
+            # Append and save accuracy to the file with the identifier
+            if os.path.exists(test_result_file):
+                with open(test_result_file, "r") as f:
+                    result = json.load(f)
+                    if self.identifier in result:
+                        result[self.identifier][case] = acc
+                    else:
+                        result[self.identifier] = {}
+                        result[self.identifier][case] = acc
+            else:
+                result = {}
+                result[self.identifier] = {}
+                result[self.identifier][case] = acc
+            
             with open(test_result_file, "w") as f:
-                json.dump({ self.identifier: test_acc }, f, indent=4)
+                json.dump(result, f, indent = 4)
         
         
         

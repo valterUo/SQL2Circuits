@@ -69,8 +69,8 @@ def transform_into_pennylane_circuits(circuits, classification, measurement, int
                                                   params, 
                                                   pennylane_wires, 
                                                   n_qubits, 
-                                                  param_symbols, 
-                                                  symbol_to_index, 
+                                                  param_symbols,
+                                                  symbol_to_index,
                                                   symbols, 
                                                   valid_states,
                                                   measurement,
@@ -103,7 +103,7 @@ def predict_circuit(circuit, params, n_qubits, classification):
         return [1e-9]*(2**classification)
     try:
         predicted = counts.most_common(1)[0][0]
-        binary_string = ''.join(str(bit) for bit in predicted[::-1])
+        binary_string = ''.join(str(bit) for bit in predicted)
         binary_int = int(binary_string, 2)
         result = [1e-9]*2**classification
         result[binary_int] = 1
@@ -124,23 +124,20 @@ def make_pennylane_pred_fn(circuits, parameters, classification):
             post_selected_samples = []
             measurement = circuit(params)
             post_selected_samples = post_selection(measurement, n_qubits, classification)
-            post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
-            counts = collections.Counter(post_selected_samples)
-            print(counts)
+            
             if len(post_selected_samples) == 0:
                 print("No samples")
                 predictions.append([1e-9]*(2**classification))
                 continue
-            try:
-                predicted = counts.most_common(1)[0][0]
-                binary_string = ''.join(str(bit) for bit in predicted[::-1])
-                binary_int = int(binary_string, 2)
-                result = [1e-9]*2**classification
-                result[binary_int] = 1
-                predictions.append(result)
-            except Exception as e:
-                print("Error in prediction circuit 1", e)
-                return [1e-9]*(2**classification)
+            
+            post_selected_samples = [tuple(map(int, t)) for t in post_selected_samples]
+            counts = collections.Counter(post_selected_samples)
+            predicted = counts.most_common(1)[0][0]
+            binary_string = ''.join(str(bit) for bit in predicted)
+            binary_int = int(binary_string, 2)
+            result = [1e-9]*2**classification
+            result[binary_int] = 1
+            predictions.append(result)
         return predictions
     
 

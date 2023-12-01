@@ -1,9 +1,0 @@
-{
-    "results": [
-        {
-            "step": 50,
-            "test_accuracy": 0.08,
-            "number_of_test_circuits": 50
-        }
-    ]
-}

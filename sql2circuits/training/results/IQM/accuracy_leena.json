@@ -1,0 +1,22 @@
+{
+    "1_pennylane_optax_state_cardinality_25_25_007_4": {
+        "train": 0.4780361757105943,
+        "valid": 0.42063492063492064,
+        "test": 0.3333333333333333
+    },
+    "5_pennylane_optax_state_cost_25_25_007_2": {
+        "train": 0.905852417302799,
+        "valid": 0.8515625,
+        "test": 0.9191176470588235
+    },
+    "8_pennylane_optax_state_Sim14Ansatz_cardinality_10_20_007_8": {
+        "train": 0.20051413881748073,
+        "valid": 0.2698412698412698,
+        "test": 0.30597014925373134
+    },
+    "9_pennylane_optax_adamw_state_Sim14Ansatz_execution_time_50_50_007_4": {
+        "train": 0.40302267002518893,
+        "valid": 0.3359375,
+        "test": 0.4927536231884058
+    }
+}

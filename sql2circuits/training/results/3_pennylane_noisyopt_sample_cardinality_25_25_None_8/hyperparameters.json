@@ -1,9 +1,0 @@
-{
-    "id": "3_pennylane_noisyopt_sample_cardinality_25_25_None_8",
-    "a": 0.053,
-    "c": 0.00185,
-    "epochs": 1000,
-    "classification": 8,
-    "workload": "cardinality",
-    "optimization_medthod": "noisyopt"
-}

@@ -1,6 +1,6 @@
 {
     "run_id": 1,
-    "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality.json",
+    "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality_big.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax",
     "measurement": "state",
