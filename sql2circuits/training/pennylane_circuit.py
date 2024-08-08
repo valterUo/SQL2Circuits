@@ -54,7 +54,6 @@ class PennylaneCircuit:
         self.interface = interface
         self.diff_method = diff_method
         self.valid_states = valid_states
-        #print(self.post_selection)
     
 
     def qml_circuit(self, circ_params):
@@ -99,8 +98,8 @@ class PennylaneCircuit:
     def eval_qml_circuit_with_post_selection(self, circ_params):
         circuit = qml.QNode(self.qml_circuit_with_state_meas, 
                             self.dev, 
-                            interface = self.interface, 
-                            diff_method = self.diff_method)
+                            interface = 'jax',
+                            diff_method = 'backprop')
         #fig, ax = qml.draw_mpl(circuit)(circ_params)
         #fig.savefig("test" + str(self.__hash__) + ".png")
         #raise Exception

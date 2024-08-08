@@ -39,7 +39,7 @@ def get_valid_states(n_qubits, post_selection):
     return keep_indices
     
 
-def transform_into_pennylane_circuits(circuits, classification, measurement, interface = 'best', diff_method = 'best'):
+def transform_into_pennylane_circuits(circuits, classification, measurement, interface = 'best', diff_method = 'backprop'):
     qml_circuits = {}
     symbols = set([Symbol(str(elem)) for c in circuits.values() for elem in c.free_symbols])
     symbols = list(sorted(symbols, key = default_sort_key))
