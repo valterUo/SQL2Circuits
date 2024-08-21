@@ -16,7 +16,7 @@ workload_type = configurations["workload_types"][1]
 qc_framework = configurations["qc_frameworks"][1]
 classical_optimizer = configurations["classical_optimizers"][4]
 measurement = configurations["measurements"][0]
-circuit_architecture = configurations["circuit_architectures"][0]
+circuit_architecture = configurations["circuit_architectures"][1]
 learning_rate = 0.01
 
 model = SQL2Circuits(run_id = 1,
