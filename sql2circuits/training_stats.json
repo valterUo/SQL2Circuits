@@ -1,16 +1,16 @@
 {
-    "run_id": 9,
+    "run_id": 5,
     "seed_file": "data_preparation//query_seeds//JOB_query_seed_latency_cost_big.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax_adamw",
     "measurement": "state",
-    "workload_type": "execution_time",
+    "workload_type": "cost",
     "initial_number_of_circuits": 20,
     "number_of_circuits_to_add": 20,
     "iterative": true,
     "classification": 2,
-    "epochs": 500,
+    "epochs": 200,
     "learning_rate": 0.01,
-    "classes": "(0.0872, 256.3642) (256.9487, 18767.0778)",
+    "classes": "(0.0, 83723.14) (83735.13, 1425540.85)",
     "circuit_architecture": "IQPAnsatz"
 }
