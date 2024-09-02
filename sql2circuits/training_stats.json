@@ -1,16 +1,16 @@
 {
-    "run_id": 1,
-    "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality_big.json",
+    "run_id": 9,
+    "seed_file": "data_preparation//query_seeds//JOB_query_seed_latency_cost_big.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax_adamw",
     "measurement": "state",
-    "workload_type": "cardinality",
+    "workload_type": "execution_time",
     "initial_number_of_circuits": 20,
     "number_of_circuits_to_add": 20,
     "iterative": true,
-    "classification": 2,
+    "classification": 4,
     "epochs": 200,
     "learning_rate": 0.01,
-    "classes": "(0, 29757) (29757, 102555254)",
+    "classes": "(0.0872, 202.4836) (202.5173, 256.9487) (257.6162, 904.8191) (907.6158, 18767.0778)",
     "circuit_architecture": "Sim14Ansatz"
 }
