@@ -8,9 +8,9 @@
     "initial_number_of_circuits": 20,
     "number_of_circuits_to_add": 20,
     "iterative": true,
-    "classification": 4,
-    "epochs": 200,
-    "learning_rate": 0.01,
-    "classes": "(0.0872, 202.4836) (202.5173, 256.9487) (257.6162, 904.8191) (907.6158, 18767.0778)",
+    "classification": 8,
+    "epochs": 100,
+    "learning_rate": 0.1,
+    "classes": "(0.0872, 156.3643) (156.5938, 202.4836) (202.5173, 226.1506) (226.4551, 256.9487) (257.6162, 406.5418) (406.9576, 904.8191) (907.6158, 2040.805) (2048.5289, 18767.0778)",
     "circuit_architecture": "Sim14Ansatz"
 }

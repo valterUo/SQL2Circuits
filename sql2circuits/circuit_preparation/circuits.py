@@ -60,7 +60,7 @@ class Circuits:
         self.output_folder = output_folder
         self.classification = classification
         self.circuit_architecture = circuit_architecture
-        self.layers = 1
+        self.layers = 2
         self.single_qubit_params = 3
         self.n_wire_count = 1
         self.generate_pregroup_png_diagrams = generate_pregroup_png_diagrams
