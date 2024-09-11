@@ -1,10 +1,10 @@
 {
-    "run_id": 9,
-    "seed_file": "data_preparation//query_seeds//JOB_query_seed_latency_cost_big.json",
+    "run_id": 1,
+    "seed_file": "data_preparation//query_seeds//JOB_query_seed_cardinality_big.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax_adamw",
     "measurement": "state",
-    "workload_type": "execution_time",
+    "workload_type": "cardinality",
     "initial_number_of_circuits": 20,
     "number_of_circuits_to_add": 20,
     "iterative": true,
