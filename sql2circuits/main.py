@@ -19,7 +19,7 @@ measurement = configurations["measurements"][0]
 circuit_architecture = configurations["circuit_architectures"][1]
 learning_rate = 0.1
 
-model = SQL2Circuits(run_id = 1,
+model = SQL2Circuits(run_id = 9,
                      classification = 2,
                      circuit_architecture = circuit_architecture,
                      seed_file = seed_file, 
