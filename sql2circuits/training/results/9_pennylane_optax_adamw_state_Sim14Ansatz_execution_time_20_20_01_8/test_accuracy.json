@@ -1,0 +1,79 @@
+{
+    "results": [
+        {
+            "step": 20,
+            "test_accuracy": 0.25,
+            "number_of_test_circuits": 20
+        },
+        {
+            "step": 40,
+            "test_accuracy": 0.225,
+            "number_of_test_circuits": 40
+        },
+        {
+            "step": 60,
+            "test_accuracy": 0.31666666666666665,
+            "number_of_test_circuits": 60
+        },
+        {
+            "step": 80,
+            "test_accuracy": 0.2625,
+            "number_of_test_circuits": 80
+        },
+        {
+            "step": 100,
+            "test_accuracy": 0.36,
+            "number_of_test_circuits": 100
+        },
+        {
+            "step": 120,
+            "test_accuracy": 0.3162393162393162,
+            "number_of_test_circuits": 117
+        },
+        {
+            "step": 140,
+            "test_accuracy": 0.38461538461538464,
+            "number_of_test_circuits": 117
+        },
+        {
+            "step": 160,
+            "test_accuracy": 0.37606837606837606,
+            "number_of_test_circuits": 117
+        },
+        {
+            "step": 180,
+            "test_accuracy": 0.452991452991453,
+            "number_of_test_circuits": 117
+        },
+        {
+            "step": 200,
+            "test_accuracy": 0.4322033898305085,
+            "number_of_test_circuits": 118
+        },
+        {
+            "step": 220,
+            "test_accuracy": 0.47540983606557374,
+            "number_of_test_circuits": 122
+        },
+        {
+            "step": 240,
+            "test_accuracy": 0.5,
+            "number_of_test_circuits": 122
+        },
+        {
+            "step": 260,
+            "test_accuracy": 0.5245901639344263,
+            "number_of_test_circuits": 122
+        },
+        {
+            "step": 280,
+            "test_accuracy": 0.49624060150375937,
+            "number_of_test_circuits": 133
+        },
+        {
+            "step": 300,
+            "test_accuracy": 0.45864661654135336,
+            "number_of_test_circuits": 133
+        }
+    ]
+}

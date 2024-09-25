@@ -1,0 +1,104 @@
+{
+    "results": [
+        {
+            "step": 20,
+            "test_accuracy": 0.8,
+            "number_of_test_circuits": 20
+        },
+        {
+            "step": 40,
+            "test_accuracy": 0.625,
+            "number_of_test_circuits": 40
+        },
+        {
+            "step": 60,
+            "test_accuracy": 0.8,
+            "number_of_test_circuits": 60
+        },
+        {
+            "step": 80,
+            "test_accuracy": 0.825,
+            "number_of_test_circuits": 80
+        },
+        {
+            "step": 100,
+            "test_accuracy": 0.88,
+            "number_of_test_circuits": 100
+        },
+        {
+            "step": 120,
+            "test_accuracy": 0.8782608695652174,
+            "number_of_test_circuits": 115
+        },
+        {
+            "step": 140,
+            "test_accuracy": 0.9217391304347826,
+            "number_of_test_circuits": 115
+        },
+        {
+            "step": 160,
+            "test_accuracy": 0.9043478260869565,
+            "number_of_test_circuits": 115
+        },
+        {
+            "step": 180,
+            "test_accuracy": 0.9043478260869565,
+            "number_of_test_circuits": 115
+        },
+        {
+            "step": 200,
+            "test_accuracy": 0.9137931034482759,
+            "number_of_test_circuits": 116
+        },
+        {
+            "step": 220,
+            "test_accuracy": 0.925,
+            "number_of_test_circuits": 120
+        },
+        {
+            "step": 240,
+            "test_accuracy": 0.9416666666666667,
+            "number_of_test_circuits": 120
+        },
+        {
+            "step": 260,
+            "test_accuracy": 0.95,
+            "number_of_test_circuits": 120
+        },
+        {
+            "step": 280,
+            "test_accuracy": 0.9312977099236641,
+            "number_of_test_circuits": 131
+        },
+        {
+            "step": 300,
+            "test_accuracy": 0.9389312977099237,
+            "number_of_test_circuits": 131
+        },
+        {
+            "step": 320,
+            "test_accuracy": 0.9389312977099237,
+            "number_of_test_circuits": 131
+        },
+        {
+            "step": 340,
+            "test_accuracy": 0.9465648854961832,
+            "number_of_test_circuits": 131
+        },
+        {
+            "step": 360,
+            "test_accuracy": 0.9411764705882353,
+            "number_of_test_circuits": 136
+        },
+        {
+            "step": 380,
+            "test_accuracy": 0.9558823529411765,
+            "number_of_test_circuits": 136
+        },
+        {
+            "step": 393,
+            "test_accuracy": 0.9558823529411765,
+            "number_of_test_circuits": 136
+        }
+    ]
+}

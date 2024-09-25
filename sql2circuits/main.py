@@ -20,7 +20,7 @@ circuit_architecture = configurations["circuit_architectures"][1]
 learning_rate = 0.1
 
 model = SQL2Circuits(run_id = 9,
-                     classification = 2,
+                     classification = 3,
                      circuit_architecture = circuit_architecture,
                      seed_file = seed_file, 
                      qc_framework = qc_framework, 
@@ -30,7 +30,7 @@ model = SQL2Circuits(run_id = 9,
                      initial_number_of_circuits = 20, 
                      number_of_circuits_to_add = 20,
                      iterative = True,
-                     epochs = 200,
+                     epochs = 100,
                      learning_rate=learning_rate)
 
 model.train()
