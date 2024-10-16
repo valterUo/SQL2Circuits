@@ -1,16 +1,16 @@
 {
-    "run_id": 9,
+    "run_id": 5,
     "seed_file": "data_preparation//query_seeds//JOB_query_seed_latency_cost_big.json",
     "qc_framework": "pennylane",
     "classical_optimizer": "optax_adamw",
     "measurement": "state",
-    "workload_type": "execution_time",
+    "workload_type": "cost",
     "initial_number_of_circuits": 20,
     "number_of_circuits_to_add": 20,
     "iterative": true,
     "classification": 8,
     "epochs": 100,
     "learning_rate": 0.1,
-    "classes": "(0.0872, 156.3643) (156.5938, 202.4836) (202.5173, 226.1506) (226.4551, 256.9487) (257.6162, 406.5418) (406.9576, 904.8191) (907.6158, 2040.805) (2048.5289, 18767.0778)",
+    "classes": "(0.0, 63565.32) (63770.95, 67139.74) (67158.93, 70690.49) (71128.57, 84086.39) (84276.23, 108703.35) (108703.35, 159742.87) (160257.49, 580270.72) (580470.0, 1425540.85)",
     "circuit_architecture": "Sim14Ansatz"
 }
