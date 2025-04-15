@@ -1,9 +1,8 @@
-# SQL2Circuits: Classifying SQL Queries with a Quantum Computer
+# SQL2Circuits: Estimating Cardinalities, Execution Times, and Costs for SQL Queries with Quantum Natural Language Processing
 
 ## Example
 
-1. The user has a fixed relational database
-2. The user wants to estimate the execution time / cardinality / cost of a query
+1. The user has a fixed relational database and wants to estimate the execution time / cardinality / cost of a query
 3. The SQL2Circuits framework estimates the metrics with quantum circuits with the following pipeline
     1. The SQL query is parsed into an abstract syntax tree which is represented with a context-free grammar diagram
     2. The context-free grammar diagram is mapped functorially to a pregroup grammar diagram
